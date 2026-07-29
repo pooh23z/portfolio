@@ -1,0 +1,2932 @@
+<!DOCTYPE html>
+<html lang="th" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Samsung Official Store | Galaxy Z Fold8, S26 Ultra, Bespoke AI</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        :root {
+            --bg-page: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-card-hover: #ffffff;
+            --bg-glass: rgba(255, 255, 255, 0.85);
+            --border-color: #e2e8f0;
+            --border-hover: #cbd5e1;
+            
+            --samsung-navy: #0b192c;
+            --samsung-blue: #034ea2;
+            --accent-blue: #2563eb;
+            --accent-sky: #0ea5e9;
+            --accent-purple: #8b5cf6;
+            --accent-emerald: #10b981;
+            --accent-gradient: linear-gradient(135deg, #034ea2 0%, #0ea5e9 50%, #8b5cf6 100%);
+            
+            --text-title: #0f172a;
+            --text-body: #475569;
+            --text-muted: #94a3b8;
+            
+            --font-main: 'Outfit', 'Noto Sans Thai', sans-serif;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+            --shadow-md: 0 8px 30px rgba(0,0,0,0.06);
+            --shadow-lg: 0 20px 50px rgba(0,0,0,0.12);
+            --shadow-glow: 0 10px 30px rgba(3, 78, 162, 0.2);
+            
+            --radius-card: 22px;
+            --radius-btn: 30px;
+            --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        [data-theme="dark"] {
+            --bg-page: #070d18;
+            --bg-card: #0f172a;
+            --bg-card-hover: #1e293b;
+            --bg-glass: rgba(15, 23, 42, 0.85);
+            --border-color: #1e293b;
+            --border-hover: #334155;
+            
+            --samsung-navy: #f8fafc;
+            --samsung-blue: #38bdf8;
+            --accent-blue: #60a5fa;
+            --accent-sky: #38bdf8;
+            --accent-purple: #c084fc;
+            --accent-emerald: #34d399;
+            
+            --text-title: #f8fafc;
+            --text-body: #cbd5e1;
+            --text-muted: #64748b;
+            
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.2);
+            --shadow-md: 0 8px 30px rgba(0,0,0,0.4);
+            --shadow-lg: 0 20px 50px rgba(0,0,0,0.6);
+            --shadow-glow: 0 10px 35px rgba(56, 189, 248, 0.25);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-page);
+            color: var(--text-title);
+            font-family: var(--font-main);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Ambient Glow Background */
+        .ambient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .ambient-blob-1 {
+            position: absolute;
+            top: -10%;
+            right: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.12) 0%, rgba(3, 78, 162, 0.02) 70%);
+            border-radius: 50%;
+            filter: blur(80px);
+            animation: pulseBlob 12s infinite alternate;
+        }
+        .ambient-blob-2 {
+            position: absolute;
+            bottom: 10%;
+            left: -10%;
+            width: 45vw;
+            height: 45vw;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, rgba(3, 78, 162, 0.02) 70%);
+            border-radius: 50%;
+            filter: blur(80px);
+            animation: pulseBlob 16s infinite alternate-reverse;
+        }
+
+        @keyframes pulseBlob {
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.15) translate(30px, -20px); }
+        }
+
+        /* Header Navbar */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 14px 45px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            transition: var(--transition-smooth);
+        }
+
+        .brand-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .samsung-wordmark {
+            font-size: 1.6rem;
+            font-weight: 900;
+            letter-spacing: 2.5px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .badge-official {
+            font-size: 0.68rem;
+            font-weight: 800;
+            background: var(--samsung-blue);
+            color: #ffffff;
+            padding: 4px 10px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .search-wrapper {
+            position: relative;
+            flex: 1;
+            max-width: 480px;
+        }
+        .search-field {
+            width: 100%;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-btn);
+            padding: 10px 42px 10px 42px;
+            font-size: 0.92rem;
+            outline: none;
+            color: var(--text-title);
+            font-family: inherit;
+            transition: var(--transition-smooth);
+        }
+        .search-field:focus {
+            border-color: var(--samsung-blue);
+            box-shadow: var(--shadow-glow);
+        }
+        .search-icon-svg {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+        .clear-search-btn {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            display: none;
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .lang-toggle-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 6px 14px;
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: var(--text-title);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition-smooth);
+        }
+        .lang-toggle-btn:hover {
+            border-color: var(--samsung-blue);
+            transform: translateY(-1px);
+        }
+
+        .btn-icon-minimal {
+            position: relative;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-title);
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+        .btn-icon-minimal:hover {
+            border-color: var(--samsung-blue);
+            color: var(--samsung-blue);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+        .btn-icon-minimal .badge-count {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background: var(--accent-sky);
+            color: #070d18;
+            font-size: 0.68rem;
+            font-weight: 900;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--bg-card);
+        }
+
+        /* Top Announcement Bar */
+        .announcement-bar {
+            background: var(--accent-gradient);
+            color: #ffffff;
+            text-align: center;
+            padding: 8px 16px;
+            font-size: 0.84rem;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .announcement-bar span {
+            background: rgba(255,255,255,0.2);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+        }
+
+        /* Hero Spotlight Carousel */
+        .hero-spotlight {
+            max-width: 1280px;
+            margin: 25px auto 10px;
+            padding: 0 25px;
+            position: relative;
+            z-index: 1;
+        }
+        .spotlight-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 28px;
+            padding: 45px 55px;
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            align-items: center;
+            gap: 40px;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+            min-height: 440px;
+            transition: var(--transition-smooth);
+        }
+        .spotlight-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 70%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .spotlight-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(14, 165, 233, 0.1);
+            color: var(--accent-sky);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+        .spotlight-title {
+            font-size: 2.9rem;
+            font-weight: 900;
+            color: var(--text-title);
+            line-height: 1.12;
+            margin-bottom: 14px;
+            letter-spacing: -0.5px;
+        }
+        .spotlight-desc {
+            color: var(--text-body);
+            font-size: 1.05rem;
+            margin-bottom: 25px;
+            max-width: 520px;
+        }
+        .spotlight-actions {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .btn-minimal-primary {
+            background: var(--samsung-navy);
+            color: var(--bg-page);
+            font-weight: 800;
+            padding: 13px 30px;
+            border-radius: var(--radius-btn);
+            border: none;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition-smooth);
+            font-family: inherit;
+        }
+        [data-theme="dark"] .btn-minimal-primary {
+            background: #ffffff;
+            color: #070d18;
+        }
+        .btn-minimal-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+        }
+        .btn-minimal-secondary {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-title);
+            font-weight: 700;
+            padding: 13px 26px;
+            border-radius: var(--radius-btn);
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition-smooth);
+            font-family: inherit;
+        }
+        .btn-minimal-secondary:hover {
+            border-color: var(--samsung-blue);
+            color: var(--samsung-blue);
+            transform: translateY(-1px);
+        }
+
+        .spotlight-img-container {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        .spotlight-img {
+            max-width: 100%;
+            height: 330px;
+            object-fit: contain;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.15));
+        }
+        .spotlight-card:hover .spotlight-img {
+            transform: scale(1.06) rotate(1deg);
+        }
+
+        /* Carousel Navigation Controls */
+        .carousel-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-title);
+            cursor: pointer;
+            z-index: 10;
+            transition: var(--transition-smooth);
+            box-shadow: var(--shadow-md);
+        }
+        .carousel-nav-btn.prev { left: 40px; }
+        .carousel-nav-btn.next { right: 40px; }
+        .carousel-nav-btn:hover {
+            border-color: var(--samsung-blue);
+            color: var(--samsung-blue);
+            transform: translateY(-50%) scale(1.1);
+        }
+        .carousel-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 10px;
+            background: var(--border-color);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+        .carousel-dot.active {
+            width: 28px;
+            background: var(--samsung-blue);
+        }
+
+        /* Feature Highlights Bar */
+        .feature-banner-bar {
+            max-width: 1280px;
+            margin: 25px auto 10px;
+            padding: 0 25px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            position: relative;
+            z-index: 1;
+        }
+        .feature-banner-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+        .feature-banner-card:hover {
+            border-color: var(--samsung-blue);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-3px);
+        }
+        .fb-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 16px;
+            background: rgba(14, 165, 233, 0.1);
+            color: var(--accent-sky);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+        .fb-text h4 {
+            font-size: 0.96rem;
+            font-weight: 800;
+            color: var(--text-title);
+            margin-bottom: 2px;
+        }
+        .fb-text p {
+            font-size: 0.82rem;
+            color: var(--text-body);
+        }
+
+        /* Disclaimer Footer */
+        .disclaimer-footer {
+            max-width: 1280px;
+            margin: 40px auto 90px;
+            padding: 0 25px;
+            position: relative;
+            z-index: 1;
+        }
+        .disclaimer-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--samsung-blue);
+            border-radius: 18px;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 0.88rem;
+            color: var(--text-body);
+            box-shadow: var(--shadow-sm);
+        }
+        .disclaimer-icon {
+            font-size: 1.6rem;
+            color: var(--samsung-blue);
+            flex-shrink: 0;
+        }
+
+        /* Filter & Sort Controls */
+        .filter-controls-bar {
+            max-width: 1280px;
+            margin: 35px auto 20px;
+            padding: 0 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .category-pill-list {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 4px;
+        }
+        .category-pill-list::-webkit-scrollbar { display: none; }
+
+        .pill-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-body);
+            padding: 9px 22px;
+            border-radius: var(--radius-btn);
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition-smooth);
+            font-family: inherit;
+        }
+        .pill-btn:hover {
+            border-color: var(--samsung-blue);
+            color: var(--samsung-blue);
+        }
+        .pill-btn.active {
+            background: var(--samsung-blue);
+            color: #ffffff;
+            border-color: transparent;
+            font-weight: 800;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .view-options {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .sort-select {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-title);
+            padding: 9px 16px;
+            border-radius: var(--radius-btn);
+            font-size: 0.88rem;
+            font-weight: 700;
+            outline: none;
+            cursor: pointer;
+            font-family: inherit;
+            transition: var(--transition-smooth);
+        }
+        .sort-select:focus { border-color: var(--samsung-blue); }
+
+        .view-toggle-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-body);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+        .view-toggle-btn.active, .view-toggle-btn:hover {
+            background: var(--samsung-blue);
+            color: #ffffff;
+            border-color: transparent;
+        }
+
+        /* Products Display Section */
+        .products-area {
+            max-width: 1280px;
+            margin: 0 auto 70px;
+            padding: 0 25px;
+            position: relative;
+            z-index: 1;
+        }
+        .products-grid-mode {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(285px, 1fr));
+            gap: 25px;
+        }
+        .products-list-mode {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .products-list-mode .product-card-item {
+            display: grid;
+            grid-template-columns: 220px 1fr auto;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .product-card-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-card);
+            padding: 24px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: var(--transition-smooth);
+        }
+        .product-card-item:hover {
+            border-color: var(--samsung-blue);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-5px);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 18px;
+            left: 18px;
+            background: rgba(14, 165, 233, 0.12);
+            color: var(--accent-sky);
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .card-wishlist {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            color: var(--text-muted);
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-smooth);
+        }
+        .card-wishlist:hover, .card-wishlist.active {
+            color: #ef4444;
+            border-color: #ef4444;
+            background: rgba(239, 68, 68, 0.1);
+            transform: scale(1.1);
+        }
+
+        .single-img-frame {
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0 15px;
+            cursor: pointer;
+        }
+        .single-img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+            transition: transform 0.4s ease;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.08));
+        }
+        .product-card-item:hover .single-img {
+            transform: scale(1.08);
+        }
+
+        .color-dots-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            min-height: 20px;
+        }
+        .dot-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 2px solid var(--bg-card);
+            box-shadow: 0 0 0 1px var(--border-color);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+        .dot-color.active, .dot-color:hover {
+            transform: scale(1.3);
+            box-shadow: 0 0 0 2px var(--samsung-blue);
+        }
+
+        .card-category {
+            font-size: 0.78rem;
+            font-weight: 800;
+            color: var(--accent-sky);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+        .card-title {
+            font-size: 1.12rem;
+            font-weight: 800;
+            color: var(--text-title);
+            line-height: 1.35;
+            margin-bottom: 6px;
+            cursor: pointer;
+            min-height: 2.6rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .rating-stars {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.8rem;
+            color: #f59e0b;
+            margin-bottom: 8px;
+        }
+
+        .installment-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.76rem;
+            color: var(--samsung-blue);
+            background: rgba(14, 165, 233, 0.1);
+            padding: 3px 10px;
+            border-radius: 8px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .card-price-box {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin: 6px 0 16px;
+        }
+        .price-now {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: var(--text-title);
+        }
+        .price-was {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            text-decoration: line-through;
+        }
+
+        .card-actions-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .btn-add-minimal {
+            flex: 1;
+            background: var(--samsung-navy);
+            color: var(--bg-page);
+            font-weight: 800;
+            padding: 11px;
+            border-radius: 14px;
+            border: none;
+            font-size: 0.88rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: var(--transition-smooth);
+            font-family: inherit;
+        }
+        [data-theme="dark"] .btn-add-minimal {
+            background: #ffffff;
+            color: #070d18;
+        }
+        .btn-add-minimal:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+        }
+        .btn-compare-minimal {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-body);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+        .btn-compare-minimal:hover, .btn-compare-minimal.active {
+            border-color: var(--samsung-blue);
+            color: var(--samsung-blue);
+            background: rgba(14, 165, 233, 0.1);
+        }
+
+        /* Floating Compare Bar */
+        .minimal-compare-bar {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%) translateY(140px);
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-lg);
+            border-radius: var(--radius-btn);
+            padding: 12px 28px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            z-index: 90;
+            transition: var(--transition-smooth);
+        }
+        .minimal-compare-bar.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Floating Samsung AI Button */
+        .ai-assistant-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--accent-gradient);
+            color: #ffffff;
+            border-radius: 30px;
+            padding: 14px 24px;
+            font-weight: 800;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: var(--shadow-glow);
+            cursor: pointer;
+            z-index: 95;
+            transition: var(--transition-smooth);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .ai-assistant-btn:hover {
+            transform: translateY(-4px) scale(1.04);
+            box-shadow: 0 15px 35px rgba(14, 165, 233, 0.4);
+        }
+
+        /* Live AI Chat Panel */
+        .ai-chat-drawer {
+            position: fixed;
+            bottom: 95px;
+            right: 30px;
+            width: 380px;
+            max-width: 90vw;
+            height: 520px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            box-shadow: var(--shadow-lg);
+            z-index: 105;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transform: scale(0.9) translateY(20px);
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition-smooth);
+        }
+        .ai-chat-drawer.open {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .ai-chat-header {
+            background: var(--accent-gradient);
+            color: #ffffff;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .ai-chat-body {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: var(--bg-page);
+        }
+        .chat-msg {
+            max-width: 85%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            font-size: 0.88rem;
+            line-height: 1.4;
+        }
+        .chat-msg.bot {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-title);
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+        .chat-msg.user {
+            background: var(--samsung-blue);
+            color: #ffffff;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+        .ai-chat-input-box {
+            padding: 12px;
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-card);
+            display: flex;
+            gap: 8px;
+        }
+        .ai-chat-input {
+            flex: 1;
+            background: var(--bg-page);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 8px 14px;
+            font-size: 0.88rem;
+            color: var(--text-title);
+            outline: none;
+            font-family: inherit;
+        }
+
+        /* Cart Slide-Out Drawer */
+        .cart-slide-drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 440px;
+            max-width: 100vw;
+            height: 100vh;
+            background: var(--bg-card);
+            border-left: 1px solid var(--border-color);
+            box-shadow: -10px 0 50px rgba(0,0,0,0.2);
+            z-index: 200;
+            transform: translateX(100%);
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            padding: 25px;
+        }
+        .cart-slide-drawer.open {
+            transform: translateX(0);
+        }
+
+        .shipping-progress-bar {
+            background: var(--bg-page);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .progress-track {
+            height: 6px;
+            background: var(--border-color);
+            border-radius: 6px;
+            overflow: hidden;
+            margin-top: 6px;
+        }
+        .progress-fill {
+            height: 100%;
+            background: var(--accent-gradient);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* Modal Mask Overlay */
+        .modal-mask {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(7, 13, 24, 0.65);
+            backdrop-filter: blur(10px);
+            z-index: 210;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+            padding: 20px;
+        }
+        .modal-mask.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .minimal-modal-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 28px;
+            width: 100%;
+            max-width: 860px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 40px;
+            position: relative;
+            box-shadow: var(--shadow-lg);
+            transform: scale(0.95);
+            transition: transform 0.25s ease;
+            -webkit-overflow-scrolling: touch;
+        }
+        .modal-mask.open .minimal-modal-card {
+            transform: scale(1);
+        }
+
+        .close-modal-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--bg-page);
+            border: 1px solid var(--border-color);
+            color: var(--text-title);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+        .close-modal-icon:hover {
+            border-color: var(--samsung-blue);
+            color: var(--samsung-blue);
+        }
+
+        /* Toast Notifications Container */
+        .toast-container {
+            position: fixed;
+            top: 80px;
+            right: 25px;
+            z-index: 300;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            pointer-events: none;
+        }
+        .toast-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--accent-sky);
+            box-shadow: var(--shadow-lg);
+            border-radius: 14px;
+            padding: 14px 20px;
+            color: var(--text-title);
+            font-size: 0.9rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            pointer-events: auto;
+            transform: translateX(120%);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .toast-item.show {
+            transform: translateX(0);
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1024px) {
+            header { padding: 14px 25px; }
+            .spotlight-card { padding: 35px 35px; gap: 30px; }
+            .spotlight-title { font-size: 2.3rem; }
+            .products-grid-mode { grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 20px; }
+            .minimal-modal-card { padding: 30px; max-width: 94vw; }
+        }
+
+        @media (max-width: 680px) {
+            header { padding: 12px 16px; flex-wrap: wrap; }
+            .brand-link { gap: 6px; }
+            .samsung-wordmark { font-size: 1.3rem; letter-spacing: 1.5px; }
+            .badge-official { display: none; }
+            .search-wrapper { order: 3; width: 100%; max-width: 100%; margin-top: 6px; }
+            .search-field { padding: 8px 16px 8px 38px; font-size: 0.88rem; }
+            .hero-spotlight { padding: 0 14px; margin-top: 15px; }
+            .spotlight-card { grid-template-columns: 1fr; padding: 25px 20px; text-align: center; border-radius: 20px; gap: 20px; min-height: auto; }
+            .spotlight-tag { margin-bottom: 10px; font-size: 0.75rem; }
+            .spotlight-title { font-size: 1.85rem; margin-bottom: 10px; }
+            .spotlight-desc { font-size: 0.92rem; margin: 0 auto 18px; }
+            .spotlight-actions { justify-content: center; gap: 10px; }
+            .btn-minimal-primary, .btn-minimal-secondary { width: 100%; justify-content: center; padding: 12px 20px; }
+            .spotlight-img { height: 230px; }
+            .carousel-nav-btn { display: none; }
+            .feature-banner-bar { padding: 0 14px; grid-template-columns: 1fr; gap: 10px; }
+            .filter-controls-bar { padding: 0 14px; margin: 20px auto 14px; }
+            .products-area { padding: 0 14px; }
+            .products-grid-mode { grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); gap: 14px; }
+            .product-card-item { padding: 14px; border-radius: 16px; }
+            .single-img-frame { height: 145px; margin: 12px 0 8px; }
+            .card-title { font-size: 0.92rem; min-height: 2.3rem; margin-bottom: 4px; }
+            .price-now { font-size: 1.15rem; }
+            .btn-add-minimal { padding: 8px; font-size: 0.8rem; border-radius: 10px; }
+            .cart-slide-drawer { width: 100vw; padding: 20px 16px; }
+            .ai-assistant-btn { bottom: 20px; right: 15px; padding: 10px 18px; font-size: 0.85rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ambient Glowing Background -->
+    <div class="ambient-bg">
+        <div class="ambient-blob-1"></div>
+        <div class="ambient-blob-2"></div>
+    </div>
+
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        <i class="fa-solid fa-sparkles"></i>
+        <span id="txt-announcement-tag">PROMO 2026</span>
+        <span id="txt-announcement">ผ่อน 0% นานสูงสุด 36 เดือน + รับส่วนลดเพิ่ม 15% เมื่อใช้โค้ด SAMSUNG2026</span>
+    </div>
+
+    <!-- Header Navbar -->
+    <header>
+        <a class="brand-link" onclick="filterCategory('all')">
+            <span class="samsung-wordmark">SAMSUNG</span>
+            <span class="badge-official" id="txt-badge-official">Official Store</span>
+        </a>
+
+        <div class="search-wrapper">
+            <i class="fa-solid fa-magnifying-glass search-icon-svg"></i>
+            <input type="text" id="search-input" class="search-field" placeholder="ค้นหา Galaxy Z Fold8, ตู้เย็น Bespoke, เครื่องซักผ้า..." oninput="handleSearch()">
+            <button class="clear-search-btn" id="clear-search" onclick="clearSearch()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <div class="header-controls">
+            <!-- Language Switcher -->
+            <button class="lang-toggle-btn" onclick="toggleLanguage()" title="เปลี่ยนภาษา / Switch Language">
+                <i class="fa-solid fa-globe" style="color: var(--accent-sky);"></i> 
+                <span id="lang-label">TH 🇹🇭</span>
+            </button>
+
+            <!-- Dark / Light Theme Toggle -->
+            <button class="btn-icon-minimal" id="theme-btn" onclick="toggleTheme()" title="เปลี่ยนธีม / Toggle Theme">
+                <i class="fa-solid fa-moon" id="theme-icon"></i>
+            </button>
+
+            <!-- Audio Toggle -->
+            <button class="btn-icon-minimal" id="sound-btn" onclick="toggleAudio()" title="เปิด/ปิด เสียง">
+                <i class="fa-solid fa-volume-high" id="sound-icon"></i>
+            </button>
+
+            <!-- Wishlist -->
+            <button class="btn-icon-minimal" onclick="openWishlistModal()" title="รายการโปรด">
+                <i class="fa-solid fa-heart"></i>
+                <span class="badge-count" id="wishlist-count">0</span>
+            </button>
+
+            <!-- Cart Drawer -->
+            <button class="btn-icon-minimal" onclick="toggleCartDrawer()" title="ตะกร้าสินค้า">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span class="badge-count" id="cart-count">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Spotlight Carousel -->
+    <section class="hero-spotlight">
+        <button class="carousel-nav-btn prev" onclick="prevHeroSlide()"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="carousel-nav-btn next" onclick="nextHeroSlide()"><i class="fa-solid fa-chevron-right"></i></button>
+
+        <div class="spotlight-card" id="hero-spotlight-card">
+            <!-- Rendered by JS hero slider -->
+        </div>
+
+        <div class="carousel-dots" id="hero-dots"></div>
+    </section>
+
+    <!-- Feature Highlights Bar -->
+    <section class="feature-banner-bar">
+        <div class="feature-banner-card" onclick="openTradeInModal('z-fold8')">
+            <div class="fb-icon"><i class="fa-solid fa-arrows-rotate"></i></div>
+            <div class="fb-text">
+                <h4 id="fb-title-1">Samsung Trade-in</h4>
+                <p id="fb-desc-1">นำเครื่องเก่ามาแลกใหม่ รับส่วนลดเพิ่มสูงสุด ฿25,000</p>
+            </div>
+        </div>
+
+        <div class="feature-banner-card" onclick="openAIDemoModal()">
+            <div class="fb-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+            <div class="fb-text">
+                <h4 id="fb-title-2">Galaxy AI Interactive Demo</h4>
+                <p id="fb-desc-2">ทดลองเล่นฟีเจอร์ Circle to Search & Live Translate</p>
+            </div>
+        </div>
+
+        <div class="feature-banner-card" onclick="openFinanceModal()">
+            <div class="fb-icon"><i class="fa-solid fa-credit-card"></i></div>
+            <div class="fb-text">
+                <h4 id="fb-title-3">Samsung Finance+ 0%</h4>
+                <p id="fb-desc-3">ผ่อนสบาย 0% นานสูงสุด 36 เดือน เริ่มต้น ฿1,830/เดือน</p>
+            </div>
+        </div>
+
+        <div class="feature-banner-card" onclick="openStoreLocatorModal()">
+            <div class="fb-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div class="fb-text">
+                <h4 id="fb-title-4">Samsung Experience Store</h4>
+                <p id="fb-desc-4">ค้นหาศูนย์บริการและสาขาใกล้บ้านคุณ</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Bar & Layout Toggle -->
+    <section class="filter-controls-bar">
+        <div class="category-pill-list">
+            <button class="pill-btn active" onclick="filterCategory('all', this)">
+                <i class="fa-solid fa-border-all"></i> <span id="cat-all">ทั้งหมด</span> (<span id="total-count-badge">0</span>)
+            </button>
+            <button class="pill-btn" onclick="filterCategory('smartphone', this)">
+                <i class="fa-solid fa-mobile-screen"></i> <span id="cat-smartphone">สมาร์ทโฟน</span>
+            </button>
+            <button class="pill-btn" onclick="filterCategory('homeapp', this)">
+                <i class="fa-solid fa-house-laptop"></i> <span id="cat-homeapp">เครื่องใช้ไฟฟ้า (Bespoke)</span>
+            </button>
+            <button class="pill-btn" onclick="filterCategory('tablet', this)">
+                <i class="fa-solid fa-tablet-screen-button"></i> <span id="cat-tablet">แท็บเล็ต</span>
+            </button>
+            <button class="pill-btn" onclick="filterCategory('wearable', this)">
+                <i class="fa-solid fa-clock"></i> <span id="cat-wearable">เวียเรเบิล & แหวน</span>
+            </button>
+            <button class="pill-btn" onclick="filterCategory('tv', this)">
+                <i class="fa-solid fa-tv"></i> <span id="cat-tv">ทีวี & เครื่องเสียง</span>
+            </button>
+        </div>
+
+        <div class="view-options">
+            <select class="sort-select" id="sort-select" onchange="handleSort()">
+                <option value="featured" id="sort-featured">แนะนำ (Featured)</option>
+                <option value="price-asc" id="sort-price-asc">ราคา: น้อย ➔ มาก</option>
+                <option value="price-desc" id="sort-price-desc">ราคา: มาก ➔ น้อย</option>
+                <option value="rating" id="sort-rating">คะแนนสูงสุด</option>
+            </select>
+
+            <button class="view-toggle-btn active" id="btn-grid-view" onclick="setViewMode('grid')" title="มุมมองตาราง">
+                <i class="fa-solid fa-table-cells-large"></i>
+            </button>
+            <button class="view-toggle-btn" id="btn-list-view" onclick="setViewMode('list')" title="มุมมองรายการ">
+                <i class="fa-solid fa-list"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- Products Display Section -->
+    <section class="products-area">
+        <div class="products-grid-mode" id="products-container">
+            <!-- Rendered by JS -->
+        </div>
+    </section>
+
+    <!-- Academic Disclaimer Footer -->
+    <footer class="disclaimer-footer">
+        <div class="disclaimer-content">
+            <i class="fa-solid fa-graduation-cap disclaimer-icon"></i>
+            <div>
+                <strong style="color: var(--text-title); display: block; margin-bottom: 2px;">หมายเหตุ (Disclaimer):</strong>
+                <span id="txt-disclaimer">เว็บไซต์นี้จัดทำขึ้นเพื่อประกอบกิจกรรมการเรียนการสอนในรายวิชา BUS101: Principles of Marketing เท่านั้น โดยเป็นส่วนหนึ่งของโครงการศึกษาเชิงวิชาการ เว็บไซต์นี้ไม่ได้เป็นเว็บไซต์อย่างเป็นทางการของ Samsung และไม่มีวัตถุประสงค์เพื่อการค้า การจำหน่าย สินค้า หรือการแสวงหาผลกำไรใด ๆ</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Compare Bar -->
+    <div class="minimal-compare-bar" id="compare-bar">
+        <div style="font-weight: 800; font-size: 0.92rem; color: var(--text-title);">
+            <i class="fa-solid fa-sliders" style="color: var(--accent-sky);"></i> 
+            <span id="txt-compare-label">เปรียบเทียบสินค้า</span> (<span id="compare-count">0</span>/3)
+        </div>
+        <div id="compare-preview" style="display: flex; gap: 8px;"></div>
+        <button class="btn-minimal-primary" style="padding: 8px 20px; font-size: 0.85rem;" onclick="openCompareModal()" id="btn-show-compare">
+            ดูผลการเปรียบเทียบ
+        </button>
+    </div>
+
+    <!-- Floating Samsung AI Advisor Button -->
+    <div class="ai-assistant-btn" onclick="toggleAIChat()">
+        <i class="fa-solid fa-robot"></i>
+        <span>Samsung AI Advisor</span>
+    </div>
+
+    <!-- Live AI Chat Drawer -->
+    <div class="ai-chat-drawer" id="ai-chat-drawer">
+        <div class="ai-chat-header">
+            <div style="display: flex; align-items: center; gap: 10px; font-weight: 800;">
+                <i class="fa-solid fa-robot" style="font-size: 1.3rem;"></i>
+                <div>
+                    <div>Samsung Live AI</div>
+                    <div style="font-size: 0.72rem; opacity: 0.9; font-weight: normal;">Online • Ready to assist</div>
+                </div>
+            </div>
+            <button style="background: none; border: none; color: white; cursor: pointer; font-size: 1.1rem;" onclick="toggleAIChat()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="ai-chat-body" id="ai-chat-messages">
+            <div class="chat-msg bot" id="ai-welcome-msg">
+                👋 สวัสดีครับ! ผมคือ **Samsung AI Advisor** มีอะไรให้ผมช่วยแนะนำ หรือค้นหาสินค้า Galaxy & Bespoke ให้คุณวันนี้ดีครับ?
+            </div>
+        </div>
+        <div style="padding: 8px 12px; background: var(--bg-card); display: flex; gap: 6px; overflow-x: auto;" id="ai-quick-prompts">
+            <!-- Quick prompt buttons injected by JS -->
+        </div>
+        <div class="ai-chat-input-box">
+            <input type="text" id="ai-user-input" class="ai-chat-input" placeholder="พิมพ์คำถามที่นี่..." onkeydown="if(event.key==='Enter') sendAIMessage()">
+            <button class="btn-minimal-primary" style="padding: 8px 14px; border-radius: 16px;" onclick="sendAIMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <!-- Slide-Out Cart Drawer -->
+    <div class="cart-slide-drawer" id="cart-drawer">
+        <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 18px; border-bottom: 1px solid var(--border-color);">
+            <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--text-title); display: flex; align-items: center; gap: 10px;">
+                <i class="fa-solid fa-bag-shopping" style="color: var(--samsung-blue);"></i> 
+                <span id="txt-cart-title">ตะกร้าสินค้า</span>
+            </h3>
+            <button class="close-modal-icon" style="position: static;" onclick="toggleCartDrawer()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- Free Shipping Tracker -->
+        <div class="shipping-progress-bar">
+            <div style="font-size: 0.82rem; font-weight: 700; color: var(--text-title);" id="txt-shipping-msg">
+                🚚 ซื้อครบ ฿10,000 ฟรีจัดส่งด่วน Express!
+            </div>
+            <div class="progress-track">
+                <div class="progress-fill" id="shipping-progress-fill"></div>
+            </div>
+        </div>
+
+        <div id="cart-items-list" style="flex: 1; overflow-y: auto; padding: 15px 0; display: flex; flex-direction: column; gap: 12px;">
+            <!-- Cart items rendered by JS -->
+        </div>
+
+        <div style="border-top: 1px solid var(--border-color); padding-top: 18px;">
+            <div style="display: flex; gap: 8px; margin-bottom: 12px;">
+                <input type="text" id="coupon-code" placeholder="โค้ดส่วนลด (ลองใส่ SAMSUNG2026)" 
+                       style="flex: 1; background: var(--bg-page); border: 1px solid var(--border-color); border-radius: 12px; padding: 10px 14px; font-size: 0.88rem; outline: none; color: var(--text-title);">
+                <button class="btn-minimal-secondary" style="padding: 10px 16px; font-size: 0.85rem;" onclick="applyCoupon()" id="btn-apply-coupon">ใช้โค้ด</button>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; margin-bottom: 6px; color: var(--text-body); font-size: 0.9rem;">
+                <span id="lbl-subtotal">ราคารวมสินค้า:</span>
+                <span id="cart-subtotal">฿0.00</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 6px; color: var(--accent-sky); font-size: 0.9rem;">
+                <span id="lbl-discount">ส่วนลดคูปอง:</span>
+                <span id="cart-discount">-฿0.00</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 18px; font-size: 1.25rem; font-weight: 900; color: var(--text-title);">
+                <span id="lbl-total">ราคาสุทธิ:</span>
+                <span id="cart-total" style="color: var(--samsung-blue);">฿0.00</span>
+            </div>
+
+            <button class="btn-minimal-primary" style="width: 100%; justify-content: center; padding: 14px;" onclick="openCheckoutModal()" id="btn-checkout">
+                <i class="fa-solid fa-lock"></i> ดำเนินการสั่งซื้อ (Checkout)
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal Mask Overlay -->
+    <div class="modal-mask" id="modal-mask" onclick="closeModalOnMask(event)">
+        <div class="minimal-modal-card" id="modal-card">
+            <!-- Dynamic Modal Content -->
+        </div>
+    </div>
+
+    <!-- Toast Notifications Container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Application Script -->
+    <script>
+        // State Variables
+        let currentLang = localStorage.getItem('samsung_lang') || 'TH';
+        let currentTheme = localStorage.getItem('samsung_theme') || 'light';
+        let soundEnabled = localStorage.getItem('samsung_sound') !== 'false';
+        let currentSlide = 0;
+        let slideInterval = null;
+        let cart = [];
+        let wishlist = [];
+        let compareList = [];
+        let currentViewMode = 'grid';
+        let appliedDiscountRatio = 0;
+
+        // Audio Context
+        let audioCtx = null;
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+        function playSound(type) {
+            if (!soundEnabled) return;
+            try {
+                initAudio();
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                const now = audioCtx.currentTime;
+
+                if (type === 'click') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(650, now);
+                    osc.frequency.exponentialRampToValueAtTime(320, now + 0.05);
+                    gain.gain.setValueAtTime(0.08, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+                    osc.start(now);
+                    osc.stop(now + 0.05);
+                } else if (type === 'add') {
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(520, now);
+                    osc.frequency.exponentialRampToValueAtTime(1040, now + 0.12);
+                    gain.gain.setValueAtTime(0.12, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+                    osc.start(now);
+                    osc.stop(now + 0.12);
+                } else if (type === 'fanfare') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(440, now);
+                    osc.frequency.setValueAtTime(554.37, now + 0.08);
+                    osc.frequency.setValueAtTime(659.25, now + 0.16);
+                    gain.gain.setValueAtTime(0.15, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+                    osc.start(now);
+                    osc.stop(now + 0.35);
+                }
+            } catch(e){}
+        }
+
+        function toggleAudio() {
+            soundEnabled = !soundEnabled;
+            localStorage.setItem('samsung_sound', soundEnabled);
+            const icon = document.getElementById('sound-icon');
+            icon.className = soundEnabled ? 'fa-solid fa-volume-high' : 'fa-solid fa-volume-xmark';
+            showToast(soundEnabled ? (currentLang === 'TH' ? 'เปิดเสียงเอฟเฟกต์แล้ว' : 'Sound FX Enabled') : (currentLang === 'TH' ? 'ปิดเสียงเอฟเฟกต์แล้ว' : 'Sound FX Muted'));
+        }
+
+        function toggleTheme() {
+            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+            localStorage.setItem('samsung_theme', currentTheme);
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            const icon = document.getElementById('theme-icon');
+            icon.className = currentTheme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+            playSound('click');
+        }
+
+        // Translations Dictionary
+        const i18n = {
+            TH: {
+                announcementTag: "PROMO 2026",
+                announcementText: "ผ่อน 0% นานสูงสุด 36 เดือน + รับส่วนลดเพิ่ม 15% เมื่อใช้โค้ด SAMSUNG2026",
+                badgeOfficial: "Official Store",
+                searchPlaceholder: "ค้นหา Galaxy Z Fold8, ตู้เย็น Bespoke, เครื่องซักผ้า...",
+                feature1Title: "Samsung Trade-in",
+                feature1Desc: "นำเครื่องเก่ามาแลกใหม่ รับส่วนลดเพิ่มสูงสุด ฿25,000",
+                feature2Title: "Galaxy AI Interactive Demo",
+                feature2Desc: "ทดลองเล่นฟีเจอร์ Circle to Search & Live Translate",
+                feature3Title: "Samsung Finance+ 0%",
+                feature3Desc: "ผ่อนสบาย 0% นานสูงสุด 36 เดือน เริ่มต้น ฿1,830/เดือน",
+                feature4Title: "Samsung Experience Store",
+                feature4Desc: "ค้นหาศูนย์บริการและสาขาใกล้บ้านคุณ",
+                catAll: "ทั้งหมด",
+                catSmartphone: "สมาร์ทโฟน",
+                catHomeApp: "เครื่องใช้ไฟฟ้า (Bespoke)",
+                catTablet: "แท็บเล็ต",
+                catWearable: "เวียเรเบิล & แหวน",
+                catTv: "ทีวี & เครื่องเสียง",
+                sortFeatured: "แนะนำ (Featured)",
+                sortPriceAsc: "ราคา: น้อย ➔ มาก",
+                sortPriceDesc: "ราคา: มาก ➔ น้อย",
+                sortRating: "คะแนนสูงสุด",
+                compareLabel: "เปรียบเทียบสินค้า",
+                showCompare: "ดูผลการเปรียบเทียบ",
+                cartTitle: "ตะกร้าสินค้า",
+                shippingMsg: "🚚 ซื้อครบ ฿10,000 ฟรีจัดส่งด่วน Express!",
+                subtotal: "ราคารวมสินค้า:",
+                discount: "ส่วนลดคูปอง:",
+                total: "ราคาสุทธิ:",
+                checkoutBtn: "ดำเนินการสั่งซื้อ (Checkout)",
+                applyCodeBtn: "ใช้โค้ด",
+                addToCartBtn: "เพิ่มลงตะกร้า",
+                calcInstallment: "คำนวณแลกใหม่",
+                specLabel: "สเปกไฮไลต์",
+                emptySearch: "ไม่พบสินค้าตามเงื่อนไขที่เลือก",
+                noCartMsg: "ไม่มีสินค้าในตะกร้า",
+                aiWelcome: "👋 สวัสดีครับ! ผมคือ **Samsung AI Advisor** มีอะไรให้ผมช่วยแนะนำ หรือค้นหาสินค้า Galaxy & Bespoke ให้คุณวันนี้ดีครับ?",
+                aiPlaceholder: "พิมพ์คำถามที่นี่...",
+                disclaimerText: "เว็บไซต์นี้จัดทำขึ้นเพื่อประกอบกิจกรรมการเรียนการสอนในรายวิชา BUS101: Principles of Marketing เท่านั้น โดยเป็นส่วนหนึ่งของโครงการศึกษาเชิงวิชาการ เว็บไซต์นี้ไม่ได้เป็นเว็บไซต์อย่างเป็นทางการของ Samsung และไม่มีวัตถุประสงค์เพื่อการค้า การจำหน่าย สินค้า หรือการแสวงหาผลกำไรใด ๆ"
+            },
+            EN: {
+                announcementTag: "PROMO 2026",
+                announcementText: "0% Installment up to 36 Months + Extra 15% OFF with code SAMSUNG2026",
+                badgeOfficial: "Official Store",
+                searchPlaceholder: "Search Galaxy Z Fold8, Bespoke Refrigerator, Washer...",
+                feature1Title: "Samsung Trade-in",
+                feature1Desc: "Trade in your old device & get up to ฿25,000 bonus discount",
+                feature2Title: "Galaxy AI Interactive Demo",
+                feature2Desc: "Try Circle to Search & Live Translate features",
+                feature3Title: "Samsung Finance+ 0%",
+                feature3Desc: "Easy 0% installment up to 36 months, starting ฿1,830/mo",
+                feature4Title: "Samsung Experience Store",
+                feature4Desc: "Locate official service centers & stores near you",
+                catAll: "All Products",
+                catSmartphone: "Smartphones",
+                catHomeApp: "Home Appliances",
+                catTablet: "Tablets",
+                catWearable: "Wearables & Ring",
+                catTv: "TV & Audio",
+                sortFeatured: "Featured",
+                sortPriceAsc: "Price: Low ➔ High",
+                sortPriceDesc: "Price: High ➔ Low",
+                sortRating: "Top Rated",
+                compareLabel: "Compare Items",
+                showCompare: "View Comparison Matrix",
+                cartTitle: "Shopping Cart",
+                shippingMsg: "🚚 Free Express Shipping on orders over ฿10,000!",
+                subtotal: "Subtotal:",
+                discount: "Discount:",
+                total: "Net Total:",
+                checkoutBtn: "Proceed to Checkout",
+                applyCodeBtn: "Apply Code",
+                addToCartBtn: "Add to Cart",
+                calcInstallment: "Trade-in Calc",
+                specLabel: "Key Specifications",
+                emptySearch: "No products found matching your search.",
+                noCartMsg: "Your shopping cart is empty",
+                aiWelcome: "👋 Hello! I am **Samsung AI Advisor**. How can I assist you with Galaxy or Bespoke products today?",
+                aiPlaceholder: "Type your query here...",
+                disclaimerText: "This website was created solely for educational purposes as part of the BUS101: Principles of Marketing course. It is part of an academic project and is not an official Samsung website. It is not intended for commercial use, sales, or profit-making of any kind."
+            }
+        };
+
+        function t(key) {
+            return i18n[currentLang][key] || key;
+        }
+
+        function toggleLanguage() {
+            playSound('click');
+            currentLang = currentLang === 'TH' ? 'EN' : 'TH';
+            localStorage.setItem('samsung_lang', currentLang);
+            updateUIStrings();
+            showToast(currentLang === 'TH' ? 'สลับเป็นภาษาไทยเรียบร้อยแล้ว 🇹🇭' : 'Switched to English interface 🇬🇧');
+        }
+
+        function updateUIStrings() {
+            document.getElementById('lang-label').innerText = currentLang === 'TH' ? 'TH 🇹🇭' : 'EN 🇬🇧';
+            document.getElementById('txt-announcement-tag').innerText = t('announcementTag');
+            document.getElementById('txt-announcement').innerText = t('announcementText');
+            document.getElementById('txt-badge-official').innerText = t('badgeOfficial');
+            document.getElementById('search-input').placeholder = t('searchPlaceholder');
+            
+            if (document.getElementById('txt-disclaimer')) {
+                document.getElementById('txt-disclaimer').innerText = t('disclaimerText');
+            }
+            
+            document.getElementById('fb-title-1').innerText = t('feature1Title');
+            document.getElementById('fb-desc-1').innerText = t('feature1Desc');
+            document.getElementById('fb-title-2').innerText = t('feature2Title');
+            document.getElementById('fb-desc-2').innerText = t('feature2Desc');
+            document.getElementById('fb-title-3').innerText = t('feature3Title');
+            document.getElementById('fb-desc-3').innerText = t('feature3Desc');
+            document.getElementById('fb-title-4').innerText = t('feature4Title');
+            document.getElementById('fb-desc-4').innerText = t('feature4Desc');
+
+            document.getElementById('cat-all').innerText = t('catAll');
+            document.getElementById('cat-smartphone').innerText = t('catSmartphone');
+            document.getElementById('cat-homeapp').innerText = t('catHomeApp');
+            document.getElementById('cat-tablet').innerText = t('catTablet');
+            document.getElementById('cat-wearable').innerText = t('catWearable');
+            document.getElementById('cat-tv').innerText = t('catTv');
+
+            document.getElementById('sort-featured').innerText = t('sortFeatured');
+            document.getElementById('sort-price-asc').innerText = t('sortPriceAsc');
+            document.getElementById('sort-price-desc').innerText = t('sortPriceDesc');
+            document.getElementById('sort-rating').innerText = t('sortRating');
+
+            document.getElementById('txt-compare-label').innerText = t('compareLabel');
+            document.getElementById('btn-show-compare').innerText = t('showCompare');
+
+            document.getElementById('txt-cart-title').innerText = t('cartTitle');
+            document.getElementById('txt-shipping-msg').innerText = t('shippingMsg');
+            document.getElementById('lbl-subtotal').innerText = t('subtotal');
+            document.getElementById('lbl-discount').innerText = t('discount');
+            document.getElementById('lbl-total').innerText = t('total');
+            document.getElementById('btn-checkout').innerHTML = `<i class="fa-solid fa-lock"></i> ${t('checkoutBtn')}`;
+            document.getElementById('btn-apply-coupon').innerText = t('applyCodeBtn');
+            document.getElementById('ai-welcome-msg').innerText = t('aiWelcome');
+            document.getElementById('ai-user-input').placeholder = t('aiPlaceholder');
+
+            renderHeroSlide();
+            renderProducts(getFilteredProducts());
+            updateCartUI();
+            renderAIQuickPrompts();
+        }
+
+        // Toast Notification System
+        function showToast(message, icon = 'fa-solid fa-circle-check') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = 'toast-item';
+            toast.innerHTML = `<i class="${icon}" style="color: var(--accent-sky); font-size: 1.1rem;"></i> <span>${message}</span>`;
+            container.appendChild(toast);
+            setTimeout(() => toast.classList.add('show'), 10);
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // SVG Fallback Image
+        const fallbackSVG = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 200' width='300' height='200'><rect width='300' height='200' fill='%230b192c' rx='16'/><text x='150' y='105' font-family='sans-serif' font-size='16' font-weight='bold' fill='%230ea5e9' text-anchor='middle'>SAMSUNG GALAXY</text></svg>";
+
+        // Hero Slides Catalog
+        const heroSlides = [
+            {
+                tag: 'Flagship Release 2026',
+                title: 'Samsung Galaxy Z Fold8',
+                descTH: 'นวัตกรรมสมาร์ทโฟนพับได้ทรงพลังที่สุด บางเบายิ่งขึ้น หน้าจอ 7.6" Dynamic AMOLED 2X ชิปเซ็ต Snapdragon 8 Gen 5 for Galaxy และกล้องระดับโปร 200MP',
+                descEN: 'The next generation foldable innovation. Ultra-slim design, 7.6" Dynamic AMOLED 2X, Snapdragon 8 Gen 5 for Galaxy & 200MP Pro Camera.',
+                price: 65900,
+                img: 'images/z_fold8_single_1784742965548.jpg',
+                productId: 'z-fold8'
+            },
+            {
+                tag: 'Ultimate Galaxy AI Phone',
+                title: 'Samsung Galaxy S26 Ultra',
+                descTH: 'ขีดสุดแห่งสมาร์ทโฟนเรือธง พร้อมปากกา S-Pen ในตัว กล้อง 200MP ซูมไกล 100 เท่า พร้อมระบบ Galaxy AI ประมวลผลแปลภาษาและแต่งภาพแบบเรียลไทม์',
+                descEN: 'The ultimate flagship phone with built-in S-Pen, 200MP Quad Camera, 100X Space Zoom, and real-time Galaxy AI processing.',
+                price: 49000,
+                img: 'images/s26_ultra_minimal_1784742985951.jpg',
+                productId: 's26-ultra'
+            },
+            {
+                tag: 'Bespoke Smart Kitchen 2026',
+                title: 'Bespoke 4-Door Flex Refrigerator',
+                descTH: 'ตู้เย็นอัจฉริยะกล้อง AI Vision Inside ตรวจจับวัตถุดิบอัตโนมัติ แท่นจ่ายน้ำ Beverage Center และหน้าจอสัมผัส Family Hub ขนาดใหญ่ 32 นิ้ว',
+                descEN: 'Smart refrigerator with AI Vision Inside food recognition, Beverage Center dispenser, and 32" Family Hub touchscreen.',
+                price: 99900,
+                img: 'images/bespoke_fridge_single_1784744266382.jpg',
+                productId: 'bespoke-fridge'
+            },
+            {
+                tag: '100" Cinema Experience',
+                title: '100" Neo QLED 4K Vision AI TV',
+                descTH: 'มหึมาความบันเทิงระดับโรงภาพยนตร์ หน้าจอ 100 นิ้ว ชิป NQ4 AI Gen2 ยกระดับความคมชัด พร้อม Dolby Atmos 70W ทิศทางเสียงรอบทิศทาง',
+                descEN: 'Grand home cinema experience. 100" Neo QLED screen powered by NQ4 AI Gen2 Processor and 70W Dolby Atmos 3D audio.',
+                price: 169990,
+                img: 'images/neo_qled_tv_1784742315283.jpg',
+                productId: 'tv-neo-qled'
+            }
+        ];
+
+        function renderHeroSlide() {
+            const slide = heroSlides[currentSlide];
+            const card = document.getElementById('hero-spotlight-card');
+            const desc = currentLang === 'TH' ? slide.descTH : slide.descEN;
+
+            card.innerHTML = `
+                <div>
+                    <div class="spotlight-tag">
+                        <i class="fa-solid fa-sparkles"></i> ${slide.tag}
+                    </div>
+                    <h1 class="spotlight-title">${slide.title}</h1>
+                    <p class="spotlight-desc">${desc}</p>
+                    <div class="spotlight-actions">
+                        <button class="btn-minimal-primary" onclick="addToCart('${slide.productId}')">
+                            <i class="fa-solid fa-bag-shopping"></i> ${currentLang === 'TH' ? 'สั่งซื้อ' : 'Order Now'} ฿${slide.price.toLocaleString()}
+                        </button>
+                        <button class="btn-minimal-secondary" onclick="openTradeInModal('${slide.productId}')">
+                            <i class="fa-solid fa-rotate"></i> ${t('calcInstallment')}
+                        </button>
+                    </div>
+                </div>
+                <div class="spotlight-img-container">
+                    <img src="${slide.img}" onerror="this.onerror=null; this.src='${fallbackSVG}';" alt="${slide.title}" class="spotlight-img">
+                </div>
+            `;
+
+            const dotsContainer = document.getElementById('hero-dots');
+            dotsContainer.innerHTML = heroSlides.map((_, i) => `
+                <div class="carousel-dot ${i === currentSlide ? 'active' : ''}" onclick="goToHeroSlide(${i})"></div>
+            `).join('');
+        }
+
+        function nextHeroSlide() {
+            playSound('click');
+            currentSlide = (currentSlide + 1) % heroSlides.length;
+            renderHeroSlide();
+        }
+        function prevHeroSlide() {
+            playSound('click');
+            currentSlide = (currentSlide - 1 + heroSlides.length) % heroSlides.length;
+            renderHeroSlide();
+        }
+        function goToHeroSlide(index) {
+            playSound('click');
+            currentSlide = index;
+            renderHeroSlide();
+        }
+
+        // Product Catalog
+        const products = [
+            {
+                id: 'z-fold8',
+                nameTH: 'Samsung Galaxy Z Fold8',
+                nameEN: 'Samsung Galaxy Z Fold8',
+                category: 'smartphone',
+                categoryLabelTH: 'Galaxy สมาร์ทโฟน',
+                categoryLabelEN: 'Galaxy Smartphone',
+                price: 65900,
+                origPrice: 69900,
+                rating: 4.9,
+                reviews: 142,
+                badge: 'New Foldable 2026',
+                img: 'images/z_fold8_single_1784742965548.jpg',
+                colors: [
+                    { name: 'Silver Shadow', hex: '#c0c0c0' },
+                    { name: 'Crafted Black', hex: '#1e293b' },
+                    { name: 'Navy', hex: '#1e3a8a' }
+                ],
+                specs: {
+                    display: '7.6" Main + 6.3" Cover Dynamic AMOLED 2X 120Hz',
+                    chipset: 'Snapdragon 8 Gen 5 for Galaxy',
+                    camera: '200MP Main + 50MP Telephoto + 12MP Ultra Wide',
+                    battery: '4,600 mAh Dual Battery (45W Fast Charge)',
+                    storage: '512GB / 12GB RAM'
+                }
+            },
+            {
+                id: 's26-ultra',
+                nameTH: 'Samsung Galaxy S26 Ultra',
+                nameEN: 'Samsung Galaxy S26 Ultra',
+                category: 'smartphone',
+                categoryLabelTH: 'Galaxy สมาร์ทโฟน',
+                categoryLabelEN: 'Galaxy Smartphone',
+                price: 49000,
+                origPrice: 53900,
+                rating: 4.9,
+                reviews: 310,
+                badge: 'S-Pen Included',
+                img: 'images/s26_ultra_minimal_1784742985951.jpg',
+                colors: [
+                    { name: 'Silver Shadow', hex: '#c0c0c0' },
+                    { name: 'Cobalt Violet', hex: '#6b46c1' },
+                    { name: 'Titanium Black', hex: '#334155' }
+                ],
+                specs: {
+                    display: '6.8" Flat Dynamic AMOLED 2X 120Hz',
+                    chipset: 'Snapdragon 8 Gen 5 for Galaxy',
+                    camera: '200MP + 50MP + 50MP + 12MP (100X Space Zoom)',
+                    battery: '5,000 mAh (45W Super Fast Charging)',
+                    storage: '512GB / 12GB RAM'
+                }
+            },
+            {
+                id: 'z-flip7',
+                nameTH: 'Samsung Galaxy Z Flip7',
+                nameEN: 'Samsung Galaxy Z Flip7',
+                category: 'smartphone',
+                categoryLabelTH: 'Galaxy สมาร์ทโฟน',
+                categoryLabelEN: 'Galaxy Smartphone',
+                price: 37900,
+                origPrice: 41900,
+                rating: 4.8,
+                reviews: 215,
+                badge: 'Compact Flip',
+                img: 'images/z_flip7_minimal_1784743003214.jpg',
+                colors: [
+                    { name: 'Mint', hex: '#a7f3d0' },
+                    { name: 'Lavender', hex: '#ddd6fe' },
+                    { name: 'Shadow Silver', hex: '#cbd5e1' }
+                ],
+                specs: {
+                    display: '6.7" Main + 3.4" Flex Window 120Hz',
+                    chipset: 'Exynos 2600 AI Processor',
+                    camera: '50MP Dual Wide Camera',
+                    battery: '4,000 mAh Flex Battery',
+                    storage: '256GB / 12GB RAM'
+                }
+            },
+            {
+                id: 'bespoke-fridge',
+                nameTH: 'Samsung Bespoke 4-Door Flex Refrigerator',
+                nameEN: 'Samsung Bespoke 4-Door Flex Refrigerator',
+                category: 'homeapp',
+                categoryLabelTH: 'เครื่องใช้ไฟฟ้า (ตู้เย็น)',
+                categoryLabelEN: 'Home Appliance (Fridge)',
+                price: 99900,
+                origPrice: 119000,
+                rating: 4.9,
+                reviews: 86,
+                badge: 'AI Vision Inside',
+                img: 'images/bespoke_fridge_single_1784744266382.jpg',
+                colors: [
+                    { name: 'White & Navy Glass', hex: '#ffffff' },
+                    { name: 'Cotta Charcoal', hex: '#334155' }
+                ],
+                specs: {
+                    capacity: '640 Liters (22.6 cu.ft) 4-Door Flex',
+                    features: 'AI Vision Camera inside, Beverage Center, Dual Auto Ice Maker',
+                    smart: 'Family Hub 32" Touch Screen with SmartThings'
+                }
+            },
+            {
+                id: 'bespoke-laundry',
+                nameTH: 'Samsung Bespoke AI Laundry Combo',
+                nameEN: 'Samsung Bespoke AI Laundry Combo',
+                category: 'homeapp',
+                categoryLabelTH: 'เครื่องใช้ไฟฟ้า (ซัก-อบ)',
+                categoryLabelEN: 'Home Appliance (Laundry)',
+                price: 54900,
+                origPrice: 62900,
+                rating: 4.9,
+                reviews: 112,
+                badge: 'Wash 25kg + Dry 15kg',
+                img: 'images/bespoke_laundry_single_1784744280695.jpg',
+                colors: [
+                    { name: 'Satin Dark Gray', hex: '#334155' },
+                    { name: 'White', hex: '#ffffff' }
+                ],
+                specs: {
+                    capacity: 'Washing 25kg / Drying 15kg Heatpump',
+                    features: 'AI OptiWash & Dry, Auto Open Door, 7" LCD Touch Screen',
+                    energy: 'Digital Inverter Motor (20-Year Warranty)'
+                }
+            },
+            {
+                id: 'bespoke-airpurifier',
+                nameTH: 'Samsung Bespoke Cube Air Purifier',
+                nameEN: 'Samsung Bespoke Cube Air Purifier',
+                category: 'homeapp',
+                categoryLabelTH: 'เครื่องใช้ไฟฟ้า (ฟอกอากาศ)',
+                categoryLabelEN: 'Home Appliance (Air Care)',
+                price: 18900,
+                origPrice: 21900,
+                rating: 4.8,
+                reviews: 74,
+                badge: 'WindFree™ Air Care',
+                img: 'images/bespoke_airpurifier_single_1784744294771.jpg',
+                colors: [
+                    { name: 'Beige Ceramic', hex: '#d6c7b2' },
+                    { name: 'Gray', hex: '#94a3b8' }
+                ],
+                specs: {
+                    coverage: '53 sq.m. Micro Clean Filter System',
+                    features: 'WindFree™ Quiet Airflow (18dB), Pet Mode Filter, SmartThings AI',
+                    sensor: 'Laser PM1.0 / Gas Air Quality Display'
+                }
+            },
+            {
+                id: 'windfree-ac',
+                nameTH: 'Samsung WindFree™ Premium AI Inverter AC',
+                nameEN: 'Samsung WindFree™ Premium AI Inverter AC',
+                category: 'homeapp',
+                categoryLabelTH: 'เครื่องใช้ไฟฟ้า (เครื่องปรับอากาศ)',
+                categoryLabelEN: 'Home Appliance (Air Conditioner)',
+                price: 24900,
+                origPrice: 28900,
+                rating: 4.9,
+                reviews: 130,
+                badge: '18,000 BTU WindFree™',
+                img: 'images/windfree_ac.svg',
+                colors: [
+                    { name: 'Pure White', hex: '#ffffff' }
+                ],
+                specs: {
+                    capacity: '18,000 BTU Inverter (SEER 22.5)',
+                    features: 'WindFree™ Cooling (23,000 Micro Air Holes), PM1.0 Filter',
+                    smart: 'AI Auto Cooling & Welcome Cooling SmartThings'
+                }
+            },
+            {
+                id: 'bespoke-vacuum',
+                nameTH: 'Samsung Bespoke Jet AI Cordless Vacuum',
+                nameEN: 'Samsung Bespoke Jet AI Cordless Vacuum',
+                category: 'homeapp',
+                categoryLabelTH: 'เครื่องใช้ไฟฟ้า (เครื่องดูดฝุ่น)',
+                categoryLabelEN: 'Home Appliance (Vacuum)',
+                price: 28900,
+                origPrice: 32900,
+                rating: 4.9,
+                reviews: 95,
+                badge: '280W Suction',
+                img: 'images/bespoke_vacuum.svg',
+                colors: [
+                    { name: 'Satin Black', hex: '#1e293b' }
+                ],
+                specs: {
+                    suction: '280W HexaJet Motor with All-in-One Clean Station',
+                    features: 'AI Mode Floor Recognition, Spray Spinning Sweeper',
+                    battery: 'Dual Battery Pack (up to 100 mins run time)'
+                }
+            },
+            {
+                id: 'bespoke-microwave',
+                nameTH: 'Samsung Bespoke Smart Microwave & Grill 32L',
+                nameEN: 'Samsung Bespoke Smart Microwave & Grill 32L',
+                category: 'homeapp',
+                categoryLabelTH: 'เครื่องใช้ไฟฟ้า (ไมโครเวฟ)',
+                categoryLabelEN: 'Home Appliance (Microwave)',
+                price: 8990,
+                origPrice: 10900,
+                rating: 4.8,
+                reviews: 64,
+                badge: '32L Smart Oven',
+                img: 'images/bespoke_microwave.svg',
+                colors: [
+                    { name: 'Clean White Glass', hex: '#ffffff' }
+                ],
+                specs: {
+                    capacity: '32 Liters Smart Grill & Convection Oven',
+                    features: 'AI Cook Recipe Sync, Air Fryer Mode, Ceramic Enamel Interior',
+                    power: '1,400W Grill / 900W Microwave Power'
+                }
+            },
+            {
+                id: 'tab-s10-ultra',
+                nameTH: 'Samsung Galaxy Tab S10 Ultra',
+                nameEN: 'Samsung Galaxy Tab S10 Ultra',
+                category: 'tablet',
+                categoryLabelTH: 'Galaxy แท็บเล็ต',
+                categoryLabelEN: 'Galaxy Tablet',
+                price: 43900,
+                origPrice: 48900,
+                rating: 4.9,
+                reviews: 98,
+                badge: '14.6" AMOLED',
+                img: 'images/tab_s10_ultra_single_1784743319695.jpg',
+                colors: [
+                    { name: 'Moonstone Gray', hex: '#64748b' },
+                    { name: 'Platinum', hex: '#e2e8f0' }
+                ],
+                specs: {
+                    display: '14.6" Dynamic AMOLED 2X Anti-Reflection',
+                    chipset: 'MediaTek Dimensity 9300+ 4nm',
+                    battery: '11,200 mAh (45W Fast Charging)',
+                    spen: 'S-Pen In-Box Included'
+                }
+            },
+            {
+                id: 'galaxy-ring',
+                nameTH: 'Samsung Galaxy Ring',
+                nameEN: 'Samsung Galaxy Ring',
+                category: 'wearable',
+                categoryLabelTH: 'Galaxy เวียเรเบิล',
+                categoryLabelEN: 'Galaxy Wearable',
+                price: 13900,
+                origPrice: 15900,
+                rating: 4.8,
+                reviews: 176,
+                badge: 'Titanium Smart Ring',
+                img: 'images/galaxy_ring_single_1784743339890.jpg',
+                colors: [
+                    { name: 'Titanium Black', hex: '#1e293b' },
+                    { name: 'Titanium Gold', hex: '#fbbf24' },
+                    { name: 'Titanium Silver', hex: '#cbd5e1' }
+                ],
+                specs: {
+                    durability: 'Grade 5 Titanium (10ATM Waterproof)',
+                    battery: '7-Day Continuous Battery Life',
+                    sensors: 'ECG, Sleep Score, Heart Rate, Skin Temp'
+                }
+            },
+            {
+                id: 'buds3-pro',
+                nameTH: 'Samsung Galaxy Buds3 Pro',
+                nameEN: 'Samsung Galaxy Buds3 Pro',
+                category: 'wearable',
+                categoryLabelTH: 'Galaxy หูฟังไร้สาย',
+                categoryLabelEN: 'Galaxy Wireless Earbuds',
+                price: 7490,
+                origPrice: 8990,
+                rating: 4.9,
+                reviews: 240,
+                badge: 'Hi-Fi 24bit Audio',
+                img: 'images/buds3_pro_single_1784743360085.jpg',
+                colors: [
+                    { name: 'Silver', hex: '#cbd5e1' },
+                    { name: 'White', hex: '#ffffff' }
+                ],
+                specs: {
+                    sound: '2-Way Woofer & Planar Tweeter with Blade Lights',
+                    anc: 'Adaptive Noise Cancelling with Galaxy AI',
+                    battery: '30 Hours Total with Charging Case'
+                }
+            },
+            {
+                id: 'watch-ultra2',
+                nameTH: 'Samsung Galaxy Watch Ultra2',
+                nameEN: 'Samsung Galaxy Watch Ultra2',
+                category: 'wearable',
+                categoryLabelTH: 'Galaxy สมาร์ทวอทช์',
+                categoryLabelEN: 'Galaxy Smartwatch',
+                price: 25900,
+                origPrice: 27900,
+                rating: 4.9,
+                reviews: 188,
+                badge: 'Outdoor Titanium',
+                img: 'images/watch_ultra2_1784742332405.jpg',
+                colors: [
+                    { name: 'Titanium Silver', hex: '#94a3b8' },
+                    { name: 'Titanium Orange', hex: '#f97316' }
+                ],
+                specs: {
+                    display: '1.5" Sapphire Crystal 3000 nits',
+                    sensors: 'Dual GPS, BioActive Health Sensor',
+                    durability: '10ATM + IP68 Waterproof'
+                }
+            },
+            {
+                id: 'tv-neo-qled',
+                nameTH: '100" Neo QLED QN80H 4K Vision AI Smart TV',
+                nameEN: '100" Neo QLED QN80H 4K Vision AI Smart TV',
+                category: 'tv',
+                categoryLabelTH: 'ทีวี Samsung',
+                categoryLabelEN: 'Samsung TV',
+                price: 169990,
+                origPrice: 199900,
+                rating: 5.0,
+                reviews: 42,
+                badge: '100" Giant Screen',
+                img: 'images/neo_qled_tv_1784742315283.jpg',
+                colors: [
+                    { name: 'Titan Black', hex: '#0f172a' }
+                ],
+                specs: {
+                    display: '100" Neo QLED 4K 144Hz Quantum Matrix',
+                    chipset: 'NQ4 AI Gen2 Processor',
+                    audio: 'Dolby Atmos 70W 4.2.2CH'
+                }
+            }
+        ];
+
+        let selectedCategory = 'all';
+
+        function getFilteredProducts() {
+            let list = [...products];
+            if (selectedCategory !== 'all') {
+                list = list.filter(p => p.category === selectedCategory);
+            }
+
+            const query = document.getElementById('search-input').value.toLowerCase().trim();
+            if (query) {
+                list = list.filter(p => 
+                    p.nameTH.toLowerCase().includes(query) || 
+                    p.nameEN.toLowerCase().includes(query) || 
+                    p.categoryLabelTH.toLowerCase().includes(query) ||
+                    p.categoryLabelEN.toLowerCase().includes(query)
+                );
+            }
+
+            const sortVal = document.getElementById('sort-select').value;
+            if (sortVal === 'price-asc') list.sort((a,b) => a.price - b.price);
+            else if (sortVal === 'price-desc') list.sort((a,b) => b.price - a.price);
+            else if (sortVal === 'rating') list.sort((a,b) => b.rating - a.rating);
+
+            return list;
+        }
+
+        function filterCategory(cat, btnElem) {
+            playSound('click');
+            selectedCategory = cat;
+            if (btnElem) {
+                document.querySelectorAll('.pill-btn').forEach(b => b.classList.remove('active'));
+                btnElem.classList.add('active');
+            }
+            renderProducts(getFilteredProducts());
+        }
+
+        function handleSearch() {
+            const query = document.getElementById('search-input').value.trim();
+            document.getElementById('clear-search').style.display = query ? 'block' : 'none';
+            renderProducts(getFilteredProducts());
+        }
+
+        function clearSearch() {
+            document.getElementById('search-input').value = '';
+            document.getElementById('clear-search').style.display = 'none';
+            renderProducts(getFilteredProducts());
+        }
+
+        function handleSort() {
+            playSound('click');
+            renderProducts(getFilteredProducts());
+        }
+
+        function setViewMode(mode) {
+            playSound('click');
+            currentViewMode = mode;
+            document.getElementById('btn-grid-view').classList.toggle('active', mode === 'grid');
+            document.getElementById('btn-list-view').classList.toggle('active', mode === 'list');
+            
+            const container = document.getElementById('products-container');
+            container.className = mode === 'grid' ? 'products-grid-mode' : 'products-list-mode';
+            renderProducts(getFilteredProducts());
+        }
+
+        function renderProducts(items) {
+            document.getElementById('total-count-badge').innerText = items.length;
+            const container = document.getElementById('products-container');
+
+            if (items.length === 0) {
+                container.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 60px; color: var(--text-body);">
+                        <i class="fa-solid fa-magnifying-glass" style="font-size: 2.5rem; color: var(--text-muted); margin-bottom: 15px;"></i>
+                        <h3>${t('emptySearch')}</h3>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = items.map(p => {
+                const name = currentLang === 'TH' ? p.nameTH : p.nameEN;
+                const catLabel = currentLang === 'TH' ? p.categoryLabelTH : p.categoryLabelEN;
+                const isWish = wishlist.includes(p.id);
+                const isComp = compareList.includes(p.id);
+                const monthly = Math.round(p.price / 36);
+
+                const swatches = p.colors.map((c, i) => `
+                    <div class="dot-color ${i === 0 ? 'active' : ''}" 
+                         style="background-color: ${c.hex};" 
+                         title="${c.name}"
+                         onclick="selectColor('${p.id}', '${c.name}', this)">
+                    </div>
+                `).join('');
+
+                return `
+                    <div class="product-card-item">
+                        <span class="card-badge">${p.badge}</span>
+                        <button class="card-wishlist ${isWish ? 'active' : ''}" onclick="toggleWishlist('${p.id}')">
+                            <i class="fa-${isWish ? 'solid' : 'regular'} fa-heart"></i>
+                        </button>
+
+                        <div class="single-img-frame" onclick="openQuickView('${p.id}')">
+                            <img src="${p.img}" 
+                                 onerror="this.onerror=null; this.src='${fallbackSVG}';" 
+                                 alt="${name}" class="single-img">
+                        </div>
+
+                        <div>
+                            <div class="color-dots-row">${swatches}</div>
+                            <div class="card-category">${catLabel}</div>
+                            <h3 class="card-title" onclick="openQuickView('${p.id}')">${name}</h3>
+
+                            <div class="rating-stars">
+                                <i class="fa-solid fa-star"></i>
+                                <span>${p.rating} (${p.reviews})</span>
+                            </div>
+                            
+                            <div class="installment-pill">
+                                <i class="fa-solid fa-credit-card"></i> 0% 36 ${currentLang === 'TH' ? 'เดือน' : 'mos'} ฿${monthly.toLocaleString()}/${currentLang === 'TH' ? 'ด.' : 'mo'}
+                            </div>
+
+                            <div class="card-price-box">
+                                <span class="price-now">฿${p.price.toLocaleString()}</span>
+                                ${p.origPrice ? `<span class="price-was">฿${p.origPrice.toLocaleString()}</span>` : ''}
+                            </div>
+
+                            <div class="card-actions-row">
+                                <button class="btn-add-minimal" onclick="addToCart('${p.id}')">
+                                    <i class="fa-solid fa-cart-shopping"></i> ${t('addToCartBtn')}
+                                </button>
+                                <button class="btn-compare-minimal ${isComp ? 'active' : ''}" 
+                                        onclick="toggleCompare('${p.id}')" title="${t('compareLabel')}">
+                                    <i class="fa-solid fa-sliders"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function selectColor(productId, colorName, elem) {
+            playSound('click');
+            elem.parentElement.querySelectorAll('.dot-color').forEach(d => d.classList.remove('active'));
+            elem.classList.add('active');
+            showToast(`${colorName} selected`);
+        }
+
+        function toggleWishlist(id) {
+            playSound('click');
+            const idx = wishlist.indexOf(id);
+            const p = products.find(i => i.id === id);
+            const pName = currentLang === 'TH' ? p.nameTH : p.nameEN;
+
+            if (idx > -1) {
+                wishlist.splice(idx, 1);
+                showToast(currentLang === 'TH' ? `ลบ ${pName} ออกจากรายการโปรดแล้ว` : `Removed ${pName} from Wishlist`);
+            } else {
+                wishlist.push(id);
+                showToast(currentLang === 'TH' ? `บันทึก ${pName} ลงรายการโปรดเรียบร้อย` : `Saved ${pName} to Wishlist`, 'fa-solid fa-heart');
+            }
+            document.getElementById('wishlist-count').innerText = wishlist.length;
+            renderProducts(getFilteredProducts());
+        }
+
+        function toggleCompare(id) {
+            playSound('click');
+            const idx = compareList.indexOf(id);
+            if (idx > -1) {
+                compareList.splice(idx, 1);
+            } else {
+                if (compareList.length >= 3) {
+                    showToast(currentLang === 'TH' ? 'เลือกเปรียบเทียบได้สูงสุด 3 สินค้า' : 'Maximum 3 items allowed for comparison', 'fa-solid fa-circle-exclamation');
+                    return;
+                }
+                compareList.push(id);
+            }
+
+            const bar = document.getElementById('compare-bar');
+            document.getElementById('compare-count').innerText = compareList.length;
+
+            if (compareList.length > 0) {
+                bar.classList.add('show');
+                const preview = document.getElementById('compare-preview');
+                preview.innerHTML = compareList.map(cId => {
+                    const item = products.find(p => p.id === cId);
+                    return `<img src="${item.img}" onerror="this.onerror=null; this.src='${fallbackSVG}';" style="width:34px; height:34px; object-fit:contain; border-radius:50%; border:1px solid var(--border-color); background:var(--bg-card);">`;
+                }).join('');
+            } else {
+                bar.classList.remove('show');
+            }
+            renderProducts(getFilteredProducts());
+        }
+
+        // Cart Drawer Logic
+        function addToCart(id) {
+            playSound('add');
+            const item = products.find(p => p.id === id);
+            const exist = cart.find(c => c.id === id);
+            if (exist) exist.qty += 1;
+            else cart.push({ ...item, qty: 1 });
+            
+            const pName = currentLang === 'TH' ? item.nameTH : item.nameEN;
+            showToast(currentLang === 'TH' ? `เพิ่ม ${pName} ลงตะกร้าแล้ว` : `Added ${pName} to cart`, 'fa-solid fa-bag-shopping');
+            updateCartUI();
+            toggleCartDrawer(true);
+        }
+
+        function updateQty(id, delta) {
+            playSound('click');
+            const exist = cart.find(c => c.id === id);
+            if (exist) {
+                exist.qty += delta;
+                if (exist.qty <= 0) cart = cart.filter(c => c.id !== id);
+            }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const count = cart.reduce((sum, i) => sum + i.qty, 0);
+            document.getElementById('cart-count').innerText = count;
+
+            const subtotal = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
+            const discount = subtotal * appliedDiscountRatio;
+            const total = subtotal - discount;
+
+            // Free Shipping Bar
+            const progress = Math.min(100, (subtotal / 10000) * 100);
+            document.getElementById('shipping-progress-fill').style.width = `${progress}%`;
+
+            const list = document.getElementById('cart-items-list');
+            if (cart.length === 0) {
+                list.innerHTML = `
+                    <div style="text-align: center; padding: 40px; color: var(--text-muted);">
+                        <i class="fa-solid fa-bag-shopping" style="font-size: 2.5rem; margin-bottom: 10px;"></i>
+                        <p>${t('noCartMsg')}</p>
+                    </div>
+                `;
+            } else {
+                list.innerHTML = cart.map(item => {
+                    const name = currentLang === 'TH' ? item.nameTH : item.nameEN;
+                    return `
+                        <div style="background: var(--bg-page); border: 1px solid var(--border-color); border-radius: 16px; padding: 12px; display: flex; align-items: center; gap: 12px;">
+                            <img src="${item.img}" onerror="this.onerror=null; this.src='${fallbackSVG}';" style="width: 55px; height: 55px; object-fit: contain; background: var(--bg-card); border-radius: 10px; padding: 4px;">
+                            <div style="flex: 1;">
+                                <div style="font-size: 0.9rem; font-weight: 800; color: var(--text-title);">${name}</div>
+                                <div style="font-size: 0.92rem; font-weight: 900; color: var(--samsung-blue); margin-top: 2px;">฿${(item.price * item.qty).toLocaleString()}</div>
+                                <div style="display: flex; align-items: center; gap: 8px; margin-top: 6px;">
+                                    <button style="background:var(--bg-card); border:1px solid var(--border-color); color:var(--text-title); width:28px; height:28px; border-radius:6px; cursor:pointer; font-weight:bold;" onclick="updateQty('${item.id}', -1)">-</button>
+                                    <span style="font-size:0.88rem; font-weight:bold; color:var(--text-title);">${item.qty}</span>
+                                    <button style="background:var(--bg-card); border:1px solid var(--border-color); color:var(--text-title); width:28px; height:28px; border-radius:6px; cursor:pointer; font-weight:bold;" onclick="updateQty('${item.id}', 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            document.getElementById('cart-subtotal').innerText = `฿${subtotal.toLocaleString()}`;
+            document.getElementById('cart-discount').innerText = `-฿${discount.toLocaleString()}`;
+            document.getElementById('cart-total').innerText = `฿${total.toLocaleString()}`;
+        }
+
+        function applyCoupon() {
+            playSound('click');
+            const code = document.getElementById('coupon-code').value.trim().toUpperCase();
+            if (code === 'SAMSUNG2026') {
+                appliedDiscountRatio = 0.15;
+                showToast(currentLang === 'TH' ? '🎉 ใช้โค้ดส่วนลด 15% สำเร็จ!' : '🎉 Applied 15% OFF Coupon!', 'fa-solid fa-ticket');
+            } else if (code === 'GALAXY10') {
+                appliedDiscountRatio = 0.10;
+                showToast(currentLang === 'TH' ? '🎉 ใช้โค้ดส่วนลด 10% สำเร็จ!' : '🎉 Applied 10% OFF Coupon!', 'fa-solid fa-ticket');
+            } else if (code) {
+                showToast(currentLang === 'TH' ? '❌ โค้ดส่วนลดไม่ถูกต้อง ลอง SAMSUNG2026' : '❌ Invalid Coupon Code. Try SAMSUNG2026', 'fa-solid fa-circle-xmark');
+            }
+            updateCartUI();
+        }
+
+        function toggleCartDrawer(forceOpen) {
+            playSound('click');
+            const drawer = document.getElementById('cart-drawer');
+            if (forceOpen === true) drawer.classList.add('open');
+            else drawer.classList.toggle('open');
+        }
+
+        // Live AI Advisor Chatbot Logic
+        function toggleAIChat() {
+            playSound('click');
+            const drawer = document.getElementById('ai-chat-drawer');
+            drawer.classList.toggle('open');
+            if (drawer.classList.contains('open')) renderAIQuickPrompts();
+        }
+
+        function renderAIQuickPrompts() {
+            const prompts = currentLang === 'TH' ? [
+                { label: '📲 แนะนำพับได้ Z Fold8', key: 'fold8' },
+                { label: '🧊 แนะนำตู้เย็น Bespoke', key: 'fridge' },
+                { label: '🧺 เครื่องซักผ้า AI', key: 'washer' }
+            ] : [
+                { label: '📲 Recommend Z Fold8', key: 'fold8' },
+                { label: '🧊 Bespoke Fridge Info', key: 'fridge' },
+                { label: '🧺 AI Washer Specs', key: 'washer' }
+            ];
+
+            const box = document.getElementById('ai-quick-prompts');
+            box.innerHTML = prompts.map(p => `
+                <button class="btn-minimal-secondary" style="font-size:0.75rem; padding: 4px 10px; white-space:nowrap;" onclick="askAIPrompt('${p.key}')">${p.label}</button>
+            `).join('');
+        }
+
+        function sendAIMessage() {
+            const input = document.getElementById('ai-user-input');
+            const txt = input.value.trim();
+            if (!txt) return;
+
+            playSound('click');
+            appendChatMessage(txt, 'user');
+            input.value = '';
+
+            setTimeout(() => {
+                let reply = currentLang === 'TH' 
+                    ? `🤖 Samsung AI: ยินดีให้คำแนะนำครับเกี่ยวกับ "${txt}" สามารถสอบถามข้อมูลสเปก โค้ดส่วนลด SAMSUNG2026 หรือทดลองฟีเจอร์ Galaxy AI ได้เลยครับ!`
+                    : `🤖 Samsung AI: Happy to assist regarding "${txt}". Feel free to ask about specifications, 15% discount code SAMSUNG2026, or Galaxy AI feature demos!`;
+                appendChatMessage(reply, 'bot');
+            }, 600);
+        }
+
+        function askAIPrompt(key) {
+            playSound('click');
+            if (key === 'fold8') {
+                appendChatMessage(currentLang === 'TH' ? 'ขอดูลายละเอียด Galaxy Z Fold8' : 'Show Galaxy Z Fold8 details', 'user');
+                setTimeout(() => {
+                    appendChatMessage(currentLang === 'TH' 
+                        ? '✨ **Galaxy Z Fold8** สมาร์ทโฟนพับได้รุ่นใหม่ หน้าจอ 7.6" Dynamic AMOLED 2X, ชิป Snapdragon 8 Gen 5 for Galaxy และกล้อง 200MP ราคา ฿65,900' 
+                        : '✨ **Galaxy Z Fold8** Flagship Foldable phone with 7.6" Dynamic AMOLED 2X, Snapdragon 8 Gen 5 & 200MP Camera at ฿65,900.', 'bot');
+                }, 500);
+            } else if (key === 'fridge') {
+                appendChatMessage(currentLang === 'TH' ? 'ขอรายละเอียด ตู้เย็น Bespoke 4-Door' : 'Tell me about Bespoke 4-Door Fridge', 'user');
+                setTimeout(() => {
+                    appendChatMessage(currentLang === 'TH'
+                        ? '🧊 **Bespoke 4-Door Flex** ตู้เย็น AI Vision Inside พร้อมหน้าจอ 32" Family Hub และแท่น Beverage Center ในตัว ราคา ฿99,900'
+                        : '🧊 **Bespoke 4-Door Flex** AI Vision Inside Fridge with 32" Family Hub touchscreen & Beverage Center at ฿99,900.', 'bot');
+                }, 500);
+            } else if (key === 'washer') {
+                appendChatMessage(currentLang === 'TH' ? 'เครื่องซักผ้า AI Laundry Combo เป็นอย่างไร?' : 'What are Bespoke AI Laundry specs?', 'user');
+                setTimeout(() => {
+                    appendChatMessage(currentLang === 'TH'
+                        ? '🧺 **Bespoke AI Laundry Combo** ซัก 25kg + อบ 15kg ในเครื่องเดียว ประหยัดพลังงานด้วยปั๊มความร้อน AI OptiWash & Dry ราคา ฿54,900'
+                        : '🧺 **Bespoke AI Laundry Combo** Wash 25kg + Dry 15kg in one unit with Heatpump AI technology at ฿54,900.', 'bot');
+                }, 500);
+            }
+        }
+
+        function appendChatMessage(msg, type) {
+            const body = document.getElementById('ai-chat-messages');
+            const div = document.createElement('div');
+            div.className = `chat-msg ${type}`;
+            div.innerText = msg;
+            body.appendChild(div);
+            body.scrollTop = body.scrollHeight;
+        }
+
+        // Modals Logic
+        function closeModal() {
+            playSound('click');
+            document.getElementById('modal-mask').classList.remove('open');
+        }
+        function closeModalOnMask(e) {
+            if (e.target.id === 'modal-mask') closeModal();
+        }
+
+        function openQuickView(id) {
+            playSound('click');
+            const p = products.find(i => i.id === id);
+            const name = currentLang === 'TH' ? p.nameTH : p.nameEN;
+            const card = document.getElementById('modal-card');
+
+            card.innerHTML = `
+                <button class="close-modal-icon" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 35px; align-items: center;">
+                    <div style="text-align: center;">
+                        <img src="${p.img}" onerror="this.onerror=null; this.src='${fallbackSVG}';" style="max-height: 320px; max-width: 100%; object-fit: contain;">
+                    </div>
+                    <div>
+                        <span class="card-badge" style="position: static; display: inline-block; margin-bottom: 12px;">${p.badge}</span>
+                        <h2 style="font-size: 1.8rem; font-weight: 900; color: var(--text-title); margin-bottom: 6px;">${name}</h2>
+                        
+                        <div class="rating-stars" style="font-size: 0.9rem; margin-bottom: 15px;">
+                            <i class="fa-solid fa-star"></i>
+                            <strong style="color: var(--text-title);">${p.rating} / 5.0</strong> (${p.reviews} ${currentLang === 'TH' ? 'รีวิวผู้ใช้จริง' : 'verified reviews'})
+                        </div>
+
+                        <div style="font-size: 1.9rem; font-weight: 900; color: var(--samsung-blue); margin-bottom: 20px;">
+                            ฿${p.price.toLocaleString()}
+                            ${p.origPrice ? `<span style="font-size: 1rem; color: var(--text-muted); text-decoration: line-through;">฿${p.origPrice.toLocaleString()}</span>` : ''}
+                        </div>
+
+                        <div style="background: var(--bg-page); border: 1px solid var(--border-color); border-radius: 16px; padding: 18px; margin-bottom: 20px;">
+                            <h4 style="color: var(--text-title); margin-bottom: 10px; display:flex; align-items:center; gap:8px;">
+                                <i class="fa-solid fa-microchip" style="color:var(--accent-sky);"></i> ${t('specLabel')}
+                            </h4>
+                            <ul style="list-style: none; font-size: 0.9rem; color: var(--text-body); display: flex; flex-direction: column; gap: 8px;">
+                                ${Object.entries(p.specs).map(([k, v]) => `<li><strong style="color: var(--text-title); text-transform: uppercase;">${k}:</strong> ${v}</li>`).join('')}
+                            </ul>
+                        </div>
+
+                        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                            <button class="btn-minimal-primary" style="flex: 1; justify-content: center;" onclick="addToCart('${p.id}'); closeModal();">
+                                <i class="fa-solid fa-bag-shopping"></i> ${t('addToCartBtn')}
+                            </button>
+                            <button class="btn-minimal-secondary" onclick="openTradeInModal('${p.id}')" title="Trade-in">
+                                <i class="fa-solid fa-rotate"></i> Trade-in
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('modal-mask').classList.add('open');
+        }
+
+        function openTradeInModal(id) {
+            playSound('click');
+            const p = products.find(i => i.id === id) || products[0];
+            const pName = currentLang === 'TH' ? p.nameTH : p.nameEN;
+            const card = document.getElementById('modal-card');
+
+            card.innerHTML = `
+                <button class="close-modal-icon" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+                <div style="text-align: center; margin-bottom: 25px;">
+                    <div style="width: 60px; height: 60px; border-radius: 50%; background: rgba(14,165,233,0.1); color: var(--accent-sky); display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; font-size: 1.8rem;">
+                        <i class="fa-solid fa-arrows-rotate"></i>
+                    </div>
+                    <h2 style="font-size: 1.8rem; font-weight: 900; color: var(--text-title);">Samsung Trade-in Calculator</h2>
+                    <p style="color: var(--text-body);">${currentLang === 'TH' ? 'ประเมินมูลค่าเครื่องเก่าและรับส่วนลดพิเศษทันทีเพื่อซื้อ' : 'Estimate old device value & get extra discount for'} <strong>${pName}</strong></p>
+                </div>
+
+                <div style="background: var(--bg-page); border: 1px solid var(--border-color); border-radius: 20px; padding: 25px; margin-bottom: 20px;">
+                    <label style="font-weight: 700; font-size: 0.95rem; color: var(--text-title); display: block; margin-bottom: 10px;">${currentLang === 'TH' ? 'เลือกรุ่นเครื่องเก่าของคุณ:' : 'Select your existing device:'}</label>
+                    <select id="trade-in-select" onchange="calculateTradeIn(${p.price})" 
+                            style="width: 100%; padding: 12px; border-radius: 12px; background: var(--bg-card); border: 1px solid var(--border-color); font-size: 0.95rem; font-family: inherit; outline: none; color: var(--text-title); margin-bottom: 20px;">
+                        <option value="25000">Galaxy S25 Ultra (Discount ฿25,000)</option>
+                        <option value="20000">Galaxy S24 Ultra (Discount ฿20,000)</option>
+                        <option value="24000">iPhone 15 Pro Max (Discount ฿24,000)</option>
+                        <option value="18000">iPhone 14 Pro Max (Discount ฿18,000)</option>
+                        <option value="14000">Galaxy Z Flip5 (Discount ฿14,000)</option>
+                    </select>
+
+                    <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 10px; color: var(--text-title);">
+                        <span>${currentLang === 'TH' ? 'ราคาเครื่องใหม่' : 'New Device Price'} (${pName}):</span>
+                        <strong>฿${p.price.toLocaleString()}</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 10px; color: var(--accent-emerald);">
+                        <span>${currentLang === 'TH' ? 'มูลค่าเครื่องเก่า + โบนัส Trade-in:' : 'Trade-in Discount + Bonus:'}</span>
+                        <strong id="tradein-discount-val">-฿25,000</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 1.35rem; font-weight: 900; color: var(--samsung-blue);">
+                        <span>${currentLang === 'TH' ? 'ราคาสุทธิที่ต้องจ่ายเพิ่ม:' : 'Net Price to Pay:'}</span>
+                        <span id="tradein-final-price">฿${Math.max(0, p.price - 25000).toLocaleString()}</span>
+                    </div>
+                </div>
+
+                <button class="btn-minimal-primary" style="width: 100%; justify-content: center; padding: 14px;" onclick="addToCart('${p.id}'); closeModal();">
+                    <i class="fa-solid fa-cart-shopping"></i> ${currentLang === 'TH' ? 'สั่งซื้อพร้อม Trade-in' : 'Order with Trade-in Discount'}
+                </button>
+            `;
+            document.getElementById('modal-mask').classList.add('open');
+        }
+
+        function calculateTradeIn(basePrice) {
+            playSound('click');
+            const discount = parseInt(document.getElementById('trade-in-select').value);
+            const net = Math.max(0, basePrice - discount);
+            document.getElementById('tradein-discount-val').innerText = `-฿${discount.toLocaleString()}`;
+            document.getElementById('tradein-final-price').innerText = `฿${net.toLocaleString()}`;
+        }
+
+        function openAIDemoModal() {
+            playSound('click');
+            const card = document.getElementById('modal-card');
+            card.innerHTML = `
+                <button class="close-modal-icon" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+                <div style="text-align: center; margin-bottom: 25px;">
+                    <div style="font-size: 2.2rem; color: var(--accent-sky); margin-bottom: 8px;">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <h2 style="font-size: 1.8rem; font-weight: 900; color: var(--text-title);">Galaxy AI Interactive Demo</h2>
+                    <p style="color: var(--text-body);">${currentLang === 'TH' ? 'ทดลองสัมผัสความอัจฉริยะของระบบ Galaxy AI บนสมาร์ทโฟน Samsung' : 'Experience Galaxy AI intelligence live on Samsung devices'}</p>
+                </div>
+
+                <div style="display: flex; gap: 10px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap;">
+                    <button class="btn-minimal-primary" style="font-size:0.85rem;" onclick="showAIDemoTab('circle')">🔍 Circle to Search</button>
+                    <button class="btn-minimal-secondary" style="font-size:0.85rem;" onclick="showAIDemoTab('translate')">🗣️ Live Translate</button>
+                </div>
+
+                <div id="ai-demo-screen" style="background: var(--bg-page); border: 1px solid var(--border-color); border-radius: 20px; padding: 35px; text-align: center;">
+                    <div style="width: 100px; height: 100px; border-radius: 50%; border: 3px dashed var(--accent-sky); display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; color: var(--accent-sky); font-size: 2.2rem;">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <h4 style="color: var(--text-title); font-size: 1.25rem; font-weight:800; margin-bottom: 8px;">Circle to Search with Google</h4>
+                    <p style="color: var(--text-body); font-size: 0.95rem; max-width: 520px; margin: 0 auto;">
+                        ${currentLang === 'TH' ? 'แค่วาดวงกลมรอบวัตถุหรือข้อความบนหน้าจอ Galaxy Z Fold8 หรือ S26 Ultra ระบบ AI จะค้นหาข้อมูลทันทีโดยไม่ต้องสลับแอป' : 'Simply draw a circle around any object or text on screen to trigger instant Google AI search without switching apps.'}
+                    </p>
+                </div>
+            `;
+            document.getElementById('modal-mask').classList.add('open');
+        }
+
+        function showAIDemoTab(tab) {
+            playSound('click');
+            const screen = document.getElementById('ai-demo-screen');
+            if (tab === 'circle') {
+                screen.innerHTML = `
+                    <div style="width: 100px; height: 100px; border-radius: 50%; border: 3px dashed var(--accent-sky); display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; color: var(--accent-sky); font-size: 2.2rem;">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <h4 style="color: var(--text-title); font-size: 1.25rem; font-weight:800; margin-bottom: 8px;">Circle to Search with Google</h4>
+                    <p style="color: var(--text-body); font-size: 0.95rem; max-width: 520px; margin: 0 auto;">
+                        ${currentLang === 'TH' ? 'วาดวงกลมเพื่อค้นหาสินค้า สถานที่ หรือข้อความบนภาพได้ในเสี้ยววินาที' : 'Circle anything on your screen to identify products, landmarks, or translate text instantly.'}
+                    </p>
+                `;
+            } else {
+                screen.innerHTML = `
+                    <div style="width: 100px; height: 100px; border-radius: 50%; background: rgba(16,185,129,0.1); color: var(--accent-emerald); display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-size: 2.2rem;">
+                        <i class="fa-solid fa-language"></i>
+                    </div>
+                    <h4 style="color: var(--text-title); font-size: 1.25rem; font-weight:800; margin-bottom: 8px;">Live Translate Voice Call</h4>
+                    <p style="color: var(--text-body); font-size: 0.95rem; max-width: 520px; margin: 0 auto;">
+                        ${currentLang === 'TH' ? 'แปลการสนทนาทางโทรศัพท์แบบเรียลไทม์สองทาง ทั้งเสียงและข้อความตัวอักษร รองรับกว่า 20 ภาษา' : 'Real-time two-way voice call translation with live text subtitles in over 20 languages.'}
+                    </p>
+                `;
+            }
+        }
+
+        function openFinanceModal() {
+            playSound('click');
+            const card = document.getElementById('modal-card');
+            card.innerHTML = `
+                <button class="close-modal-icon" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+                <div style="text-align: center; margin-bottom: 25px;">
+                    <div style="font-size: 2.2rem; color: var(--accent-sky); margin-bottom: 8px;">
+                        <i class="fa-solid fa-credit-card"></i>
+                    </div>
+                    <h2 style="font-size: 1.8rem; font-weight: 900; color: var(--text-title);">Samsung Finance+ & 0% Installment</h2>
+                    <p style="color: var(--text-body);">${currentLang === 'TH' ? 'ผ่อนชำระ 0% นานสูงสุด 36 เดือน ร่วมกับบัตรเครดิตชั้นนำ' : '0% Installment plans up to 36 months with major credit cards'}</p>
+                </div>
+
+                <div style="background: var(--bg-page); border: 1px solid var(--border-color); border-radius: 20px; padding: 25px; margin-bottom: 20px;">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; text-align: center;">
+                        <div style="background: var(--bg-card); padding: 16px; border-radius: 14px; border: 1px solid var(--border-color);">
+                            <div style="font-size: 0.85rem; color: var(--text-muted);">10 ${currentLang === 'TH' ? 'เดือน' : 'Months'} (0%)</div>
+                            <div style="font-size: 1.3rem; font-weight: 900; color: var(--text-title); margin-top: 4px;">฿6,590 / ${currentLang === 'TH' ? 'ด.' : 'mo'}</div>
+                        </div>
+                        <div style="background: var(--bg-card); padding: 16px; border-radius: 14px; border: 1px solid var(--border-color);">
+                            <div style="font-size: 0.85rem; color: var(--text-muted);">24 ${currentLang === 'TH' ? 'เดือน' : 'Months'} (0%)</div>
+                            <div style="font-size: 1.3rem; font-weight: 900; color: var(--text-title); margin-top: 4px;">฿2,746 / ${currentLang === 'TH' ? 'ด.' : 'mo'}</div>
+                        </div>
+                        <div style="background: rgba(14,165,233,0.1); padding: 16px; border-radius: 14px; border: 1px solid var(--samsung-blue);">
+                            <div style="font-size: 0.85rem; color: var(--samsung-blue); font-weight: 800;">36 ${currentLang === 'TH' ? 'เดือน' : 'Months'} (0%)</div>
+                            <div style="font-size: 1.3rem; font-weight: 900; color: var(--samsung-blue); margin-top: 4px;">฿1,830 / ${currentLang === 'TH' ? 'ด.' : 'mo'}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn-minimal-primary" style="width: 100%; justify-content: center; padding: 14px;" onclick="closeModal();">
+                    ${currentLang === 'TH' ? 'ตกลง' : 'Close'}
+                </button>
+            `;
+            document.getElementById('modal-mask').classList.add('open');
+        }
+
+        function openStoreLocatorModal() {
+            playSound('click');
+            const card = document.getElementById('modal-card');
+            card.innerHTML = `
+                <button class="close-modal-icon" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+                <div style="text-align: center; margin-bottom: 25px;">
+                    <div style="width: 60px; height: 60px; border-radius: 50%; background: rgba(14,165,233,0.1); color: var(--accent-sky); display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; font-size: 1.8rem;">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <h2 style="font-size: 1.8rem; font-weight: 900; color: var(--text-title);">Samsung Experience Stores</h2>
+                    <p style="color: var(--text-body);">${currentLang === 'TH' ? 'ค้นหาศูนย์บริการเพื่อสัมผัสสินค้าจริง' : 'Locate official stores & try live devices'}</p>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <div style="background: var(--bg-page); border: 1px solid var(--border-color); border-radius: 16px; padding: 18px; display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <strong style="color: var(--text-title); font-size: 1.05rem;">Samsung Experience Store - Siam Paragon</strong>
+                            <p style="font-size: 0.88rem; color: var(--text-body);">2nd Floor, Siam Paragon, Bangkok (10:00 - 22:00)</p>
+                        </div>
+                        <button class="btn-minimal-secondary" style="font-size:0.8rem; padding: 8px 16px;" onclick="showToast('📍 Navigating to Siam Paragon Store')">${currentLang === 'TH' ? 'นำทาง' : 'Directions'}</button>
+                    </div>
+
+                    <div style="background: var(--bg-page); border: 1px solid var(--border-color); border-radius: 16px; padding: 18px; display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <strong style="color: var(--text-title); font-size: 1.05rem;">Samsung Experience Store - CentralWorld</strong>
+                            <p style="font-size: 0.88rem; color: var(--text-body);">4th Floor, CentralWorld, Bangkok (10:00 - 22:00)</p>
+                        </div>
+                        <button class="btn-minimal-secondary" style="font-size:0.8rem; padding: 8px 16px;" onclick="showToast('📍 Navigating to CentralWorld Store')">${currentLang === 'TH' ? 'นำทาง' : 'Directions'}</button>
+                    </div>
+                </div>
+            `;
+            document.getElementById('modal-mask').classList.add('open');
+        }
+
+        function openCompareModal() {
+            playSound('click');
+            if (compareList.length === 0) return;
+            const items = compareList.map(id => products.find(p => p.id === id));
+            const card = document.getElementById('modal-card');
+
+            card.innerHTML = `
+                <button class="close-modal-icon" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+                <h2 style="font-size: 1.7rem; color: var(--text-title); font-weight:900; margin-bottom: 25px; display: flex; align-items: center; gap: 10px;">
+                    <i class="fa-solid fa-sliders" style="color:var(--accent-sky);"></i> ${t('showCompare')} (${items.length})
+                </h2>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                    ${items.map(p => {
+                        const name = currentLang === 'TH' ? p.nameTH : p.nameEN;
+                        return `
+                            <div style="background: var(--bg-page); border: 1px solid var(--border-color); border-radius: 18px; padding: 20px; text-align: center;">
+                                <img src="${p.img}" onerror="this.onerror=null; this.src='${fallbackSVG}';" style="height: 140px; object-fit: contain; margin-bottom: 15px;">
+                                <h4 style="font-size: 1.05rem; font-weight: 800; color: var(--text-title); margin-bottom: 6px;">${name}</h4>
+                                <div style="font-size: 1.3rem; font-weight: 900; color: var(--samsung-blue); margin-bottom: 15px;">฿${p.price.toLocaleString()}</div>
+                                
+                                <div style="text-align: left; font-size: 0.88rem; color: var(--text-body); display: flex; flex-direction: column; gap: 10px;">
+                                    ${Object.entries(p.specs).map(([k, v]) => `
+                                        <div style="border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">
+                                            <strong style="color: var(--text-title); font-size: 0.75rem; text-transform: uppercase;">${k}:</strong><br>${v}
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            `;
+            document.getElementById('modal-mask').classList.add('open');
+        }
+
+        function openWishlistModal() {
+            playSound('click');
+            const items = wishlist.map(id => products.find(p => p.id === id));
+            const card = document.getElementById('modal-card');
+
+            card.innerHTML = `
+                <button class="close-modal-icon" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+                <h2 style="font-size: 1.7rem; color: var(--text-title); font-weight:900; margin-bottom: 25px; display: flex; align-items: center; gap: 10px;">
+                    <i class="fa-solid fa-heart" style="color:#ef4444;"></i> ${currentLang === 'TH' ? 'รายการโปรดที่บันทึกไว้' : 'Saved Wishlist Items'} (${items.length})
+                </h2>
+
+                ${items.length === 0 ? `
+                    <div style="text-align: center; padding: 40px; color: var(--text-muted);">
+                        <i class="fa-solid fa-heart-crack" style="font-size: 2.5rem; margin-bottom: 10px;"></i>
+                        <p>${currentLang === 'TH' ? 'ยังไม่มีสินค้าในรายการโปรด' : 'No items saved in wishlist yet'}</p>
+                    </div>
+                ` : `
+                    <div style="display: flex; flex-direction: column; gap: 15px;">
+                        ${items.map(p => {
+                            const name = currentLang === 'TH' ? p.nameTH : p.nameEN;
+                            return `
+                                <div style="background: var(--bg-page); border: 1px solid var(--border-color); border-radius: 16px; padding: 16px; display: flex; align-items: center; justify-content: space-between; gap: 15px;">
+                                    <img src="${p.img}" onerror="this.onerror=null; this.src='${fallbackSVG}';" style="width: 60px; height: 60px; object-fit: contain; background: var(--bg-card); border-radius: 10px; padding: 4px;">
+                                    <div style="flex: 1;">
+                                        <h4 style="font-size: 1.05rem; font-weight: 800; color: var(--text-title);">${name}</h4>
+                                        <div style="font-size: 1.1rem; font-weight: 900; color: var(--samsung-blue);">฿${p.price.toLocaleString()}</div>
+                                    </div>
+                                    <button class="btn-minimal-primary" style="padding: 9px 18px; font-size: 0.85rem;" onclick="addToCart('${p.id}'); toggleWishlist('${p.id}'); closeModal();">
+                                        <i class="fa-solid fa-cart-shopping"></i> ${t('addToCartBtn')}
+                                    </button>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                `}
+            `;
+            document.getElementById('modal-mask').classList.add('open');
+        }
+
+        // Checkout Flow with QR PromptPay
+        function openCheckoutModal() {
+            if (cart.length === 0) {
+                showToast(t('noCartMsg'), 'fa-solid fa-circle-exclamation');
+                return;
+            }
+            playSound('click');
+            const subtotal = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
+            const discount = subtotal * appliedDiscountRatio;
+            const total = subtotal - discount;
+
+            const card = document.getElementById('modal-card');
+            card.innerHTML = `
+                <button class="close-modal-icon" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+                <div style="text-align: center; margin-bottom: 25px;">
+                    <div style="width: 60px; height: 60px; border-radius: 50%; background: rgba(14,165,233,0.1); color: var(--accent-sky); display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; font-size: 1.8rem;">
+                        <i class="fa-solid fa-lock"></i>
+                    </div>
+                    <h2 style="font-size: 1.8rem; font-weight: 900; color: var(--text-title);">Samsung Express Checkout</h2>
+                    <p style="color: var(--text-body);">${currentLang === 'TH' ? 'กรอกข้อมูลการจัดส่งและเลือกชำระเงิน' : 'Fill shipping details & select payment method'}</p>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 25px;">
+                    <div>
+                        <h4 style="font-size: 1.05rem; font-weight: 800; color: var(--text-title); margin-bottom: 12px;">1. ${currentLang === 'TH' ? 'ข้อมูลจัดส่ง (Shipping Address)' : 'Shipping Details'}</h4>
+                        <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;">
+                            <input type="text" placeholder="${currentLang === 'TH' ? 'ชื่อ-นามสกุล' : 'Full Name'}" style="padding: 10px; border-radius: 10px; background: var(--bg-page); border: 1px solid var(--border-color); color: var(--text-title); font-family: inherit;">
+                            <input type="text" placeholder="${currentLang === 'TH' ? 'เบอร์โทรศัพท์' : 'Phone Number'}" style="padding: 10px; border-radius: 10px; background: var(--bg-page); border: 1px solid var(--border-color); color: var(--text-title); font-family: inherit;">
+                            <input type="text" placeholder="${currentLang === 'TH' ? 'ที่อยู่จัดส่ง' : 'Full Shipping Address'}" style="padding: 10px; border-radius: 10px; background: var(--bg-page); border: 1px solid var(--border-color); color: var(--text-title); font-family: inherit;">
+                        </div>
+
+                        <h4 style="font-size: 1.05rem; font-weight: 800; color: var(--text-title); margin-bottom: 12px;">2. ${currentLang === 'TH' ? 'ช่องทางชำระเงิน (Payment Method)' : 'Payment Method'}</h4>
+                        <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                            <button class="btn-minimal-primary" style="flex:1; font-size:0.82rem; padding:10px;" onclick="showPaymentScreen('qr')">📲 PromptPay QR</button>
+                            <button class="btn-minimal-secondary" style="flex:1; font-size:0.82rem; padding:10px;" onclick="showPaymentScreen('card')">💳 Credit Card</button>
+                        </div>
+
+                        <div id="payment-display-area" style="background: var(--bg-page); border: 1px dashed var(--border-color); border-radius: 16px; padding: 20px; text-align: center;">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=SAMSUNG-PAY-${total}" style="width: 150px; height: 150px; border-radius: 12px; margin-bottom: 10px;">
+                            <p style="font-size: 0.85rem; color: var(--text-body);">${currentLang === 'TH' ? 'สแกน QR Code ด้วยแอปธนาคารใดก็ได้เพื่อชำระเงิน' : 'Scan QR code with any Mobile Banking App'}</p>
+                        </div>
+                    </div>
+
+                    <div style="background: var(--bg-page); border: 1px solid var(--border-color); border-radius: 20px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <h4 style="font-size: 1.05rem; font-weight: 800; color: var(--text-title); margin-bottom: 14px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">
+                                ${currentLang === 'TH' ? 'สรุปรายการสั่งซื้อ' : 'Order Summary'}
+                            </h4>
+                            <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.88rem; max-height: 220px; overflow-y: auto;">
+                                ${cart.map(i => {
+                                    const name = currentLang === 'TH' ? i.nameTH : i.nameEN;
+                                    return `<div style="display:flex; justify-content:space-between; color:var(--text-body);"><span>${name} (x${i.qty})</span><strong style="color:var(--text-title);">฿${(i.price * i.qty).toLocaleString()}</strong></div>`;
+                                }).join('')}
+                            </div>
+                        </div>
+
+                        <div style="border-top: 1px solid var(--border-color); padding-top: 15px; margin-top: 15px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 0.9rem; color: var(--text-body);">
+                                <span>${t('subtotal')}</span>
+                                <span>฿${subtotal.toLocaleString()}</span>
+                            </div>
+                            ${discount > 0 ? `<div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 0.9rem; color: var(--accent-sky);"><span>${t('discount')}</span><span>-฿${discount.toLocaleString()}</span></div>` : ''}
+                            <div style="display: flex; justify-content: space-between; font-size: 1.3rem; font-weight: 900; color: var(--text-title); margin-bottom: 18px;">
+                                <span>${t('total')}</span>
+                                <span style="color: var(--samsung-blue);">฿${total.toLocaleString()}</span>
+                            </div>
+
+                            <button class="btn-minimal-primary" style="width: 100%; justify-content: center; padding: 14px;" onclick="confirmPurchase()">
+                                <i class="fa-solid fa-circle-check"></i> ${currentLang === 'TH' ? 'ยืนยันการสั่งซื้อ' : 'Confirm Order & Pay'}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('modal-mask').classList.add('open');
+        }
+
+        function showPaymentScreen(type) {
+            playSound('click');
+            const area = document.getElementById('payment-display-area');
+            if (type === 'qr') {
+                area.innerHTML = `
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=SAMSUNG-PAY" style="width: 150px; height: 150px; border-radius: 12px; margin-bottom: 10px;">
+                    <p style="font-size: 0.85rem; color: var(--text-body);">${currentLang === 'TH' ? 'สแกน QR Code ด้วยแอปธนาคารเพื่อชำระเงิน' : 'Scan QR code with Banking App'}</p>
+                `;
+            } else {
+                area.innerHTML = `
+                    <div style="display:flex; flex-direction:column; gap:8px;">
+                        <input type="text" placeholder="Card Number (4541 **** **** ****)" style="padding:10px; border-radius:8px; border:1px solid var(--border-color); background:var(--bg-card); color:var(--text-title);">
+                        <div style="display:flex; gap:8px;">
+                            <input type="text" placeholder="MM/YY" style="flex:1; padding:10px; border-radius:8px; border:1px solid var(--border-color); background:var(--bg-card); color:var(--text-title);">
+                            <input type="text" placeholder="CVV" style="flex:1; padding:10px; border-radius:8px; border:1px solid var(--border-color); background:var(--bg-card); color:var(--text-title);">
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        function confirmPurchase() {
+            playSound('fanfare');
+            if (window.confetti) confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
+
+            const orderNum = 'TH-' + Math.floor(100000 + Math.random() * 900000);
+            const card = document.getElementById('modal-card');
+            card.innerHTML = `
+                <div style="text-align: center; padding: 20px 10px;">
+                    <div style="width: 70px; height: 70px; border-radius: 50%; background: rgba(16,185,129,0.12); color: var(--accent-emerald); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 2.2rem;">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                    <h2 style="font-size: 1.8rem; font-weight: 900; color: var(--text-title); margin-bottom: 6px;">${currentLang === 'TH' ? 'คำสั่งซื้อสำเร็จเรียบร้อย!' : 'Order Placed Successfully!'}</h2>
+                    <p style="color: var(--text-body); font-size: 0.95rem; margin-bottom: 20px;">Order ID: <strong style="color: var(--samsung-blue);">${orderNum}</strong></p>
+
+                    <button class="btn-minimal-primary" style="width: 100%; justify-content: center; padding: 14px;" onclick="closeModal(); cart=[]; updateCartUI(); toggleCartDrawer(false);">
+                        ${currentLang === 'TH' ? 'เสร็จสิ้น' : 'Done'}
+                    </button>
+                </div>
+            `;
+        }
+
+        // Initialize App
+        document.addEventListener('DOMContentLoaded', () => {
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            document.getElementById('theme-icon').className = currentTheme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+            document.getElementById('sound-icon').className = soundEnabled ? 'fa-solid fa-volume-high' : 'fa-solid fa-volume-xmark';
+            
+            updateUIStrings();
+
+            // Hero auto slider
+            slideInterval = setInterval(() => {
+                currentSlide = (currentSlide + 1) % heroSlides.length;
+                renderHeroSlide();
+            }, 6000);
+        });
+    </script>
+</body>
+</html>

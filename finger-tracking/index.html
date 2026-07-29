@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Air Canvas & Dual-Hand Finger Tracking | AI Computer Vision</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090d16;
+      --card-bg: #131b2e;
+      --card-border: #1e293b;
+      --accent: #00f2fe;
+      --accent-purple: #4facfe;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --code-bg: #0f172a;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      background: rgba(0, 242, 254, 0.1);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      color: var(--accent);
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: 36px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+    }
+
+    p.subtitle {
+      color: var(--text-muted);
+      font-size: 16px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0, 242, 254, 0.4);
+    }
+
+    .card-icon {
+      font-size: 28px;
+      margin-bottom: 16px;
+    }
+
+    .card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    /* Interactive Canvas Demo */
+    .demo-section {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .demo-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .canvas-container {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      aspect-ratio: 16/9;
+      margin: 0 auto;
+      background: #000;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid var(--card-border);
+    }
+
+    canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      cursor: crosshair;
+    }
+
+    .palette {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .color-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .color-btn:hover, .color-btn.active {
+      transform: scale(1.15);
+      border-color: #fff;
+    }
+
+    /* Code Section */
+    .code-section {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .code-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .btn-copy {
+      background: var(--accent);
+      color: #090d16;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .btn-copy:hover { opacity: 0.85; }
+
+    pre {
+      background: var(--code-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 20px;
+      overflow-x: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: #e2e8f0;
+      line-height: 1.5;
+    }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      margin-bottom: 24px;
+      transition: color 0.2s;
+    }
+
+    .btn-back:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <a href="../index.html" class="btn-back">← กลับสู่หน้าหลัก Portfolio</a>
+
+    <header>
+      <span class="badge">AI & COMPUTER VISION PROJECT</span>
+      <h1>Air Canvas & Dual-Hand Finger Tracking</h1>
+      <p class="subtitle">ระบบวาดภาพในอากาศไร้สัมผัส ตรวจจับและแยกแยะมือซ้าย-ขวาแบบเรียลไทม์ ด้วย Python, OpenCV และ MediaPipe</p>
+    </header>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-icon">✌️</div>
+        <h3>Dual-Hand Tracking</h3>
+        <p>รองรับการตรวจจับและระบุพิกัด 21 จุดสำคัญ (Landmarks) บนมือ 2 ข้างพร้อมกันด้วยความแม่นยำสูง</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎨</div>
+        <h3>Air Canvas Drawing</h3>
+        <p>วาดรูปกลางอากาศด้วยปลายนิ้วชี้ เลือกเปลี่ยนสีพู่กัน หรือเลือกยางลบโดยใช้ภาษามือ (Gesture Commands)</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">⚡</div>
+        <h3>Real-time Performance</h3>
+        <p>ประมวลผลวิดีโอจากกล้อง Webcam แบบ Frame-by-Frame ทำงานลื่นไหล ไม่หน่วง</p>
+      </div>
+    </div>
+
+    <!-- Web Interactive Canvas Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <h3>🎨 Interactive Air Canvas Demo (ทดลองวาด)</h3>
+        <span style="font-size: 13px; color: var(--text-muted);">คลิกลากลากเมาส์บนผืนผ้าใบเพื่อทดลองวาดภาพ</span>
+      </div>
+      <div class="canvas-container">
+        <canvas id="airCanvas"></canvas>
+      </div>
+      <div class="palette">
+        <button class="color-btn active" style="background:#ff4757" onclick="setColor('#ff4757', this)"></button>
+        <button class="color-btn" style="background:#2ed573" onclick="setColor('#2ed573', this)"></button>
+        <button class="color-btn" style="background:#1e90ff" onclick="setColor('#1e90ff', this)"></button>
+        <button class="color-btn" style="background:#ffa502" onclick="setColor('#ffa502', this)"></button>
+        <button class="color-btn" style="background:#090d16; border-color:#fff;" onclick="setColor('#000000', this)">🧹</button>
+      </div>
+    </div>
+
+    <!-- Code Section -->
+    <div class="code-section">
+      <div class="code-header">
+        <h3>🐍 Python Source Code (MediaPipe + OpenCV)</h3>
+        <button class="btn-copy" onclick="copyCode()">คัดลอกโค้ด</button>
+      </div>
+      <pre><code id="pythonCode">import cv2
+import mediapipe as mp
+import numpy as np
+import math
+
+# 1. ตั้งค่า MediaPipe
+mp_hands = mp.solutions.hands
+hands = mp_hands.Hands(
+    static_image_mode=False,
+    max_num_hands=2, # รองรับ 2 มือพร้อมกัน
+    min_detection_confidence=0.7,
+    min_tracking_confidence=0.7
+)
+mp_draw = mp.solutions.drawing_utils
+
+# 2. เปิดกล้อง Webcam
+cap = cv2.VideoCapture(0)
+
+px = {"Left": 0, "Right": 0}
+py = {"Left": 0, "Right": 0}
+canvas = None
+
+color_red = (0, 0, 255)
+color_green = (0, 255, 0)
+color_blue = (255, 0, 0)
+color_yellow = (0, 255, 255)
+color_eraser = (0, 0, 0)
+
+current_color = {"Left": color_red, "Right": color_green}
+brush_thickness = 10
+eraser_thickness = 50
+
+while True:
+    success, img = cap.read()
+    if not success:
+        break
+
+    img = cv2.flip(img, 1)
+    h, w, c = img.shape
+    
+    if canvas is None:
+        canvas = np.zeros_like(img)
+
+    # วาดแถบเมนูสีด้านบน
+    menu_w = w // 5
+    cv2.rectangle(img, (0, 0), (menu_w, 80), color_red, cv2.FILLED)
+    cv2.rectangle(img, (menu_w, 0), (menu_w*2, 80), color_green, cv2.FILLED)
+    cv2.rectangle(img, (menu_w*2, 0), (menu_w*3, 80), color_blue, cv2.FILLED)
+    cv2.rectangle(img, (menu_w*3, 0), (menu_w*4, 80), color_yellow, cv2.FILLED)
+    cv2.rectangle(img, (menu_w*4, 0), (w, 80), (50, 50, 50), cv2.FILLED)
+    cv2.putText(img, "ERASER", (menu_w*4 + 10, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 255), 2)
+
+    img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    results = hands.process(img_rgb)
+
+    if results.multi_hand_landmarks:
+        for hand_idx, hand_landmarks in enumerate(results.multi_hand_landmarks):
+            mp_draw.draw_landmarks(img, hand_landmarks, mp_hands.HAND_CONNECTIONS)
+            hand_label = results.multi_handedness[hand_idx].classification[0].label
+            
+            lm_list = []
+            for id, lm in enumerate(hand_landmarks.landmark):
+                cx, cy = int(lm.x * w), int(lm.y * h)
+                lm_list.append((cx, cy))
+                
+            if len(lm_list) != 0:
+                x1, y1 = lm_list[8]  # ปลายนิ้วชี้
+                x2, y2 = lm_list[12] # ปลายนิ้วกลาง
+                
+                fingers_up = [
+                    lm_list[8][1] < lm_list[6][1],
+                    lm_list[12][1] < lm_list[10][1]
+                ]
+                
+                # โหมดเลือกสี (ชู 2 นิ้ว)
+                if fingers_up[0] and fingers_up[1]:
+                    px[hand_label], py[hand_label] = 0, 0
+                    if y1 < 80:
+                        if 0 < x1 < menu_w: current_color[hand_label] = color_red
+                        elif menu_w < x1 < menu_w*2: current_color[hand_label] = color_green
+                        elif menu_w*2 < x1 < menu_w*3: current_color[hand_label] = color_blue
+                        elif menu_w*3 < x1 < menu_w*4: current_color[hand_label] = color_yellow
+                        elif menu_w*4 < x1 < w: current_color[hand_label] = color_eraser
+                        
+                # โหมดวาด (ชูนิ้วชี้เดียว)
+                elif fingers_up[0] and not fingers_up[1]:
+                    if px[hand_label] == 0 and py[hand_label] == 0:
+                        px[hand_label], py[hand_label] = x1, y1
+                        
+                    thick = eraser_thickness if current_color[hand_label] == color_eraser else brush_thickness
+                    cv2.line(canvas, (px[hand_label], py[hand_label]), (x1, y1), current_color[hand_label], thick)
+                    px[hand_label], py[hand_label] = x1, y1
+
+    # ผสมภาพกล้องกับผืนผ้าใบ
+    img_gray = cv2.cvtColor(canvas, cv2.COLOR_BGR2GRAY)
+    _, img_inv = cv2.threshold(img_gray, 50, 255, cv2.THRESH_BINARY_INV)
+    img_inv = cv2.cvtColor(img_inv, cv2.COLOR_GRAY2BGR)
+    img = cv2.bitwise_and(img, img_inv)
+    img = cv2.bitwise_or(img, canvas)
+
+    cv2.imshow("Air Canvas Dual-Hand", img)
+    if cv2.waitKey(1) & 0xFF == 27: # กด Esc เพื่อออก
+        break
+
+cap.release()
+cv2.destroyAllWindows()</code></pre>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('airCanvas');
+    const ctx = canvas.getContext('2d');
+    let isDrawing = false;
+    let currentColor = '#ff4757';
+
+    function resizeCanvas() {
+      canvas.width = canvas.parentElement.clientWidth;
+      canvas.height = canvas.parentElement.clientHeight;
+      ctx.fillStyle = '#090d16';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function setColor(color, btn) {
+      currentColor = color;
+      document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    canvas.addEventListener('mousedown', (e) => {
+      isDrawing = true;
+      ctx.beginPath();
+      const rect = canvas.getBoundingClientRect();
+      ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+    });
+
+    canvas.addEventListener('mousemove', (e) => {
+      if (!isDrawing) return;
+      const rect = canvas.getBoundingClientRect();
+      ctx.strokeStyle = currentColor === '#000000' ? '#090d16' : currentColor;
+      ctx.lineWidth = currentColor === '#000000' ? 30 : 6;
+      ctx.lineCap = 'round';
+      ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+      ctx.stroke();
+    });
+
+    canvas.addEventListener('mouseup', () => isDrawing = false);
+    canvas.addEventListener('mouseleave', () => isDrawing = false);
+
+    function copyCode() {
+      const code = document.getElementById('pythonCode').innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        alert('คัดลอกซอร์สโค้ด Python เรียบร้อยแล้ว!');
+      });
+    }
+  </script>
+</body>
+</html>
