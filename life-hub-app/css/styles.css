@@ -1323,6 +1323,68 @@ a {
         overflow-x: auto !important;
         -webkit-overflow-scrolling: touch !important;
     }
+    .section-toolbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .filter-group {
+        width: 100%;
+        overflow-x: auto;
+    }
+    .action-buttons {
+        flex-wrap: wrap;
+        width: 100%;
+    }
+    .finance-grid {
+        grid-template-columns: 1fr;
+    }
+    .finance-stats-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .stat-divider {
+        width: 100%;
+        height: 1px;
+    }
+    .calendar-day {
+        min-height: 56px;
+        padding: 4px;
+    }
+    .day-status-pill {
+        font-size: 0.58rem;
+        padding: 1px 4px;
+    }
+    .day-task-count {
+        font-size: 0.58rem;
+    }
+    .integration-banner {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+    .banner-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .savings-goals-grid {
+        grid-template-columns: 1fr;
+    }
+    .chart-wrapper {
+        height: 200px;
+    }
+    .chart-wrapper-small {
+        height: 180px;
+    }
+    .card-title-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    .ai-chat-card {
+        width: 98%;
+        height: 85vh;
+    }
 }
 
 /* ==========================================================================
@@ -2375,108 +2437,6 @@ body.light-theme .ai-action-card {
     box-shadow: 0 4px 14px rgba(120, 100, 70, 0.08);
 }
 
-/* ==========================================================================
-   Responsive Enhancements
-   ========================================================================== */
-@media (max-width: 768px) {
-    .top-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-    }
-
-    .header-right {
-        flex-wrap: wrap;
-        gap: 8px;
-        width: 100%;
-    }
-
-    .section-toolbar {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-    }
-
-    .filter-group {
-        width: 100%;
-        overflow-x: auto;
-    }
-
-    .action-buttons {
-        flex-wrap: wrap;
-        width: 100%;
-    }
-
-    .dashboard-grid {
-        flex-direction: column;
-    }
-
-    .finance-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .finance-stats-card {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .stat-divider {
-        width: 100%;
-        height: 1px;
-    }
-
-    .calendar-day {
-        min-height: 56px;
-        padding: 4px;
-    }
-
-    .day-status-pill {
-        font-size: 0.58rem;
-        padding: 1px 4px;
-    }
-
-    .day-task-count {
-        font-size: 0.58rem;
-    }
-
-    .integration-banner {
-        flex-direction: column;
-        text-align: center;
-        padding: 20px;
-    }
-
-    .banner-content {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .savings-goals-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .chart-wrapper {
-        height: 200px;
-    }
-
-    .chart-wrapper-small {
-        height: 180px;
-    }
-
-    .card-title-bar {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-    }
-
-    .main-content {
-        padding-bottom: 80px;
-    }
-
-    .ai-chat-card {
-        width: 98%;
-        height: 85vh;
-    }
-}
 
 /* Voice Input Mic Pulse Animation */
 @keyframes micPulse {

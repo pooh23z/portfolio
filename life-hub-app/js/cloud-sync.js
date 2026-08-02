@@ -15,8 +15,13 @@ const DEFAULT_FIREBASE_CONFIG = {
 
 class CloudSyncEngine {
     constructor() {
-        // Default shared Cloud Sync Room for instant cross-device sync (Mac & Mobile)
-        this.roomCode = localStorage.getItem('lifehub_sync_room_code') || 'POOH2026';
+        // Get existing room code or generate a unique random room code for fresh installations
+        let savedRoomCode = localStorage.getItem('lifehub_sync_room_code');
+        if (!savedRoomCode) {
+            savedRoomCode = this.generateRoomCode();
+            localStorage.setItem('lifehub_sync_room_code', savedRoomCode);
+        }
+        this.roomCode = savedRoomCode;
         this.firebaseConfig = DEFAULT_FIREBASE_CONFIG;
         this.db = null;
         this.roomRef = null;

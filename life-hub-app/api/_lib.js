@@ -2,10 +2,11 @@
 
 const https = require('https');
 
-const LINE_TOKEN = 'S6eepwLv+PVnpZlRCzSg2KzNZ8Glk5d+sLKQmpHDGNWftOEw5bT37RLuCVheHQijhxK2SH30esKgyIIl/pJo9Mq0KGJd3Aj602Md+c5WYC5oYRrLPmeecuNkq/VlJqQUDDqF77/NzUEnvk5mSIJeOQdB04t89/1O/w1cDnyilFU=';
-const SALES_CSV_URL = 'https://docs.google.com/spreadsheets/d/1E74eURpJrim4mrkWQuF0wzrEI649wjxkUDia4uAZz2o/gviz/tq?tqx=out:csv&gid=1044604296';
-const COST_CSV_URL = 'https://docs.google.com/spreadsheets/d/1qZf_UrM7UKR2lXSl04vuv_UkDuwH9vZCwKMgSaVoLVM/gviz/tq?tqx=out:csv&gid=1564251212';
-const FIREBASE_ROOM_URL = 'https://lifehub-7420d-default-rtdb.asia-southeast1.firebasedatabase.app/rooms/POOH2026.json';
+const LINE_TOKEN = process.env.LINE_CHANNEL_ACCESS_TOKEN || process.env.LINE_TOKEN || '';
+const SALES_CSV_URL = process.env.SALES_CSV_URL || '';
+const COST_CSV_URL = process.env.COST_CSV_URL || '';
+const SYNC_ROOM_CODE = process.env.SYNC_ROOM_CODE || process.env.NEXT_PUBLIC_SYNC_ROOM_CODE || 'DEMO-2026';
+const FIREBASE_ROOM_URL = `https://lifehub-7420d-default-rtdb.asia-southeast1.firebasedatabase.app/rooms/${SYNC_ROOM_CODE}.json`;
 
 function fetchUrl(url) {
     return new Promise((resolve, reject) => {
@@ -38,6 +39,11 @@ function formatMoney(n) {
 
 function sendLineBroadcast(messageText, token) {
     return new Promise((resolve, reject) => {
+        const activeToken = token || LINE_TOKEN;
+        if (!activeToken) {
+            return reject(new Error('ยังไม่ได้ตั้งค่า LINE Token (กรุณาตั้งค่า LINE_CHANNEL_ACCESS_TOKEN บน Vercel หรือในเมนูตั้งค่า)'));
+        }
+
         const payload = JSON.stringify({
             messages: [{ type: 'text', text: messageText }]
         });
@@ -47,7 +53,7 @@ function sendLineBroadcast(messageText, token) {
             headers: {
                 'Content-Type': 'application/json',
                 'Content-Length': Buffer.byteLength(payload),
-                'Authorization': `Bearer ${token || LINE_TOKEN}`
+                'Authorization': `Bearer ${activeToken}`
             }
         }, (res) => {
             let body = '';
@@ -69,7 +75,15 @@ function sendLineBroadcast(messageText, token) {
 
 // 🛍️ Report 1: ยอดขาย & ต้นทุนร้านค้า (ดึงตรงจาก Google Sheets)
 async function buildShopReportText() {
-    const [salesCsv, costCsv] = await Promise.all([fetchUrl(SALES_CSV_URL), fetchUrl(COST_CSV_URL)]);
+    let salesCsv = '';
+    let costCsv = '';
+    if (SALES_CSV_URL && COST_CSV_URL) {
+        try {
+            [salesCsv, costCsv] = await Promise.all([fetchUrl(SALES_CSV_URL), fetchUrl(COST_CSV_URL)]);
+        } catch (e) {
+            console.warn('CSV fetch skipped or error:', e);
+        }
+    }
 
     let totalSales = 0;
     let salesCount = 0;

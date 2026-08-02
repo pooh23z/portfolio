@@ -358,18 +358,18 @@ class IntegrationsController {
 
     // Common LINE Bot Post Request
     postToLineBot(textMessage, successMsg) {
-        if (!this.lineBotToken) {
-            alert('กรุณาใส่ Channel Access Token (LINE Official Account) ก่อนครับ');
-            return;
-        }
-
         if (window.appController) window.appController.showToast('🤖 กำลังส่งข้อความเข้า LINE Official Account...');
+
+        const payload = { text: textMessage };
+        if (this.lineBotToken) {
+            payload.token = this.lineBotToken;
+        }
 
         // Call Vercel Serverless Function /api/send-line (Bypasses CORS 100%)
         fetch('/api/send-line', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ text: textMessage, token: this.lineBotToken })
+            body: JSON.stringify(payload)
         })
         .then(res => {
             if (!res.ok) throw new Error('HTTP ' + res.status);
