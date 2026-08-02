@@ -1,6 +1,6 @@
 # 🚀 Life & Business Hub - Modular PWA & Cloud Dashboard (Demo Template)
 
-A sleek, modern, and production-ready Web Application & Personal Financial Operating System built with **HTML5, Vanilla CSS (Glassmorphism), Vanilla JS (ES6+), Vercel Serverless Functions, Firebase Realtime Database, and Google Identity OAuth2**.
+A sleek, modern, and production-ready Web Application & Personal Financial Operating System built with **HTML5, Vanilla CSS (Glassmorphism), Vanilla JS (ES6+), Vercel Serverless Functions, and Google Identity OAuth2**.
 
 Designed for entrepreneurs, freelancers, and individuals managing daily finances, business revenue, calendar schedules, and automated LINE notifications.
 
@@ -10,7 +10,6 @@ Designed for entrepreneurs, freelancers, and individuals managing daily finances
 
 ### 📊 1. Business & Sales Dashboard
 - **Revenue & Expense Management**: Real-time sales vs. raw material cost tracking.
-- **Google Sheets Live Sync**: Instant CSV data integration with automated fallback.
 - **Top Sellers Ranking**: Interactive charts powered by Chart.js.
 
 ### 💵 2. Personal Finance & Wealth Goals
@@ -23,12 +22,34 @@ Designed for entrepreneurs, freelancers, and individuals managing daily finances
 
 ### 🤖 4. AI Assistant & Real-time Integrations
 - **AI Chatbot**: Intelligent productivity assistant with voice input support (Web Speech API).
-- **LINE Broadcast & Notify**: Direct CORS-free serverless message sending to LINE Official Accounts.
+- **LINE Broadcast & Notify**: Serverless message sending to LINE Official Accounts.
 - **Gmail Integration**: Google Identity Services OAuth2 login & email feed reader.
 
-### ☁️ 5. Realtime Cloud Sync
-- **Firebase Realtime Database**: Multi-device sync (Mac, Web, Mobile) via custom 6-character room codes.
-- **Offline First**: Instant local state updates using `localStorage` with non-blocking cloud hydration.
+---
+
+## 🔒 Security & Architecture Decisions (Portfolio Guide)
+
+When presenting this project in a developer portfolio or interview, here are key security design patterns implemented:
+
+### 1. 🔑 Environment Variable & Secret Isolation
+- **Pattern**: No hardcoded API keys, tokens, or personal identifiers in client-side code or Git repository.
+- **Implementation**: Serverless functions (`/api/send-line`, `/api/daily-report`) load secrets from `process.env.LINE_CHANNEL_ACCESS_TOKEN`. Local development uses `.env.local` which is explicitly ignored in `.gitignore`.
+
+### 2. 🛡️ XSS (Cross-Site Scripting) Prevention
+- **Pattern**: Input Sanitization on user-supplied strings before rendering to the DOM.
+- **Implementation**: Helper function `escapeHTML()` converts characters like `<`, `>`, `"` to HTML Entities (`&lt;`, `&gt;`, `&quot;`) preventing malicious script injection.
+
+### 3. 🌐 HTTP Security Headers & Anti-Clickjacking
+- **Pattern**: Production-grade HTTP headers configured via `vercel.json`.
+- **Headers Included**:
+  - `X-Frame-Options: DENY`: Prevents Clickjacking attacks by forbidding iframe embedding.
+  - `X-Content-Type-Options: nosniff`: Blocks MIME-type sniffing vulnerabilities.
+  - `Referrer-Policy: strict-origin-when-cross-origin`: Controls referrer data exposure.
+  - `X-XSS-Protection: 1; mode=block`: Enables browser XSS filtering protections.
+
+### 4. 🛂 API Authentication & CORS Scoping
+- **Pattern**: Restricting unauthorized backend invocations.
+- **Implementation**: `/api/daily-report` validates `CRON_SECRET` Bearer Tokens sent by Vercel's automated scheduler.
 
 ---
 
@@ -36,8 +57,7 @@ Designed for entrepreneurs, freelancers, and individuals managing daily finances
 
 - **Frontend**: HTML5, Vanilla CSS3 (Custom Glassmorphism Design Token System), Vanilla JavaScript (ES6 Modules)
 - **Backend / API**: Vercel Serverless Functions (Node.js)
-- **Database**: Firebase Realtime Database
-- **Integrations**: LINE Messaging API / LINE Notify, Google Sheets CSV Feed, Google Identity Services OAuth2
+- **Integrations**: LINE Messaging API / LINE Notify, Google Identity Services OAuth2
 - **Data Visualization**: Chart.js
 
 ---
@@ -56,20 +76,11 @@ Designed for entrepreneurs, freelancers, and individuals managing daily finances
    cp .env.example .env.local
    ```
 
-   Variables reference:
-   ```env
-   LINE_CHANNEL_ACCESS_TOKEN="your_line_channel_access_token_here"
-   SYNC_ROOM_CODE="DEMO-2026"
-   SALES_CSV_URL="https://docs.google.com/spreadsheets/d/your_sales_sheet_gid"
-   COST_CSV_URL="https://docs.google.com/spreadsheets/d/your_cost_sheet_gid"
-   ```
-
 3. **Run Locally**:
-   Simply serve the folder using any HTTP server or Vercel CLI:
+   Open `index.html` directly in your browser or run via Vercel CLI:
    ```bash
    npx vercel dev
    ```
-   Or open `index.html` directly in your browser!
 
 ---
 

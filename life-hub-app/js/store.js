@@ -1,14 +1,14 @@
 /* ==========================================================================
-   Life & Business Hub - DataStore (100% Real Google Sheets Data ONLY)
+   Life & Business Hub - Standalone Demo DataStore (Pure Local Mock Data)
    ========================================================================== */
 
 const STORAGE_KEYS = {
-    FINANCE: 'lifehub_finance_v2',
-    BUSINESS: 'lifehub_business_v2',
-    TASKS: 'lifehub_tasks_v2',
-    INTEGRATIONS: 'lifehub_integrations_v2',
-    SAVINGS: 'lifehub_savings_v2',
-    CALENDAR: 'lifehub_calendar_v2'
+    FINANCE: 'lifehub_demo_standalone_finance_v2',
+    BUSINESS: 'lifehub_demo_standalone_business_v2',
+    TASKS: 'lifehub_demo_standalone_tasks_v2',
+    INTEGRATIONS: 'lifehub_demo_standalone_integrations_v2',
+    SAVINGS: 'lifehub_demo_standalone_savings_v2',
+    CALENDAR: 'lifehub_demo_standalone_calendar_v2'
 };
 
 function toArray(value) {
@@ -24,24 +24,43 @@ class DataStore {
     }
 
     initDefaultData() {
+        const todayStr = new Date().toISOString().split('T')[0];
+
+        // 💵 Personal Finance Mock Data
         if (!localStorage.getItem(STORAGE_KEYS.FINANCE)) {
-            localStorage.setItem(STORAGE_KEYS.FINANCE, JSON.stringify([]));
+            const demoFinance = [
+                { id: 'fin-demo-1', date: todayStr, type: 'income', category: 'ธุรกิจส่วนตัว', title: 'รายได้จากงานฟรีแลนซ์ (Demo)', amount: 15000, note: '💵 รายรับตัวอย่างสำหรับพอร์ตโฟลิโอ' },
+                { id: 'fin-demo-2', date: todayStr, type: 'expense', category: '🍔 อาหาร & เครื่องดื่ม', title: 'ค่าอาหารและกาแฟ (Demo)', amount: 450, note: '🍔 รายจ่ายตัวอย่าง' },
+                { id: 'fin-demo-3', date: todayStr, type: 'expense', category: '💡 บิล & ค่าสาธารณูปโภค', title: 'ค่าบริการคลาวด์เซิร์ฟเวอร์ (Demo)', amount: 1200, note: '💡 รายจ่ายซอฟต์แวร์' }
+            ];
+            localStorage.setItem(STORAGE_KEYS.FINANCE, JSON.stringify(demoFinance));
         }
 
-        // Only set defaults the first time this device is ever used - never wipe
-        // existing data on later app loads (that was overwriting real user data
-        // on every refresh, which is why tasks/calendar looked different across devices).
+        // 📋 To-Do Tasks Mock Data
         if (!localStorage.getItem(STORAGE_KEYS.TASKS)) {
-            localStorage.setItem(STORAGE_KEYS.TASKS, JSON.stringify([]));
+            const demoTasks = [
+                { id: 'task-demo-1', title: '🚀 ตรวจสอบหน้าจอแสดงผล Portfolio Dashboard', dueDate: todayStr, priority: 'urgent', status: 'pending' },
+                { id: 'task-demo-2', title: '📝 อัปเดตข้อมูลสรุปรายได้ประจำเดือนในระบบ', dueDate: todayStr, priority: 'normal', status: 'pending' }
+            ];
+            localStorage.setItem(STORAGE_KEYS.TASKS, JSON.stringify(demoTasks));
         }
 
+        // 🎯 Savings Goals Mock Data
+        if (!localStorage.getItem(STORAGE_KEYS.SAVINGS)) {
+            const demoSavings = [
+                { id: 'savings-demo-1', title: '💻 ออมเงินซื้ออุปกรณ์พัฒนาระบบใหม่', target: 50000, current: 25000, date: '2026-12-31' }
+            ];
+            localStorage.setItem(STORAGE_KEYS.SAVINGS, JSON.stringify(demoSavings));
+        }
+
+        // 📅 Calendar Days Mock Data
         if (!localStorage.getItem(STORAGE_KEYS.CALENDAR)) {
             const initialCal = {};
-            const todayStr = new Date().toISOString().split('T')[0];
-            initialCal[todayStr] = { status: 'busy', title: 'ประชุมทีมประจำสัปดาห์' };
+            initialCal[todayStr] = { status: 'free', title: '🟢 วันว่าง (Free Day)' };
             localStorage.setItem(STORAGE_KEYS.CALENDAR, JSON.stringify(initialCal));
         }
 
+        // 🏪 Business Shop Sales & Cost Mock Data
         if (!localStorage.getItem(STORAGE_KEYS.BUSINESS)) {
             this.populateRealGoogleSheetsItems();
         }
@@ -52,15 +71,14 @@ class DataStore {
         const todayStr = new Date().toISOString().split('T')[0];
 
         const realSalesList = [
-            { id: 'demo-sale-1', date: todayStr, type: 'sale', channel: 'หน้าร้าน', title: 'สินค้าตัวอย่าง A (ขาย 120 ชิ้น)', amount: 2400, note: '📊 ยอดขายสินค้าตัวอย่าง A' },
-            { id: 'demo-sale-2', date: todayStr, type: 'sale', channel: 'หน้าร้าน', title: 'สินค้าตัวอย่าง B (ขาย 85 ชิ้น)', amount: 1700, note: '📊 ยอดขายสินค้าตัวอย่าง B' },
-            { id: 'demo-sale-3', date: todayStr, type: 'sale', channel: 'ออนไลน์', title: 'สินค้าตัวอย่าง C (ขาย 45 ชิ้น)', amount: 1350, note: '📊 ยอดขายออนไลน์' },
-            { id: 'demo-sale-4', date: todayStr, type: 'sale', channel: 'หน้าร้าน', title: 'สินค้าตัวอย่าง D (ขาย 200 ชิ้น)', amount: 4000, note: '📊 ยอดขายสินค้าตัวอย่าง D' }
+            { id: 'demo-sale-1', date: todayStr, type: 'sale', channel: 'หน้าร้าน', title: 'สินค้าโชว์พอร์ต A (ขาย 100 ชิ้น)', amount: 5000, note: '📊 ยอดขายตัวอย่าง สินค้า A' },
+            { id: 'demo-sale-2', date: todayStr, type: 'sale', channel: 'หน้าร้าน', title: 'สินค้าโชว์พอร์ต B (ขาย 80 ชิ้น)', amount: 4000, note: '📊 ยอดขายตัวอย่าง สินค้า B' },
+            { id: 'demo-sale-3', date: todayStr, type: 'sale', channel: 'ออนไลน์', title: 'สินค้าโชว์พอร์ต C (ขาย 50 ชิ้น)', amount: 3500, note: '📊 ยอดขายออนไลน์ตัวอย่าง' }
         ];
 
         const realCostList = [
-            { id: 'demo-cost-1', date: todayStr, type: 'cost', channel: 'ค่าวัตถุดิบ/สินค้า', title: 'วัตถุดิบและอุปกรณ์ร้านค้า (รอบที่ 1)', amount: 1500, note: '📦 ต้นทุนวัตถุดิบรอบที่ 1' },
-            { id: 'demo-cost-2', date: todayStr, type: 'cost', channel: 'ค่าวัตถุดิบ/สินค้า', title: 'วัตถุดิบและอุปกรณ์ร้านค้า (รอบที่ 2)', amount: 1200, note: '📦 ต้นทุนวัตถุดิบรอบที่ 2' }
+            { id: 'demo-cost-1', date: todayStr, type: 'cost', channel: 'ค่าวัตถุดิบ/สินค้า', title: 'ค่าวัตถุดิบและพัสดุร้านค้า (รอบที่ 1)', amount: 2500, note: '📦 ต้นทุนวัตถุดิบรอบที่ 1' },
+            { id: 'demo-cost-2', date: todayStr, type: 'cost', channel: 'ค่าวัตถุดิบ/สินค้า', title: 'ค่าโฆษณาและบริการการตลาด (รอบที่ 2)', amount: 1000, note: '📦 ต้นทุนโฆษณา' }
         ];
 
         const allRealBusiness = [...realSalesList, ...realCostList];
@@ -69,211 +87,195 @@ class DataStore {
     }
 
     importGoogleSheetsData() {
-        const salesCsvUrl = '';
-        const costCsvUrl = '';
-        if (!salesCsvUrl || !costCsvUrl) {
-            this.populateRealGoogleSheetsItems();
-            return;
-        }
-        const costCsvUrl = 'https://docs.google.com/spreadsheets/d/1qZf_UrM7UKR2lXSl04vuv_UkDuwH9vZCwKMgSaVoLVM/gviz/tq?tqx=out:csv&gid=1564251212';
-
-        Promise.all([
-            fetch(salesCsvUrl).then(r => r.text()).catch(() => ''),
-            fetch(costCsvUrl).then(r => r.text()).catch(() => '')
-        ]).then(([salesCsv, costCsv]) => {
-            const salesItems = salesCsv ? this.parseSalesCsv(salesCsv) : [];
-            const costItems = costCsv ? this.parseCostCsv(costCsv) : [];
-            const allBusiness = [...salesItems, ...costItems];
-
-            if (allBusiness.length > 0) {
-                localStorage.setItem(STORAGE_KEYS.BUSINESS, JSON.stringify(allBusiness));
-                this.notifyListeners('business');
-                console.log(`✅ ดึงข้อมูล Google Sheets สำเร็จ: ${salesItems.length} ยอดขาย, ${costItems.length} รายจ่าย`);
-            } else {
-                this.populateRealGoogleSheetsItems();
-            }
-        }).catch(err => {
-            console.log('Notice: Live fetch error. Using baked Google Sheets fallback data.', err);
-            this.populateRealGoogleSheetsItems();
-        });
+        this.populateRealGoogleSheetsItems();
     }
 
     refreshGoogleSheetsData() {
         localStorage.removeItem(STORAGE_KEYS.BUSINESS);
-        this.importGoogleSheetsData();
+        this.populateRealGoogleSheetsItems();
     }
 
-    // Parse Sales CSV: รายการ,จำนวนที่ขาย,รายได้รวม
-    parseSalesCsv(csvText) {
-        const lines = csvText.split('\n');
-        const items = [];
-        const todayStr = new Date().toISOString().split('T')[0];
+    // Subscription System
+    subscribe(listener) {
+        this.listeners.push(listener);
+        return () => {
+            this.listeners = this.listeners.filter(l => l !== listener);
+        };
+    }
 
-        for (let i = 1; i < lines.length; i++) {
-            const line = lines[i].trim().replace(/\r/g, '');
-            if (!line) continue;
-            const parts = line.split(',').map(p => p.replace(/^"|"$/g, '').trim());
-            if (parts.length >= 3) {
-                const itemName = parts[0];
-                const qty = parseInt(parts[1], 10) || 0;
-                const revenue = parseFloat(parts[2]) || 0;
+    notifyListeners(type) {
+        this.listeners.forEach(listener => listener(type));
+    }
 
-                if (revenue > 0 && itemName) {
-                    items.push({
-                        id: 'sheet-sale-' + i,
-                        date: todayStr,
-                        type: 'sale',
-                        channel: 'หน้าร้าน',
-                        title: `${itemName} (ขาย ${qty} ไม้)`,
-                        amount: revenue,
-                        note: `📊 ดึงตรงจาก Google Sheets (Live) | ขาย ${qty} ไม้ ได้ ฿${revenue.toLocaleString()}`
-                    });
-                }
-            }
+    // --- Finance Getters & Setters ---
+    getFinance() {
+        try {
+            return toArray(JSON.parse(localStorage.getItem(STORAGE_KEYS.FINANCE) || '[]'));
+        } catch (e) {
+            return [];
         }
-        return items;
     }
 
-    // Parse Cost CSV: รอบ,ยอดรวม (บาท),จำนวนรายการ,อัปเดตล่าสุด
-    parseCostCsv(csvText) {
-        const lines = csvText.split('\n');
-        const items = [];
-
-        for (let i = 1; i < lines.length; i++) {
-            const line = lines[i].trim().replace(/\r/g, '');
-            if (!line) continue;
-            const parts = line.split(',').map(p => p.replace(/^"|"$/g, '').trim());
-            if (parts.length >= 4) {
-                const roundTitle = parts[0];
-                const costAmount = parseFloat(parts[1]) || 0;
-                const itemCount = parseInt(parts[2], 10) || 0;
-                const thaiDateStr = parts[3];
-
-                const dateStr = this.convertThaiDateToISO(thaiDateStr);
-
-                if (costAmount > 0 && roundTitle) {
-                    items.push({
-                        id: 'sheet-cost-' + i,
-                        date: dateStr,
-                        type: 'cost',
-                        channel: 'ค่าวัตถุดิบ/สินค้า',
-                        title: `${roundTitle} (${itemCount} รายการ)`,
-                        amount: costAmount,
-                        note: `📦 ดึงตรงจาก Google Sheets (Live) | ซื้อวัตถุดิบ ${itemCount} รายการ วันที่ ${thaiDateStr}`
-                    });
-                }
-            }
-        }
-        return items;
-    }
-
-    convertThaiDateToISO(thaiStr) {
-        if (!thaiStr) return new Date().toISOString().split('T')[0];
-        const parts = thaiStr.split('/');
-        if (parts.length === 3) {
-            const day = parts[0].padStart(2, '0');
-            const month = parts[1].padStart(2, '0');
-            const yearBE = parseInt(parts[2]);
-            const yearCE = yearBE > 2500 ? yearBE - 543 : yearBE;
-            return `${yearCE}-${month}-${day}`;
-        }
-        return new Date().toISOString().split('T')[0];
-    }
-
-    getFinance() { return toArray(JSON.parse(localStorage.getItem(STORAGE_KEYS.FINANCE) || '[]')); }
-    addFinanceItem(item) {
+    addFinance(item) {
         const list = this.getFinance();
-        item.id = 'fin-' + Date.now();
-        list.unshift(item);
+        const newItem = {
+            id: 'fin-' + Date.now() + '-' + Math.random().toString(36).substr(2, 4),
+            date: item.date || new Date().toISOString().split('T')[0],
+            type: item.type || 'expense',
+            category: item.category || 'อื่นๆ',
+            title: item.title || 'ไม่มีชื่อรายการ',
+            amount: Number(item.amount || 0),
+            slip: item.slip || null,
+            note: item.note || ''
+        };
+        list.unshift(newItem);
         localStorage.setItem(STORAGE_KEYS.FINANCE, JSON.stringify(list));
         this.notifyListeners('finance');
-        return item;
+        return newItem;
     }
 
-    getBusiness() { return toArray(JSON.parse(localStorage.getItem(STORAGE_KEYS.BUSINESS) || '[]')); }
-    addBusinessItem(item) {
+    deleteFinance(id) {
+        let list = this.getFinance();
+        list = list.filter(x => x.id !== id);
+        localStorage.setItem(STORAGE_KEYS.FINANCE, JSON.stringify(list));
+        this.notifyListeners('finance');
+    }
+
+    // --- Business / Shop Getters & Setters ---
+    getBusiness() {
+        try {
+            return toArray(JSON.parse(localStorage.getItem(STORAGE_KEYS.BUSINESS) || '[]'));
+        } catch (e) {
+            return [];
+        }
+    }
+
+    addBusiness(item) {
         const list = this.getBusiness();
-        item.id = 'biz-' + Date.now();
-        list.unshift(item);
+        const newItem = {
+            id: 'biz-' + Date.now() + '-' + Math.random().toString(36).substr(2, 4),
+            date: item.date || new Date().toISOString().split('T')[0],
+            type: item.type || 'sale',
+            channel: item.channel || 'หน้าร้าน',
+            title: item.title || 'ไม่มีชื่อรายการ',
+            amount: Number(item.amount || 0),
+            slip: item.slip || null,
+            note: item.note || ''
+        };
+        list.unshift(newItem);
         localStorage.setItem(STORAGE_KEYS.BUSINESS, JSON.stringify(list));
         this.notifyListeners('business');
-        return item;
+        return newItem;
     }
 
-    getTasks() { return toArray(JSON.parse(localStorage.getItem(STORAGE_KEYS.TASKS) || '[]')); }
-    addTask(task) {
+    deleteBusiness(id) {
+        let list = this.getBusiness();
+        list = list.filter(x => x.id !== id);
+        localStorage.setItem(STORAGE_KEYS.BUSINESS, JSON.stringify(list));
+        this.notifyListeners('business');
+    }
+
+    // --- Tasks Getters & Setters ---
+    getTasks() {
+        try {
+            return toArray(JSON.parse(localStorage.getItem(STORAGE_KEYS.TASKS) || '[]'));
+        } catch (e) {
+            return [];
+        }
+    }
+
+    addTask(item) {
         const list = this.getTasks();
-        task.id = 'task-' + Date.now();
-        list.unshift(task);
+        const newItem = {
+            id: 'task-' + Date.now() + '-' + Math.random().toString(36).substr(2, 4),
+            title: item.title || 'ไม่มีชื่อแก้งาน',
+            dueDate: item.dueDate || new Date().toISOString().split('T')[0],
+            priority: item.priority || 'normal',
+            status: item.status || 'pending',
+            category: item.category || 'general'
+        };
+        list.unshift(newItem);
         localStorage.setItem(STORAGE_KEYS.TASKS, JSON.stringify(list));
         this.notifyListeners('tasks');
-        return task;
+        return newItem;
     }
 
-
-
-    toggleTaskStatus(taskId) {
+    toggleTaskStatus(id) {
         const list = this.getTasks();
-        const task = list.find(t => t.id === taskId);
+        const task = list.find(x => x.id === id);
         if (task) {
-            task.status = (task.status === 'completed') ? 'pending' : 'completed';
-            if (task.status === 'completed') {
-                task.completedDate = new Date().toISOString().split('T')[0];
-            }
+            task.status = task.status === 'completed' ? 'pending' : 'completed';
             localStorage.setItem(STORAGE_KEYS.TASKS, JSON.stringify(list));
             this.notifyListeners('tasks');
         }
     }
 
-    deleteFinanceItem(id) {
-        const list = this.getFinance().filter(x => x.id !== id);
-        localStorage.setItem(STORAGE_KEYS.FINANCE, JSON.stringify(list));
-        this.notifyListeners('finance');
+    deleteTask(id) {
+        let list = this.getTasks();
+        list = list.filter(x => x.id !== id);
+        localStorage.setItem(STORAGE_KEYS.TASKS, JSON.stringify(list));
+        this.notifyListeners('tasks');
     }
 
-    deleteBusinessItem(id) {
-        const list = this.getBusiness().filter(x => x.id !== id);
-        localStorage.setItem(STORAGE_KEYS.BUSINESS, JSON.stringify(list));
-        this.notifyListeners('business');
-    }
-
-    getSavings() { return toArray(JSON.parse(localStorage.getItem(STORAGE_KEYS.SAVINGS) || '[]')); }
-    addSavingsGoal(goal) {
-        const list = this.getSavings();
-        goal.id = 'sav-' + Date.now();
-        list.unshift(goal);
-        localStorage.setItem(STORAGE_KEYS.SAVINGS, JSON.stringify(list));
-        this.notifyListeners('savings');
-        return goal;
-    }
-
-    depositSavings(id, amount) {
-        const list = this.getSavings();
-        const goal = list.find(g => g.id === id);
-        if (goal) {
-            goal.currentAmount = Number(goal.currentAmount || 0) + amount;
-            localStorage.setItem(STORAGE_KEYS.SAVINGS, JSON.stringify(list));
-            this.notifyListeners('savings');
+    // --- Savings Goals Getters & Setters ---
+    getSavings() {
+        try {
+            return toArray(JSON.parse(localStorage.getItem(STORAGE_KEYS.SAVINGS) || '[]'));
+        } catch (e) {
+            return [];
         }
     }
 
-    deleteSavingsGoal(id) {
-        const list = this.getSavings().filter(g => g.id !== id);
+    addSavings(item) {
+        const list = this.getSavings();
+        const newItem = {
+            id: 'savings-' + Date.now(),
+            title: item.title,
+            target: Number(item.target || 0),
+            current: Number(item.current || 0),
+            date: item.date || ''
+        };
+        list.unshift(newItem);
+        localStorage.setItem(STORAGE_KEYS.SAVINGS, JSON.stringify(list));
+        this.notifyListeners('savings');
+        return newItem;
+    }
+
+    deleteSavings(id) {
+        let list = this.getSavings();
+        list = list.filter(x => x.id !== id);
         localStorage.setItem(STORAGE_KEYS.SAVINGS, JSON.stringify(list));
         this.notifyListeners('savings');
     }
 
-    getCalendar() { return JSON.parse(localStorage.getItem(STORAGE_KEYS.CALENDAR) || '{}'); }
+    // --- Calendar Getters & Setters ---
+    getCalendar() {
+        try {
+            return JSON.parse(localStorage.getItem(STORAGE_KEYS.CALENDAR) || '{}');
+        } catch (e) {
+            return {};
+        }
+    }
 
+    setDayStatus(dateStr, status, title = '') {
+        const cal = this.getCalendar();
+        cal[dateStr] = { status, title };
+        localStorage.setItem(STORAGE_KEYS.CALENDAR, JSON.stringify(cal));
+        this.notifyListeners('calendar');
+    }
+
+    // --- Data Export & Import ---
     exportAllData() {
-        return JSON.stringify({
+        const data = {
+            version: '2.0-demo',
+            timestamp: Date.now(),
             finance: this.getFinance(),
             business: this.getBusiness(),
             tasks: this.getTasks(),
             savings: this.getSavings(),
-            calendar: this.getCalendar(),
-            exportDate: new Date().toISOString()
-        }, null, 2);
+            calendar: this.getCalendar()
+        };
+        return JSON.stringify(data, null, 2);
     }
 
     importAllData(jsonStr) {
@@ -284,34 +286,24 @@ class DataStore {
             if (data.tasks) localStorage.setItem(STORAGE_KEYS.TASKS, JSON.stringify(data.tasks));
             if (data.savings) localStorage.setItem(STORAGE_KEYS.SAVINGS, JSON.stringify(data.savings));
             if (data.calendar) localStorage.setItem(STORAGE_KEYS.CALENDAR, JSON.stringify(data.calendar));
+
             this.notifyListeners('all');
             return true;
         } catch (e) {
+            console.error('Import failed', e);
             return false;
         }
     }
 
     clearAllData() {
-        localStorage.setItem(STORAGE_KEYS.FINANCE, JSON.stringify([]));
-        localStorage.setItem(STORAGE_KEYS.BUSINESS, JSON.stringify([]));
-        localStorage.setItem(STORAGE_KEYS.TASKS, JSON.stringify([]));
-        localStorage.setItem(STORAGE_KEYS.SAVINGS, JSON.stringify([]));
-        localStorage.setItem(STORAGE_KEYS.CALENDAR, JSON.stringify({}));
+        localStorage.removeItem(STORAGE_KEYS.FINANCE);
+        localStorage.removeItem(STORAGE_KEYS.BUSINESS);
+        localStorage.removeItem(STORAGE_KEYS.TASKS);
+        localStorage.removeItem(STORAGE_KEYS.SAVINGS);
+        localStorage.removeItem(STORAGE_KEYS.CALENDAR);
+        this.initDefaultData();
         this.notifyListeners('all');
-    }
-
-    deleteTask(id) {
-        const list = this.getTasks().filter(t => t.id !== id);
-        localStorage.setItem(STORAGE_KEYS.TASKS, JSON.stringify(list));
-        this.notifyListeners('tasks');
-    }
-
-    subscribe(fn) { this.listeners.push(fn); }
-    notifyListeners(type) {
-        this.listeners.forEach(fn => fn(type));
-        if (window.cloudSync) window.cloudSync.onDataChanged();
     }
 }
 
-const store = window.store = new DataStore();
-
+window.store = new DataStore();

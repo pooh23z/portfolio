@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Life & Business Hub - ระบบจัดการชีวิตและธุรกิจ (พร้อมระบบ Sync ข้อมูล คอม & มือถือ)</title>
-    <meta name="description" content="แอปพลิเคชันจัดการชีวิตและธุรกิจส่วนตัว บันทึกรายรับ-รายจ่าย งานค้าง ยอดขายร้านค้า สลิปโอนเงิน ปฏิทินวันว่าง และระบบ Sync ข้อมูลระหว่างคอมกับมือถือ">
+    <title>Life & Business Hub - ระบบจัดการชีวิตและธุรกิจ (Demo Template)</title>
+    <meta name="description" content="แอปพลิเคชันจัดการชีวิตและธุรกิจส่วนตัว บันทึกรายรับ-รายจ่าย งานค้าง ยอดขายร้านค้า สลิปโอนเงิน ปฏิทินวันว่าง">
     
     <!-- Mobile PWA Capabilities -->
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -17,9 +17,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Chart.js for graphs -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Firebase SDK for Cloud Sync -->
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
     <!-- Google Identity Services SDK -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <link rel="stylesheet" href="css/styles.css">
@@ -74,7 +71,7 @@
                     <div class="avatar">P</div>
                     <div class="user-info">
                         <span class="user-name">คุณเจ้าของร้าน</span>
-                        <span class="user-role">Executive (Sync Ready)</span>
+                        <span class="user-role">Executive Edition</span>
                     </div>
                 </div>
                 <div style="display: flex; flex-direction: column; gap: 6px;">
@@ -490,7 +487,7 @@
                         </div>
                         <div class="form-group">
                             <label for="gmail-address-input">📬 อีเมลของคุณ (BU Mail / Gmail)</label>
-                            <input type="email" id="gmail-address-input" class="form-input" placeholder="เช่น 0936847560pooh@gmail.com" value="0936847560pooh@gmail.com">
+                            <input type="email" id="gmail-address-input" class="form-input" placeholder="เช่น your-email@gmail.com">
                         </div>
                         <button class="btn-primary width-100 mt-12" id="btn-connect-gmail">
                             🔴 ล็อกอินเชื่อมต่อ Gmail (Google Sign-In)
@@ -508,7 +505,7 @@
                         </div>
                         <div class="form-group">
                             <label for="line-token-input">🔑 ใส่ LINE Notify Token ของคุณ</label>
-                            <input type="text" id="line-token-input" class="form-input" placeholder="วาง LINE Notify Token ที่ได้จาก notify-bot.line.me..." value="Ywwgmegc6oIN/LL06KxSMtKAzCm4cYAiHE6oZu/h9X5kdM85X86YPr7sGXvETbeRhxK2SH30esKgyIll/pJo9Mq0KGJd3Aj602Md+c5WYC6C1cef2jlqIWcHbu42alfFfaXCcztK08XFzwOxVr64uwdB04t89/1O/w1cDnyilFU=">
+                            <input type="text" id="line-token-input" class="form-input" placeholder="วาง LINE Notify Token ที่ได้จาก notify-bot.line.me...">
                         </div>
                         <button class="btn-primary btn-emerald width-100 mt-12" id="btn-save-line-token">บันทึก Token</button>
                         <button class="btn-secondary width-100 mt-8" id="btn-test-send-line">
@@ -524,7 +521,7 @@
                         </div>
                         <div class="form-group">
                             <label for="line-bot-token-input">🔑 Channel Access Token</label>
-                            <input type="text" id="line-bot-token-input" class="form-input" placeholder="วาง Channel Access Token จาก LINE Developers Console..." value="S6eepwLv+PVnpZlRCzSg2KzNZ8Glk5d+sLKQmpHDGNWftOEw5bT37RLuCVheHQijhxK2SH30esKgyIIl/pJo9Mq0KGJd3Aj602Md+c5WYC5oYRrLPmeecuNkq/VlJqQUDDqF77/NzUEnvk5mSIJeOQdB04t89/1O/w1cDnyilFU=">
+                            <input type="text" id="line-bot-token-input" class="form-input" placeholder="วาง Channel Access Token จาก LINE Developers Console...">
                         </div>
                         <button class="btn-primary btn-emerald width-100 mt-12" id="btn-test-send-line-shop">
                             🛍️ ยิงเฉพาะยอดขาย & ต้นทุนร้านค้า (Google Sheets)
@@ -803,7 +800,6 @@
 
     <!-- Scripts -->
     <script src="js/store.js"></script>
-    <script src="js/cloud-sync.js"></script>
     <script src="js/integrations.js"></script>
     <script src="js/finance.js"></script>
     <script src="js/business.js"></script>
