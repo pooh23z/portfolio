@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "name": "lifehub-app",
+  "cleanUrls": true,
+  "crons": [
+    {
+      "path": "/api/daily-report",
+      "schedule": "0 1 * * *"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, no-store, must-revalidate"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Life & Business Hub - ระบบจัดการชีวิตและธุรกิจ (พร้อมระบบ Sync ข้อมูล คอม & มือถือ)</title>
+    <meta name="description" content="แอปพลิเคชันจัดการชีวิตและธุรกิจส่วนตัว บันทึกรายรับ-รายจ่าย งานค้าง ยอดขายร้านค้า สลิปโอนเงิน ปฏิทินวันว่าง และระบบ Sync ข้อมูลระหว่างคอมกับมือถือ">
+    
+    <!-- Mobile PWA Capabilities -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#0b0f19">
+
+    <!-- Google Fonts: Prompt & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js for graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Firebase SDK for Cloud Sync -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    <!-- Google Identity Services SDK -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="dark-theme">
+    <div class="app-container">
+        <!-- Sidebar Navigation (Desktop) -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="logo-icon" style="background: linear-gradient(135deg, #10b981, #3b82f6);">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                </div>
+                <div class="brand-text">
+                    <h1>LifeHub</h1>
+                    <span class="badge-pro" style="color: #10b981; border-color: rgba(16,185,129,0.3); background: rgba(16,185,129,0.1);">MINIMALIST EDITION</span>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <button class="nav-item active" data-tab="dashboard">
+                    <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                    <span>ภาพรวม (Dashboard)</span>
+                </button>
+                <button class="nav-item" data-tab="calendar">
+                    <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    <span>ปฏิทินวันว่าง-ไม่ว่าง</span>
+                </button>
+                <button class="nav-item" data-tab="finance">
+                    <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    <span>รายรับ-รายจ่าย & ออมเงิน</span>
+                </button>
+                <button class="nav-item" data-tab="business">
+                    <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                    <span>รายได้ร้านค้า (Shop)</span>
+                </button>
+                <button class="nav-item" data-tab="tasks">
+                    <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                    <span>งานค้าง (To-Do Tasks)</span>
+                    <span class="badge-count" id="task-badge-count">0</span>
+                </button>
+                <button class="nav-item" data-tab="integrations">
+                    <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    <span>Gmail & LINE Sync</span>
+                    <span class="badge-count count-unread" id="teams-badge-count">0</span>
+                </button>
+            </nav>
+
+
+
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="avatar">P</div>
+                    <div class="user-info">
+                        <span class="user-name">คุณเจ้าของร้าน</span>
+                        <span class="user-role">Executive (Sync Ready)</span>
+                    </div>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 6px;">
+                    <div style="display: flex; gap: 6px;">
+                        <button id="btn-export-data" class="btn-icon-text flex-1" title="ส่งออกไฟล์ไปเปิดบนมือถือ">
+                            <span>📥 ส่งออกข้อมูล</span>
+                        </button>
+                        <label for="input-import-file" class="btn-icon-text flex-1" style="cursor: pointer;" title="นำเข้าไฟล์ข้อมูลจากคอม">
+                            <span>📤 นำเข้าข้อมูล</span>
+                        </label>
+                        <input type="file" id="input-import-file" accept=".json" style="display: none;">
+                    </div>
+                    <button id="btn-clear-data" class="btn-icon-text" style="color: var(--accent-rose); width: 100%; justify-content: center;" title="เริ่มใหม่หน้าว่าง">
+                        <span>🗑️ ล้างข้อมูลเริ่มต้นใหม่</span>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="header-left">
+                    <h2 id="page-title">ภาพรวมชีวิตและธุรกิจ (Dashboard)</h2>
+                    <p id="page-subtitle" class="subtitle">สรุปสถานะการเงิน ยอดขายร้านค้า และภารกิจวันนี้</p>
+                </div>
+                <div class="header-right">
+                    <!-- Day/Night Mode Switcher Button -->
+                    <button class="btn-secondary" id="btn-toggle-theme" title="สลับโหมด: กลางคืน / กลางวัน / Wave">
+                        <span id="theme-btn-icon">☀️</span> <span id="theme-btn-text">โหมดกลางวัน</span>
+                    </button>
+                    <button class="btn-secondary" id="btn-enable-notifications" title="เปิดการแจ้งเตือนเตือนความจำมือถือ">
+                        🔔 แจ้งเตือนมือถือ
+                    </button>
+                    <div class="current-date-chip">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        <span id="live-date">วันนี้</span>
+                    </div>
+                    <button class="btn-primary" id="btn-quick-add">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        <span>+ บันทึกใหม่</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- TAB 1: DASHBOARD -->
+            <section id="tab-dashboard" class="tab-content active">
+                <!-- LIVE WEATHER & GEOLOCATION WIDGET -->
+                <div id="weather-widget-container" style="margin-bottom: 24px;">
+                    <!-- Injected by weather.js -->
+                </div>
+
+                <div class="metrics-grid">
+                    <div class="glass-card metric-card cyan-glow">
+                        <div class="card-header">
+                            <span class="metric-label">เงินคงเหลือส่วนตัว</span>
+                            <div class="icon-wrapper cyan"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2"/></svg></div>
+                        </div>
+                        <div class="metric-value" id="dash-net-balance">฿0.00</div>
+                        <div class="metric-footer">
+                            <span class="text-success" id="dash-month-income">+฿0 รายรับเดือนนี้</span>
+                            <span class="text-danger" id="dash-month-expense">-฿0 รายจ่าย</span>
+                        </div>
+                    </div>
+
+                    <div class="glass-card metric-card emerald-glow">
+                        <div class="card-header">
+                            <span class="metric-label">กำไรสุทธิร้านค้า (Net Profit)</span>
+                            <div class="icon-wrapper emerald"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+                        </div>
+                        <div class="metric-value" id="dash-shop-profit">฿0.00</div>
+                        <div class="metric-footer">
+                            <span class="text-sub" id="dash-shop-sales">ยอดขาย: ฿0</span>
+                            <span class="badge-success-sm" id="dash-shop-margin">Margin 0%</span>
+                        </div>
+                    </div>
+
+                    <div class="glass-card metric-card purple-glow">
+                        <div class="card-header">
+                            <span class="metric-label">สถานะวันนี้นัดหมาย</span>
+                            <div class="icon-wrapper purple"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+                        </div>
+                        <div class="metric-value" id="dash-today-status">🟢 วันว่าง</div>
+                        <div class="metric-footer">
+                            <span class="text-info" id="dash-today-events">0 นัดหมายวันนี้</span>
+                        </div>
+                    </div>
+
+                    <div class="glass-card metric-card amber-glow">
+                        <div class="card-header">
+                            <span class="metric-label">เป้าหมายออมเงินสะสม</span>
+                            <div class="icon-wrapper amber"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+                        </div>
+                        <div class="metric-value" id="dash-total-savings">฿0.00</div>
+                        <div class="metric-footer">
+                            <span class="text-info" id="dash-savings-progress">🎯 0 เป้าหมาย</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="glass-card chart-card flex-2">
+                        <div class="card-title-bar">
+                            <h3>📈 แนวโน้มการเงินและยอดขายร้านค้า</h3>
+                            <div class="chart-controls">
+                                <span class="chart-legend-item"><span class="dot income-dot"></span> รายรับ</span>
+                                <span class="chart-legend-item"><span class="dot expense-dot"></span> รายจ่าย</span>
+                                <span class="chart-legend-item"><span class="dot shop-dot"></span> ยอดขายร้าน</span>
+                            </div>
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="mainOverviewChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="glass-card flex-1">
+                        <div class="card-title-bar">
+                            <h3>📢 ส่งสรุปเข้า LINE Bot / Notify ด่วน</h3>
+                        </div>
+                        <div class="line-quick-box">
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 12px;">เลือกประเภทรายงานที่ต้องการยิงเข้า LINE ของคุณ:</p>
+                            <div style="display: flex; gap: 10px; flex-direction: column;">
+                                <button class="btn-primary btn-emerald width-100" id="btn-dash-send-line-shop">
+                                    🛍️ 1. ยิงเฉพาะยอดขาย & ต้นทุนร้านค้า (Google Sheets)
+                                </button>
+                                <button class="btn-secondary width-100" id="btn-dash-send-line-personal">
+                                    👤 2. ยิงเฉพาะเงินส่วนตัว & นัดหมายวันนี้
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-title-bar mt-24">
+                            <h3>📬 การแจ้งเตือน & งานด่วนล่าสุด</h3>
+                            <button class="btn-text" id="btn-view-all-teams">ดูทั้งหมด</button>
+                        </div>
+                        <div class="recent-list" id="dashboard-recent-teams-emails">
+                            <!-- Injected by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid mt-24">
+                    <div class="glass-card flex-1">
+                        <div class="card-title-bar">
+                            <h3>💸 รายรับ-รายจ่าย ล่าสุด (สลิปโอนเงิน 🧾)</h3>
+                            <button class="btn-text" data-goto-tab="finance">ดูทั้งหมด</button>
+                        </div>
+                        <div class="recent-list" id="dashboard-recent-finance">
+                            <!-- Injected by JS -->
+                        </div>
+                    </div>
+
+                    <div class="glass-card flex-1">
+                        <div class="card-title-bar">
+                            <h3>✅ งานค้างสำคัญวันนี้</h3>
+                            <button class="btn-text" data-goto-tab="tasks">ดูประวัติ/งานค้าง</button>
+                        </div>
+                        <div class="recent-list" id="dashboard-recent-tasks">
+                            <!-- Injected by JS -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB: CALENDAR (ปฏิทินวันว่าง-ไม่ว่าง) -->
+            <section id="tab-calendar" class="tab-content">
+                <div class="section-toolbar">
+                    <div class="calendar-controls">
+                        <button class="btn-secondary" id="btn-prev-month">&lt; เดือนก่อนหน้า</button>
+                        <h3 id="calendar-month-year-title" style="font-size: 1.2rem; font-weight: 700; color: #fff; display: inline-block; margin: 0 16px;">สิงหาคม 2569</h3>
+                        <button class="btn-secondary" id="btn-next-month">เดือนถัดไป &gt;</button>
+                    </div>
+                    <div class="action-buttons">
+                        <span class="legend-chip status-free">🟢 วันว่าง</span>
+                        <span class="legend-chip status-busy">🔴 ไม่ว่าง</span>
+                    </div>
+                </div>
+
+                <div class="glass-card mt-16">
+                    <div class="calendar-grid-header">
+                        <div>อา.</div><div>จ.</div><div>อ.</div><div>พ.</div><div>พฤ.</div><div>ศ.</div><div>ส.</div>
+                    </div>
+                    <div class="calendar-grid" id="calendar-days-container">
+                        <!-- Dynamic Calendar Days injected by JS -->
+                    </div>
+                </div>
+
+                <!-- Selected Day Details Card -->
+                <div class="glass-card mt-24" id="calendar-day-details-card">
+                    <div class="card-title-bar">
+                        <h3 id="selected-date-title">📅 รายละเอียดประจำวัน</h3>
+                        <div style="display: flex; gap: 8px;">
+                            <button class="btn-secondary" id="btn-mark-free">🟢 ตั้งเป็นวันว่าง</button>
+                            <button class="btn-secondary" id="btn-mark-busy">🔴 ตั้งเป็นวันไม่ว่าง</button>
+                        </div>
+                    </div>
+                    <div id="selected-day-content">
+                        <p class="text-muted">คลิกเลือกวันที่บนปฏิทินเพื่อดูรายละเอียด หรือบันทึกวันว่าง/ไม่ว่าง</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 2: PERSONAL FINANCE & SAVINGS GOALS -->
+            <section id="tab-finance" class="tab-content">
+                <div class="section-toolbar">
+                    <div class="filter-group">
+                        <button class="filter-btn active" data-finance-filter="all">ทั้งหมด</button>
+                        <button class="filter-btn" data-finance-filter="income">รายรับ</button>
+                        <button class="filter-btn" data-finance-filter="expense">รายจ่าย</button>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn-secondary" id="btn-open-savings-modal">🎯 เพิ่มเป้าหมายออมเงิน</button>
+                        <button class="btn-secondary" id="btn-add-income">+ เพิ่มรายรับ</button>
+                        <button class="btn-primary" id="btn-add-expense">+ เพิ่มรายจ่าย</button>
+                    </div>
+                </div>
+
+                <div class="finance-grid">
+                    <div class="glass-card finance-stats-card">
+                        <div class="stat-box">
+                            <span class="stat-title">รายรับรวมทั้งหมด</span>
+                            <span class="stat-amount text-success" id="fin-total-income">฿0.00</span>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-box">
+                            <span class="stat-title">รายจ่ายรวมทั้งหมด</span>
+                            <span class="stat-amount text-danger" id="fin-total-expense">฿0.00</span>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-box">
+                            <span class="stat-title">คงเหลือสุทธิ</span>
+                            <span class="stat-amount text-cyan" id="fin-net-balance">฿0.00</span>
+                        </div>
+                    </div>
+
+                    <div class="glass-card chart-card">
+                        <h3>📊 สัดส่วนรายจ่ายตามหมวดหมู่</h3>
+                        <div class="chart-wrapper-small">
+                            <canvas id="financeCategoryChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card mt-24">
+                    <div class="card-title-bar">
+                        <h3>🎯 เป้าหมายการออมเงิน (Savings Goals Progress)</h3>
+                        <button class="btn-text" id="btn-add-savings-goal-inline">+ เพิ่มเป้าหมายออมเงิน</button>
+                    </div>
+                    <div class="savings-goals-grid" id="savings-goals-container">
+                        <!-- Injected by JS -->
+                    </div>
+                </div>
+
+                <div class="glass-card mt-24">
+                    <div class="card-title-bar">
+                        <h3>📋 รายการธุรกรรมทางการเงินส่วนตัว (พร้อมสลิป)</h3>
+                        <input type="text" id="search-finance" class="search-input" placeholder="🔍 ค้นหารายการ...">
+                    </div>
+                    <div class="table-container">
+                        <table class="custom-table" id="finance-table">
+                            <thead>
+                                <tr>
+                                    <th>วันที่</th>
+                                    <th>ประเภท</th>
+                                    <th>หมวดหมู่</th>
+                                    <th>รายการ / สลิปโอนเงิน</th>
+                                    <th>จำนวนเงิน (บาท)</th>
+                                    <th>การจัดการ</th>
+                                </tr>
+                            </thead>
+                            <tbody id="finance-table-body">
+                                <!-- Injected by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 3: SHOP / BUSINESS -->
+            <section id="tab-business" class="tab-content">
+                <div class="section-toolbar">
+                    <div class="shop-info-chip">
+                        <span class="shop-badge">🏪 ร้านค้าของคุณ</span>
+                        <span class="shop-subtitle">บันทึกยอดขาย ต้นทุน และคำนวณกำไร</span>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn-secondary" id="btn-add-shop-cost">+ เพิ่มต้นทุน/ค่าใช้จ่ายร้าน</button>
+                        <button class="btn-primary btn-emerald" id="btn-add-shop-sale">+ บันทึกยอดขายใหม่</button>
+                    </div>
+                </div>
+
+                <!-- SHOP DATE FILTER TOOLBAR (เลือกดูตามรายวัน) -->
+                <div class="glass-card mb-24" style="padding: 16px 20px; margin-bottom: 20px;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+                        <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                            <span style="font-size: 0.88rem; font-weight: 700; color: var(--accent-cyan);">📅 เลือกดูยอดขายรายวัน:</span>
+                            <div class="filter-group">
+                                <button class="filter-btn active" data-shop-date="all">ทั้งหมด</button>
+                                <button class="filter-btn" data-shop-date="today">วันนี้</button>
+                                <button class="filter-btn" data-shop-date="yesterday">เมื่อวาน</button>
+                                <button class="filter-btn" data-shop-date="7days">7 วันล่าสุด</button>
+                                <button class="filter-btn" data-shop-date="this-month">เดือนนี้</button>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                            <span style="font-size: 0.82rem; color: var(--text-muted);">เลือกช่วงวันที่:</span>
+                            <input type="date" id="shop-date-start" class="form-input" style="width: 135px; padding: 6px 10px; font-size: 0.82rem;">
+                            <span style="color: var(--text-muted);">-</span>
+                            <input type="date" id="shop-date-end" class="form-input" style="width: 135px; padding: 6px 10px; font-size: 0.82rem;">
+                            <button class="btn-secondary" id="btn-refresh-google-sheets" style="padding: 6px 12px; font-size: 0.82rem;">🔄 ดึง Google Sheets ใหม่</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="metrics-grid">
+                    <div class="glass-card metric-card">
+                        <span class="metric-label">ยอดขายรวม (Total Revenue)</span>
+                        <div class="metric-value text-emerald" id="shop-total-sales">฿0.00</div>
+                    </div>
+                    <div class="glass-card metric-card">
+                        <span class="metric-label">ต้นทุน & ค่าใช้จ่ายร้าน</span>
+                        <div class="metric-value text-danger" id="shop-total-cost">฿0.00</div>
+                    </div>
+                    <div class="glass-card metric-card">
+                        <span class="metric-label">กำไรสุทธิ (Net Profit)</span>
+                        <div class="metric-value text-cyan" id="shop-net-profit">฿0.00</div>
+                    </div>
+                    <div class="glass-card metric-card">
+                        <span class="metric-label">อัตรากำไร (Profit Margin)</span>
+                        <div class="metric-value text-warning" id="shop-margin-percent">0%</div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid mt-24">
+                    <div class="glass-card flex-1">
+                        <h3>🛍️ สินค้าขายดีอันดับต้นๆ (Top Best Sellers)</h3>
+                        <div class="chart-wrapper-small">
+                            <canvas id="shopChannelChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="glass-card flex-2">
+                        <div class="card-title-bar">
+                            <h3>📜 ประวัติยอดขายและสลิปค่าใช้จ่ายร้านค้า</h3>
+                            <input type="text" id="search-business" class="search-input" placeholder="🔍 ค้นหารายการร้านค้า...">
+                        </div>
+                        <div class="table-container">
+                            <table class="custom-table">
+                                <thead>
+                                    <tr>
+                                        <th>วันที่</th>
+                                        <th>ประเภท</th>
+                                        <th>ช่องทาง/รายการ</th>
+                                        <th>รายละเอียด / สลิป</th>
+                                        <th>จำนวนเงิน</th>
+                                        <th>จัดการ</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="business-table-body">
+                                    <!-- Injected by JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 4: TASKS & TO-DO -->
+            <section id="tab-tasks" class="tab-content">
+                <div class="section-toolbar">
+                    <div class="filter-group">
+                        <button class="filter-btn active" data-task-filter="all">ทั้งหมด</button>
+                        <button class="filter-btn" data-task-filter="pending">ยังไม่เสร็จ</button>
+                        <button class="filter-btn" data-task-filter="urgent">⚠️ ด่วนมาก</button>
+                        <button class="filter-btn" data-task-filter="teams">📧 จาก Gmail / Email</button>
+                        <button class="filter-btn" data-task-filter="completed">✅ ประวัติงานที่ส่งแล้ว</button>
+                    </div>
+                    <button class="btn-primary" id="btn-add-task">+ เพิ่มงานค้างใหม่</button>
+                </div>
+
+                <div class="tasks-container">
+                    <div class="task-list" id="tasks-list-wrapper">
+                        <!-- Injected by JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 5: GMAIL & LINE NOTIFY INTEGRATION -->
+            <section id="tab-integrations" class="tab-content">
+                <div class="glass-card integration-banner purple-gradient">
+                    <div class="banner-content">
+                        <div class="teams-logo-badge">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6" fill="none" stroke="#0a0a0f" stroke-width="2"/></svg>
+                        </div>
+                        <div>
+                            <h2>Gmail & LINE Notify Hub</h2>
+                            <p>ดึงอีเมลจาก Gmail / BU Mail จริง และส่งสรุปสถิติประจำวันเข้า LINE Notify</p>
+                        </div>
+                    </div>
+                    <div class="banner-actions">
+                        <button class="btn-sync" id="btn-trigger-sync">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                            <span>ดึงอีเมลล่าสุด (Sync Gmail)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="integration-cards-grid mt-24">
+                    <!-- Gmail & BU Google Workspace Integration Box -->
+                    <div class="glass-card flex-1 rose-border">
+                        <div class="card-title-bar">
+                            <h3>📧 Gmail & BU Google Workspace (OAuth 2.0)</h3>
+                        </div>
+                        <div class="form-group">
+                            <label for="gmail-address-input">📬 อีเมลของคุณ (BU Mail / Gmail)</label>
+                            <input type="email" id="gmail-address-input" class="form-input" placeholder="เช่น 0936847560pooh@gmail.com" value="0936847560pooh@gmail.com">
+                        </div>
+                        <button class="btn-primary width-100 mt-12" id="btn-connect-gmail">
+                            🔴 ล็อกอินเชื่อมต่อ Gmail (Google Sign-In)
+                        </button>
+                        <button class="btn-secondary width-100 mt-8" id="btn-sync-gmail-now">
+                            ⚡ ดึงกล่องข้อความ Gmail ล่าสุด เดี๋ยวนี้
+                        </button>
+                        <p style="font-size: 0.78rem; color: #64748b; margin-top: 10px; line-height: 1.4;">✅ ระบบเชื่อมต่อ Google OAuth2 จริง — ล็อกอินแล้วดึงอีเมล 10 ฉบับล่าสุดจาก Gmail ของคุณ</p>
+                    </div>
+
+                    <!-- LINE Notify Box -->
+                    <div class="glass-card flex-1 emerald-border">
+                        <div class="card-title-bar">
+                            <h3>💚 LINE Notify Token (กลุ่ม/ส่วนตัว)</h3>
+                        </div>
+                        <div class="form-group">
+                            <label for="line-token-input">🔑 ใส่ LINE Notify Token ของคุณ</label>
+                            <input type="text" id="line-token-input" class="form-input" placeholder="วาง LINE Notify Token ที่ได้จาก notify-bot.line.me..." value="Ywwgmegc6oIN/LL06KxSMtKAzCm4cYAiHE6oZu/h9X5kdM85X86YPr7sGXvETbeRhxK2SH30esKgyIll/pJo9Mq0KGJd3Aj602Md+c5WYC6C1cef2jlqIWcHbu42alfFfaXCcztK08XFzwOxVr64uwdB04t89/1O/w1cDnyilFU=">
+                        </div>
+                        <button class="btn-primary btn-emerald width-100 mt-12" id="btn-save-line-token">บันทึก Token</button>
+                        <button class="btn-secondary width-100 mt-8" id="btn-test-send-line">
+                            💚 ทดสอบส่งรายงานสรุป เข้า LINE Notify
+                        </button>
+                        <p style="font-size: 0.78rem; color: #64748b; margin-top: 10px; line-height: 1.4;">สมัคร Token ฟรีที่ <a href="https://notify-bot.line.me" target="_blank" style="color: #4ade80;">notify-bot.line.me</a></p>
+                    </div>
+
+                    <!-- LINE Bot Integration Box -->
+                    <div class="glass-card flex-1 emerald-border">
+                        <div class="card-title-bar">
+                            <h3>🤖 LINE Bot / Official Account</h3>
+                        </div>
+                        <div class="form-group">
+                            <label for="line-bot-token-input">🔑 Channel Access Token</label>
+                            <input type="text" id="line-bot-token-input" class="form-input" placeholder="วาง Channel Access Token จาก LINE Developers Console..." value="S6eepwLv+PVnpZlRCzSg2KzNZ8Glk5d+sLKQmpHDGNWftOEw5bT37RLuCVheHQijhxK2SH30esKgyIIl/pJo9Mq0KGJd3Aj602Md+c5WYC5oYRrLPmeecuNkq/VlJqQUDDqF77/NzUEnvk5mSIJeOQdB04t89/1O/w1cDnyilFU=">
+                        </div>
+                        <button class="btn-primary btn-emerald width-100 mt-12" id="btn-test-send-line-shop">
+                            🛍️ ยิงเฉพาะยอดขาย & ต้นทุนร้านค้า (Google Sheets)
+                        </button>
+                        <button class="btn-secondary width-100 mt-8" id="btn-test-send-line-personal">
+                            👤 ยิงเฉพาะเงินส่วนตัว & นัดหมายวันนี้
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glass-card mt-24">
+                    <div class="card-title-bar">
+                        <h3>📬 อีเมลจาก Gmail ที่ดึงเข้ามา</h3>
+                        <span class="badge-amber" id="email-count-pill">0 ฉบับ</span>
+                    </div>
+                    <div class="integration-feed" id="emails-feed-list">
+                        <!-- Injected by JS -->
+                    </div>
+                </div>
+
+                <div class="glass-card mt-24">
+                    <div class="card-title-bar">
+                        <h3>✏️ งานที่เพิ่มด้วยตนเอง</h3>
+                        <span class="badge-purple" id="teams-count-pill">0 รายการ</span>
+                    </div>
+                    <div class="integration-feed" id="teams-feed-list">
+                        <!-- Injected by JS -->
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+
+
+    <!-- FLOATING PERSONAL EXECUTIVE SECRETARY BALL (THIDA AI) -->
+    <div class="ai-floating-ball" id="ai-floating-ball" onclick="aiAssistantController.toggleChatModal(true)" title="น้องธิดา - เลขาส่วนตัวอัจฉริยะ พิมพ์หรือพูดสั่งงานภาษาธรรมชาติได้ทันที">
+        <img src="assets/thida_avatar.jpg" alt="เลขาธิดา" class="ai-ball-avatar">
+        <span class="ai-ball-badge">เลขาธิดา</span>
+    </div>
+
+    <!-- MODAL: THIDA AI EXECUTIVE SECRETARY INTERFACE -->
+    <div class="modal-overlay" id="modal-ai-chat" onclick="if(event.target === this) aiAssistantController.toggleChatModal(false)">
+        <div class="modal-card ai-chat-card">
+            <div class="modal-header">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <img src="assets/thida_avatar.jpg" alt="เลขาธิดา" class="ai-modal-header-avatar">
+                    <div>
+                        <h3 style="margin: 0; font-size: 1.1rem; color: var(--text-primary);">👩‍💼 น้องธิดา (Thida) — เลขาส่วนตัวอัจฉริยะ</h3>
+                        <span style="font-size: 0.75rem; color: var(--accent-emerald);">● พร้อมรับฟังคำสั่งเสียง พิมพ์งาน วิเคราะห์บัญชี และจัดปฏิทินให้คุณเจ้าของร้านค่ะ</span>
+                    </div>
+                </div>
+                <button class="modal-close" id="btn-close-ai-chat" onclick="aiAssistantController.toggleChatModal(false)">&times;</button>
+            </div>
+
+            <!-- Gemini API Key Config Field -->
+            <div style="padding: 10px 16px; background: rgba(66, 133, 244, 0.08); border-bottom: 1px solid rgba(66, 133, 244, 0.2); display: flex; align-items: center; justify-content: space-between; gap: 10px;">
+                <span style="font-size: 0.76rem; color: var(--text-secondary); display: flex; align-items: center; gap: 4px;">
+                    🔑 <b>Gemini API Key:</b> <span id="gemini-key-status" style="color: var(--accent-emerald);">● ใช้คีย์ทางการเรียบร้อย</span>
+                </span>
+                <button class="btn-text" id="btn-config-gemini-key" style="font-size: 0.75rem;">🔑 ใส่ API Key ของคุณ</button>
+            </div>
+
+            <!-- Quick Secretary Action Chips -->
+            <div class="secretary-action-chips">
+                <button class="chip-action-btn" onclick="aiAssistantController.triggerQuickAction('briefing')">📊 สรุปภาพรวมวันนี้</button>
+                <button class="chip-action-btn" onclick="aiAssistantController.triggerQuickAction('calendar')">📅 เช็กวันว่างสัปดาห์นี้</button>
+                <button class="chip-action-btn" onclick="aiAssistantController.triggerQuickAction('profit')">💸 สรุปกำไรยอดขาย</button>
+                <button class="chip-action-btn" onclick="aiAssistantController.triggerQuickAction('advice')">💡 วิเคราะห์การเงิน & คำแนะนำ</button>
+                <button class="chip-action-btn" onclick="aiAssistantController.triggerQuickAction('weather')">🌧️ เช็กฝนตกวันนี้</button>
+                <button class="chip-action-btn" onclick="aiAssistantController.clearHistory()" style="border-color: rgba(239, 68, 68, 0.4); color: #fca5a5;">🗑️ ล้างประวัติคุย</button>
+            </div>
+
+            <div class="modal-body ai-chat-body">
+                <div class="ai-chat-messages" id="ai-chat-messages">
+                    <div class="ai-message-bubble ai-msg">
+                        <div class="msg-avatar">✨</div>
+                        <div class="msg-content">
+                            สวัสดีค่ะคุณเจ้าของร้าน ✨ ดิฉันคือ **Gemini AI 1.5 Pro Executive Assistant** เลขาส่วนตัวอัจฉริยะของคุณค่ะ<br>
+                            คุณสามารถสั่งงานดิฉันด้วยภาษาพูดธรรมชาติได้ทุกรูปแบบเลยนะคะ เช่น:<br>
+                            • 🎙️ <b>กดปุ่มไมโครโฟนเพื่อพูดสั่งงานเป็นภาษาไทย</b> ได้โดยตรง<br>
+                            • <i>"เมื่อวานฉันรับเงินมา 2500 จ่ายค่าตัดผมไป 140 บาท ค่าครีมไป 69 ค่าเข้าเซเว่นไป 26 บาท ค่าไก่ย่างไป 40 บาท"</i><br>
+                            • <i>"เสาร์อาทิตย์นี้ไม่ว่างไปต่างจังหวัด"</i><br>
+                            • <i>"ดึงข้อมูลงานที่ส่งแล้วใน 3 วันที่ผ่านมา"</i><br>
+                            • 📷 **ส่งรูปเอกสาร/สลิป/นัดประชุม** ให้ดิฉันวิเคราะห์ด้วย Gemini Vision ได้เลยค่ะ
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="ai-chat-img-preview-box" class="slip-preview-box" style="display: none; margin-bottom: 8px;">
+                    <img id="ai-chat-img-preview" src="" alt="Chat Upload Preview">
+                    <span style="font-size: 0.8rem; color: var(--text-secondary);">รูปเอกสาร/นัดประชุมที่ส่งให้ Gemini AI...</span>
+                    <button type="button" id="btn-remove-chat-img" class="btn-text-danger">❌ ยกเลิก</button>
+                </div>
+
+                <div id="form-ai-chat" class="ai-chat-form">
+                    <button type="button" id="btn-voice-input" class="btn-icon-text" style="padding: 8px 12px; border-color: rgba(66, 133, 244, 0.5); color: var(--accent-cyan);" title="กดเพื่อพูดสั่งงานด้วยเสียงภาษาไทย">
+                        <span id="voice-icon">🎙️</span> <span id="voice-status-text">พูดสั่งงาน</span>
+                    </button>
+
+                    <label for="ai-image-upload" class="btn-icon-text" style="cursor: pointer; padding: 8px 12px;" title="ส่งรูปนัดประชุม/สลิป/เอกสาร">
+                        📷 เอกสาร
+                    </label>
+                    <input type="file" id="ai-image-upload" accept="image/*" style="display: none;">
+                    
+                    <input type="text" id="ai-chat-input" class="form-input flex-1" placeholder="สั่งงานด้วยเสียง 🎙️ หรือพิมพ์สั่งงานภาษาพูด..." onkeypress="if(event.key === 'Enter'){ event.preventDefault(); aiAssistantController.handleUserSendMessage(); }">
+                    <button type="button" onclick="aiAssistantController.handleUserSendMessage()" class="btn-primary" style="background: linear-gradient(135deg, #4285F4, #9C27B0);">ส่ง Gemini 🚀</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MOBILE BOTTOM NAVIGATION BAR -->
+    <nav class="mobile-bottom-nav">
+        <button class="mobile-nav-item active" data-tab="dashboard">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            <span>หน้าแรก</span>
+        </button>
+        <button class="mobile-nav-item" data-tab="calendar">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span>ปฏิทิน</span>
+        </button>
+        <button class="mobile-nav-item mobile-fab-trigger" id="btn-mobile-fab">
+            <div class="fab-circle">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </div>
+        </button>
+        <button class="mobile-nav-item" data-tab="finance">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            <span>รับ-จ่าย</span>
+        </button>
+        <button class="mobile-nav-item" data-tab="business">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <span>ร้านค้า</span>
+        </button>
+    </nav>
+
+    <!-- MODAL: QUICK ADD / ENTRY FORM -->
+    <div class="modal-overlay" id="modal-entry">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="modal-entry-title">บันทึกรายการใหม่</h3>
+                <button class="modal-close" id="btn-close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="entry-type-selector">
+                    <button class="type-btn active" data-type="finance-expense">💸 รายจ่ายส่วนตัว</button>
+                    <button class="type-btn" data-type="finance-income">💰 รายรับส่วนตัว</button>
+                    <button class="type-btn" data-type="shop-sale">🏪 ยอดขายร้านค้า</button>
+                    <button class="type-btn" data-type="shop-cost">📦 ต้นทุน/ค่าใช้จ่ายร้าน</button>
+                    <button class="type-btn" data-type="task">✅ เพิ่มงานค้าง</button>
+                </div>
+
+                <form id="form-entry">
+                    <input type="hidden" id="entry-id">
+                    <input type="hidden" id="entry-mode" value="finance-expense">
+
+                    <div class="form-group">
+                        <label for="entry-title">รายการ / หัวข้อ <span class="required">*</span></label>
+                        <input type="text" id="entry-title" class="form-input" placeholder="เช่น ค่าอาหารกลางวัน, ค่าสินค้า, ชำระค่าน้ำ..." required>
+                    </div>
+
+                    <div class="form-row" id="row-amount">
+                        <div class="form-group flex-1">
+                            <label for="entry-amount">จำนวนเงิน (บาท) <span class="required">*</span></label>
+                            <input type="number" id="entry-amount" class="form-input" placeholder="0.00" step="0.01" min="0">
+                        </div>
+                        <div class="form-group flex-1" id="row-category">
+                            <label for="entry-category">หมวดหมู่</label>
+                            <select id="entry-category" class="form-select">
+                                <!-- Dynamic Options -->
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Payment Slip Upload Field -->
+                    <div class="form-group" id="row-slip-upload">
+                        <label for="entry-slip">🧾 อัปโหลดสลิปโอนเงิน / ใบเสร็จ (ถ้ามี)</label>
+                        <input type="file" id="entry-slip" class="form-input" accept="image/*">
+                        <div id="slip-preview-container" class="slip-preview-box" style="display: none;">
+                            <img id="slip-preview-img" src="" alt="Slip Preview">
+                            <button type="button" id="btn-remove-slip" class="btn-text-danger">❌ ลบรูปสลิป</button>
+                        </div>
+                    </div>
+
+                    <div class="form-row" id="row-task-options" style="display: none;">
+                        <div class="form-group flex-1">
+                            <label for="entry-priority">ระดับความสำคัญ</label>
+                            <select id="entry-priority" class="form-select">
+                                <option value="low">ทั่วไป (Low)</option>
+                                <option value="medium" selected>ปานกลาง (Medium)</option>
+                                <option value="high">⚠️ ด่วนมาก (High Priority)</option>
+                            </select>
+                        </div>
+                        <div class="form-group flex-1">
+                            <label for="entry-due-date">กำหนดเสร็จ (Due Date)</label>
+                            <input type="date" id="entry-due-date" class="form-input">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="entry-date">วันที่บันทึก</label>
+                        <input type="date" id="entry-date" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="entry-note">หมายเหตุ / รายละเอียดเพิ่มเติม</label>
+                        <textarea id="entry-note" class="form-textarea" rows="2" placeholder="ใส่โน้ตสั้นๆ บันทึกเพิ่มเติม..."></textarea>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn-secondary" id="btn-cancel-modal">ยกเลิก</button>
+                        <button type="submit" class="btn-primary">บันทึกข้อมูล</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: ADD SAVINGS GOAL FORM -->
+    <div class="modal-overlay" id="modal-savings-goal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>🎯 เพิ่มเป้าหมายการออมเงินใหม่</h3>
+                <button class="modal-close" id="btn-close-savings-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="form-savings-goal">
+                    <div class="form-group">
+                        <label for="savings-title">ชื่อเป้าหมาย <span class="required">*</span></label>
+                        <input type="text" id="savings-title" class="form-input" placeholder="เช่น ออมเงินซื้อเครื่องชงกาแฟ, ทริปท่องเที่ยว, เงินสำรอง..." required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group flex-1">
+                            <label for="savings-target">เป้าหมายจำนวนเงิน (บาท) <span class="required">*</span></label>
+                            <input type="number" id="savings-target" class="form-input" placeholder="50000" min="1" required>
+                        </div>
+                        <div class="form-group flex-1">
+                            <label for="savings-current">เงินสะสมเริ่มต้น (บาท)</label>
+                            <input type="number" id="savings-current" class="form-input" placeholder="0" min="0" value="0">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="savings-date">วันที่ตั้งเป้าหมายสำเร็จ</label>
+                        <input type="date" id="savings-date" class="form-input">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn-secondary" id="btn-cancel-savings-modal">ยกเลิก</button>
+                        <button type="submit" class="btn-primary btn-emerald">สร้างเป้าหมาย</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: PAYMENT SLIP VIEWER -->
+    <div class="modal-overlay" id="modal-slip-viewer">
+        <div class="modal-card slip-viewer-card">
+            <div class="modal-header">
+                <h3>🧾 รายละเอียดสลิปโอนเงิน</h3>
+                <button class="modal-close" id="btn-close-slip-viewer">&times;</button>
+            </div>
+            <div class="modal-body text-center">
+                <img id="full-slip-image" src="" alt="Full Slip" class="full-slip-img">
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast-notification"></div>
+
+    <!-- Scripts -->
+    <script src="js/store.js"></script>
+    <script src="js/cloud-sync.js"></script>
+    <script src="js/integrations.js"></script>
+    <script src="js/finance.js"></script>
+    <script src="js/business.js"></script>
+    <script src="js/tasks.js"></script>
+    <script src="js/calendar.js"></script>
+    <script src="js/chart-render.js"></script>
+    <script src="js/weather.js"></script>
+    <script src="js/ai-assistant.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
