@@ -14,17 +14,52 @@
       font-family: 'Inter', -apple-system, sans-serif;
       background: #E8EAED;
       color: #1e293b;
-      font-size: 9pt;
-      line-height: 1.35;
+      font-size: 9.6pt;
+      line-height: 1.45;
       -webkit-font-smoothing: antialiased;
+    }
+
+    /* ═══ TOP ACTION BAR ═══ */
+    .action-bar {
+      width: 210mm;
+      margin: 20px auto 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .btn-action {
+      padding: 8px 16px;
+      background: #fff;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      color: #1e293b;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      transition: all 0.2s ease;
+    }
+    .btn-action:hover {
+      background: #f8fafc;
+      border-color: #94a3b8;
+    }
+    .btn-action.btn-primary {
+      background: #2563eb;
+      color: #fff;
+      border-color: #2563eb;
+    }
+    .btn-action.btn-primary:hover {
+      background: #1d4ed8;
     }
 
     .page {
       width: 210mm;
       height: 297mm;
-      margin: 20px auto;
+      margin: 16px auto 32px;
       background: #fff;
-      padding: 14mm 16mm 14mm;
+      padding: 16mm 18mm 16mm;
       box-shadow: 0 8px 30px rgba(0,0,0,0.12);
       display: flex;
       flex-direction: column;
@@ -37,29 +72,29 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      padding-bottom: 7px;
+      padding-bottom: 10px;
       border-bottom: 1.5px solid #0f172a;
-      margin-bottom: 8px;
+      margin-bottom: 12px;
     }
     .header-left h1 {
-      font-size: 20pt;
+      font-size: 22pt;
       font-weight: 800;
       color: #0f172a;
       letter-spacing: -0.4px;
       line-height: 1.1;
-      margin-bottom: 2px;
+      margin-bottom: 3px;
     }
     .header-left .role {
-      font-size: 10pt;
+      font-size: 11pt;
       font-weight: 600;
       color: #2563eb;
       letter-spacing: 0.1px;
     }
     .header-right {
       text-align: right;
-      font-size: 8.2pt;
+      font-size: 8.8pt;
       color: #475569;
-      line-height: 1.4;
+      line-height: 1.45;
     }
     .header-right a {
       color: #2563eb;
@@ -68,29 +103,29 @@
 
     /* ═══ SECTION STYLES ═══ */
     .section {
-      margin-bottom: 7px;
+      margin-bottom: 11px;
     }
     .sec-title {
-      font-size: 9pt;
+      font-size: 10pt;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.8px;
       color: #2563eb;
       border-bottom: 1px solid #cbd5e1;
-      padding-bottom: 2px;
-      margin-bottom: 5px;
+      padding-bottom: 3px;
+      margin-bottom: 7px;
     }
 
     .summary-text {
-      font-size: 8.5pt;
+      font-size: 9.3pt;
       color: #334155;
-      line-height: 1.38;
+      line-height: 1.48;
       text-align: justify;
     }
 
     /* ═══ ITEMS ═══ */
     .item {
-      margin-bottom: 5px;
+      margin-bottom: 8px;
     }
     .item:last-child {
       margin-bottom: 0;
@@ -101,39 +136,39 @@
       align-items: baseline;
     }
     .item-title {
-      font-size: 9pt;
+      font-size: 9.8pt;
       font-weight: 700;
       color: #0f172a;
     }
     .item-date {
-      font-size: 8.2pt;
+      font-size: 8.8pt;
       font-weight: 500;
       color: #64748b;
       white-space: nowrap;
     }
     .item-sub {
-      font-size: 8.2pt;
+      font-size: 8.8pt;
       color: #475569;
       font-weight: 500;
-      margin-bottom: 1px;
+      margin-bottom: 2px;
     }
 
     ul.bullets {
       list-style-type: disc;
-      padding-left: 13px;
-      margin-top: 1.5px;
+      padding-left: 14px;
+      margin-top: 2px;
     }
     ul.bullets li {
-      font-size: 8.4pt;
+      font-size: 9.1pt;
       color: #334155;
-      margin-bottom: 1px;
-      line-height: 1.32;
+      margin-bottom: 2px;
+      line-height: 1.4;
     }
 
     .tech-stack {
-      font-size: 8pt;
+      font-size: 8.5pt;
       color: #475569;
-      margin-top: 1.5px;
+      margin-top: 2.5px;
     }
     .tech-stack strong {
       color: #1e293b;
@@ -144,14 +179,14 @@
     .skills-grid {
       display: flex;
       flex-direction: column;
-      gap: 3px;
+      gap: 4px;
     }
     .skill-row {
       display: flex;
-      font-size: 8.4pt;
+      font-size: 9.1pt;
     }
     .skill-cat {
-      width: 135px;
+      width: 145px;
       font-weight: 700;
       color: #0f172a;
       flex-shrink: 0;
@@ -167,11 +202,23 @@
     }
     @media print {
       body { background: #fff; }
+      .no-print { display: none !important; }
       .page { margin: 0; box-shadow: none; width: 210mm; height: 297mm; }
     }
   </style>
 </head>
 <body>
+
+<!-- TOP ACTION BAR FOR BROWSER VIEW -->
+<div class="no-print action-bar">
+  <a href="./index.html" class="btn-action">← Back to Portfolio</a>
+  <div style="display: flex; gap: 10px; align-items: center;">
+    <a href="./resume-th.html" class="btn-action">TH Language</a>
+    <a href="./resume.pdf" download="Kosan_Phongthanu_Resume.pdf" class="btn-action btn-primary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; vertical-align: text-bottom;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>Download PDF
+    </a>
+  </div>
+</div>
 
 <div class="page">
   <div>
