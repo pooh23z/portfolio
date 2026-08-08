@@ -8,332 +8,506 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --ink: #111827;
-      --slate: #4B5563;
-      --light-slate: #9CA3AF;
-      --bg: #FFFFFF;
-      --primary: #2563EB;
-      --border: #E5E7EB;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      background-color: #F3F4F6;
-      color: var(--ink);
-      line-height: 1.4;
-      font-size: 12px;
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: #E8EAED;
+      color: #1a1a2e;
+      font-size: 11px;
+      line-height: 1.45;
       -webkit-font-smoothing: antialiased;
     }
 
     .page {
-      background: var(--bg);
-      width: 210mm; /* A4 width */
-      height: 297mm; /* A4 height */
-      margin: 40px auto;
-      padding: 35px 45px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-      border-radius: 4px;
-      overflow: hidden; /* Prevent spill over */
+      width: 210mm;
+      height: 297mm;
+      margin: 32px auto;
+      background: #fff;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
     }
 
-    /* Print settings */
-    @page {
-      size: A4;
-      margin: 0;
-    }
-    @media print {
-      body {
-        background: none;
-      }
-      .page {
-        margin: 0 !important;
-        box-shadow: none;
-        padding: 25px 35px !important;
-        width: 210mm;
-        height: 297mm;
-        overflow: hidden;
-      }
-      .section {
-        margin-bottom: 12px !important;
-      }
-      .no-print {
-        display: none !important;
-      }
-    }
-
-    header {
-      border-bottom: 2px solid var(--ink);
-      padding-bottom: 12px;
-      margin-bottom: 16px;
+    /* ═══ HEADER BAND ═══ */
+    .resume-header {
+      background: #1e3a5f;
+      color: #fff;
+      padding: 20px 28px 16px;
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-    }
-
-    .name-role h1 {
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      margin-bottom: 4px;
-      color: var(--ink);
-    }
-
-    .name-role h2 {
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--primary);
-    }
-
-    .contact-info {
-      text-align: right;
-      font-size: 13px;
-      color: var(--slate);
-    }
-
-    .contact-info a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .contact-info a:hover {
-      text-decoration: underline;
-    }
-
-    .contact-info div {
-      margin-bottom: 4px;
-    }
-
-    .section {
-      margin-bottom: 16px;
-    }
-
-    .section-title {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--primary);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 4px;
-      margin-bottom: 12px;
-    }
-
-    /* Grid for 2-column layout in skills/education if needed */
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
       gap: 20px;
+      flex-shrink: 0;
+    }
+    .rh-name h1 {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      margin-bottom: 3px;
+    }
+    .rh-name .role {
+      font-size: 12px;
+      font-weight: 400;
+      color: #93c5fd;
+      letter-spacing: 0.3px;
+    }
+    .rh-contact {
+      text-align: right;
+      font-size: 10.5px;
+      color: #cbd5e1;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .rh-contact a { color: #93c5fd; text-decoration: none; }
+
+    /* ═══ BODY: 2 COLUMNS ═══ */
+    .resume-body {
+      display: grid;
+      grid-template-columns: 195px 1fr;
+      flex: 1;
+      overflow: hidden;
     }
 
-    .item {
-      margin-bottom: 14px;
+    /* LEFT SIDEBAR */
+    .sidebar {
+      background: #f1f5f9;
+      padding: 12px 12px;
+      border-right: 1px solid #e2e8f0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
     }
 
-    .item-header {
+    /* RIGHT MAIN */
+    .main {
+      padding: 14px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    /* ═══ SECTION TITLE ═══ */
+    .sec-title {
+      font-size: 9.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.9px;
+      color: #1e3a5f;
+      border-bottom: 1.5px solid #1e3a5f;
+      padding-bottom: 2px;
+      margin-bottom: 5px;
+    }
+
+    /* ═══ SIDEBAR WIDGETS ═══ */
+    .sidebar-block { }
+
+    /* Profile summary in sidebar */
+    .profile-text {
+      font-size: 10px;
+      color: #475569;
+      line-height: 1.45;
+    }
+
+    /* Skill chips */
+    .chip-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px;
+    }
+    .chip {
+      background: #fff;
+      border: 1px solid #cbd5e1;
+      border-radius: 3px;
+      padding: 1.5px 6px;
+      font-size: 9px;
+      color: #334155;
+      font-weight: 500;
+    }
+    .chip.accent {
+      background: #eff6ff;
+      border-color: #93c5fd;
+      color: #1d4ed8;
+    }
+
+    /* Skill bar list */
+    .skill-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 3.5px;
+    }
+    .skill-label {
+      font-size: 10px;
+      color: #475569;
+      width: 90px;
+      flex-shrink: 0;
+    }
+    .skill-bar-track {
+      flex: 1;
+      height: 5px;
+      background: #e2e8f0;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .skill-bar-fill {
+      height: 100%;
+      background: #1e3a5f;
+      border-radius: 3px;
+    }
+
+    /* Language level */
+    .lang-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px;
+      font-size: 10.5px;
+    }
+    .lang-name { color: #334155; font-weight: 500; }
+    .lang-level { color: #64748b; }
+
+    /* Info list */
+    .info-list { list-style: none; }
+    .info-list li {
+      font-size: 10.5px;
+      color: #475569;
+      padding: 2px 0;
+      display: flex;
+      gap: 6px;
+    }
+    .info-list li .icon { color: #1e3a5f; flex-shrink: 0; font-size: 10px; }
+
+    /* ═══ MAIN CONTENT ═══ */
+    .job-item, .proj-item, .edu-item { margin-bottom: 10px; }
+    .job-item:last-child, .proj-item:last-child, .edu-item:last-child { margin-bottom: 0; }
+
+    .item-head {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      margin-bottom: 4px;
+      margin-bottom: 1px;
     }
-
     .item-title {
-      font-size: 14px;
+      font-size: 11.5px;
       font-weight: 600;
-      color: var(--ink);
+      color: #1a1a2e;
     }
-
-    .item-meta {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--slate);
-    }
-
     .item-date {
-      font-size: 12px;
-      color: var(--light-slate);
-      font-variant-numeric: tabular-nums;
+      font-size: 10px;
+      color: #64748b;
+      white-space: nowrap;
+      margin-left: 8px;
+      flex-shrink: 0;
+    }
+    .item-sub {
+      font-size: 10.5px;
+      color: #1e3a5f;
+      font-weight: 500;
+      margin-bottom: 3px;
+    }
+    .item-sub.muted { color: #64748b; font-weight: 400; }
+
+    ul.bul {
+      list-style: none;
+      padding-left: 0;
+    }
+    ul.bul li {
+      font-size: 10.5px;
+      color: #475569;
+      padding-left: 12px;
+      position: relative;
+      margin-bottom: 2px;
+      line-height: 1.5;
+    }
+    ul.bul li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: #1e3a5f;
+      font-size: 9px;
+      top: 1px;
     }
 
-    .item-desc {
-      color: var(--slate);
-      margin-bottom: 8px;
+    .tech-line {
+      margin-top: 4px;
+      font-size: 9.5px;
+      color: #64748b;
+    }
+    .tech-line strong { color: #334155; }
+
+    /* cert / award row */
+    .cert-row {
+      display: flex;
+      gap: 6px;
+      align-items: flex-start;
+      margin-bottom: 5px;
+      font-size: 10.5px;
+    }
+    .cert-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #1e3a5f;
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+    .cert-body .cert-name { font-weight: 600; color: #1a1a2e; }
+    .cert-body .cert-org { color: #64748b; }
+
+    /* PRINT */
+    @page { size: A4; margin: 0; }
+    @media print {
+      body { background: none; }
+      .page { margin: 0; box-shadow: none; width: 210mm; height: 297mm; }
+      .no-print { display: none !important; }
     }
 
-    ul.bullets {
-      list-style-type: disc;
-      padding-left: 18px;
-      color: var(--slate);
-    }
-
-    ul.bullets li {
-      margin-bottom: 4px;
-    }
-    
-    .tech-stack {
-      font-size: 13px;
-      color: var(--slate);
-      margin-top: 6px;
-    }
-    
-    .tech-stack strong {
-      color: var(--ink);
-    }
-
-    /* Skills */
-    .skills-category {
-      margin-bottom: 10px;
-    }
-    .skills-category strong {
-      display: inline-block;
-      width: 130px;
-      color: var(--ink);
-    }
-    .skills-category span {
-      color: var(--slate);
-    }
-
-    /* Floating Print Button */
     .print-btn {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background: var(--primary);
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 30px;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+      position: fixed; bottom: 24px; right: 24px;
+      background: #1e3a5f; color: #fff;
+      border: none; padding: 10px 20px; border-radius: 24px;
+      font-size: 12px; font-weight: 600; cursor: pointer;
+      box-shadow: 0 4px 14px rgba(30,58,95,0.35);
+      text-decoration: none; display: inline-block;
       transition: transform 0.2s, box-shadow 0.2s;
     }
-    .print-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4);
-    }
-
+    .print-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(30,58,95,0.45); }
   </style>
 </head>
 <body>
 
-  <a class="print-btn no-print" href="./resume.pdf" target="_blank" style="text-decoration: none; display: inline-block;">⬇️ Download PDF</a>
+<a class="print-btn no-print" href="./resume.pdf" target="_blank">⬇️ Download PDF</a>
 
-  <div class="page">
-    <header>
-      <div class="name-role">
-        <h1>Kosan Phongthanu</h1>
-        <h2>Junior UX/UI Designer & MarTech Developer</h2>
-      </div>
-      <div class="contact-info">
-        <div>Bangkok, Thailand</div>
-        <div><a href="mailto:kosalyphngsthnu@gmail.com">kosalyphngsthnu@gmail.com</a> | 064-117-4443</div>
-        <div><a href="https://github.com/pooh23z" target="_blank">github.com/pooh23z</a></div>
-        <div><a href="https://www.linkedin.com/in/kosan-phongthanu" target="_blank">linkedin.com/in/kosan-phongthanu</a></div>
-      </div>
-    </header>
+<div class="page">
 
-    <section class="section">
-      <div class="section-title">Professional Summary</div>
-      <p class="item-desc" style="margin-bottom: 0;">
-        An Information Technology senior student blending strong technical development skills with business acumen and UI/UX design thinking. Experienced in building end-to-end web applications that solve real-world operational problems. Seeking an internship opportunity to contribute to and learn from a dynamic development or design team.
-      </p>
-    </section>
-
-    <section class="section">
-      <div class="section-title">Education</div>
-      <div class="item">
-        <div class="item-header">
-          <div class="item-title">Bangkok University</div>
-          <div class="item-date">Expected Graduation: May 2027</div>
-        </div>
-        <div class="item-meta">B.Sc. in Information Technology</div>
-        <div class="item-desc">Cumulative GPA: 3.50</div>
-      </div>
-    </section>
-
-
-    <section class="section">
-      <div class="section-title">Selected Projects</div>
-
-      <div class="item">
-        <div class="item-header">
-          <div class="item-title">Enterprise Inventory & Asset Management System</div>
-          <div class="item-date" style="color: var(--ink); font-weight: 600;">Senior Project · Thaicom Public Company Limited</div>
-        </div>
-        <ul class="bullets">
-          <li>Designed comprehensive UX/UI and prototypes for an enterprise-scale system spanning 113+ screens.</li>
-          <li>Established a standardized UI design system for developers to ensure visual consistency.</li>
-          <li>Developed a web application covering asset requisition, transfer, disposal, and executive reporting.</li>
-        </ul>
-        <div class="tech-stack"><strong>Technologies:</strong> PHP, Laravel, HTML/CSS, JavaScript, Oracle Database, Figma</div>
-      </div>
-
-      <div class="item">
-        <div class="item-header">
-          <div class="item-title">POS & Cost/Profit Management System</div>
-          <div class="item-date">Sem & Friends (Live Production)</div>
-        </div>
-        <ul class="bullets">
-          <li>Built a bespoke Point-of-Sale and cost-tracking web application for a retail food business.</li>
-          <li>Engineered automated dashboards reflecting real-time revenue, net profit, and best-selling metrics.</li>
-          <li>Currently used in daily operations to optimize inventory ordering and financial tracking.</li>
-        </ul>
-        <div class="tech-stack"><strong>Technologies:</strong> Google Apps Script, Google Sheets API, HTML/CSS, JavaScript</div>
-      </div>
-
-      <div class="item">
-        <div class="item-header">
-          <div class="item-title">Modern Web Applications (TUNGTUNGTUNGFOOD & GALAXY Store)</div>
-          <div class="item-date">Personal Projects</div>
-        </div>
-        <ul class="bullets">
-          <li>Developed responsive front-end interfaces prioritizing modern aesthetics and micro-animations.</li>
-          <li>Implemented interactive UI components and dynamic data rendering purely with Vanilla JavaScript.</li>
-        </ul>
-        <div class="tech-stack"><strong>Technologies:</strong> HTML5, CSS3, Vanilla JS</div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-title">Work Experience</div>
-      <div class="item">
-        <div class="item-header">
-          <div class="item-title">Owner & Online Marketing Lead</div>
-          <div class="item-date">Present</div>
-        </div>
-        <div class="item-meta">Sem & Friends (Fried Mala)</div>
-        <ul class="bullets">
-          <li>Manage end-to-end daily business operations, inventory, and customer relations.</li>
-          <li>Drive online presence and promotional campaigns via LINE OA and social media channels.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-title">Skills</div>
-      <div class="skills-category">
-        <strong>Programming & Web:</strong> <span>Java, HTML5, CSS3, JavaScript, PHP, Laravel, Docker, Bootstrap</span>
-      </div>
-      <div class="skills-category">
-        <strong>Design & Media:</strong> <span>Figma, Canva, Adobe Photoshop, Adobe Illustrator, Adobe Premiere Pro, CapCut, Wireframing</span>
-      </div>
-      <div class="skills-category">
-        <strong>Database & Tools:</strong> <span>MySQL, Oracle DB, Google Apps Script, UML/DFD</span>
-      </div>
-      <div class="skills-category">
-        <strong>Other Skills:</strong> <span>Digital Marketing, C++ (ESP32/Arduino), Hardware Integration</span>
-      </div>
-    </section>
-
+  <!-- ══ HEADER ══ -->
+  <div class="resume-header">
+    <div class="rh-name">
+      <h1>Kosan Phongthanu</h1>
+      <div class="role">Junior UX/UI Designer &amp; MarTech Developer &nbsp;·&nbsp; IT Senior Student, Bangkok University</div>
+    </div>
+    <div class="rh-contact">
+      <span>📍 Bangkok, Thailand</span>
+      <span>📞 064-117-4443</span>
+      <span><a href="mailto:kosalyphngsthnu@gmail.com">kosalyphngsthnu@gmail.com</a></span>
+      <span><a href="https://github.com/pooh23z">github.com/pooh23z</a> &nbsp;·&nbsp; <a href="https://linkedin.com/in/kosan-phongthanu">linkedin.com/in/kosan-phongthanu</a></span>
+    </div>
   </div>
+
+  <!-- ══ BODY ══ -->
+  <div class="resume-body">
+
+    <!-- ═ LEFT SIDEBAR ═ -->
+    <div class="sidebar">
+
+      <div class="sidebar-block">
+        <div class="sec-title">Profile</div>
+        <p class="profile-text">IT senior student combining development, UX/UI design, and business thinking. Builds real end-to-end systems — from a live POS used daily at his own food stall to an AI-powered PWA integrating Gemini, Firebase, and LINE APIs. Seeking an internship in development or design.</p>
+      </div>
+
+      <div class="sidebar-block">
+        <div class="sec-title">Core Skills</div>
+        <div class="skill-row">
+          <div class="skill-label">Figma / UI Design</div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-label">HTML / CSS</div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-label">JavaScript</div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:78%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-label">PHP / Laravel</div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:65%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-label">Python</div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:60%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-label">Digital Mktg</div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:80%"></div></div>
+        </div>
+      </div>
+
+      <div class="sidebar-block">
+        <div class="sec-title">Tools &amp; Technologies</div>
+        <div class="chip-list">
+          <span class="chip accent">Figma</span>
+          <span class="chip accent">Firebase</span>
+          <span class="chip accent">Gemini API</span>
+          <span class="chip accent">LINE Notify</span>
+          <span class="chip">PHP / Laravel</span>
+          <span class="chip">Python</span>
+          <span class="chip">MySQL</span>
+          <span class="chip">Oracle DB</span>
+          <span class="chip">Google Apps Script</span>
+          <span class="chip">Chart.js</span>
+          <span class="chip">Bootstrap</span>
+          <span class="chip">Gmail OAuth2</span>
+          <span class="chip">Docker</span>
+          <span class="chip">REST API</span>
+          <span class="chip">AJAX / JSON</span>
+          <span class="chip">ESP32 / C++</span>
+          <span class="chip">OpenCV</span>
+          <span class="chip">MediaPipe</span>
+          <span class="chip">UML / DFD</span>
+          <span class="chip">PWA</span>
+        </div>
+      </div>
+
+      <div class="sidebar-block">
+        <div class="sec-title">Design &amp; Media</div>
+        <div class="chip-list">
+          <span class="chip">Adobe Photoshop</span>
+          <span class="chip">Adobe Illustrator</span>
+          <span class="chip">Premiere Pro</span>
+          <span class="chip">Canva</span>
+          <span class="chip">CapCut</span>
+          <span class="chip">Wireframing</span>
+          <span class="chip">Prototyping</span>
+          <span class="chip">Design Systems</span>
+        </div>
+      </div>
+
+      <div class="sidebar-block">
+        <div class="sec-title">Languages</div>
+        <div class="lang-row"><span class="lang-name">Thai</span><span class="lang-level">Native</span></div>
+        <div class="lang-row"><span class="lang-name">English</span><span class="lang-level">Intermediate</span></div>
+      </div>
+
+      <div class="sidebar-block">
+        <div class="sec-title">Education</div>
+        <div style="font-size:10.5px;">
+          <div style="font-weight:600;color:#1a1a2e;margin-bottom:2px;">Bangkok University</div>
+          <div style="color:#1e3a5f;font-weight:500;">B.Sc. Information Technology</div>
+          <div style="color:#64748b;margin-top:2px;">GPA: 3.50 &nbsp;·&nbsp; Expected May 2027</div>
+        </div>
+      </div>
+
+      <div class="sidebar-block">
+        <div class="sec-title">Certifications</div>
+        <div class="cert-row">
+          <div class="cert-dot"></div>
+          <div class="cert-body">
+            <div class="cert-name">Cybersecurity Foundation</div>
+            <div class="cert-org">NCSA · 2026 · 21 hrs</div>
+          </div>
+        </div>
+        <div class="cert-row">
+          <div class="cert-dot"></div>
+          <div class="cert-body">
+            <div class="cert-name">Claude 101</div>
+            <div class="cert-org">Anthropic · 2026</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ═ MAIN CONTENT ═ -->
+    <div class="main">
+
+      <div>
+        <div class="sec-title">Work Experience</div>
+
+        <div class="job-item">
+          <div class="item-head">
+            <div class="item-title">Owner &amp; Online Marketing Lead</div>
+            <div class="item-date">2024 – Present</div>
+          </div>
+          <div class="item-sub">Sem &amp; Friends (Fried Mala) — Self-Employed</div>
+          <ul class="bul">
+            <li>Manage end-to-end daily operations, inventory, and customer relations for a food retail business.</li>
+            <li>Drive online presence and promotional campaigns via LINE OA and social media; grew LINE Friends to <strong>300+</strong>.</li>
+            <li>Built a custom POS &amp; cost-tracking web app to automate daily revenue, net profit, and best-seller reporting.</li>
+          </ul>
+        </div>
+
+        <div class="job-item">
+          <div class="item-head">
+            <div class="item-title">O2O Order Fulfillment Staff (Part-time)</div>
+            <div class="item-date">2023</div>
+          </div>
+          <div class="item-sub muted">Makro (CP Axtra)</div>
+          <ul class="bul">
+            <li>Processed and fulfilled online-to-offline orders in a high-volume retail environment.</li>
+          </ul>
+        </div>
+
+        <div class="job-item" style="margin-bottom:0;">
+          <div class="item-head">
+            <div class="item-title">Data Entry Staff (Part-time)</div>
+            <div class="item-date">2023</div>
+          </div>
+          <div class="item-sub muted">Thailand International Motor Expo</div>
+          <ul class="bul">
+            <li>Accurately recorded and managed event data under time-pressured conditions.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <div class="sec-title">Selected Projects</div>
+
+        <div class="proj-item">
+          <div class="item-head">
+            <div class="item-title">Enterprise Inventory &amp; Asset Management System</div>
+            <div class="item-date">Senior Project</div>
+          </div>
+          <div class="item-sub">Thaicom Public Company Limited</div>
+          <ul class="bul">
+            <li>Designed UX/UI and prototypes for an enterprise system spanning <strong>113+ screens</strong> with a standardized design system used by the dev team.</li>
+            <li>Developed full web application covering asset requisition, transfer, disposal, and executive-level reporting.</li>
+          </ul>
+          <div class="tech-line"><strong>Tech:</strong> PHP, Laravel, JavaScript, Oracle DB, Figma</div>
+        </div>
+
+        <div class="proj-item">
+          <div class="item-head">
+            <div class="item-title">Life &amp; Business Hub</div>
+            <div class="item-date">Personal · PWA</div>
+          </div>
+          <ul class="bul">
+            <li>Built a full-featured PWA with an AI assistant (Gemini 1.5 Pro) accepting Thai voice input with multi-turn memory; auto-sends daily shop report to LINE OA every morning at 9 AM.</li>
+            <li>Integrated Gmail OAuth2, Chart.js analytics, savings goals with progress tracking, and Firebase real-time sync between desktop &amp; mobile.</li>
+          </ul>
+          <div class="tech-line"><strong>Tech:</strong> JavaScript, Firebase Realtime DB, Gemini 1.5 Pro API, LINE Notify API, Gmail OAuth2, Chart.js</div>
+        </div>
+
+        <div class="proj-item">
+          <div class="item-head">
+            <div class="item-title">POS &amp; Cost/Profit Management System</div>
+            <div class="item-date">Live Production</div>
+          </div>
+          <div class="item-sub muted">Sem &amp; Friends — used daily</div>
+          <ul class="bul">
+            <li>Built a bespoke POS and cost-tracking web app; automated dashboards show real-time revenue, net profit, and best-selling items via Google Sheets API.</li>
+          </ul>
+          <div class="tech-line"><strong>Tech:</strong> Google Apps Script, Google Sheets API, HTML/CSS, JavaScript</div>
+        </div>
+
+        <div class="proj-item" style="margin-bottom:0;">
+          <div class="item-head">
+            <div class="item-title">Air Canvas &amp; Finger Tracking &nbsp;·&nbsp; GALAXY Store &amp; Samsung Official Store &nbsp;·&nbsp; Food for Everyone (UX)</div>
+            <div class="item-date">Personal</div>
+          </div>
+          <ul class="bul">
+            <li>Real-time dual-hand gesture drawing system (21 landmarks/hand) built with Python, OpenCV, and MediaPipe.</li>
+            <li>Responsive e-commerce and food-ordering web apps with premium UI, micro-animations, and interactive cart/checkout.</li>
+          </ul>
+          <div class="tech-line"><strong>Tech:</strong> Python, OpenCV, MediaPipe, HTML5, CSS3, Vanilla JS</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
