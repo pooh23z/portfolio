@@ -3,389 +3,305 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>โกศัลย์ พงษ์ธนู - เรซูเม่</title>
+  <title>โกศัลย์ พงษ์ธนู - เรซูเม</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: 'IBM Plex Sans Thai', 'Inter', sans-serif;
+      font-family: 'Prompt', -apple-system, sans-serif;
       background: #E8EAED;
-      color: #1a1a2e;
-      font-size: 11px;
-      line-height: 1.45;
+      color: #1e293b;
+      font-size: 9pt;
+      line-height: 1.35;
       -webkit-font-smoothing: antialiased;
     }
 
     .page {
       width: 210mm;
       height: 297mm;
-      margin: 32px auto;
+      margin: 20px auto;
       background: #fff;
+      padding: 14mm 16mm 14mm;
       box-shadow: 0 8px 30px rgba(0,0,0,0.12);
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
       overflow: hidden;
     }
 
-    .resume-header {
-      background: #1e3a5f;
-      color: #fff;
-      padding: 20px 28px 16px;
+    /* ═══ HEADER ═══ */
+    .header {
       display: flex;
       justify-content: space-between;
-      align-items: flex-end;
-      gap: 20px;
-      flex-shrink: 0;
+      align-items: flex-start;
+      padding-bottom: 7px;
+      border-bottom: 1.5px solid #0f172a;
+      margin-bottom: 8px;
     }
-    .rh-name h1 { font-size: 24px; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 3px; }
-    .rh-name .role { font-size: 12px; font-weight: 400; color: #93c5fd; letter-spacing: 0.3px; }
-    .rh-contact {
+    .header-left h1 {
+      font-size: 20pt;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.4px;
+      line-height: 1.1;
+      margin-bottom: 2px;
+    }
+    .header-left .role {
+      font-size: 10pt;
+      font-weight: 600;
+      color: #2563eb;
+      letter-spacing: 0.1px;
+    }
+    .header-right {
       text-align: right;
-      font-size: 10.5px;
-      color: #cbd5e1;
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
+      font-size: 8.2pt;
+      color: #475569;
+      line-height: 1.4;
     }
-    .rh-contact a { color: #93c5fd; text-decoration: none; }
-
-    .resume-body {
-      display: grid;
-      grid-template-columns: 195px 1fr;
-      flex: 1;
-      overflow: hidden;
+    .header-right a {
+      color: #2563eb;
+      text-decoration: none;
     }
 
-    .sidebar {
-      background: #f1f5f9;
-      padding: 12px 12px;
-      border-right: 1px solid #e2e8f0;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+    /* ═══ SECTION STYLES ═══ */
+    .section {
+      margin-bottom: 7px;
     }
-    .main {
-      padding: 14px 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 11px;
-    }
-
     .sec-title {
-      font-size: 9.5px;
+      font-size: 9pt;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.9px;
-      color: #1e3a5f;
-      border-bottom: 1.5px solid #1e3a5f;
+      letter-spacing: 0.8px;
+      color: #2563eb;
+      border-bottom: 1px solid #cbd5e1;
       padding-bottom: 2px;
       margin-bottom: 5px;
     }
 
-    .sidebar-block { }
-    .profile-text { font-size: 10px; color: #475569; line-height: 1.45; }
-
-    .chip-list { display: flex; flex-wrap: wrap; gap: 3px; }
-    .chip {
-      background: #fff;
-      border: 1px solid #cbd5e1;
-      border-radius: 3px;
-      padding: 1.5px 6px;
-      font-size: 9px;
+    .summary-text {
+      font-size: 8.5pt;
       color: #334155;
+      line-height: 1.38;
+      text-align: justify;
+    }
+
+    /* ═══ ITEMS ═══ */
+    .item {
+      margin-bottom: 5px;
+    }
+    .item:last-child {
+      margin-bottom: 0;
+    }
+    .item-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .item-title {
+      font-size: 9pt;
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .item-date {
+      font-size: 8.2pt;
       font-weight: 500;
+      color: #64748b;
+      white-space: nowrap;
     }
-    .chip.accent { background: #eff6ff; border-color: #93c5fd; color: #1d4ed8; }
-
-    .skill-row { display: flex; align-items: center; gap: 6px; margin-bottom: 3.5px; }
-    .skill-label { font-size: 10px; color: #475569; width: 90px; flex-shrink: 0; }
-    .skill-bar-track { flex: 1; height: 5px; background: #e2e8f0; border-radius: 3px; overflow: hidden; }
-    .skill-bar-fill { height: 100%; background: #1e3a5f; border-radius: 3px; }
-
-    .lang-row { display: flex; justify-content: space-between; margin-bottom: 4px; font-size: 10.5px; }
-    .lang-name { color: #334155; font-weight: 500; }
-    .lang-level { color: #64748b; }
-
-    .cert-row { display: flex; gap: 6px; align-items: flex-start; margin-bottom: 5px; font-size: 10.5px; }
-    .cert-dot { width: 6px; height: 6px; border-radius: 50%; background: #1e3a5f; margin-top: 3px; flex-shrink: 0; }
-    .cert-body .cert-name { font-weight: 600; color: #1a1a2e; }
-    .cert-body .cert-org { color: #64748b; }
-
-    .job-item, .proj-item { margin-bottom: 10px; }
-    .job-item:last-child, .proj-item:last-child { margin-bottom: 0; }
-
-    .item-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1px; }
-    .item-title { font-size: 11.5px; font-weight: 600; color: #1a1a2e; }
-    .item-date { font-size: 10px; color: #64748b; white-space: nowrap; margin-left: 8px; flex-shrink: 0; }
-    .item-sub { font-size: 10.5px; color: #1e3a5f; font-weight: 500; margin-bottom: 3px; }
-    .item-sub.muted { color: #64748b; font-weight: 400; }
-
-    ul.bul { list-style: none; padding-left: 0; }
-    ul.bul li {
-      font-size: 10.5px;
+    .item-sub {
+      font-size: 8.2pt;
       color: #475569;
-      padding-left: 12px;
-      position: relative;
-      margin-bottom: 2px;
-      line-height: 1.5;
+      font-weight: 500;
+      margin-bottom: 1px;
     }
-    ul.bul li::before { content: '▸'; position: absolute; left: 0; color: #1e3a5f; font-size: 9px; top: 1px; }
 
-    .tech-line { margin-top: 4px; font-size: 9.5px; color: #64748b; }
-    .tech-line strong { color: #334155; }
+    ul.bullets {
+      list-style-type: disc;
+      padding-left: 13px;
+      margin-top: 1.5px;
+    }
+    ul.bullets li {
+      font-size: 8.4pt;
+      color: #334155;
+      margin-bottom: 1px;
+      line-height: 1.32;
+    }
 
-    @page { size: A4; margin: 0; }
+    .tech-stack {
+      font-size: 8pt;
+      color: #475569;
+      margin-top: 1.5px;
+    }
+    .tech-stack strong {
+      color: #1e293b;
+      font-weight: 600;
+    }
+
+    /* ═══ SKILLS TABLE ═══ */
+    .skills-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .skill-row {
+      display: flex;
+      font-size: 8.4pt;
+    }
+    .skill-cat {
+      width: 135px;
+      font-weight: 700;
+      color: #0f172a;
+      flex-shrink: 0;
+    }
+    .skill-val {
+      color: #334155;
+      flex: 1;
+    }
+
+    @page {
+      size: A4;
+      margin: 0;
+    }
     @media print {
-      body { background: none; }
+      body { background: #fff; }
       .page { margin: 0; box-shadow: none; width: 210mm; height: 297mm; }
-      .no-print { display: none !important; }
     }
-
-    .print-btn {
-      position: fixed; bottom: 24px; right: 24px;
-      background: #1e3a5f; color: #fff;
-      border: none; padding: 10px 20px; border-radius: 24px;
-      font-size: 12px; font-weight: 600; cursor: pointer;
-      box-shadow: 0 4px 14px rgba(30,58,95,0.35);
-      text-decoration: none; display: inline-block;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .print-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(30,58,95,0.45); }
   </style>
 </head>
 <body>
 
-<a class="print-btn no-print" href="./resume-th.pdf" target="_blank">⬇️ Download PDF</a>
-
 <div class="page">
+  <div>
+    <!-- HEADER -->
+    <header class="header">
+      <div class="header-left">
+        <h1>โกศัลย์ พงษ์ธนู</h1>
+        <div class="role">Junior UX/UI Designer &amp; MarTech Developer</div>
+      </div>
+      <div class="header-right">
+        <div>กรุงเทพ, ประเทศไทย</div>
+        <div>kosalyphngsthnu@gmail.com | 064-117-4443</div>
+        <div><a href="https://github.com/pooh23z" target="_blank">github.com/pooh23z</a></div>
+        <div><a href="https://www.linkedin.com/in/kosan-phongthanu" target="_blank">linkedin.com/in/kosan-phongthanu</a></div>
+      </div>
+    </header>
 
-  <!-- HEADER -->
-  <div class="resume-header">
-    <div class="rh-name">
-      <h1>โกศัลย์ พงษ์ธนู (Kosan Phongthanu)</h1>
-      <div class="role">Junior UX/UI Designer &amp; MarTech Developer &nbsp;·&nbsp; นักศึกษา IT ปี 4 มหาวิทยาลัยกรุงเทพ</div>
-    </div>
-    <div class="rh-contact">
-      <span>📍 กรุงเทพ, ประเทศไทย</span>
-      <span>📞 064-117-4443</span>
-      <span><a href="mailto:kosalyphngsthnu@gmail.com">kosalyphngsthnu@gmail.com</a></span>
-      <span><a href="https://github.com/pooh23z">github.com/pooh23z</a> &nbsp;·&nbsp; <a href="https://linkedin.com/in/kosan-phongthanu">linkedin.com/in/kosan-phongthanu</a></span>
-    </div>
-  </div>
+    <!-- PROFESSIONAL SUMMARY -->
+    <section class="section">
+      <div class="sec-title">ข้อมูลส่วนตัว (PROFESSIONAL SUMMARY)</div>
+      <p class="summary-text">
+        นักศึกษาชั้นปีที่ 4 สาขาเทคโนโลยีสารสนเทศ ที่มีความโดดเด่นในการผสานทักษะการเขียนโค้ด (Development) การออกแบบ UI/UX (Design) และความเข้าใจด้านธุรกิจ (Business Mindset) เข้าด้วยกัน มีประสบการณ์จริงในการพัฒนาระบบซอฟต์แวร์แบบ End-to-end เพื่อแก้ปัญหาการดำเนินงานในชีวิตจริง สนใจมองหาโอกาสฝึกงานเพื่อร่วมสร้างผลิตภัณฑ์ที่ตอบโจทย์ผู้ใช้งานและธุรกิจ
+      </p>
+    </section>
 
-  <!-- BODY -->
-  <div class="resume-body">
+    <!-- EDUCATION -->
+    <section class="section">
+      <div class="sec-title">ประวัติการศึกษา (EDUCATION)</div>
+      <div class="item">
+        <div class="item-head">
+          <div class="item-title">มหาวิทยาลัยกรุงเทพ คณะเทคโนโลยีสารสนเทศและนวัตกรรม</div>
+          <div class="item-date">คาดว่าจะจบการศึกษา: พฤษภาคม 2570</div>
+        </div>
+        <div class="item-sub">วิทยาศาสตรบัณฑิต สาขาเทคโนโลยีสารสนเทศ &nbsp;·&nbsp; เกรดเฉลี่ยสะสม (GPAX): 3.50</div>
+      </div>
+    </section>
 
-    <!-- SIDEBAR -->
-    <div class="sidebar">
+    <!-- SELECTED PROJECTS -->
+    <section class="section">
+      <div class="sec-title">ผลงานโดดเด่น (SELECTED PROJECTS)</div>
 
-      <div class="sidebar-block">
-        <div class="sec-title">Profile</div>
-        <p class="profile-text">นักศึกษา IT ปี 4 ที่ผสานทักษะโค้ด ออกแบบ UI/UX และ Business Mindset ไว้ในคนเดียว — สร้างระบบ POS ใช้งานจริงที่ร้านตัวเอง ไปจนถึง PWA ที่มี AI Gemini, Firebase Sync และ LINE API สนใจฝึกงานด้าน Development หรือ Design</p>
+      <div class="item">
+        <div class="item-head">
+          <div class="item-title">ระบบบริหารจัดการคลังวัสดุและครุภัณฑ์ระดับองค์กร</div>
+          <div class="item-date">Senior Project · Thaicom Public Company Limited</div>
+        </div>
+        <ul class="bullets">
+          <li>ออกแบบ UX/UI และ Prototype ระบบระดับองค์กรกว่า <strong>113 หน้าจอ</strong> ครอบคลุมกระบวนการคลังสินค้าทั้งหมด</li>
+          <li>จัดทำ Design System ที่เป็นมาตรฐานเพื่อให้นักพัฒนาทำงานได้รวดเร็วและมีความสม่ำเสมอ</li>
+          <li>พัฒนาระบบ Web Application ครอบคลุมการเบิก-รับ-โอน-จำหน่ายทรัพย์สินและระบบรายงาน</li>
+        </ul>
+        <div class="tech-stack"><strong>เทคโนโลยีที่ใช้:</strong> PHP, Laravel, HTML/CSS, JavaScript, Oracle Database, Figma</div>
       </div>
 
-      <div class="sidebar-block">
-        <div class="sec-title">ทักษะหลัก</div>
+      <div class="item">
+        <div class="item-head">
+          <div class="item-title">Life &amp; Business Hub</div>
+          <div class="item-date">Personal Project · PWA</div>
+        </div>
+        <ul class="bullets">
+          <li>สร้าง PWA พร้อม AI Assistant (Gemini 1.5 Pro) รับสั่งการด้วยเสียงภาษาไทยและจดจำบริบทสนทนา</li>
+          <li>รายงานสรุปยอดขายเข้า LINE OA อัตโนมัติทุก 9 โมงเช้า พร้อมเชื่อมต่อ Gmail OAuth2 และ Firebase Real-Time Sync</li>
+        </ul>
+        <div class="tech-stack"><strong>เทคโนโลยีที่ใช้:</strong> JavaScript, Firebase Realtime DB, Gemini 1.5 Pro API, LINE Notify API, Chart.js</div>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <div class="item-title">ระบบ POS และจัดการต้นทุน-กำไร</div>
+          <div class="item-date">ร้านเสม &amp; Friends (ใช้งานจริงในธุรกิจ)</div>
+        </div>
+        <ul class="bullets">
+          <li>พัฒนาเว็บแอปพลิเคชันสำหรับบันทึกการขายและคำนวณต้นทุนวัตถุดิบเพื่อร้านอาหารโดยเฉพาะ</li>
+          <li>สร้าง Dashboard สรุปยอดขาย กำไรสุทธิ และจัดอันดับเมนูขายดีแบบเรียลไทม์ผ่าน Google Sheets API</li>
+          <li>ประยุกต์ใช้งานจริงในธุรกิจทุกวัน ช่วยลดข้อผิดพลาดในการทำบัญชีและเพิ่มประสิทธิภาพการสั่งซื้อวัตถุดิบ</li>
+        </ul>
+        <div class="tech-stack"><strong>เทคโนโลยีที่ใช้:</strong> Google Apps Script, Google Sheets API, HTML/CSS, JavaScript</div>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <div class="item-title">เว็บแอปพลิเคชันรูปแบบใหม่ &amp; AI</div>
+          <div class="item-date">Personal Projects</div>
+        </div>
+        <ul class="bullets">
+          <li>ระบบวาดภาพกลางอากาศเรียลไทม์ ตรวจจับพิกัดมือ 2 ข้าง (21 พิกัด/มือ) พัฒนาด้วย Python, OpenCV และ MediaPipe</li>
+          <li>พัฒนาส่วนแสดงผล (Front-end) เว็บ E-Commerce และสั่งอาหาร พร้อมระบบ Interactive UI และ Micro-animations</li>
+        </ul>
+        <div class="tech-stack"><strong>เทคโนโลยีที่ใช้:</strong> Python, OpenCV, MediaPipe, HTML5, CSS3, Vanilla JS</div>
+      </div>
+    </section>
+
+    <!-- WORK EXPERIENCE -->
+    <section class="section">
+      <div class="sec-title">ประสบการณ์ทำงาน (WORK EXPERIENCE)</div>
+      <div class="item">
+        <div class="item-head">
+          <div class="item-title">เจ้าของร้าน &amp; ผู้ดูแลการตลาดออนไลน์</div>
+          <div class="item-date">2567 – ปัจจุบัน</div>
+        </div>
+        <div class="item-sub">ร้านเสม &amp; Friends (หม่าล่าทอด) — ธุรกิจส่วนตัว</div>
+        <ul class="bullets">
+          <li>บริหารจัดการการดำเนินงานของร้าน สต็อกวัตถุดิบ และความสัมพันธ์กับลูกค้า</li>
+          <li>วางแผนและขับเคลื่อนโปรโมชันการตลาดผ่าน LINE OA (ผู้ติดตาม <strong>300+ คน</strong>) และช่องทาง Social Media ต่างๆ</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SKILLS & CERTIFICATIONS -->
+    <section class="section" style="margin-bottom:0;">
+      <div class="sec-title">ทักษะและความสามารถ (SKILLS &amp; CERTIFICATIONS)</div>
+      <div class="skills-grid">
         <div class="skill-row">
-          <div class="skill-label">Figma / UI Design</div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%"></div></div>
+          <div class="skill-cat">การเขียนโปรแกรม &amp; เว็บ:</div>
+          <div class="skill-val">Java, HTML5, CSS3, JavaScript, PHP, Laravel, Docker, Bootstrap, REST APIs</div>
         </div>
         <div class="skill-row">
-          <div class="skill-label">HTML / CSS</div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%"></div></div>
+          <div class="skill-cat">การออกแบบสื่อ &amp; UI/UX:</div>
+          <div class="skill-val">Figma, Wireframing, Prototyping, Design Systems, Canva, Photoshop, Illustrator, Premiere Pro</div>
         </div>
         <div class="skill-row">
-          <div class="skill-label">JavaScript</div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:78%"></div></div>
+          <div class="skill-cat">ฐานข้อมูลและระบบ:</div>
+          <div class="skill-val">MySQL, Oracle DB, Firebase Realtime DB, Google Apps Script, UML/DFD</div>
         </div>
         <div class="skill-row">
-          <div class="skill-label">PHP / Laravel</div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:65%"></div></div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-label">Python</div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:60%"></div></div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-label">Digital Mktg</div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:80%"></div></div>
+          <div class="skill-cat">ใบรับรอง &amp; ทักษะเพิ่มเติม:</div>
+          <div class="skill-val">Cybersecurity Foundation (NCSA · 2569), Claude 101 (Anthropic · 2569), C++ (ESP32/Arduino)</div>
         </div>
       </div>
-
-      <div class="sidebar-block">
-        <div class="sec-title">เครื่องมือ &amp; เทคโนโลยี</div>
-        <div class="chip-list">
-          <span class="chip accent">Figma</span>
-          <span class="chip accent">Firebase</span>
-          <span class="chip accent">Gemini API</span>
-          <span class="chip accent">LINE Notify</span>
-          <span class="chip">PHP / Laravel</span>
-          <span class="chip">Python</span>
-          <span class="chip">MySQL</span>
-          <span class="chip">Oracle DB</span>
-          <span class="chip">Google Apps Script</span>
-          <span class="chip">Chart.js</span>
-          <span class="chip">Bootstrap</span>
-          <span class="chip">Gmail OAuth2</span>
-          <span class="chip">Docker</span>
-          <span class="chip">REST API</span>
-          <span class="chip">AJAX / JSON</span>
-          <span class="chip">ESP32 / C++</span>
-          <span class="chip">OpenCV</span>
-          <span class="chip">MediaPipe</span>
-          <span class="chip">UML / DFD</span>
-          <span class="chip">PWA</span>
-        </div>
-      </div>
-
-      <div class="sidebar-block">
-        <div class="sec-title">ดีไซน์ &amp; สื่อ</div>
-        <div class="chip-list">
-          <span class="chip">Adobe Photoshop</span>
-          <span class="chip">Adobe Illustrator</span>
-          <span class="chip">Premiere Pro</span>
-          <span class="chip">Canva</span>
-          <span class="chip">CapCut</span>
-          <span class="chip">Wireframing</span>
-          <span class="chip">Prototyping</span>
-          <span class="chip">Design Systems</span>
-        </div>
-      </div>
-
-      <div class="sidebar-block">
-        <div class="sec-title">ภาษา</div>
-        <div class="lang-row"><span class="lang-name">ภาษาไทย</span><span class="lang-level">เจ้าของภาษา</span></div>
-        <div class="lang-row"><span class="lang-name">ภาษาอังกฤษ</span><span class="lang-level">ระดับกลาง</span></div>
-      </div>
-
-      <div class="sidebar-block">
-        <div class="sec-title">การศึกษา</div>
-        <div style="font-size:10.5px;">
-          <div style="font-weight:600;color:#1a1a2e;margin-bottom:2px;">มหาวิทยาลัยกรุงเทพ</div>
-          <div style="color:#1e3a5f;font-weight:500;">วท.บ. เทคโนโลยีสารสนเทศ</div>
-          <div style="color:#64748b;margin-top:2px;">GPAX: 3.50 &nbsp;·&nbsp; คาดว่าจบ พ.ค. 2570</div>
-        </div>
-      </div>
-
-      <div class="sidebar-block">
-        <div class="sec-title">ใบรับรอง</div>
-        <div class="cert-row">
-          <div class="cert-dot"></div>
-          <div class="cert-body">
-            <div class="cert-name">Cybersecurity Foundation</div>
-            <div class="cert-org">NCSA · 2569 · 21 ชั่วโมง</div>
-          </div>
-        </div>
-        <div class="cert-row">
-          <div class="cert-dot"></div>
-          <div class="cert-body">
-            <div class="cert-name">Claude 101</div>
-            <div class="cert-org">Anthropic · 2569</div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- MAIN -->
-    <div class="main">
-
-      <div>
-        <div class="sec-title">ประสบการณ์ทำงาน (Work Experience)</div>
-
-        <div class="job-item">
-          <div class="item-head">
-            <div class="item-title">เจ้าของร้าน &amp; ผู้ดูแลการตลาดออนไลน์</div>
-            <div class="item-date">2567 – ปัจจุบัน</div>
-          </div>
-          <div class="item-sub">ร้านเสม &amp; Friends (หม่าล่าทอด) — ธุรกิจส่วนตัว</div>
-          <ul class="bul">
-            <li>บริหารการดำเนินงานทั้งหมดของร้าน ตั้งแต่สต็อกวัตถุดิบจนถึงความสัมพันธ์กับลูกค้า</li>
-            <li>วางแผนและขับเคลื่อนโปรโมชันผ่าน LINE OA และ Social Media มีสมาชิก <strong>กว่า 300 คน</strong></li>
-            <li>พัฒนาระบบ POS และคำนวณต้นทุนแบบ Custom เพื่ออัตโนมัติรายงานยอดขาย กำไร และเมนูขายดี</li>
-          </ul>
-        </div>
-
-        <div class="job-item">
-          <div class="item-head">
-            <div class="item-title">พนักงานจัดออเดอร์ O2O (Part-time)</div>
-            <div class="item-date">2566</div>
-          </div>
-          <div class="item-sub muted">Makro (CP Axtra)</div>
-          <ul class="bul">
-            <li>จัดเตรียมและดำเนินการคำสั่งซื้อออนไลน์สู่หน้าร้านในสภาพแวดล้อมที่มีปริมาณสูง</li>
-          </ul>
-        </div>
-
-        <div class="job-item" style="margin-bottom:0;">
-          <div class="item-head">
-            <div class="item-title">พนักงานคีย์ข้อมูล (Part-time)</div>
-            <div class="item-date">2566</div>
-          </div>
-          <div class="item-sub muted">Thailand International Motor Expo</div>
-          <ul class="bul">
-            <li>บันทึกและจัดการข้อมูลงานอีเวนต์ได้อย่างถูกต้องแม่นยำภายใต้แรงกดดันด้านเวลา</li>
-          </ul>
-        </div>
-      </div>
-
-      <div>
-        <div class="sec-title">ผลงานโดดเด่น (Selected Projects)</div>
-
-        <div class="proj-item">
-          <div class="item-head">
-            <div class="item-title">ระบบบริหารจัดการคลังวัสดุและครุภัณฑ์ระดับองค์กร</div>
-            <div class="item-date">Senior Project</div>
-          </div>
-          <div class="item-sub">Thaicom Public Company Limited</div>
-          <ul class="bul">
-            <li>ออกแบบ UX/UI และ Prototype กว่า <strong>113 หน้าจอ</strong> พร้อม Design System มาตรฐานสำหรับทีมพัฒนา</li>
-            <li>พัฒนา Web Application ครบวงจร ครอบคลุมการเบิก-รับ-โอน-จำหน่ายทรัพย์สินและระบบรายงานผู้บริหาร</li>
-          </ul>
-          <div class="tech-line"><strong>เทคโนโลยี:</strong> PHP, Laravel, JavaScript, Oracle DB, Figma</div>
-        </div>
-
-        <div class="proj-item">
-          <div class="item-head">
-            <div class="item-title">Life &amp; Business Hub</div>
-            <div class="item-date">Personal · PWA</div>
-          </div>
-          <ul class="bul">
-            <li>สร้าง PWA พร้อม AI Assistant (Gemini 1.5 Pro) รับเสียงภาษาไทยและจำบทสนทนาหลายรอบ — ส่งรายงานยอดขายไป LINE OA อัตโนมัติทุกเช้า 9 โมง</li>
-            <li>เชื่อมต่อ Gmail OAuth2, Chart.js Dashboard วิเคราะห์การเงิน, เป้าหมายออมเงิน และ Firebase Real-Time Sync ระหว่างคอมกับมือถือ</li>
-          </ul>
-          <div class="tech-line"><strong>เทคโนโลยี:</strong> JavaScript, Firebase Realtime DB, Gemini 1.5 Pro API, LINE Notify API, Gmail OAuth2, Chart.js</div>
-        </div>
-
-        <div class="proj-item">
-          <div class="item-head">
-            <div class="item-title">ระบบ POS และจัดการต้นทุน-กำไร</div>
-            <div class="item-date">Live Production</div>
-          </div>
-          <div class="item-sub muted">ร้านเสม &amp; Friends — ใช้งานจริงทุกวัน</div>
-          <ul class="bul">
-            <li>พัฒนาเว็บแอป POS บันทึกยอดขาย คำนวณต้นทุนวัตถุดิบ และ Dashboard กำไรสุทธิแบบเรียลไทม์สำหรับร้านหม่าล่าทอดของตัวเอง</li>
-          </ul>
-          <div class="tech-line"><strong>เทคโนโลยี:</strong> Google Apps Script, Google Sheets API, HTML/CSS, JavaScript</div>
-        </div>
-
-        <div class="proj-item" style="margin-bottom:0;">
-          <div class="item-head">
-            <div class="item-title">Air Canvas &amp; Finger Tracking &nbsp;·&nbsp; GALAXY Store &amp; Samsung Official Store &nbsp;·&nbsp; Food for Everyone (UX)</div>
-            <div class="item-date">Personal</div>
-          </div>
-          <ul class="bul">
-            <li>ระบบวาดภาพกลางอากาศแบบ Dual-Hand แบบเรียลไทม์ ตรวจจับ 21 พิกัดต่อมือ ด้วย Python, OpenCV และ MediaPipe</li>
-            <li>เว็บ E-Commerce และแอปสั่งอาหาร UI Premium พร้อม Micro-animations, ตะกร้าและระบบ Checkout แบบ Interactive</li>
-          </ul>
-          <div class="tech-line"><strong>เทคโนโลยี:</strong> Python, OpenCV, MediaPipe, HTML5, CSS3, Vanilla JS</div>
-        </div>
-      </div>
-
-    </div>
+    </section>
   </div>
 </div>
 
