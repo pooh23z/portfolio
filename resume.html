@@ -14,8 +14,8 @@
       font-family: 'IBM Plex Sans', 'IBM Plex Sans Thai', -apple-system, sans-serif;
       background: #E8EAED;
       color: #1e293b;
-      font-size: 9.6pt;
-      line-height: 1.45;
+      font-size: 9.8pt;
+      line-height: 1.5;
       -webkit-font-smoothing: antialiased;
     }
 
@@ -59,7 +59,7 @@
       height: 297mm;
       margin: 16px auto 32px;
       background: #fff;
-      padding: 16mm 18mm 16mm;
+      padding: 18mm 18mm 18mm;
       box-shadow: 0 8px 30px rgba(0,0,0,0.12);
       display: flex;
       flex-direction: column;
@@ -72,17 +72,17 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      padding-bottom: 10px;
+      padding-bottom: 12px;
       border-bottom: 1.5px solid #0f172a;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
     .header-left h1 {
-      font-size: 22pt;
+      font-size: 23pt;
       font-weight: 700;
       color: #0f172a;
       letter-spacing: -0.3px;
       line-height: 1.1;
-      margin-bottom: 3px;
+      margin-bottom: 4px;
     }
     .header-left .role {
       font-size: 11pt;
@@ -92,9 +92,9 @@
     }
     .header-right {
       text-align: right;
-      font-size: 8.8pt;
+      font-size: 9pt;
       color: #475569;
-      line-height: 1.45;
+      line-height: 1.5;
     }
     .header-right a {
       color: #2563eb;
@@ -103,29 +103,29 @@
 
     /* ═══ SECTION STYLES ═══ */
     .section {
-      margin-bottom: 11px;
+      margin-bottom: 13px;
     }
     .sec-title {
-      font-size: 10pt;
+      font-size: 10.2pt;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.8px;
       color: #2563eb;
       border-bottom: 1px solid #cbd5e1;
       padding-bottom: 3px;
-      margin-bottom: 7px;
+      margin-bottom: 8px;
     }
 
     .summary-text {
-      font-size: 9.3pt;
+      font-size: 9.5pt;
       color: #334155;
-      line-height: 1.48;
+      line-height: 1.52;
       text-align: justify;
     }
 
     /* ═══ ITEMS ═══ */
     .item {
-      margin-bottom: 8px;
+      margin-bottom: 9px;
     }
     .item:last-child {
       margin-bottom: 0;
@@ -136,18 +136,18 @@
       align-items: baseline;
     }
     .item-title {
-      font-size: 9.8pt;
+      font-size: 10pt;
       font-weight: 700;
       color: #0f172a;
     }
     .item-date {
-      font-size: 8.8pt;
+      font-size: 9pt;
       font-weight: 500;
       color: #64748b;
       white-space: nowrap;
     }
     .item-sub {
-      font-size: 8.8pt;
+      font-size: 9pt;
       color: #475569;
       font-weight: 500;
       margin-bottom: 2px;
@@ -155,35 +155,35 @@
 
     ul.bullets {
       list-style-type: disc;
-      padding-left: 14px;
+      padding-left: 15px;
       margin-top: 2px;
     }
     ul.bullets li {
-      font-size: 9.1pt;
+      font-size: 9.3pt;
       color: #334155;
-      margin-bottom: 2px;
-      line-height: 1.4;
+      margin-bottom: 2.5px;
+      line-height: 1.45;
     }
 
     .tech-stack {
-      font-size: 8.5pt;
+      font-size: 8.8pt;
       color: #475569;
-      margin-top: 2.5px;
+      margin-top: 3px;
     }
     .tech-stack strong {
       color: #1e293b;
       font-weight: 600;
     }
 
-    /* ═══ SKILLS & CERTS GRID ═══ */
+    /* ═══ SKILLS GRID ═══ */
     .skills-grid {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 5px;
     }
     .skill-row {
       display: flex;
-      font-size: 9.1pt;
+      font-size: 9.3pt;
     }
     .skill-cat {
       width: 145px;
@@ -194,33 +194,6 @@
     .skill-val {
       color: #334155;
       flex: 1;
-    }
-
-    .cert-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5px 16px;
-      margin-top: 2px;
-    }
-    .cert-item {
-      font-size: 8.8pt;
-      color: #334155;
-      display: flex;
-      align-items: baseline;
-      gap: 6px;
-    }
-    .cert-item::before {
-      content: "•";
-      color: #2563eb;
-      font-weight: bold;
-    }
-    .cert-name {
-      font-weight: 600;
-      color: #0f172a;
-    }
-    .cert-meta {
-      color: #64748b;
-      font-size: 8.3pt;
     }
 
     @page {
@@ -376,9 +349,9 @@
       </div>
     </section>
 
-    <!-- TECHNICAL SKILLS -->
-    <section class="section">
-      <div class="sec-title">Technical Skills</div>
+    <!-- SKILLS -->
+    <section class="section" style="margin-bottom:0;">
+      <div class="sec-title">Skills</div>
       <div class="skills-grid">
         <div class="skill-row">
           <div class="skill-cat">Programming &amp; Web:</div>
@@ -393,21 +366,8 @@
           <div class="skill-val">MySQL, Oracle DB, Firebase Realtime DB, Google Apps Script, UML/DFD</div>
         </div>
         <div class="skill-row">
-          <div class="skill-cat">Hardware &amp; IoT:</div>
-          <div class="skill-val">C++ (ESP32/Arduino), Hardware Sensor Integration</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CERTIFICATIONS & HONORS -->
-    <section class="section" style="margin-bottom:0;">
-      <div class="sec-title">Certifications &amp; Achievements</div>
-      <div class="cert-list">
-        <div class="cert-item">
-          <div><span class="cert-name">Cybersecurity Foundation</span> <span class="cert-meta">· NCSA (2026 · 21 hrs)</span></div>
-        </div>
-        <div class="cert-item">
-          <div><span class="cert-name">Claude 101</span> <span class="cert-meta">· Anthropic (2026)</span></div>
+          <div class="skill-cat">Other Skills:</div>
+          <div class="skill-val">Digital Marketing, C++ (ESP32/Arduino), Hardware Integration</div>
         </div>
       </div>
     </section>
