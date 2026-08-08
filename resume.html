@@ -175,7 +175,7 @@
       font-weight: 600;
     }
 
-    /* ═══ SKILLS TABLE ═══ */
+    /* ═══ SKILLS & CERTS GRID ═══ */
     .skills-grid {
       display: flex;
       flex-direction: column;
@@ -194,6 +194,33 @@
     .skill-val {
       color: #334155;
       flex: 1;
+    }
+
+    .cert-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5px 16px;
+      margin-top: 2px;
+    }
+    .cert-item {
+      font-size: 8.8pt;
+      color: #334155;
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+    .cert-item::before {
+      content: "•";
+      color: #2563eb;
+      font-weight: bold;
+    }
+    .cert-name {
+      font-weight: 600;
+      color: #0f172a;
+    }
+    .cert-meta {
+      color: #64748b;
+      font-size: 8.3pt;
     }
 
     @page {
@@ -321,15 +348,37 @@
         </div>
         <div class="item-sub">Sem &amp; Friends (Fried Mala) — Self-Employed</div>
         <ul class="bullets">
-          <li>Manage end-to-end daily business operations, inventory, and customer relations for a retail food business.</li>
+          <li>Manage end-to-end daily business operations, inventory, financial accounting, and customer relations.</li>
           <li>Drive online presence and promotional campaigns via LINE OA (grew to <strong>300+ friends</strong>) and social media channels.</li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <div class="item-title">O2O Order Fulfillment Staff (Part-time)</div>
+          <div class="item-date">2023</div>
+        </div>
+        <div class="item-sub">Makro (CP Axtra)</div>
+        <ul class="bullets">
+          <li>Processed and fulfilled online-to-offline customer orders in a high-volume retail environment.</li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <div class="item-title">Data Entry Staff (Part-time)</div>
+          <div class="item-date">2023</div>
+        </div>
+        <div class="item-sub">Thailand International Motor Expo</div>
+        <ul class="bullets">
+          <li>Accurately recorded and managed event visitor data under time-pressured event conditions.</li>
         </ul>
       </div>
     </section>
 
-    <!-- SKILLS & CERTIFICATIONS -->
-    <section class="section" style="margin-bottom:0;">
-      <div class="sec-title">Skills &amp; Certifications</div>
+    <!-- TECHNICAL SKILLS -->
+    <section class="section">
+      <div class="sec-title">Technical Skills</div>
       <div class="skills-grid">
         <div class="skill-row">
           <div class="skill-cat">Programming &amp; Web:</div>
@@ -344,8 +393,21 @@
           <div class="skill-val">MySQL, Oracle DB, Firebase Realtime DB, Google Apps Script, UML/DFD</div>
         </div>
         <div class="skill-row">
-          <div class="skill-cat">Certifications &amp; Other:</div>
-          <div class="skill-val">Cybersecurity Foundation (NCSA · 2026), Claude 101 (Anthropic · 2026), C++ (ESP32/Arduino)</div>
+          <div class="skill-cat">Hardware &amp; IoT:</div>
+          <div class="skill-val">C++ (ESP32/Arduino), Hardware Sensor Integration</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS & HONORS -->
+    <section class="section" style="margin-bottom:0;">
+      <div class="sec-title">Certifications &amp; Achievements</div>
+      <div class="cert-list">
+        <div class="cert-item">
+          <div><span class="cert-name">Cybersecurity Foundation</span> <span class="cert-meta">· NCSA (2026 · 21 hrs)</span></div>
+        </div>
+        <div class="cert-item">
+          <div><span class="cert-name">Claude 101</span> <span class="cert-meta">· Anthropic (2026)</span></div>
         </div>
       </div>
     </section>

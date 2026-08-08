@@ -175,7 +175,7 @@
       font-weight: 600;
     }
 
-    /* ═══ SKILLS TABLE ═══ */
+    /* ═══ SKILLS & CERTS GRID ═══ */
     .skills-grid {
       display: flex;
       flex-direction: column;
@@ -194,6 +194,33 @@
     .skill-val {
       color: #334155;
       flex: 1;
+    }
+
+    .cert-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5px 16px;
+      margin-top: 2px;
+    }
+    .cert-item {
+      font-size: 8.8pt;
+      color: #334155;
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+    .cert-item::before {
+      content: "•";
+      color: #2563eb;
+      font-weight: bold;
+    }
+    .cert-name {
+      font-weight: 600;
+      color: #0f172a;
+    }
+    .cert-meta {
+      color: #64748b;
+      font-size: 8.3pt;
     }
 
     @page {
@@ -321,15 +348,37 @@
         </div>
         <div class="item-sub">ร้านเสม &amp; Friends (หม่าล่าทอด) — ธุรกิจส่วนตัว</div>
         <ul class="bullets">
-          <li>บริหารจัดการการดำเนินงานของร้าน สต็อกวัตถุดิบ และความสัมพันธ์กับลูกค้า</li>
+          <li>บริหารจัดการการดำเนินงานของร้าน สต็อกวัตถุดิบ บัญชีการเงิน และความสัมพันธ์กับลูกค้า</li>
           <li>วางแผนและขับเคลื่อนโปรโมชันการตลาดผ่าน LINE OA (ผู้ติดตาม <strong>300+ คน</strong>) และช่องทาง Social Media ต่างๆ</li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <div class="item-title">พนักงานจัดออเดอร์ O2O (Part-time)</div>
+          <div class="item-date">2566</div>
+        </div>
+        <div class="item-sub">แม็คโคร (CP Axtra)</div>
+        <ul class="bullets">
+          <li>จัดเตรียมและดำเนินการคำสั่งซื้อออนไลน์สู่หน้าร้านในสภาพแวดล้อมที่มีปริมาณออเดอร์สูง</li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <div class="item-title">พนักงานคีย์ข้อมูล (Part-time)</div>
+          <div class="item-date">2566</div>
+        </div>
+        <div class="item-sub">Thailand International Motor Expo</div>
+        <ul class="bullets">
+          <li>บันทึกและจัดการข้อมูลงานอีเวนต์ได้อย่างถูกต้องแม่นยำภายใต้แรงกดดันด้านเวลา</li>
         </ul>
       </div>
     </section>
 
-    <!-- SKILLS & CERTIFICATIONS -->
-    <section class="section" style="margin-bottom:0;">
-      <div class="sec-title">ทักษะและความสามารถ (SKILLS &amp; CERTIFICATIONS)</div>
+    <!-- TECHNICAL SKILLS -->
+    <section class="section">
+      <div class="sec-title">ทักษะความสามารถ (TECHNICAL SKILLS)</div>
       <div class="skills-grid">
         <div class="skill-row">
           <div class="skill-cat">การเขียนโปรแกรม &amp; เว็บ:</div>
@@ -344,8 +393,21 @@
           <div class="skill-val">MySQL, Oracle DB, Firebase Realtime DB, Google Apps Script, UML/DFD</div>
         </div>
         <div class="skill-row">
-          <div class="skill-cat">ใบรับรอง &amp; ทักษะเพิ่มเติม:</div>
-          <div class="skill-val">Cybersecurity Foundation (NCSA · 2569), Claude 101 (Anthropic · 2569), C++ (ESP32/Arduino)</div>
+          <div class="skill-cat">ฮาร์ดแวร์ &amp; IoT:</div>
+          <div class="skill-val">C++ (ESP32/Arduino), การต่อเซนเซอร์ฮาร์ดแวร์</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS & HONORS -->
+    <section class="section" style="margin-bottom:0;">
+      <div class="sec-title">ใบรับรองและผลงานรางวัล (CERTIFICATIONS &amp; ACHIEVEMENTS)</div>
+      <div class="cert-list">
+        <div class="cert-item">
+          <div><span class="cert-name">Cybersecurity Foundation</span> <span class="cert-meta">· NCSA (2569 · 21 ชั่วโมง)</span></div>
+        </div>
+        <div class="cert-item">
+          <div><span class="cert-name">Claude 101</span> <span class="cert-meta">· Anthropic (2569)</span></div>
         </div>
       </div>
     </section>
