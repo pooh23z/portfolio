@@ -114,13 +114,13 @@
     a:focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; border-radius: 3px; }
 
     /* Hero */
-    .hero { padding: 72px 0 40px; position: relative; overflow: hidden; }
+    .hero { padding: 64px 0 48px; position: relative; overflow: hidden; }
     .eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--signal); font-weight: 600; margin: 0 0 18px; display: inline-flex; align-items: center; gap: 8px; }
     .eyebrow::before { content: ''; width: 24px; height: 2px; background: var(--signal); display: inline-block; }
-    .hero-inner { display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: flex-start; position: relative; z-index: 1; }
+    .hero-inner { display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: center; position: relative; z-index: 1; }
     .hero-name { font-size: clamp(40px, 7vw, 68px); line-height: 1.05; margin: 0 0 14px; color: var(--ink); position: relative; }
-    .hero-sub { font-size: clamp(17px, 2.4vw, 20px); color: var(--steel); max-width: 620px; margin: 0 0 40px; font-weight: 400; line-height: 1.7; }
-    .hero-photo { width: 220px; height: 280px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); flex-shrink: 0; background: var(--surface); box-shadow: var(--shadow-lg); position: relative; transition: transform var(--transition-slow), box-shadow var(--transition-slow); }
+    .hero-sub { font-size: clamp(17px, 2.4vw, 20px); color: var(--steel); max-width: 620px; margin: 0 0 28px; font-weight: 400; line-height: 1.7; }
+    .hero-photo { width: 250px; height: 320px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); flex-shrink: 0; background: var(--surface); box-shadow: var(--shadow-lg); position: relative; transition: transform var(--transition-slow), box-shadow var(--transition-slow); }
     .hero-photo:hover { transform: translateY(-8px) rotate(2deg); box-shadow: var(--shadow-xl); }
     .hero-photo::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.1) 100%); z-index: 1; pointer-events: none; }
     .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform var(--transition-slow); }
@@ -375,7 +375,7 @@
       gap: 12px;
       width: 100%;
       max-width: 380px;
-      margin-bottom: 40px;
+      margin-bottom: 0;
     }
 
     .resume-card-btn {
@@ -591,32 +591,33 @@
               </a>
             </div>
           </div>
-          <div class="readout">
-            <div class="readout-cell">
-              <p class="readout-label">LINE Friends</p>
-              <p class="readout-value"><span class="counter" data-target="300">300</span><span class="unit" data-i18n="readout-line-unit">+ ราย</span></p>
-              <span class="readout-dot"></span>
-            </div>
-            <div class="readout-cell">
-              <p class="readout-label" data-i18n="readout-gpax-label">GPAX สะสม</p>
-              <p class="readout-value mono"><span class="counter" data-target="3.50" data-decimal="true">3.50</span></p>
-            </div>
-            <div class="readout-cell">
-              <p class="readout-label">Enterprise UX</p>
-              <p class="readout-value"><span class="counter" data-target="113">113</span><span class="unit" data-i18n="readout-screens-unit">หน้าจอ</span></p>
-            </div>
-            <div class="readout-cell">
-              <p class="readout-label">IoT Prototype</p>
-              <p class="readout-value">฿<span class="counter" data-target="1262">1,262</span></p>
-            </div>
-            <div class="readout-cell">
-              <p class="readout-label" data-i18n="readout-projects-label">ผลงานทั้งหมด</p>
-              <p class="readout-value"><span class="counter" data-target="12">12</span><span class="unit" data-i18n="readout-projects-unit"> โปรเจกต์</span></p>
-            </div>
-          </div>
         </div>
         <div class="hero-photo scale-in">
           <img src="./3Z38He8.png" alt="โกศัลย์ พงษ์ธนู" data-i18n-alt="hero-photo-alt">
+        </div>
+      </div>
+
+      <div class="readout fade-up stagger-1" style="margin-top: 48px;">
+        <div class="readout-cell">
+          <p class="readout-label">LINE Friends</p>
+          <p class="readout-value"><span class="counter" data-target="300">300</span><span class="unit" data-i18n="readout-line-unit">+ ราย</span></p>
+          <span class="readout-dot"></span>
+        </div>
+        <div class="readout-cell">
+          <p class="readout-label" data-i18n="readout-gpax-label">GPAX สะสม</p>
+          <p class="readout-value mono"><span class="counter" data-target="3.50" data-decimal="true">3.50</span></p>
+        </div>
+        <div class="readout-cell">
+          <p class="readout-label">Enterprise UX</p>
+          <p class="readout-value"><span class="counter" data-target="113">113</span><span class="unit" data-i18n="readout-screens-unit">หน้าจอ</span></p>
+        </div>
+        <div class="readout-cell">
+          <p class="readout-label">IoT Prototype</p>
+          <p class="readout-value">฿<span class="counter" data-target="1262">1,262</span></p>
+        </div>
+        <div class="readout-cell">
+          <p class="readout-label" data-i18n="readout-projects-label">ผลงานทั้งหมด</p>
+          <p class="readout-value"><span class="counter" data-target="12">12</span><span class="unit" data-i18n="readout-projects-unit"> โปรเจกต์</span></p>
         </div>
       </div>
     </div>
