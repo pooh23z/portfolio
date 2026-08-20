@@ -176,10 +176,17 @@
     }
 
     /* ═══ SKILLS GRID ═══ */
+    .skills-with-qr {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
     .skills-grid {
       display: flex;
       flex-direction: column;
       gap: 3.5px;
+      flex: 1;
     }
     .skill-row {
       display: flex;
@@ -194,6 +201,33 @@
     .skill-val {
       color: #334155;
       flex: 1;
+    }
+
+    .qr-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      flex-shrink: 0;
+      padding: 5px;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      background: #fafafa;
+    }
+    .qr-img {
+      width: 58px;
+      height: 58px;
+      display: block;
+      border-radius: 2px;
+    }
+    .qr-label {
+      font-size: 6.5pt;
+      font-weight: 600;
+      color: #475569;
+      margin-top: 3px;
+      letter-spacing: 0.1px;
+      white-space: nowrap;
     }
 
     @page {
@@ -353,22 +387,28 @@
     <!-- SKILLS -->
     <section class="section" style="margin-bottom:0;">
       <div class="sec-title">Skills</div>
-      <div class="skills-grid">
-        <div class="skill-row">
-          <div class="skill-cat">Programming &amp; Web:</div>
-          <div class="skill-val">Java, HTML5, CSS3, JavaScript, PHP, Laravel, Docker, Bootstrap, REST APIs</div>
+      <div class="skills-with-qr">
+        <div class="skills-grid">
+          <div class="skill-row">
+            <div class="skill-cat">Programming &amp; Web:</div>
+            <div class="skill-val">Java, HTML5, CSS3, JavaScript, PHP, Laravel, Docker, Bootstrap, REST APIs</div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-cat">Design &amp; Media:</div>
+            <div class="skill-val">Figma, Wireframing, Prototyping, Design Systems, Canva, Photoshop, Illustrator, Premiere Pro</div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-cat">Database &amp; Tools:</div>
+            <div class="skill-val">MySQL, Oracle DB, Firebase Realtime DB, Google Apps Script, UML/DFD</div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-cat">Other Skills:</div>
+            <div class="skill-val">Digital Marketing, C++ (ESP32/Arduino), Hardware Integration</div>
+          </div>
         </div>
-        <div class="skill-row">
-          <div class="skill-cat">Design &amp; Media:</div>
-          <div class="skill-val">Figma, Wireframing, Prototyping, Design Systems, Canva, Photoshop, Illustrator, Premiere Pro</div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-cat">Database &amp; Tools:</div>
-          <div class="skill-val">MySQL, Oracle DB, Firebase Realtime DB, Google Apps Script, UML/DFD</div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-cat">Other Skills:</div>
-          <div class="skill-val">Digital Marketing, C++ (ESP32/Arduino), Hardware Integration</div>
+        <div class="qr-box">
+          <img src="portfolio-qr.png" alt="Portfolio QR Code" class="qr-img">
+          <div class="qr-label">Scan for Portfolio</div>
         </div>
       </div>
     </section>
