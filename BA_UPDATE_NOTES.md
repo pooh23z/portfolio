@@ -18,7 +18,7 @@
 
 ### 2. ข้อมูลส่วนตัว (Professional Summary)
 * **ข้อความใหม่:**
-  > นักศึกษาชั้นปีที่ 4 สาขาเทคโนโลยีสารสนเทศ (GPAX 3.50) มีความเชี่ยวชาญในการวิเคราะห์กระบวนการทางธุรกิจ (Business Process Analysis), การรวบรวม Requirement และการออกแบบ System Workflow & Wireframe ระดับองค์กรกว่า 113 หน้าจอ มีทักษะการสื่อสารเชื่อมโยงระหว่างผู้ใช้งานและทีมนักพัฒนาอย่างมีประสิทธิภาพ พร้อมประสบการณ์วางระบบและบริหารธุรกิจจริง
+  > นักศึกษาชั้นปีที่ 4 สาขาเทคโนโลยีสารสนเทศ มีความเชี่ยวชาญในการวิเคราะห์กระบวนการทางธุรกิจ (Business Process Analysis), การรวบรวม Requirement และการออกแบบ System Workflow & Wireframe ระดับองค์กรกว่า 113 หน้าจอ มีทักษะการสื่อสารเชื่อมโยงระหว่างผู้ใช้งานและทีมนักพัฒนาอย่างมีประสิทธิภาพ พร้อมประสบการณ์วางระบบและบริหารธุรกิจจริง
 
 ---
 
@@ -68,7 +68,7 @@
 
 ### 2. Professional Summary
 * **Text:**
-  > Senior Information Technology student (GPAX 3.50) specializing in Business Process Analysis, Requirements Gathering, and Enterprise System Workflows & Wireframing (113+ screens). Experienced in bridging the gap between business stakeholders and software development teams, with a strong foundation in IT, databases, and real-world system implementations.
+  > Senior Information Technology student specializing in Business Process Analysis, Requirements Gathering, and Enterprise System Workflows & Wireframing (113+ screens). Experienced in bridging the gap between business stakeholders and software development teams, with a strong foundation in IT, databases, and real-world system implementations.
 
 ---
 
