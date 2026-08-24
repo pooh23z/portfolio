@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>🧾 MALA COST — ระบบบันทึกค่าวัตถุดิบหม่าล่าทอด</title>
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Prompt:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+:root {
+  --bg: #0c0e12;
+  --bg-gradient: radial-gradient(circle at 10% 10%, rgba(232, 144, 58, 0.08), transparent 35%),
+                 radial-gradient(circle at 90% 90%, rgba(255, 71, 87, 0.07), transparent 35%),
+                 #0c0e12;
+  --panel-bg: rgba(22, 25, 33, 0.75);
+  --panel-card: rgba(30, 34, 45, 0.65);
+  --panel-border: rgba(255, 255, 255, 0.08);
+  --text-main: #ffffff;
+  --text-sub: #cbd5e1;
+  --text-muted: rgba(255, 255, 255, 0.5);
+  --primary: #ff4757;
+  --primary-glow: rgba(255, 71, 87, 0.4);
+  --orange: #e8903a;
+  --orange-glow: rgba(232, 144, 58, 0.35);
+  --accent: #ffa502;
+  --green: #2ed573;
+  --green-glow: rgba(46, 213, 115, 0.3);
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --radius-sm: 12px;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Outfit', 'Prompt', 'Sarabun', sans-serif;
+  background: var(--bg);
+  color: var(--text-main);
+  min-height: 100vh;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ─── APP WRAPPER ─── */
+.app-container {
+  width: 100%;
+  max-width: 720px;
+  min-height: 100vh;
+  background: var(--bg-gradient);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 0 0 50px rgba(0,0,0,0.5);
+}
+
+/* ─── TOP APP BAR ─── */
+.top-bar {
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--panel-border);
+  background: rgba(12, 14, 18, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.brand-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.brand-icon-wrap {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(232,144,58,0.25), rgba(255,71,87,0.25));
+  border: 1px solid rgba(232,144,58,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  box-shadow: 0 0 15px var(--orange-glow);
+}
+.brand-title {
+  font-size: 18px;
+  font-weight: 800;
+  background: linear-gradient(90deg, #fff, #ffd280);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.brand-sub {
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+}
+
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-pos-link {
+  padding: 6px 14px;
+  border-radius: 99px;
+  background: rgba(255, 71, 87, 0.12);
+  border: 1px solid rgba(255, 71, 87, 0.3);
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+.btn-pos-link:hover {
+  background: var(--primary);
+  color: #fff;
+  box-shadow: 0 4px 12px var(--primary-glow);
+}
+
+.conn-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 12px;
+  border-radius: 99px;
+  border: 1px solid var(--panel-border);
+  background: rgba(255,255,255,0.04);
+  font-size: 12px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.conn-pill:hover { border-color: rgba(255,255,255,0.2); color: #fff; }
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #666;
+}
+.pulse-dot.on {
+  background: var(--green);
+  box-shadow: 0 0 8px var(--green-glow);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(46, 213, 115, 0.6); }
+  70% { box-shadow: 0 0 0 8px rgba(46, 213, 115, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(46, 213, 115, 0); }
+}
+
+/* ─── TABS ─── */
+.tabs-bar {
+  display: flex;
+  background: rgba(18, 20, 26, 0.95);
+  border-bottom: 1px solid var(--panel-border);
+  position: sticky;
+  top: 73px;
+  z-index: 90;
+}
+.tab-btn {
+  flex: 1;
+  padding: 14px 10px;
+  text-align: center;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  border: none;
+  background: none;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.tab-btn:hover:not(.active) { color: #fff; background: rgba(255,255,255,0.02); }
+.tab-btn.active {
+  color: var(--orange);
+  border-bottom-color: var(--orange);
+  background: rgba(232, 144, 58, 0.05);
+}
+
+/* ─── CONTENT WRAPPER ─── */
+.content-wrapper {
+  padding: 20px 16px 80px 16px;
+  flex: 1;
+}
+.page { display: none; }
+.page.active { display: block; animation: fadeIn 0.25s ease; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── CARDS ─── */
+.card {
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-lg);
+  padding: 22px 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+.card-header {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.card-header::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.06); }
+
+/* Quick Suggestion Chips */
+.quick-chips {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.chip {
+  padding: 5px 12px;
+  border-radius: 99px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--panel-border);
+  color: var(--text-sub);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.chip:hover {
+  background: rgba(232, 144, 58, 0.15);
+  border-color: var(--orange);
+  color: #fff;
+}
+
+/* ─── ROUND SELECTOR ─── */
+.round-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.round-select {
+  flex: 1;
+  background: rgba(0,0,0,0.4);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  font-family: inherit;
+  font-size: 14px;
+  color: #fff;
+  outline: none;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.round-select:focus {
+  border-color: var(--orange);
+  box-shadow: 0 0 10px var(--orange-glow);
+}
+.round-select option { background: #181b22; color: #fff; }
+
+.btn-new-round {
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.btn-new-round:hover {
+  background: rgba(255,255,255,0.15);
+  border-color: rgba(255,255,255,0.25);
+}
+
+.selected-round-pill {
+  background: rgba(232, 144, 58, 0.08);
+  border: 1px solid rgba(232, 144, 58, 0.25);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-size: 13px;
+  color: var(--text-sub);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.selected-round-pill b { color: var(--orange); }
+
+/* ─── FORM FIELDS ─── */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.form-grid.full { grid-template-columns: 1fr; }
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.field label, .lbl {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+input[type=text], input[type=number], select {
+  background: rgba(0,0,0,0.4);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  font-family: inherit;
+  font-size: 14px;
+  color: #fff;
+  outline: none;
+  width: 100%;
+  transition: all 0.2s;
+}
+input[type=number] {
+  font-family: 'Prompt', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+}
+input:focus, select:focus {
+  border-color: var(--orange);
+  box-shadow: 0 0 10px var(--orange-glow);
+  background: rgba(0,0,0,0.6);
+}
+input::placeholder { color: rgba(255,255,255,0.2); }
+
+/* Total Preview */
+.total-preview {
+  background: linear-gradient(135deg, rgba(232,144,58,0.12), rgba(255,71,87,0.08));
+  border: 1px solid rgba(232,144,58,0.3);
+  border-radius: var(--radius-sm);
+  padding: 14px 18px;
+  margin: 14px 0 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.total-preview-label { font-size: 13px; color: var(--text-sub); font-weight: 500; }
+.total-preview-val {
+  font-family: 'Outfit', 'Prompt', sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--orange);
+  text-shadow: 0 0 15px var(--orange-glow);
+}
+
+/* ─── SLIP UPLOAD ZONE ─── */
+.slip-zone {
+  border: 2px dashed rgba(255,255,255,0.15);
+  border-radius: var(--radius-md);
+  padding: 24px 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
+  margin-bottom: 18px;
+  background: rgba(0,0,0,0.25);
+}
+.slip-zone:hover, .slip-zone.dragover {
+  border-color: var(--orange);
+  background: rgba(232,144,58,0.06);
+}
+.slip-zone.has-file {
+  border-color: var(--green);
+  background: rgba(46,213,115,0.05);
+}
+.slip-icon { font-size: 32px; display: block; margin-bottom: 8px; }
+.slip-label { font-size: 14px; font-weight: 600; color: #fff; }
+.slip-sub { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+.slip-preview {
+  max-width: 100%;
+  max-height: 220px;
+  border-radius: 10px;
+  margin-top: 12px;
+  display: none;
+  object-fit: contain;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+}
+
+.btn-remove-slip {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255,71,87,0.8);
+  border: none;
+  color: #fff;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+.btn-remove-slip:hover { background: var(--primary); }
+
+/* ─── SUBMIT BUTTON ─── */
+.btn-submit {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, var(--orange), #d44010);
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 8px 25px var(--orange-glow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.btn-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(232, 144, 58, 0.5);
+  filter: brightness(1.1);
+}
+.btn-submit:active { transform: scale(0.98); }
+.btn-submit:disabled {
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.25);
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.btn-clear {
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 12px 0 0;
+  display: block;
+  margin: 0 auto;
+  transition: color 0.2s;
+}
+.btn-clear:hover { color: #fff; }
+
+/* ─── SUMMARY VIEW ─── */
+.summary-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.summary-actions {
+  display: flex;
+  gap: 8px;
+}
+.btn-action-sm {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--panel-border);
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-sub);
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: inherit;
+}
+.btn-action-sm:hover {
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+}
+
+/* Grand Total Banner */
+.grand-total-card {
+  background: linear-gradient(135deg, rgba(232,144,58,0.15), rgba(255,71,87,0.1));
+  border: 1px solid rgba(232,144,58,0.3);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+.grand-label { font-size: 13px; color: var(--text-muted); font-weight: 600; }
+.grand-val {
+  font-family: 'Outfit', 'Prompt', sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--orange);
+  text-shadow: 0 0 20px var(--orange-glow);
+}
+.grand-count { font-size: 12px; color: var(--text-sub); text-align: right; }
+
+/* Round Card Accordion */
+.round-card {
+  background: var(--panel-card);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.round-card:hover {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.15);
+}
+.round-card.open {
+  border-color: rgba(232, 144, 58, 0.4);
+  background: rgba(30, 34, 45, 0.9);
+}
+
+.round-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.round-name { font-size: 16px; font-weight: 700; color: #fff; }
+.round-meta { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+.round-total {
+  font-family: 'Outfit', 'Prompt', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--orange);
+  text-align: right;
+}
+.round-total-lbl { font-size: 11px; color: var(--text-muted); text-align: right; }
+
+.round-items {
+  margin-top: 14px;
+  display: none;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding-top: 14px;
+}
+.round-card.open .round-items { display: block; }
+
+.item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  font-size: 13px;
+}
+.item-row:last-child { border-bottom: none; padding-bottom: 0; }
+.item-name { color: #fff; font-weight: 600; }
+.item-meta { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+.item-note { font-size: 12px; color: var(--accent); margin-top: 2px; }
+.item-total {
+  font-family: 'Outfit', 'Prompt', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--orange);
+  text-align: right;
+  white-space: nowrap;
+  margin-left: 12px;
+}
+.slip-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--green);
+  text-decoration: none;
+  margin-top: 4px;
+  background: rgba(46, 213, 115, 0.1);
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+.slip-link:hover { background: rgba(46, 213, 115, 0.2); }
+
+/* ─── MODALS ─── */
+.modal-bg {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+.modal-bg.open { opacity: 1; pointer-events: auto; }
+
+.modal {
+  background: #181b22;
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+  transform: translateY(20px);
+  transition: transform 0.25s ease;
+}
+.modal-bg.open .modal { transform: translateY(0); }
+
+.modal-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 16px;
+}
+.modal-actions { display: flex; gap: 10px; margin-top: 20px; }
+.btn-modal {
+  flex: 1;
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  border: none;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.btn-cancel { background: rgba(255,255,255,0.06); color: #fff; }
+.btn-cancel:hover { background: rgba(255,255,255,0.12); }
+.btn-confirm {
+  background: linear-gradient(135deg, var(--orange), #d44010);
+  color: #fff;
+}
+.btn-confirm:hover { filter: brightness(1.1); }
+
+/* ─── TOAST ─── */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: #fff;
+  color: #000;
+  padding: 12px 28px;
+  border-radius: 99px;
+  font-size: 14px;
+  font-weight: 700;
+  z-index: 999;
+  transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+  white-space: nowrap;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+  pointer-events: none;
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+
+.spin { display: inline-block; animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.empty-state {
+  text-align: center;
+  padding: 40px 0;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+.empty-icon { font-size: 40px; display: block; margin-bottom: 10px; opacity: 0.4; }
+</style>
+</head>
+<body>
+
+<div class="app-container">
+
+  <!-- ================= TOP APP BAR ================= -->
+  <header class="top-bar">
+    <div class="brand-group">
+      <div class="brand-icon-wrap">🧾</div>
+      <div>
+        <div class="brand-title">MALA COST</div>
+        <div class="brand-sub">หม่าล่าทอด • บันทึกค่าวัตถุดิบ</div>
+      </div>
+    </div>
+
+    <div class="top-actions">
+      <a href="index.html" class="btn-pos-link" title="กลับไประบบขายหน้าร้าน">
+        <span>🛒</span> ขายหน้าร้าน
+      </a>
+      <div class="conn-pill" onclick="openConfigModal()" data-tooltip="คลิกเพื่อตั้งค่า Sheet">
+        <div class="pulse-dot" id="conn-dot"></div>
+        <span id="conn-text">เชื่อมต่อ Sheet</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= TABS ================= -->
+  <nav class="tabs-bar">
+    <button class="tab-btn active" id="tab-btn-add" onclick="switchTab('add')">
+      <span>➕</span> บันทึกรายการ
+    </button>
+    <button class="tab-btn" id="tab-btn-summary" onclick="switchTab('summary')">
+      <span>📊</span> สรุปแต่ละรอบ
+    </button>
+  </nav>
+
+  <!-- ================= CONTENT ================= -->
+  <div class="content-wrapper">
+
+    <!-- ─── PAGE 1: ADD EXPENSE ─── -->
+    <div class="page active" id="page-add">
+
+      <!-- Round Selector Card -->
+      <div class="card">
+        <div class="card-header">1. เลือกรอบการซื้อ</div>
+        
+        <div class="quick-chips">
+          <button class="chip" onclick="quickRoundToday()">📅 รอบวันนี้</button>
+          <button class="chip" onclick="quickRoundWeek()">📆 สัปดาห์นี้</button>
+          <button class="chip" onclick="openNewRound()">➕ สร้างรอบใหม่</button>
+        </div>
+
+        <div class="round-row">
+          <select class="round-select" id="round-select">
+            <option value="">— เลือกรอบ หรือสร้างใหม่ —</option>
+          </select>
+          <button class="btn-new-round" onclick="openNewRound()">+ รอบใหม่</button>
+        </div>
+
+        <div id="selected-round-info" class="selected-round-pill" style="display:none">
+          <span>📦 รอบที่เลือก: <b id="round-display"></b></span>
+          <span id="round-stat-badge" style="font-size:11px; opacity:0.8;"></span>
+        </div>
+      </div>
+
+      <!-- Ingredient Details Card -->
+      <div class="card">
+        <div class="card-header">2. รายละเอียดวัตถุดิบ</div>
+        
+        <!-- Quick Ingredient Suggestion Chips -->
+        <div class="quick-chips">
+          <span style="font-size:11px; color:var(--text-muted); align-self:center; margin-right:4px;">เลือกด่วน:</span>
+          <button class="chip" onclick="fillIngredient('หมูสามชั้น', 'เนื้อสัตว์', 'กก.')">หมูสามชั้น</button>
+          <button class="chip" onclick="fillIngredient('ไส้กรอกแดง', 'เนื้อสัตว์', 'แพ็ค')">ไส้กรอกแดง</button>
+          <button class="chip" onclick="fillIngredient('เต้าหู้ปลา', 'ลูกชิ้น/เต้าหู้', 'แพ็ค')">เต้าหู้ปลา</button>
+          <button class="chip" onclick="fillIngredient('เห็ดเข็มทอง', 'ผักและเห็ด', 'แพ็ค')">เห็ดเข็มทอง</button>
+          <button class="chip" onclick="fillIngredient('พริกหม่าล่า', 'เครื่องปรุง', 'ถุง')">พริกหม่าล่า</button>
+          <button class="chip" onclick="fillIngredient('น้ำมันพืช', 'เครื่องปรุง', 'ขวด')">น้ำมันพืช</button>
+          <button class="chip" onclick="fillIngredient('ไม้เสียบ', 'อุปกรณ์', 'แพ็ค')">ไม้เสียบ</button>
+        </div>
+
+        <div class="form-grid full">
+          <div class="field">
+            <label>ชื่อรายการวัตถุดิบ *</label>
+            <input type="text" id="f-name" placeholder="เช่น หมูสามชั้น, พริกหม่าล่า, เต้าหู้ชีส" />
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="field">
+            <label>จำนวน *</label>
+            <input type="number" id="f-qty" placeholder="0" min="0" step="0.1" oninput="calcTotal()" />
+          </div>
+          <div class="field">
+            <label>ราคาต่อหน่วย (฿) *</label>
+            <input type="number" id="f-price" placeholder="0" min="0" step="0.5" oninput="calcTotal()" />
+          </div>
+        </div>
+
+        <!-- Calculated Total Preview -->
+        <div class="total-preview">
+          <span class="total-preview-label">รวมเป็นเงิน</span>
+          <span class="total-preview-val" id="total-preview">฿0</span>
+        </div>
+
+        <div class="form-grid full">
+          <div class="field">
+            <label>หมายเหตุ / ร้านค้า</label>
+            <input type="text" id="f-note" placeholder="เช่น ซื้อจาก Makro, ตลาดสด, แพ็ค 1 กก." />
+          </div>
+        </div>
+
+        <!-- Smart Slip Upload Zone (with Drag&Drop and Paste support) -->
+        <div class="field" style="margin-top:8px;">
+          <label>สลิป / ใบเสร็จ (แนบรูปเพื่อเก็บหลักฐาน)</label>
+          <div class="slip-zone" id="slip-zone" onclick="document.getElementById('slip-file').click()">
+            <input type="file" id="slip-file" accept="image/*" onchange="handleSlip(event)" style="display:none" />
+            <button class="btn-remove-slip" id="btn-remove-slip" onclick="removeSlip(event)">✕</button>
+            <span class="slip-icon" id="slip-icon">📎</span>
+            <div class="slip-label" id="slip-label">แตะเพื่ออัปโหลด หรือลากไฟล์มาวาง</div>
+            <div class="slip-sub">รองรับ JPG, PNG และสามารถกด Ctrl+V / Cmd+V เพื่อวางรูปได้</div>
+            <img id="slip-preview" class="slip-preview" alt="slip preview" />
+          </div>
+        </div>
+
+        <button class="btn-submit" id="submit-btn" onclick="submitItem()">
+          <span>💾 บันทึกรายการ</span>
+        </button>
+        <button class="btn-clear" onclick="clearForm()">ล้างฟอร์ม</button>
+      </div>
+
+    </div>
+
+    <!-- ─── PAGE 2: SUMMARY ─── -->
+    <div class="page" id="page-summary">
+
+      <div class="summary-top-bar">
+        <div class="card-header" style="margin:0">ภาพรวมต้นทุนวัตถุดิบ</div>
+        <div class="summary-actions">
+          <button class="btn-action-sm" onclick="copySummaryText()">
+            <span>📋</span> คัดลอกส่ง LINE
+          </button>
+          <button class="btn-action-sm" onclick="loadSummary()">
+            <span id="refresh-icon">↻</span> รีเฟรช
+          </button>
+        </div>
+      </div>
+
+      <!-- Grand Total Card -->
+      <div id="grand-total-wrap"></div>
+
+      <!-- Search Rounds -->
+      <div class="field" style="margin-bottom:14px;">
+        <input type="text" id="search-rounds" placeholder="🔍 ค้นหารอบการซื้อ..." oninput="filterRounds()">
+      </div>
+
+      <!-- Rounds Accordion List -->
+      <div id="rounds-list">
+        <div class="empty-state">
+          <span class="empty-icon">🛒</span>
+          กำลังโหลดข้อมูลรอบการซื้อ...
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ================= MODALS ================= -->
+
+<!-- NEW ROUND MODAL -->
+<div class="modal-bg" id="modal-round">
+  <div class="modal">
+    <div class="modal-title">➕ สร้างรอบการซื้อใหม่</div>
+    <div class="field" style="margin-bottom:14px">
+      <label>ชื่อรอบ</label>
+      <input type="text" id="new-round-name" placeholder="เช่น รอบ 1, ตลาดสด 20 ส.ค., รอบเช้า" />
+    </div>
+    <div style="font-size:12px; color:var(--text-muted); margin-bottom:10px;">หรือเลือกด่วน:</div>
+    <div class="quick-chips" style="margin-bottom:16px;">
+      <button class="chip" onclick="setModalRoundToday()">📅 วันนี้</button>
+      <button class="chip" onclick="setModalRoundWeek()">📆 สัปดาห์นี้</button>
+      <button class="chip" onclick="setModalRoundMonth()">🗓️ เดือนนี้</button>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-modal btn-cancel" onclick="closeModal('modal-round')">ยกเลิก</button>
+      <button class="btn-modal btn-confirm" onclick="confirmNewRound()">สร้างรอบ</button>
+    </div>
+  </div>
+</div>
+
+<!-- SETTINGS MODAL -->
+<div class="modal-bg" id="modal-config">
+  <div class="modal">
+    <div class="modal-title">⚙️ ตั้งค่าเชื่อมต่อ Google Sheets</div>
+    <div class="field" style="margin-bottom:14px">
+      <label>Apps Script Web App URL (สำหรับวัตถุดิบ)</label>
+      <input type="text" id="script-url" value="https://script.google.com/macros/s/AKfycbwzS9HJy2i8ZsiqT19ZicNA6uqbKDLeE9Vum-IMYDmzd4Vxpnp75ffdTJxYvlvQkoHv2A/exec" />
+    </div>
+    <div class="modal-actions">
+      <button class="btn-modal btn-cancel" onclick="closeModal('modal-config')">ปิด</button>
+      <button class="btn-modal btn-cancel" onclick="testConn()">📡 ทดสอบ</button>
+      <button class="btn-modal btn-confirm" onclick="saveConfig()">บันทึก</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const DEFAULT_COST_URL = "https://script.google.com/macros/s/AKfycbwzS9HJy2i8ZsiqT19ZicNA6uqbKDLeE9Vum-IMYDmzd4Vxpnp75ffdTJxYvlvQkoHv2A/exec";
+let cfg = { url: DEFAULT_COST_URL };
+let rounds = [];
+let allRoundsData = [];
+let slipBase64 = null;
+let slipMime = null;
+let slipName = null;
+
+/* ─── INITIALIZATION ─── */
+function init() {
+  try {
+    const s = localStorage.getItem('mala_ingredient_cfg');
+    if (s) cfg = JSON.parse(s);
+
+    // If empty, check if POS config has urlCost
+    if (!cfg.url) cfg.url = DEFAULT_COST_URL; if (!cfg.url) {
+      const posCfg = localStorage.getItem('mala_pos_cfg');
+      if (posCfg) {
+        const parsed = JSON.parse(posCfg);
+        if (parsed.urlCost) cfg.url = parsed.urlCost;
+      }
+    }
+  } catch(e) {}
+
+  if (cfg.url) {
+    document.getElementById('script-url').value = cfg.url;
+    setConn(true);
+    loadRoundsForSelect();
+  }
+
+  // Setup Clipboard Paste Listener for screenshots
+  window.addEventListener('paste', handlePaste);
+
+  // Setup Drag and Drop for slip zone
+  const dropZone = document.getElementById('slip-zone');
+  ['dragenter', 'dragover'].forEach(name => {
+    dropZone.addEventListener(name, (e) => { e.preventDefault(); dropZone.classList.add('dragover'); });
+  });
+  ['dragleave', 'drop'].forEach(name => {
+    dropZone.addEventListener(name, (e) => { e.preventDefault(); dropZone.classList.remove('dragover'); });
+  });
+  dropZone.addEventListener('drop', (e) => {
+    const files = e.dataTransfer.files;
+    if (files.length > 0) processSlipFile(files[0]);
+  });
+}
+
+function openConfigModal() { openModal('modal-config'); }
+
+function saveConfig() {
+  cfg.url = document.getElementById('script-url').value.trim();
+  try {
+    localStorage.setItem('mala_ingredient_cfg', JSON.stringify(cfg));
+    // Also sync to POS config
+    const posCfg = JSON.parse(localStorage.getItem('mala_pos_cfg') || '{}');
+    posCfg.urlCost = cfg.url;
+    localStorage.setItem('mala_pos_cfg', JSON.stringify(posCfg));
+  } catch(e) {}
+
+  if (cfg.url) {
+    setConn(true);
+    toast('✅ บันทึกการเชื่อมต่อเรียบร้อย');
+    closeModal('modal-config');
+    loadRoundsForSelect();
+  } else {
+    toast('⚠️ กรุณากรอก Web App URL');
+  }
+}
+
+function testConn() {
+  if (!cfg.url) cfg.url = DEFAULT_COST_URL; if (!cfg.url) { toast('⚠️ ยังไม่ได้กรอก URL'); return; }
+  toast('📡 กำลังทดสอบเชื่อมต่อ...');
+  fetch(cfg.url + '?action=getRounds')
+    .then(r => r.json())
+    .then(d => { toast('✅ เชื่อมต่อสำเร็จ!'); setConn(true); })
+    .catch(e => toast('❌ ไม่สำเร็จ: ' + e.message));
+}
+
+function setConn(ok) {
+  document.getElementById('conn-dot').className = 'pulse-dot' + (ok ? ' on' : '');
+  document.getElementById('conn-text').textContent = ok ? 'เชื่อมต่อแล้ว ✓' : 'ตั้งค่า Sheet';
+}
+
+function switchTab(name) {
+  document.getElementById('tab-btn-add').classList.toggle('active', name === 'add');
+  document.getElementById('tab-btn-summary').classList.toggle('active', name === 'summary');
+  document.getElementById('page-add').classList.toggle('active', name === 'add');
+  document.getElementById('page-summary').classList.toggle('active', name === 'summary');
+  if (name === 'summary') loadSummary();
+}
+
+/* ─── ROUND MANAGEMENT ─── */
+async function loadRoundsForSelect() {
+  if (!cfg.url) return;
+  try {
+    const res = await fetch(cfg.url + '?action=getRounds');
+    const d = await res.json();
+    rounds = d.rounds || [];
+    allRoundsData = rounds;
+    const sel = document.getElementById('round-select');
+    const cur = sel.value;
+    sel.innerHTML = '<option value="">— เลือกรอบ หรือสร้างใหม่ —</option>';
+    rounds.forEach(r => {
+      const opt = document.createElement('option');
+      opt.value = r.name;
+      opt.textContent = `${r.name} (${r.count} รายการ • ฿${Number(r.total).toLocaleString()})`;
+      sel.appendChild(opt);
+    });
+    if (cur) sel.value = cur;
+  } catch(e) {}
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('round-select').addEventListener('change', function() {
+    const v = this.value;
+    if (v) {
+      document.getElementById('selected-round-info').style.display = 'flex';
+      document.getElementById('round-display').textContent = v;
+      const matched = rounds.find(r => r.name === v);
+      if (matched) {
+        document.getElementById('round-stat-badge').textContent = `${matched.count} รายการ • ฿${Number(matched.total).toLocaleString()}`;
+      } else {
+        document.getElementById('round-stat-badge').textContent = 'รอบใหม่';
+      }
+    } else {
+      document.getElementById('selected-round-info').style.display = 'none';
+    }
+  });
+});
+
+function openNewRound() { openModal('modal-round'); }
+
+function quickRoundToday() {
+  const d = new Date().toLocaleDateString('th-TH', { day:'2-digit', month:'2-digit', year:'numeric' });
+  selectOrCreateRound('รอบ ' + d);
+}
+
+function quickRoundWeek() {
+  const week = getWeekNumber(new Date());
+  selectOrCreateRound('สัปดาห์ที่ ' + week);
+}
+
+function setModalRoundToday() {
+  const d = new Date().toLocaleDateString('th-TH', { day:'2-digit', month:'2-digit', year:'numeric' });
+  document.getElementById('new-round-name').value = 'รอบ ' + d;
+}
+
+function setModalRoundWeek() {
+  const week = getWeekNumber(new Date());
+  document.getElementById('new-round-name').value = 'สัปดาห์ที่ ' + week;
+}
+
+function setModalRoundMonth() {
+  const month = new Date().toLocaleDateString('th-TH', { month:'long', year:'numeric' });
+  document.getElementById('new-round-name').value = 'รอบเดือน ' + month;
+}
+
+function getWeekNumber(d) {
+  const onejan = new Date(d.getFullYear(), 0, 1);
+  return Math.ceil((((d - onejan) / 86400000) + onejan.getDay() + 1) / 7);
+}
+
+function confirmNewRound() {
+  const name = document.getElementById('new-round-name').value.trim();
+  if (!name) { toast('⚠️ กรุณาระบุชื่อรอบ'); return; }
+  selectOrCreateRound(name);
+  closeModal('modal-round');
+  toast('✅ เลือก ' + name + ' แล้ว');
+}
+
+function selectOrCreateRound(name) {
+  const sel = document.getElementById('round-select');
+  let found = false;
+  for (let opt of sel.options) {
+    if (opt.value === name) { found = true; break; }
+  }
+  if (!found) {
+    const opt = document.createElement('option');
+    opt.value = name;
+    opt.textContent = name + ' (ใหม่)';
+    sel.appendChild(opt);
+  }
+  sel.value = name;
+  document.getElementById('selected-round-info').style.display = 'flex';
+  document.getElementById('round-display').textContent = name;
+  document.getElementById('round-stat-badge').textContent = 'พร้อมบันทึก';
+}
+
+function fillIngredient(name, cat, unit) {
+  document.getElementById('f-name').value = name;
+  document.getElementById('f-qty').focus();
+}
+
+/* ─── IMAGE UPLOAD & CLIENT-SIDE COMPRESSION ─── */
+function handleSlip(e) {
+  const file = e.target.files[0];
+  if (file) processSlipFile(file);
+}
+
+function handlePaste(e) {
+  const items = (e.clipboardData || e.originalEvent.clipboardData).items;
+  for (let item of items) {
+    if (item.type.indexOf('image') !== -1) {
+      const file = item.getAsFile();
+      processSlipFile(file);
+      toast('📋 วางรูปภาพจากคลิปบอร์ดแล้ว');
+      break;
+    }
+  }
+}
+
+function processSlipFile(file) {
+  slipMime = 'image/jpeg';
+  slipName = file.name || 'slip.jpg';
+
+  const reader = new FileReader();
+  reader.onload = function(ev) {
+    const img = new Image();
+    img.onload = function() {
+      // Compress image to max 1000px width/height
+      const maxDim = 1000;
+      let w = img.width;
+      let h = img.height;
+      if (w > maxDim || h > maxDim) {
+        if (w > h) {
+          h = Math.round((h * maxDim) / w);
+          w = maxDim;
+        } else {
+          w = Math.round((w * maxDim) / h);
+          h = maxDim;
+        }
+      }
+
+      const canvas = document.createElement('canvas');
+      canvas.width = w;
+      canvas.height = h;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, w, h);
+      
+      const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.82);
+      slipBase64 = compressedDataUrl.split(',')[1];
+      
+      const preview = document.getElementById('slip-preview');
+      preview.src = compressedDataUrl;
+      preview.style.display = 'block';
+      
+      document.getElementById('slip-icon').textContent = '✅';
+      document.getElementById('slip-label').textContent = file.name || 'รูปสลิปพร้อมส่ง';
+      document.getElementById('slip-zone').classList.add('has-file');
+      document.getElementById('btn-remove-slip').style.display = 'flex';
+    };
+    img.src = ev.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function removeSlip(e) {
+  if (e) e.stopPropagation();
+  slipBase64 = null; slipMime = null; slipName = null;
+  document.getElementById('slip-preview').style.display = 'none';
+  document.getElementById('slip-preview').src = '';
+  document.getElementById('slip-icon').textContent = '📎';
+  document.getElementById('slip-label').textContent = 'แตะเพื่ออัปโหลด หรือลากไฟล์มาวาง';
+  document.getElementById('slip-zone').classList.remove('has-file');
+  document.getElementById('slip-file').value = '';
+  document.getElementById('btn-remove-slip').style.display = 'none';
+}
+
+/* ─── CALCULATION ─── */
+function calcTotal() {
+  const qty = parseFloat(document.getElementById('f-qty').value) || 0;
+  const price = parseFloat(document.getElementById('f-price').value) || 0;
+  const total = qty * price;
+  document.getElementById('total-preview').textContent = '฿' + total.toLocaleString(undefined, {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2
+  });
+}
+
+/* ─── SUBMISSION ─── */
+async function submitItem() {
+  const round = document.getElementById('round-select').value;
+  const name = document.getElementById('f-name').value.trim();
+  const qty = parseFloat(document.getElementById('f-qty').value);
+  const price = parseFloat(document.getElementById('f-price').value);
+  const note = document.getElementById('f-note').value.trim();
+
+  if (!round) { toast('⚠️ กรุณาเลือกรอบการซื้อก่อน'); return; }
+  if (!name) { toast('⚠️ กรุณากรอกชื่อรายการวัตถุดิบ'); return; }
+  if (!qty || qty <= 0) { toast('⚠️ กรุณากรอกจำนวนที่ถูกต้อง'); return; }
+  if (price === undefined || price < 0 || isNaN(price)) { toast('⚠️ กรุณากรอกราคา'); return; }
+  if (!cfg.url) cfg.url = DEFAULT_COST_URL; if (!cfg.url) { toast('⚠️ ยังไม่ได้ตั้งค่า URL Google Sheets'); openConfigModal(); return; }
+
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<span>⏳ กำลังบันทึก...</span>';
+
+  const payload = {
+    action: 'addItem',
+    round,
+    name,
+    qty,
+    price,
+    note,
+    slipBase64: slipBase64 || '',
+    slipMime: slipMime || '',
+    slipName: slipName || ''
+  };
+
+  try {
+    await fetch(cfg.url, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    
+    toast(`🎉 บันทึก "${name}" ฿${(qty * price).toLocaleString()} สำเร็จ!`);
+    clearForm();
+    setTimeout(loadRoundsForSelect, 1500);
+  } catch(e) {
+    toast('❌ ส่งข้อมูลไม่สำเร็จ: ' + e.message);
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '<span>💾 บันทึกรายการ</span>';
+  }
+}
+
+function clearForm() {
+  ['f-name','f-qty','f-price','f-note'].forEach(id => document.getElementById(id).value = '');
+  removeSlip();
+  document.getElementById('total-preview').textContent = '฿0';
+}
+
+/* ─── SUMMARY VIEW ─── */
+async function loadSummary() {
+  if (!cfg.url) cfg.url = DEFAULT_COST_URL; if (!cfg.url) { toast('⚠️ ยังไม่ได้ตั้งค่า URL'); return; }
+  const icon = document.getElementById('refresh-icon');
+  icon.className = 'spin';
+
+  try {
+    const res = await fetch(cfg.url + '?action=getRounds');
+    const d = await res.json();
+    rounds = d.rounds || [];
+    allRoundsData = rounds;
+    renderSummary(rounds);
+    setConn(true);
+  } catch(e) {
+    toast('❌ โหลดข้อมูลไม่สำเร็จ: ' + e.message);
+  } finally {
+    icon.className = '';
+  }
+}
+
+function renderSummary(roundList) {
+  const grandTotal = roundList.reduce((s, r) => s + Number(r.total || 0), 0);
+  const grandCount = roundList.reduce((s, r) => s + Number(r.count || 0), 0);
+
+  document.getElementById('grand-total-wrap').innerHTML = roundList.length ? `
+    <div class="grand-total-card">
+      <div>
+        <p class="grand-label">รายจ่ายวัตถุดิบทั้งหมด</p>
+        <p class="grand-val">฿${grandTotal.toLocaleString(undefined, {minimumFractionDigits:0, maximumFractionDigits:2})}</p>
+      </div>
+      <div>
+        <p class="grand-count">📦 ${roundList.length} รอบการซื้อ</p>
+        <p class="grand-count">📋 ${grandCount} รายการทั้งหมด</p>
+      </div>
+    </div>` : '';
+
+  if (!roundList.length) {
+    document.getElementById('rounds-list').innerHTML = '<div class="empty-state"><span class="empty-icon">🛒</span>ยังไม่มีข้อมูลรอบการซื้อ</div>';
+    return;
+  }
+
+  document.getElementById('rounds-list').innerHTML = roundList.map((r, i) => `
+    <div class="round-card" id="rc-${i}" onclick="toggleRound(${i}, '${r.name.replace(/'/g,"\'")}')">
+      <div class="round-top">
+        <div>
+          <p class="round-name">📦 ${r.name}</p>
+          <p class="round-meta">${r.count} รายการ • ${r.updated || 'ล่าสุด'}</p>
+        </div>
+        <div>
+          <p class="round-total">฿${Number(r.total).toLocaleString(undefined, {minimumFractionDigits:0, maximumFractionDigits:2})}</p>
+          <p class="round-total-lbl">ยอดรวมรอบนี้</p>
+        </div>
+      </div>
+      <div class="round-items" id="ri-${i}">
+        <div style="font-size:12px; color:var(--text-muted); text-align:center; padding:10px 0">กำลังโหลดรายละเอียด...</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterRounds() {
+  const q = document.getElementById('search-rounds').value.trim().toLowerCase();
+  if (!q) {
+    renderSummary(allRoundsData);
+    return;
+  }
+  const filtered = allRoundsData.filter(r => r.name.toLowerCase().includes(q));
+  renderSummary(filtered);
+}
+
+async function toggleRound(idx, roundName) {
+  const card = document.getElementById('rc-' + idx);
+  const items = document.getElementById('ri-' + idx);
+  const isOpen = card.classList.contains('open');
+  card.classList.toggle('open');
+
+  if (!isOpen && cfg.url) {
+    try {
+      const res = await fetch(cfg.url + '?action=getItems&round=' + encodeURIComponent(roundName));
+      const d = await res.json();
+      const list = d.items || [];
+      if (!list.length) {
+        items.innerHTML = '<div style="font-size:12px; color:var(--text-muted); text-align:center; padding:10px 0">ไม่มีรายการในรอบนี้</div>';
+        return;
+      }
+      items.innerHTML = list.map(it => `
+        <div class="item-row">
+          <div>
+            <p class="item-name">${it.name}</p>
+            <p class="item-meta">${it.qty} หน่วย × ฿${Number(it.price).toLocaleString()} / หน่วย</p>
+            ${it.note ? `<p class="item-note">💬 ${it.note}</p>` : ''}
+            ${it.slipUrl ? `<a href="${it.slipUrl}" target="_blank" class="slip-link" onclick="event.stopPropagation()">🧾 ดูสลิปแนบ</a>` : ''}
+          </div>
+          <div class="item-total">฿${Number(it.total).toLocaleString(undefined, {minimumFractionDigits:0, maximumFractionDigits:2})}</div>
+        </div>
+      `).join('');
+    } catch(e) {
+      items.innerHTML = '<div style="font-size:12px; color:var(--text-muted); padding:10px 0">โหลดข้อมูลไม่สำเร็จ</div>';
+    }
+  }
+}
+
+function copySummaryText() {
+  if (!rounds.length) { toast('⚠️ ไม่มีข้อมูลให้คัดลอก'); return; }
+  const grandTotal = rounds.reduce((s, r) => s + Number(r.total || 0), 0);
+  let text = `🔥 [สรุปต้นทุนวัตถุดิบ - หม่าล่าทอด] 🔥\n`;
+  text += `ยอดรวมทั้งหมด: ฿${grandTotal.toLocaleString()} (${rounds.length} รอบ)\n`;
+  text += `--------------------------\n`;
+  rounds.forEach((r, idx) => {
+    text += `${idx+1}. ${r.name}: ฿${Number(r.total).toLocaleString()} (${r.count} รายการ)\n`;
+  });
+  text += `--------------------------\nวันที่รายงาน: ${new Date().toLocaleDateString('th-TH')}`;
+
+  navigator.clipboard.writeText(text).then(() => {
+    toast('📋 คัดลอกสรุปสำหรับส่ง LINE แล้ว!');
+  }).catch(() => {
+    toast('❌ คัดลอกไม่สำเร็จ');
+  });
+}
+
+/* ─── MODALS & TOAST ─── */
+function openModal(id) { document.getElementById(id).classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+let _tt;
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(_tt);
+  _tt = setTimeout(() => t.classList.remove('show'), 3200);
+}
+
+init();
+</script>
+</body>
+</html>

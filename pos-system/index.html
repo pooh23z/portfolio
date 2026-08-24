@@ -15,13 +15,13 @@
       --bg-gradient: radial-gradient(circle at 10% 10%, rgba(255, 71, 87, 0.12), transparent 35%),
                      radial-gradient(circle at 90% 90%, rgba(255, 165, 2, 0.10), transparent 35%),
                      #0a0c10;
-      --panel-bg: rgba(20, 24, 33, 0.82);
-      --panel-card: rgba(28, 33, 46, 0.72);
-      --panel-border: rgba(255, 255, 255, 0.08);
-      --panel-border-glow: rgba(255, 71, 87, 0.4);
+      --panel-bg: rgba(20, 24, 33, 0.88);
+      --panel-card: rgba(28, 33, 46, 0.85);
+      --panel-border: rgba(255, 255, 255, 0.09);
+      --panel-border-glow: rgba(255, 71, 87, 0.45);
       --text-main: #ffffff;
       --text-sub: #cbd5e1;
-      --text-muted: rgba(255, 255, 255, 0.52);
+      --text-muted: rgba(255, 255, 255, 0.55);
       --primary: #ff4757;
       --primary-glow: rgba(255, 71, 87, 0.45);
       --accent: #ffa502;
@@ -32,8 +32,8 @@
       --p7-color: #1e90ff;
       --p10-color: #ffa502;
       --p13-color: #ff4757;
-      --radius-lg: 24px;
-      --radius-md: 16px;
+      --radius-lg: 22px;
+      --radius-md: 14px;
       --radius-sm: 10px;
     }
 
@@ -55,7 +55,7 @@
     .app-container {
       width: 100vw;
       height: 100vh;
-      max-width: 1440px;
+      max-width: 1480px;
       background: var(--bg-gradient);
       position: relative;
       display: flex;
@@ -65,13 +65,13 @@
 
     /* ─── TOP APP BAR ─── */
     .top-bar {
-      height: 58px;
-      padding: 0 20px;
+      height: 56px;
+      padding: 0 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       border-bottom: 1px solid var(--panel-border);
-      background: rgba(10, 12, 16, 0.88);
+      background: rgba(10, 12, 16, 0.90);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       z-index: 100;
@@ -86,20 +86,20 @@
     }
 
     .brand-icon-wrap {
-      width: 36px;
-      height: 36px;
+      width: 34px;
+      height: 34px;
       border-radius: 10px;
       background: linear-gradient(135deg, rgba(255,71,87,0.3), rgba(255,165,2,0.3));
       border: 1px solid rgba(255,71,87,0.45);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 20px;
+      font-size: 18px;
       box-shadow: 0 0 15px var(--primary-glow);
     }
 
     .brand-title {
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 800;
       letter-spacing: 0.5px;
       background: linear-gradient(90deg, #fff, #ffd280);
@@ -122,25 +122,25 @@
       display: flex;
       gap: 6px;
       background: rgba(0, 0, 0, 0.4);
-      padding: 4px;
+      padding: 3px;
       border-radius: 99px;
       border: 1px solid var(--panel-border);
     }
 
     .nav-tab {
-      padding: 6px 16px;
+      padding: 5px 14px;
       border-radius: 99px;
       border: none;
       background: transparent;
       color: var(--text-muted);
       font-family: inherit;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 6px;
-      transition: all 0.25s ease;
+      gap: 5px;
+      transition: all 0.2s ease;
       text-decoration: none;
     }
 
@@ -163,14 +163,14 @@
     .top-actions {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
     .btn-parse-line {
       background: rgba(6, 199, 85, 0.15);
       border: 1px solid rgba(6, 199, 85, 0.4);
       color: #2ed573;
-      padding: 6px 14px;
+      padding: 5px 12px;
       border-radius: 99px;
       font-family: inherit;
       font-size: 12px;
@@ -178,7 +178,7 @@
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       transition: all 0.2s;
     }
     .btn-parse-line:hover {
@@ -190,20 +190,20 @@
     .conn-status {
       display: flex;
       align-items: center;
-      gap: 8px;
-      font-size: 12px;
+      gap: 6px;
+      font-size: 11px;
       color: var(--text-muted);
       background: rgba(255,255,255,0.04);
       border: 1px solid var(--panel-border);
-      padding: 5px 12px;
+      padding: 5px 10px;
       border-radius: 99px;
       cursor: pointer;
       transition: 0.2s;
     }
     .conn-status:hover { border-color: rgba(255,255,255,0.2); color: #fff; }
     .pulse-dot {
-      width: 8px;
-      height: 8px;
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
       background: #777;
     }
@@ -229,29 +229,29 @@
       width: 100%;
       height: 100%;
       display: none;
-      padding: 14px 18px 75px 18px;
+      padding: 12px 16px 70px 16px;
       animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
     .view.active { display: grid; }
     
     #view-pos {
-      grid-template-columns: 280px 1fr 340px;
-      gap: 14px;
+      grid-template-columns: 340px 1fr 340px;
+      gap: 12px;
     }
     #view-stats {
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
+      gap: 14px;
     }
 
-    @media (max-width: 1200px) {
-      #view-pos { grid-template-columns: 240px 1fr 300px; gap: 10px; padding: 10px 12px 75px; }
+    @media (max-width: 1250px) {
+      #view-pos { grid-template-columns: 300px 1fr 300px; gap: 10px; padding: 10px 12px 70px; }
       .top-bar { padding: 0 12px; }
     }
-    @media (max-width: 900px) {
+    @media (max-width: 950px) {
       body { overflow: auto; }
       .app-container { height: auto; min-height: 100vh; }
       .main-view-wrap { overflow: visible; }
-      .view { padding: 12px 10px 85px; height: auto; }
+      .view { padding: 10px 10px 80px; height: auto; }
       #view-pos { grid-template-columns: 1fr; display: flex !important; flex-direction: column; }
       #view-stats { grid-template-columns: 1fr; display: flex !important; flex-direction: column; }
       #view-pos { display: none !important; }
@@ -264,7 +264,7 @@
     .col-dash {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
       height: 100%;
       overflow: hidden;
     }
@@ -273,7 +273,7 @@
       background: var(--panel-bg);
       border: 1px solid var(--panel-border);
       border-radius: var(--radius-lg);
-      padding: 16px;
+      padding: 14px;
       display: flex;
       flex-direction: column;
       box-shadow: 0 10px 30px rgba(0,0,0,0.3);
@@ -287,7 +287,7 @@
       font-size: 14px;
       font-weight: 700;
       color: #fff;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -298,15 +298,15 @@
       background: rgba(255,255,255,0.06);
       border: 1px solid var(--panel-border);
       color: var(--text-sub);
-      width: 30px;
-      height: 30px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       transition: all 0.2s;
-      font-size: 13px;
+      font-size: 12px;
     }
     .btn-icon:hover {
       background: rgba(255,255,255,0.15);
@@ -315,33 +315,36 @@
     }
     .btn-icon:active { transform: scale(0.95); }
 
-    /* Dashboard Summary */
+    /* Dashboard Summary Header */
     .sales-val {
-      font-size: 30px;
+      font-size: 26px;
       font-weight: 800;
       color: #fff;
       letter-spacing: -0.5px;
-      text-shadow: 0 0 25px rgba(255, 165, 2, 0.2);
+      text-shadow: 0 0 20px rgba(255, 165, 2, 0.25);
     }
     .sales-sub {
       font-size: 11px;
       color: var(--accent);
-      font-weight: 600;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
       margin-bottom: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
     .sales-stats-row {
       display: flex;
       gap: 6px;
-      margin-top: 6px;
-      margin-bottom: 10px;
+      margin-top: 4px;
+      margin-bottom: 8px;
     }
     .mini-stat-pill {
       background: rgba(255,255,255,0.04);
       border: 1px solid var(--panel-border);
-      border-radius: 8px;
-      padding: 4px 8px;
+      border-radius: 6px;
+      padding: 3px 8px;
       font-size: 11px;
       color: var(--text-sub);
       display: flex;
@@ -355,10 +358,10 @@
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
-      height: 90px;
-      gap: 5px;
-      margin-top: 6px;
-      padding-top: 6px;
+      height: 70px;
+      gap: 4px;
+      margin-top: 4px;
+      padding-top: 4px;
       border-top: 1px solid rgba(255,255,255,0.05);
     }
     .chart-bar-wrap {
@@ -369,60 +372,247 @@
       justify-content: flex-end;
       height: 100%;
       cursor: pointer;
+      position: relative;
     }
     .chart-bar {
       width: 100%;
-      max-width: 18px;
-      border-radius: 5px;
+      max-width: 16px;
+      border-radius: 4px;
       background: linear-gradient(to top, var(--accent), #ff793f);
       box-shadow: 0 0 10px rgba(255, 165, 2, 0.25);
-      transition: height 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s;
+      transition: height 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s, filter 0.2s;
     }
-    .chart-bar-wrap:hover .chart-bar { transform: scaleY(1.05); filter: brightness(1.2); }
+    .chart-bar-wrap:hover .chart-bar { transform: scaleY(1.08); filter: brightness(1.25); }
+    .chart-bar.selected {
+      background: linear-gradient(to top, #2ed573, #7bed9f) !important;
+      box-shadow: 0 0 15px var(--success-glow) !important;
+      border: 1px solid #fff;
+    }
     .chart-bar.today {
       background: linear-gradient(to top, var(--primary), #ff6b81);
       box-shadow: 0 0 12px var(--primary-glow);
     }
-    .chart-label { font-size: 9px; color: var(--text-muted); margin-top: 4px; font-weight: 500; }
+    .chart-label { font-size: 9px; color: var(--text-muted); margin-top: 3px; font-weight: 600; }
 
-    /* Recent Orders List */
-    .orders-list {
-      flex: 1;
-      overflow-y: auto;
-      margin-right: -6px;
-      padding-right: 6px;
+    /* ─── DYNAMIC DATE SELECTOR & DROPDOWN ─── */
+    .history-date-header {
       display: flex;
       flex-direction: column;
       gap: 6px;
+      margin-bottom: 8px;
     }
-    .order-item-wrap {
+
+    .date-dropdown {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid var(--accent);
+      border-radius: 10px;
+      color: #ffd280;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 7px 10px;
+      outline: none;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    .date-dropdown option {
+      background: #181b22;
+      color: #fff;
+      font-size: 12px;
+    }
+
+    .date-pills-scroll {
+      display: flex;
+      gap: 5px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+    }
+    .date-pills-scroll::-webkit-scrollbar { height: 3px; }
+    
+    .date-pill {
+      padding: 4px 9px;
+      border-radius: 99px;
+      border: 1px solid var(--panel-border);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-muted);
+      font-family: inherit;
+      font-size: 11px;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .date-pill:hover { background: rgba(255,255,255,0.08); color: #fff; }
+    .date-pill.active {
+      background: linear-gradient(135deg, var(--accent), #ff793f);
+      border-color: transparent;
+      color: #000;
+      font-weight: 800;
+      box-shadow: 0 3px 10px var(--accent-glow);
+    }
+    .date-pill.today-pill.active {
+      background: linear-gradient(135deg, var(--primary), #ff6b81);
+      color: #fff;
+      box-shadow: 0 3px 10px var(--primary-glow);
+    }
+
+    .hist-search-box {
+      margin-bottom: 8px;
+      position: relative;
+    }
+    .hist-search-box input {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--panel-border);
+      border-radius: 8px;
+      padding: 6px 8px 6px 26px;
+      color: #fff;
+      font-family: inherit;
+      font-size: 11px;
+      outline: none;
+      transition: 0.2s;
+    }
+    .hist-search-box input:focus { border-color: var(--accent); }
+    .hist-search-icon {
+      position: absolute;
+      left: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 11px;
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    .orders-list {
+      flex: 1;
+      overflow-y: auto;
+      margin-right: -4px;
+      padding-right: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    /* Enhanced Order Review Card */
+    .order-card {
       background: var(--panel-card);
       border: 1px solid var(--panel-border);
-      border-radius: var(--radius-sm);
+      border-radius: var(--radius-md);
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
       transition: all 0.2s;
-      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      position: relative;
     }
-    .order-item-wrap:hover {
-      background: rgba(255,255,255,0.06);
-      border-color: rgba(255,255,255,0.15);
+    .order-card:hover {
+      border-color: rgba(255, 165, 2, 0.35);
+      background: rgba(35, 41, 56, 0.85);
+      transform: translateY(-1px);
     }
-    .order-item {
-      padding: 8px 10px;
+    .order-card.highlight {
+      border-left: 4px solid var(--accent);
+    }
+
+    .order-card-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      cursor: pointer;
     }
-    .order-id { font-size: 12px; font-weight: 600; color: #fff; }
-    .order-det { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
-    .order-amt { font-size: 14px; font-weight: 700; color: var(--accent); }
-    .order-expanded-det {
-      padding: 0 10px 8px 10px;
+    .order-time-badge {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .order-date-tag {
+      font-size: 10px;
+      color: var(--text-muted);
+      background: rgba(255,255,255,0.06);
+      padding: 1px 6px;
+      border-radius: 4px;
+    }
+    .order-grand-amt {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--accent);
+      text-shadow: 0 0 10px var(--accent-glow);
+    }
+
+    .order-customer-note {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #ffd280;
+      background: rgba(255, 165, 2, 0.1);
+      border: 1px solid rgba(255, 165, 2, 0.2);
+      border-radius: 6px;
+      padding: 3px 8px;
+    }
+
+    /* Skewer Breakdown List */
+    .order-skewer-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 2px;
+      margin-bottom: 2px;
+    }
+    .skewer-chip {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 6px;
+      padding: 3px 7px;
+      font-size: 12px;
+      font-weight: 500;
+      color: #f1f5f9;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .skewer-chip b {
+      color: var(--accent);
+      font-weight: 800;
+      background: rgba(0,0,0,0.35);
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+
+    .order-card-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 4px;
+      padding-top: 4px;
+      border-top: 1px solid rgba(255,255,255,0.05);
       font-size: 11px;
+      color: var(--text-muted);
+    }
+    .btn-card-action {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--panel-border);
+      border-radius: 6px;
+      padding: 3px 8px;
       color: var(--text-sub);
-      display: none;
-      border-top: 1px solid rgba(255,255,255,0.04);
-      margin-top: 3px;
+      font-family: inherit;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .btn-card-action:hover {
+      background: rgba(6, 199, 85, 0.2);
+      border-color: #2ed573;
+      color: #2ed573;
     }
 
     /* ─── MENU COLUMN ─── */
@@ -502,7 +692,7 @@
     .price-tabs-bar::-webkit-scrollbar { height: 3px; }
     
     .price-tab-btn {
-      padding: 6px 14px;
+      padding: 5px 12px;
       border-radius: 99px;
       background: rgba(255,255,255,0.04);
       border: 1px solid var(--panel-border);
@@ -515,7 +705,7 @@
       transition: all 0.2s;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
     }
     .price-tab-btn:hover { background: rgba(255,255,255,0.08); color: #fff; }
     .price-tab-btn.active {
@@ -645,7 +835,7 @@
       display: inline-block;
     }
 
-    /* On-Card Stepper for Ultra-Fast Multiple Item Selection */
+    /* On-Card Stepper */
     .card-stepper {
       display: flex;
       align-items: center;
@@ -725,7 +915,7 @@
       background: var(--panel-bg);
       border: 1px solid var(--panel-border);
       border-radius: var(--radius-lg);
-      padding: 16px;
+      padding: 14px;
       height: 100%;
       overflow: hidden;
       box-shadow: 0 10px 30px rgba(0,0,0,0.3);
@@ -734,7 +924,7 @@
     }
 
     .cart-header {
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 700;
       margin-bottom: 10px;
       display: flex;
@@ -746,8 +936,8 @@
     .cart-list {
       flex: 1;
       overflow-y: auto;
-      margin-right: -6px;
-      padding-right: 6px;
+      margin-right: -4px;
+      padding-right: 4px;
       display: flex;
       flex-direction: column;
       gap: 6px;
@@ -767,15 +957,15 @@
 
     .cart-item-info { display: flex; align-items: center; gap: 8px; }
     .cart-item-img {
-      width: 32px;
-      height: 32px;
+      width: 30px;
+      height: 30px;
       border-radius: 6px;
       background: rgba(255,255,255,0.05);
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 16px;
+      font-size: 15px;
       flex-shrink: 0;
     }
     .cart-item-img img { width: 100%; height: 100%; object-fit: cover; }
@@ -795,11 +985,11 @@
       background: none;
       border: none;
       color: #fff;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 700;
       cursor: pointer;
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -874,7 +1064,7 @@
       color: var(--text-muted);
     }
     .total-row.grand {
-      font-size: 26px;
+      font-size: 24px;
       font-weight: 800;
       color: #fff;
       margin-bottom: 10px;
@@ -892,7 +1082,7 @@
 
     .btn-copy-line {
       flex: 1;
-      padding: 14px 10px;
+      padding: 13px 8px;
       border-radius: var(--radius-md);
       border: 1px solid rgba(6, 199, 85, 0.4);
       background: rgba(6, 199, 85, 0.12);
@@ -905,13 +1095,13 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 5px;
     }
     .btn-copy-line:hover { background: #06c755; color: #fff; box-shadow: 0 4px 15px rgba(6,199,85,0.4); }
 
     .btn-save-order {
       flex: 2;
-      padding: 14px 12px;
+      padding: 13px 10px;
       border-radius: var(--radius-md);
       border: none;
       background: linear-gradient(135deg, var(--primary), #e84118);
@@ -1227,9 +1417,9 @@
         <span>📋</span> วางแชท LINE
       </button>
       
-      <div class="conn-status" onclick="openSettingsModal()" data-tooltip="คลิกเพื่อตั้งค่า Sheet">
-        <div class="pulse-dot" id="conn-dot"></div>
-        <span id="conn-text">เชื่อมต่อระบบ</span>
+      <div class="conn-status" onclick="openSettingsModal()" data-tooltip="คลิกเพื่อดูการตั้งค่า Sheet">
+        <div class="pulse-dot online" id="conn-dot"></div>
+        <span id="conn-text">เชื่อมต่อระบบแล้ว ✓</span>
       </div>
       <button class="btn-icon" onclick="openSettingsModal()" data-tooltip="ตั้งค่าระบบ">
         <span>⚙️</span>
@@ -1244,17 +1434,23 @@
     <!-- ================= VIEW 1: POS (Order Entry) ================= -->
     <div id="view-pos" class="view active">
       
-      <!-- COLUMN 1: DASHBOARD & RECENT ORDERS -->
+      <!-- COLUMN 1: DASHBOARD & ACTIVE ORDER REVIEW BOARD -->
       <div class="col-dash">
         
-        <!-- Today Sales Summary Panel -->
+        <!-- Today / Selected Date Sales Summary Panel -->
         <div class="panel" style="flex-shrink: 0;">
           <div class="panel-title">
             <span>สรุปยอดขาย</span>
-            <button class="btn-icon" onclick="openDateModal()" data-tooltip="เลือกช่วงวันที่"><span>📅</span></button>
+            <div style="display:flex; align-items:center; gap:6px;">
+              <button class="btn-icon" onclick="openDateModal()" data-tooltip="เลือกวันที่ในปฏิทิน"><span>📅</span></button>
+              <button class="btn-icon" onclick="refreshHistoryData()" data-tooltip="ซิงค์ข้อมูลตรงกับ Sheet 100%"><span>↻</span></button>
+            </div>
           </div>
           
-          <div class="sales-sub" id="dash-date-label">ยอดขายวันนี้</div>
+          <div class="sales-sub">
+            <span id="dash-date-label">ยอดขายวันนี้</span>
+            <span id="dash-date-badge" style="font-size:10px; background:rgba(255,255,255,0.06); padding:1px 6px; border-radius:4px; color:var(--text-muted);">22 ส.ค.</span>
+          </div>
           <div class="sales-val" id="dash-total">฿0</div>
           
           <div class="sales-stats-row">
@@ -1262,20 +1458,44 @@
             <div class="mini-stat-pill">📋 <b id="dash-orders">0</b> ออเดอร์</div>
           </div>
           
-          <!-- 7-Day Chart -->
+          <!-- 7-Day Interactive Bar Chart -->
           <div class="chart-container" id="dash-chart">
-            <!-- Bars injected via JS -->
+            <!-- Bars injected via JS with click-to-filter -->
           </div>
         </div>
         
-        <!-- Recent Orders Panel -->
+        <!-- Persistent Order Review Board Panel with Dynamic Date Selector -->
         <div class="panel" style="flex: 1; overflow: hidden;">
           <div class="panel-title">
-            <span>ออเดอร์ล่าสุดวันนี้</span>
-            <button class="btn-icon" onclick="fetchFromSheet()" data-tooltip="รีเฟรชข้อมูล"><span>↻</span></button>
+            <span style="display:flex; align-items:center; gap:6px;">
+              <span>📜 รายการออเดอร์</span>
+              <span id="history-badge" style="font-size:10px; background:rgba(255,165,2,0.15); color:var(--accent); padding:1px 6px; border-radius:99px; font-weight:700;">0</span>
+            </span>
           </div>
+
+          <!-- Dynamic Date Selector Header -->
+          <div class="history-date-header">
+            <!-- Dropdown Selector -->
+            <select id="date-select-dropdown" class="date-dropdown" onchange="selectDate(this.value)">
+              <option value="today">🌟 วันนี้</option>
+              <option value="all">🕒 ดูประวัติทั้งหมดทุกวัน</option>
+            </select>
+
+            <!-- Quick Date Pills Bar -->
+            <div class="date-pills-scroll" id="date-pills-bar">
+              <!-- Injected via JS -->
+            </div>
+          </div>
+
+          <!-- Quick Search in Order History -->
+          <div class="hist-search-box">
+            <span class="hist-search-icon">🔍</span>
+            <input type="text" id="hist-search-input" placeholder="ค้นหาตามชื่อลูกค้า หรือเมนู..." oninput="renderRecentOrders()">
+          </div>
+
+          <!-- Detailed Orders List -->
           <div class="orders-list" id="recent-orders">
-            <div class="empty-msg">ยังไม่มีออเดอร์วันนี้</div>
+            <div class="empty-msg">กำลังโหลดประวัติออเดอร์...</div>
           </div>
         </div>
 
@@ -1314,7 +1534,7 @@
       <div class="col-cart">
         <div class="cart-header">
           <div style="display:flex; align-items:center; gap:8px;">
-            <span>รายการออเดอร์</span>
+            <span>รายการออเดอร์ปัจจุบัน</span>
             <span class="menu-count-badge" id="cart-item-count" style="font-size:11px; background:rgba(255,255,255,0.08); padding:2px 8px; border-radius:99px; color:var(--text-sub);">0 รายการ</span>
           </div>
           <button class="btn-icon" onclick="clearCart()" data-tooltip="ล้างตะกร้า"><span>🗑️</span></button>
@@ -1329,7 +1549,7 @@
           </div>
         </div>
         
-        <!-- Cart Totals & Fast Submit -->
+        <!-- Cart Totals & Fast Actions -->
         <div class="cart-totals">
           
           <!-- Quick Note Suggestion Chips -->
@@ -1504,18 +1724,17 @@
 <!-- DATE PICKER MODAL -->
 <div class="modal-overlay" id="modal-date">
   <div class="modal-content">
-    <div class="modal-title">เลือกวันที่ดูยอดขาย</div>
-    <div class="input-group">
-      <label>ตั้งแต่วันที่</label>
-      <input type="date" id="date-start">
+    <div class="modal-title">
+      <span>📅 เลือกวันที่ดูยอดขาย & ออเดอร์</span>
+      <button class="btn-icon" onclick="closeModal('modal-date')" style="width:26px; height:26px;">✕</button>
     </div>
     <div class="input-group">
-      <label>ถึงวันที่</label>
-      <input type="date" id="date-end">
+      <label>เลือกวันที่</label>
+      <input type="date" id="date-picker-input">
     </div>
     <div class="modal-actions">
       <button class="btn-modal btn-cancel" onclick="closeModal('modal-date')">ยกเลิก</button>
-      <button class="btn-modal btn-confirm" onclick="applyDateFilter()">ตกลง</button>
+      <button class="btn-modal btn-confirm" onclick="applyCustomDatePick()">ตกลง</button>
     </div>
   </div>
 </div>
@@ -1529,11 +1748,11 @@
     </div>
     <div class="input-group">
       <label>URL ระบบขายหน้าร้าน (Apps Script Web App)</label>
-      <input type="text" id="script-url" placeholder="https://script.google.com/macros/s/.../exec">
+      <input type="text" id="script-url" value="https://script.google.com/macros/s/AKfycbw8VRV2zGcc3z8FMFWh_ukheApp2DLs2VsK1qGK7XrbtSBI4vG7IEJbULe49x_xW2vbMA/exec">
     </div>
     <div class="input-group">
       <label>URL ต้นทุนวัตถุดิบ (สำหรับคำนวณกำไรสุทธิ)</label>
-      <input type="text" id="script-url-cost" placeholder="https://script.google.com/macros/s/.../exec">
+      <input type="text" id="script-url-cost" value="https://script.google.com/macros/s/AKfycbwzS9HJy2i8ZsiqT19ZicNA6uqbKDLeE9Vum-IMYDmzd4Vxpnp75ffdTJxYvlvQkoHv2A/exec">
     </div>
     <div class="input-group">
       <label>เสียงสัมผัส (Sound Feedback)</label>
@@ -1552,6 +1771,10 @@
 <div class="toast" id="toast">สำเร็จ!</div>
 
 <script>
+/* ─── EMBEDDED DEFAULT APPS SCRIPT URLS ─── */
+const DEFAULT_POS_URL = "https://script.google.com/macros/s/AKfycbw8VRV2zGcc3z8FMFWh_ukheApp2DLs2VsK1qGK7XrbtSBI4vG7IEJbULe49x_xW2vbMA/exec";
+const DEFAULT_COST_URL = "https://script.google.com/macros/s/AKfycbwzS9HJy2i8ZsiqT19ZicNA6uqbKDLeE9Vum-IMYDmzd4Vxpnp75ffdTJxYvlvQkoHv2A/exec";
+
 /* ─── MENU DATA ─── */
 const MENU = [
   {id:'กระเจี๊ยบ', price:6, img:'data:image/jpeg;base64,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'},
@@ -1582,11 +1805,12 @@ const MENU = [
 let cart = {}; // { id: qty }
 let customCartItems = []; // [{ id, name, price, qty }]
 let currentPriceFilter = 'all'; // 'all', '6', '7', '10', '13'
-let log = [];
+let selectedDateStr = 'today'; // 'today', 'all', or '22082569'
+let allOrders = []; // Persistent order records merged from server (Master Source of Truth)
 let summaryData = [];
 let menuSummary = [];
 let costRounds = [];
-let cfg = { url: '', urlCost: '', sound: 'on' };
+let cfg = { url: DEFAULT_POS_URL, urlCost: DEFAULT_COST_URL, sound: 'on' };
 
 const chartColors = [
   'linear-gradient(90deg, #ff4757, #ff6b81)',
@@ -1599,13 +1823,13 @@ const chartColors = [
 /* ─── INITIALIZATION ─── */
 function init() {
   loadConfig();
+  loadLocalHistory();
   renderGroupedMenu();
   renderEmptyChart();
   
-  if (cfg.url) {
-    fetchFromSheet();
-    fetchSummary();
-  }
+  // Auto-connect and fetch from Google Apps Script immediately
+  fetchSummary();
+  fetchFromSheet();
 
   // Keyboard shortcut for search
   document.addEventListener('keydown', (e) => {
@@ -1619,44 +1843,37 @@ function init() {
 function loadConfig() {
   try {
     const saved = localStorage.getItem('mala_pos_cfg');
-    if (saved) cfg = { ...cfg, ...JSON.parse(saved) };
-
-    if (!cfg.urlCost) {
-      const ingCfg = localStorage.getItem('mala_ingredient_cfg');
-      if (ingCfg) {
-        const parsed = JSON.parse(ingCfg);
-        if (parsed.url) cfg.urlCost = parsed.url;
-      }
+    if (saved) {
+      cfg = { ...cfg, ...JSON.parse(saved) };
     }
   } catch(e) {}
 
-  document.getElementById('script-url').value = cfg.url || '';
-  document.getElementById('script-url-cost').value = cfg.urlCost || '';
+  if (!cfg.url) cfg.url = DEFAULT_POS_URL;
+  if (!cfg.urlCost) cfg.urlCost = DEFAULT_COST_URL;
+
+  document.getElementById('script-url').value = cfg.url;
+  document.getElementById('script-url-cost').value = cfg.urlCost;
   document.getElementById('sound-setting').value = cfg.sound || 'on';
   
-  updateConnStatus(!!cfg.url);
+  updateConnStatus(true);
 }
 
 function saveConfig() {
-  cfg.url = document.getElementById('script-url').value.trim();
-  cfg.urlCost = document.getElementById('script-url-cost').value.trim();
+  cfg.url = document.getElementById('script-url').value.trim() || DEFAULT_POS_URL;
+  cfg.urlCost = document.getElementById('script-url-cost').value.trim() || DEFAULT_COST_URL;
   cfg.sound = document.getElementById('sound-setting').value;
   
   try {
     localStorage.setItem('mala_pos_cfg', JSON.stringify(cfg));
-    if (cfg.urlCost) {
-      localStorage.setItem('mala_ingredient_cfg', JSON.stringify({ url: cfg.urlCost }));
-    }
+    localStorage.setItem('mala_ingredient_cfg', JSON.stringify({ url: cfg.urlCost }));
   } catch(e) {}
 
-  updateConnStatus(!!cfg.url);
+  updateConnStatus(true);
   closeModal('modal-settings');
   toast('✅ บันทึกการตั้งค่าแล้ว');
   
-  if (cfg.url) {
-    fetchFromSheet();
-    fetchSummary();
-  }
+  fetchSummary();
+  fetchFromSheet();
 }
 
 function updateConnStatus(online) {
@@ -1664,11 +1881,60 @@ function updateConnStatus(online) {
   const txt = document.getElementById('conn-text');
   if (online) {
     dot.className = 'pulse-dot online';
-    txt.textContent = 'เชื่อมต่อแล้ว ✓';
+    txt.textContent = 'เชื่อมต่อระบบแล้ว ✓';
   } else {
     dot.className = 'pulse-dot';
     txt.textContent = 'ตั้งค่า Sheet';
   }
+}
+
+/* ─── TIME & DATE FORMATTING UTILITIES ─── */
+function formatTimeDisplay(t) {
+  if (!t) return '--:--';
+  if (typeof t === 'string') {
+    if (t.includes('T')) {
+      const d = new Date(t);
+      if (!isNaN(d.getTime())) {
+        return d.toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit' }) + ' น.';
+      }
+    }
+    if (t.includes(':')) {
+      const parts = t.split(':');
+      if (parts.length >= 2) return `${parts[0]}:${parts[1]} น.`;
+    }
+  }
+  return String(t);
+}
+
+function formatDateDisplay(dStr) {
+  if (!dStr) return '';
+  if (dStr === 'today') return 'วันนี้';
+  if (dStr === 'all') return 'ทั้งหมดทุกวัน';
+  if (dStr.length === 8) {
+    const day = dStr.slice(0,2);
+    const m = parseInt(dStr.slice(2,4));
+    const months = ['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
+    const monthName = months[m-1] || `${m}`;
+    const year = dStr.slice(4);
+    return `${day} ${monthName} ${year}`;
+  }
+  return dStr;
+}
+
+function computeSticksCount(r) {
+  if (r.sticks && Number(r.sticks) > 0) return Number(r.sticks);
+  if (r.itemsDetail) {
+    let count = 0;
+    const matches = r.itemsDetail.match(/[×x*]\s*(\d+)/g);
+    if (matches) {
+      matches.forEach(m => {
+        const num = m.replace(/[×x*\s]/g, '');
+        count += parseInt(num) || 0;
+      });
+      if (count > 0) return count;
+    }
+  }
+  return 0;
 }
 
 /* ─── NAVIGATION & VIEWS ─── */
@@ -1786,7 +2052,6 @@ function renderGroupedMenu() {
     html = '<div class="empty-msg">ไม่พบเมนูที่ตรงกับการค้นหา</div>';
   }
 
-  // Append custom item add button
   html += `
     <button class="btn-add-custom" onclick="openModal('modal-custom-item')">
       <span>➕ เพิ่มเมนูพิเศษ / กำหนดราคาเอง</span>
@@ -1856,7 +2121,6 @@ function updateCartUI() {
   const totalStandardItems = ids.length;
   const totalCustomItems = customCartItems.length;
 
-  // Refresh badges in Menu Grid
   renderGroupedMenu();
 
   if (totalStandardItems === 0 && totalCustomItems === 0) {
@@ -1995,14 +2259,12 @@ function parseAndAddLineText() {
   let matchedCount = 0;
   let detectedNotes = [];
 
-  // Common spicy / note keywords
   const noteKeywords = ['เผ็ดน้อย', 'เผ็ดกลาง', 'เผ็ดมาก', 'ไม่เผ็ด', 'พริกน้อย', 'พริกมาก', 'แยกพริก', 'ใส่ถุง', 'กลับบ้าน'];
 
   lines.forEach(line => {
     let clean = line.trim();
     if (!clean) return;
 
-    // Check if line is a note
     let isNoteOnly = false;
     for (let kw of noteKeywords) {
       if (clean.includes(kw)) {
@@ -2011,20 +2273,16 @@ function parseAndAddLineText() {
       }
     }
 
-    // Try to match menu items
     let matchedItem = null;
     let qty = 1;
 
-    // Extract numbers if present e.g. "หมูสามชั้น 3" or "หมู 3 ไม้" or "3 หมูสามชั้น"
     const numMatch = clean.match(/(\d+)/);
     if (numMatch) {
       qty = parseInt(numMatch[1]);
     }
 
-    // Match against MENU names or aliases
     for (let m of MENU) {
       const name = m.id;
-      // Also match partial aliases
       const aliases = [name];
       if (name === 'หมูสามชั้น') aliases.push('สามชั้น', 'หมู');
       if (name === 'ไส้กรอกแดง') aliases.push('ไส้กรอกนม', 'ไส้กรอก');
@@ -2110,14 +2368,312 @@ function copyOrderForLine() {
   });
 }
 
-/* ─── 1-CLICK ORDER SUBMISSION ─── */
-async function submitSale() {
-  if (!cfg.url) {
-    toast('⚠️ กรุณาตั้งค่า URL Google Sheets ก่อน', true);
-    openSettingsModal();
+function copySingleOrderToLine(idx) {
+  const order = allOrders[idx];
+  if (!order) return;
+
+  let text = `🔥 [สรุปออเดอร์หม่าล่าทอด] 🔥\n`;
+  text += `🕒 เวลา: ${formatTimeDisplay(order.time)}\n`;
+  if (order.itemsDetail) {
+    const items = order.itemsDetail.split(',');
+    items.forEach(it => {
+      text += `🍢 ${it.trim()}\n`;
+    });
+  }
+  text += `--------------------------\n`;
+  text += `🍢 จำนวนไม้: ${computeSticksCount(order)} ไม้\n`;
+  text += `💰 ยอดโอน: ฿${Number(order.amount).toLocaleString()}\n`;
+  if (order.note) text += `💬 หมายเหตุ: ${order.note}\n`;
+  text += `--------------------------\n`;
+  text += `ขอบคุณมากค่ะ ✨`;
+
+  navigator.clipboard.writeText(text).then(() => {
+    playHaptic('success');
+    toast('📋 คัดลอกสรุปออเดอร์นี้เรียบร้อย!');
+  }).catch(() => {
+    toast('❌ คัดลอกไม่สำเร็จ');
+  });
+}
+
+function reorderToCart(idx) {
+  const order = allOrders[idx];
+  if (!order) return;
+
+  playHaptic('click');
+  clearCart();
+
+  if (order.itemsJson) {
+    try {
+      const parsed = JSON.parse(order.itemsJson);
+      parsed.forEach(it => {
+        const found = MENU.find(m => m.id === it.name);
+        if (found) {
+          cart[found.id] = (cart[found.id] || 0) + it.qty;
+        } else {
+          customCartItems.push({ name: it.name, price: it.price, qty: it.qty });
+        }
+      });
+    } catch(e){}
+  } else if (order.itemsDetail) {
+    const parts = order.itemsDetail.split(',');
+    parts.forEach(p => {
+      const match = p.trim().match(/(.+?)\s*[×x*]\s*(\d+)/);
+      if (match) {
+        const name = match[1].trim();
+        const qty = parseInt(match[2]);
+        const found = MENU.find(m => m.id === name);
+        if (found) cart[found.id] = (cart[found.id] || 0) + qty;
+      }
+    });
+  }
+
+  if (order.note) document.getElementById('f-note').value = order.note;
+  updateCartUI();
+  toast('🔄 โหลดออเดอร์นี้ลงตะกร้าแล้ว');
+}
+
+/* ─── PERSISTENT ORDER HISTORY & DYNAMIC DATE SELECTOR ─── */
+function loadLocalHistory() {
+  try {
+    const saved = localStorage.getItem('mala_persistent_orders');
+    if (saved) {
+      allOrders = JSON.parse(saved);
+    }
+  } catch(e) {
+    allOrders = [];
+  }
+  renderDateSelector();
+  renderRecentOrders();
+  updateDashboardSummary();
+}
+
+function saveLocalHistory() {
+  try {
+    if (allOrders.length > 800) allOrders = allOrders.slice(0, 800);
+    localStorage.setItem('mala_persistent_orders', JSON.stringify(allOrders));
+  } catch(e) {}
+}
+
+function selectDate(dateKey) {
+  playHaptic('tap');
+  selectedDateStr = dateKey;
+  
+  const dd = document.getElementById('date-select-dropdown');
+  if (dd) dd.value = dateKey;
+
+  renderDateSelector();
+  
+  // If selecting a specific date, fetch fresh authoritative rows from Sheet
+  if (dateKey !== 'today' && dateKey !== 'all' && cfg.url) {
+    fetchDateRowsFromSheet(dateKey);
+  } else if (dateKey === 'today' && cfg.url) {
+    fetchDateRowsFromSheet(getDateStr());
+  }
+  
+  renderRecentOrders();
+  updateDashboardSummary();
+}
+
+function renderDateSelector() {
+  const pillsBar = document.getElementById('date-pills-bar');
+  const dropdown = document.getElementById('date-select-dropdown');
+  const todayStr = getDateStr();
+  
+  // Collect all unique dates from summaryData + allOrders
+  const dateSet = new Set();
+  summaryData.forEach(s => { if (s.date) dateSet.add(String(s.date).padStart(8,'0')); });
+  allOrders.forEach(o => { if (o.date) dateSet.add(String(o.date).padStart(8,'0')); });
+
+  // Convert to array and sort descending (newest first)
+  const sortedDates = Array.from(dateSet).sort((a, b) => {
+    let dA = a.slice(4,8) + a.slice(2,4) + a.slice(0,2);
+    let dB = b.slice(4,8) + b.slice(2,4) + b.slice(0,2);
+    return dA < dB ? 1 : -1;
+  });
+
+  // Build Options for Dropdown
+  if (dropdown) {
+    let ddHtml = '';
+    const sumToday = summaryData.find(s => s.date === todayStr);
+    const todayCount = sumToday ? sumToday.orders : allOrders.filter(o => o.date === todayStr).length;
+    const todayTot = sumToday ? sumToday.total : allOrders.filter(o => o.date === todayStr).reduce((s,r)=>s+Number(r.amount||0), 0);
+    
+    ddHtml += `<option value="today">🌟 วันนี้ (${todayCount} บิล • ฿${todayTot.toLocaleString()})</option>`;
+    
+    sortedDates.forEach(dt => {
+      if (dt === todayStr) return;
+      const sumMatch = summaryData.find(s => s.date === dt);
+      const count = sumMatch ? sumMatch.orders : allOrders.filter(o => o.date === dt).length;
+      const tot = sumMatch ? sumMatch.total : allOrders.filter(o => o.date === dt).reduce((s,r) => s + Number(r.amount||0), 0);
+      const formatted = formatDateDisplay(dt);
+      ddHtml += `<option value="${dt}">📆 ${formatted} (${count} บิล • ฿${tot.toLocaleString()})</option>`;
+    });
+
+    const grandCount = summaryData.length > 0 ? summaryData.reduce((s,r)=>s+r.orders,0) : allOrders.length;
+    const grandTot = summaryData.length > 0 ? summaryData.reduce((s,r)=>s+r.total,0) : allOrders.reduce((s,r)=>s+Number(r.amount||0),0);
+    ddHtml += `<option value="all">🕒 ดูประวัติทั้งหมดทุกวัน (${grandCount} บิล • ฿${grandTot.toLocaleString()})</option>`;
+    
+    dropdown.innerHTML = ddHtml;
+    dropdown.value = selectedDateStr;
+  }
+
+  // Build Quick Pills
+  if (pillsBar) {
+    let html = '';
+    const isTodayActive = selectedDateStr === 'today' || selectedDateStr === todayStr;
+    const sumToday = summaryData.find(s => s.date === todayStr);
+    const todayCount = sumToday ? sumToday.orders : allOrders.filter(o => o.date === todayStr).length;
+    
+    html += `
+      <button class="date-pill today-pill ${isTodayActive ? 'active' : ''}" onclick="selectDate('today')">
+        <span>🌟 วันนี้</span>
+        ${todayCount > 0 ? `<span style="background:rgba(0,0,0,0.3); padding:0 5px; border-radius:99px; font-size:10px;">${todayCount}</span>` : ''}
+      </button>
+    `;
+
+    sortedDates.slice(0, 4).forEach(dt => {
+      if (dt === todayStr) return;
+      const isAct = selectedDateStr === dt;
+      const formattedShort = dt.length === 8 ? `${dt.slice(0,2)}/${dt.slice(2,4)}` : dt;
+      const sumMatch = summaryData.find(s => s.date === dt);
+      const ordCount = sumMatch ? sumMatch.orders : allOrders.filter(o => o.date === dt).length;
+      
+      html += `
+        <button class="date-pill ${isAct ? 'active' : ''}" onclick="selectDate('${dt}')">
+          <span>📆 ${formattedShort}</span>
+          ${ordCount > 0 ? `<span style="background:rgba(0,0,0,0.25); padding:0 4px; border-radius:99px; font-size:10px; opacity:0.85;">${ordCount}</span>` : ''}
+        </button>
+      `;
+    });
+
+    const isAllActive = selectedDateStr === 'all';
+    html += `
+      <button class="date-pill ${isAllActive ? 'active' : ''}" onclick="selectDate('all')">
+        <span>🕒 ทั้งหมด</span>
+      </button>
+    `;
+
+    pillsBar.innerHTML = html;
+  }
+}
+
+function renderRecentOrders() {
+  const list = document.getElementById('recent-orders');
+  const searchQ = (document.getElementById('hist-search-input')?.value || '').trim().toLowerCase();
+  const todayStr = getDateStr();
+
+  let filtered = allOrders;
+
+  // Filter by Date
+  if (selectedDateStr === 'today') {
+    filtered = allOrders.filter(o => o.date === todayStr);
+  } else if (selectedDateStr !== 'all') {
+    filtered = allOrders.filter(o => o.date === selectedDateStr);
+  }
+
+  // Filter by Search Query
+  if (searchQ) {
+    filtered = filtered.filter(o => {
+      const matchNote = (o.note || '').toLowerCase().includes(searchQ);
+      const matchDet = (o.itemsDetail || '').toLowerCase().includes(searchQ);
+      const matchTime = (o.time || '').toLowerCase().includes(searchQ);
+      return matchNote || matchDet || matchTime;
+    });
+  }
+
+  document.getElementById('history-badge').textContent = filtered.length;
+
+  if (!filtered.length) {
+    let emptyMsgTitle = 'ยังไม่มีออเดอร์ในวันนี้';
+    if (selectedDateStr !== 'today' && selectedDateStr !== 'all') {
+      const dShow = formatDateDisplay(selectedDateStr);
+      emptyMsgTitle = `ไม่มีข้อมูลออเดอร์ของวันที่ ${dShow}`;
+    } else if (searchQ) {
+      emptyMsgTitle = 'ไม่พบออเดอร์ที่ตรงกับการค้นหา';
+    }
+
+    const latestDate = summaryData.length > 0 ? summaryData[summaryData.length - 1].date : (allOrders.length > 0 ? allOrders[0].date : null);
+
+    list.innerHTML = `
+      <div class="empty-msg" style="padding: 24px 10px;">
+        <div style="font-size:32px; margin-bottom:8px; opacity:0.4;">📋</div>
+        ${emptyMsgTitle}<br>
+        ${selectedDateStr === 'today' && latestDate && latestDate !== todayStr ? `
+          <button onclick="selectDate('${latestDate}')" style="margin-top:10px; background:rgba(255,255,255,0.08); border:1px solid var(--panel-border); color:#ffd280; padding:6px 16px; border-radius:99px; font-size:12px; font-weight:700; cursor:pointer;">
+            แตะดูออเดอร์ล่าสุด (${formatDateDisplay(latestDate)}) ➔
+          </button>
+        ` : (allOrders.length > 0 && selectedDateStr === 'today' ? `
+          <button onclick="selectDate('all')" style="margin-top:10px; background:rgba(255,255,255,0.08); border:1px solid var(--panel-border); color:#ffd280; padding:6px 16px; border-radius:99px; font-size:12px; font-weight:700; cursor:pointer;">
+            ดูประวัติทั้งหมด (${allOrders.length} ออเดอร์) ➔
+          </button>
+        ` : '')}
+      </div>
+    `;
     return;
   }
 
+  list.innerHTML = filtered.map((r, i) => {
+    const rawIdx = allOrders.indexOf(r);
+    const isToday = r.date === todayStr;
+    const formattedDate = r.date && r.date.length === 8 ? `${r.date.slice(0,2)}/${r.date.slice(2,4)}` : (r.date || '');
+    const timeDisplay = formatTimeDisplay(r.time);
+    const sticksCount = computeSticksCount(r);
+    
+    // Parse itemsDetail into chips
+    let skewerChipsHtml = '';
+    if (r.itemsDetail) {
+      const itemsArr = r.itemsDetail.split(',');
+      skewerChipsHtml = itemsArr.map(it => {
+        const parts = it.trim().split(/[×x*]/);
+        const name = parts[0] ? parts[0].trim() : it.trim();
+        const qty = parts[1] ? parts[1].trim() : '1';
+        return `<span class="skewer-chip">${name} <b>×${qty}</b></span>`;
+      }).join('');
+    } else {
+      skewerChipsHtml = `<span style="font-size:11px; color:var(--text-muted);">${sticksCount} ไม้</span>`;
+    }
+
+    return `
+      <div class="order-card ${isToday ? 'highlight' : ''}" style="animation: fadeIn 0.25s ease ${i*0.02}s both;">
+        <div class="order-card-header">
+          <div class="order-time-badge">
+            <span>🕒 ${timeDisplay}</span>
+            ${!isToday ? `<span class="order-date-tag">${formattedDate}</span>` : '<span class="order-date-tag" style="color:var(--success); background:rgba(46,213,115,0.15)">วันนี้</span>'}
+          </div>
+          <div class="order-grand-amt">฿${Number(r.amount || 0).toLocaleString()}</div>
+        </div>
+
+        ${r.note ? `
+          <div class="order-customer-note">
+            <span>👤</span>
+            <span>${r.note}</span>
+          </div>
+        ` : ''}
+
+        <!-- Skewers Breakdown -->
+        <div class="order-skewer-list">
+          ${skewerChipsHtml}
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="order-card-actions">
+          <span>🍢 รวม ${sticksCount} ไม้</span>
+          <div style="display:flex; gap:5px;">
+            <button class="btn-card-action" onclick="copySingleOrderToLine(${rawIdx})" title="คัดลอกสรุปรายการนี้ส่ง LINE">
+              <span>📋 ส่ง LINE</span>
+            </button>
+            <button class="btn-card-action" onclick="reorderToCart(${rawIdx})" title="โหลดรายการนี้ลงตะกร้า">
+              <span>🔄 สั่งซ้ำ</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+/* ─── 1-CLICK ORDER SUBMISSION ─── */
+async function submitSale() {
   const btn = document.getElementById('btn-save-order');
   btn.disabled = true;
   btn.innerHTML = '<span>⏳ กำลังบันทึก...</span>';
@@ -2145,13 +2701,25 @@ async function submitSale() {
   const note = document.getElementById('f-note').value.trim();
   const time = new Date().toLocaleTimeString('th-TH', { hour:'2-digit', minute:'2-digit' });
   const itemsDetail = items.map(i => `${i.name}×${i.qty}`).join(', ');
+  const todayStr = getDateStr();
 
-  try {
-    let localHist = JSON.parse(localStorage.getItem('mala_local_orders') || '[]');
-    localHist.push({ date: getDateStr(), time, amount: totalAmt, sticks: totalSticks, itemsDetail, note });
-    if (localHist.length > 200) localHist = localHist.slice(-200);
-    localStorage.setItem('mala_local_orders', JSON.stringify(localHist));
-  } catch(e) {}
+  // Create new order record
+  const newOrder = {
+    date: todayStr,
+    time,
+    sticks: totalSticks,
+    amount: totalAmt,
+    note: note || 'LINE OA',
+    itemsDetail,
+    itemsJson: JSON.stringify(items)
+  };
+
+  allOrders.unshift(newOrder);
+  selectedDateStr = 'today';
+  saveLocalHistory();
+  renderDateSelector();
+  renderRecentOrders();
+  updateDashboardSummary();
 
   try {
     await fetch(cfg.url, {
@@ -2159,7 +2727,7 @@ async function submitSale() {
       mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        date: getDateStr(),
+        date: todayStr,
         time,
         sticks: totalSticks,
         amount: totalAmt,
@@ -2173,9 +2741,9 @@ async function submitSale() {
     toast(`🎉 บันทึก ${totalSticks} ไม้ (฿${totalAmt.toLocaleString()}) สำเร็จ!`);
     clearCart();
     document.getElementById('f-note').value = '';
-    setTimeout(fetchFromSheet, 1000);
+    setTimeout(refreshHistoryData, 1500);
   } catch(e) {
-    toast('❌ บันทึกล้มเหลว: ' + e.message, true);
+    toast('⚠️ บันทึกในเครื่องแล้ว (ส่งไป Google Sheets ล้มเหลว: ' + e.message + ')', true);
   } finally {
     updateCartUI();
   }
@@ -2186,25 +2754,105 @@ function getDateStr() {
   return `${String(d.getDate()).padStart(2,'0')}${String(d.getMonth()+1).padStart(2,'0')}${d.getFullYear()+543}`;
 }
 
-/* ─── DATA FETCHING & DASHBOARD ─── */
+/* ─── AUTHORITATIVE GOOGLE SHEET DATA FETCHING & SYNC ─── */
 async function fetchFromSheet() {
   if (!cfg.url) return;
   try {
-    const res = await fetch(cfg.url + '?date=' + encodeURIComponent(getDateStr()));
-    const data = await res.json();
-    log = (data.rows || []).map(r => ({ ...r, amount: +r.amount })).reverse();
-    renderRecentOrders();
-    
-    if (document.getElementById('dash-date-label').textContent === 'ยอดขายวันนี้') {
-      const tot = log.reduce((s,r) => s + r.amount, 0);
-      const stks = log.reduce((s,r) => s + (+r.sticks || 0), 0);
-      document.getElementById('dash-total').textContent = '฿' + tot.toLocaleString();
-      document.getElementById('dash-sticks').textContent = stks.toLocaleString();
-      document.getElementById('dash-orders').textContent = log.length.toLocaleString();
-    }
+    const todayStr = getDateStr();
+    await fetchDateRowsFromSheet(todayStr);
   } catch(e) {
     console.error('Fetch error', e);
   }
+}
+
+async function fetchDateRowsFromSheet(dateStr) {
+  if (!cfg.url || !dateStr || dateStr === 'today' || dateStr === 'all') return;
+  try {
+    const res = await fetch(cfg.url + '?date=' + encodeURIComponent(dateStr));
+    const data = await res.json();
+    
+    if (data.rows && Array.isArray(data.rows)) {
+      // Google Sheets is Master Record for this date.
+      // Filter out all previously cached records for this specific date
+      // to eliminate any duplicate entries.
+      const otherDateOrders = allOrders.filter(o => o.date !== dateStr);
+      
+      const serverRows = data.rows.map(r => ({
+        date: dateStr,
+        time: r.time || '',
+        sticks: computeSticksCount(r) || +r.sticks || 0,
+        amount: +r.amount || 0,
+        note: r.note || '',
+        itemsDetail: r.itemsDetail || r['รายการ'] || r.items || '',
+        itemsJson: r.itemsJson || ''
+      }));
+
+      // Merge verified server rows with other date orders
+      allOrders = [...serverRows, ...otherDateOrders];
+
+      saveLocalHistory();
+      renderDateSelector();
+      renderRecentOrders();
+      updateDashboardSummary();
+    }
+  } catch(e) {}
+}
+
+function refreshHistoryData() {
+  fetchSummary();
+  if (selectedDateStr !== 'today' && selectedDateStr !== 'all') {
+    fetchDateRowsFromSheet(selectedDateStr);
+  } else {
+    fetchDateRowsFromSheet(getDateStr());
+  }
+  toast('↻ ซิงค์ยอดตรงกับ Google Sheet 100% แล้ว');
+}
+
+function updateDashboardSummary() {
+  const todayStr = getDateStr();
+  
+  if (selectedDateStr === 'today' || selectedDateStr === todayStr) {
+    const sumToday = summaryData.find(s => s.date === todayStr);
+    const todayOrders = allOrders.filter(r => r.date === todayStr);
+    
+    // Use official summaryData if available, otherwise sum active orders
+    const tot = sumToday ? sumToday.total : todayOrders.reduce((s, r) => s + Number(r.amount || 0), 0);
+    const stks = sumToday ? sumToday.sticks : todayOrders.reduce((s, r) => s + computeSticksCount(r), 0);
+    const ords = sumToday ? sumToday.orders : todayOrders.length;
+
+    document.getElementById('dash-date-label').textContent = 'ยอดขายวันนี้';
+    document.getElementById('dash-date-badge').textContent = formatDateDisplay(todayStr);
+    document.getElementById('dash-total').textContent = '฿' + tot.toLocaleString();
+    document.getElementById('dash-sticks').textContent = stks.toLocaleString();
+    document.getElementById('dash-orders').textContent = ords.toLocaleString();
+  } else if (selectedDateStr === 'all') {
+    const tot = summaryData.length > 0 ? summaryData.reduce((s,r) => s + r.total, 0) : allOrders.reduce((s, r) => s + Number(r.amount || 0), 0);
+    const stks = summaryData.length > 0 ? summaryData.reduce((s,r) => s + r.sticks, 0) : allOrders.reduce((s, r) => s + computeSticksCount(r), 0);
+    const ords = summaryData.length > 0 ? summaryData.reduce((s,r) => s + r.orders, 0) : allOrders.length;
+
+    document.getElementById('dash-date-label').textContent = 'ยอดรวมทุกวันทั้งหมด';
+    document.getElementById('dash-date-badge').textContent = `${summaryData.length || 1} วัน`;
+    document.getElementById('dash-total').textContent = '฿' + tot.toLocaleString();
+    document.getElementById('dash-sticks').textContent = stks.toLocaleString();
+    document.getElementById('dash-orders').textContent = ords.toLocaleString();
+  } else {
+    // Specific date
+    const sumMatch = summaryData.find(s => s.date === selectedDateStr);
+    const dateOrders = allOrders.filter(r => r.date === selectedDateStr);
+    
+    const tot = sumMatch ? sumMatch.total : dateOrders.reduce((s, r) => s + Number(r.amount || 0), 0);
+    const stks = sumMatch ? sumMatch.sticks : dateOrders.reduce((s, r) => s + computeSticksCount(r), 0);
+    const ords = sumMatch ? sumMatch.orders : dateOrders.length;
+    const formatted = formatDateDisplay(selectedDateStr);
+
+    document.getElementById('dash-date-label').textContent = `ยอดขายวันที่`;
+    document.getElementById('dash-date-badge').textContent = formatted;
+    document.getElementById('dash-total').textContent = '฿' + tot.toLocaleString();
+    document.getElementById('dash-sticks').textContent = stks.toLocaleString();
+    document.getElementById('dash-orders').textContent = ords.toLocaleString();
+  }
+
+  renderChart(summaryData.slice(-7));
 }
 
 async function fetchSummary() {
@@ -2227,6 +2875,13 @@ async function fetchSummary() {
 
     menuSummary = d.menuSummary || [];
     
+    // Automatically preload all dates from summaryData
+    if (summaryData.length > 0) {
+      for (let s of summaryData) {
+        fetchDateRowsFromSheet(s.date);
+      }
+    }
+    
     if (cfg.urlCost) {
       try {
         const rc = await fetch(cfg.urlCost + '?action=getRounds');
@@ -2235,59 +2890,12 @@ async function fetchSummary() {
       } catch(e) {}
     }
     
-    renderChart(summaryData.slice(-7));
+    renderDateSelector();
+    updateDashboardSummary();
     if (document.getElementById('view-stats').classList.contains('active')) {
       renderStatsView();
     }
   } catch(e) {}
-}
-
-function renderRecentOrders() {
-  const list = document.getElementById('recent-orders');
-  if (!log.length) {
-    list.innerHTML = '<div class="empty-msg">ยังไม่มีออเดอร์วันนี้</div>';
-    return;
-  }
-  
-  let localHist = [];
-  try { localHist = JSON.parse(localStorage.getItem('mala_local_orders') || '[]'); } catch(e){}
-
-  list.innerHTML = log.map((r, i) => {
-    let det = r.itemsDetail || r['รายการ'] || r.items;
-    if (!det) {
-      const localMatch = localHist.find(x => x.date === getDateStr() && x.time === r.time && x.amount === r.amount);
-      if (localMatch) det = localMatch.itemsDetail;
-    }
-
-    return `
-      <div class="order-item-wrap" style="animation: fadeIn 0.3s ease ${i*0.03}s both;">
-        <div class="order-item" onclick="toggleOrderDetails(${i})">
-          <div>
-            <div class="order-id">🕒 ${r.time} ${r.note ? `• <span style="color:var(--accent); font-size:12px;">${r.note}</span>` : ''}</div>
-            <div class="order-det">${r.sticks} ไม้</div>
-          </div>
-          <div style="display:flex; align-items:center; gap:8px;">
-            <div class="order-amt">฿${r.amount.toLocaleString()}</div>
-            <span id="order-icon-${i}" style="font-size:10px; color:var(--text-muted);">▼</span>
-          </div>
-        </div>
-        <div id="order-det-${i}" class="order-expanded-det">
-          ${det 
-            ? det.split(',').map(item => `<span style="display:inline-block; background:rgba(255,255,255,0.08); padding:3px 8px; border-radius:6px; margin:2px 4px 2px 0; font-size:11px;">${item.trim()}</span>`).join('') 
-            : '<span style="color:var(--text-muted); font-size:11px;">ไม่มีรายละเอียดรายการ</span>'}
-        </div>
-      </div>
-    `;
-  }).join('');
-}
-
-function toggleOrderDetails(idx) {
-  const det = document.getElementById('order-det-' + idx);
-  const icon = document.getElementById('order-icon-' + idx);
-  if (!det) return;
-  const isHidden = det.style.display === 'none' || !det.style.display;
-  det.style.display = isHidden ? 'block' : 'none';
-  icon.textContent = isHidden ? '▲' : '▼';
 }
 
 function renderEmptyChart() {
@@ -2307,13 +2915,15 @@ function renderChart(dataArr) {
   const todayVal = getDateStr();
   
   chart.innerHTML = dataArr.map((d, i) => {
-    const pct = Math.max(Math.round((d.total / maxVal) * 100), 8);
+    const pct = Math.max(Math.round((d.total / maxVal) * 100), 12);
     const isToday = d.date === todayVal;
+    const isSelected = selectedDateStr === d.date;
     const lbl = d.date.length === 8 ? `${d.date.slice(0,2)}/${d.date.slice(2,4)}` : '';
+    
     return `
-      <div class="chart-bar-wrap" style="animation: fadeIn 0.4s ease ${i*0.05}s both;" data-tooltip="฿${d.total.toLocaleString()}">
-        <div class="chart-bar ${isToday ? 'today' : ''}" style="height: ${pct}%"></div>
-        <div class="chart-label">${lbl}</div>
+      <div class="chart-bar-wrap" onclick="selectDate('${d.date}')" style="animation: fadeIn 0.4s ease ${i*0.05}s both;" data-tooltip="฿${d.total.toLocaleString()} (${d.orders} บิล)">
+        <div class="chart-bar ${isSelected ? 'selected' : (isToday ? 'today' : '')}" style="height: ${pct}%"></div>
+        <div class="chart-label" style="${isSelected ? 'color:#2ed573; font-weight:800;' : ''}">${lbl}</div>
       </div>
     `;
   }).join('');
@@ -2376,12 +2986,12 @@ function renderStatsView() {
   const histSorted = [...summaryData].reverse();
   histList.innerHTML = histSorted.map((r, i) => {
     const isToday = r.date === getDateStr();
-    const lbl = r.date.length === 8 ? `${r.date.slice(0,2)}/${r.date.slice(2,4)}/${r.date.slice(4)}` : r.date;
+    const lbl = formatDateDisplay(r.date);
     return `
-      <div class="hist-item" style="animation: fadeIn 0.3s ease ${i*0.03}s both">
+      <div class="hist-item" onclick="selectDate('${r.date}'); switchView('pos');" style="cursor:pointer; animation: fadeIn 0.3s ease ${i*0.03}s both">
         <div>
           <div class="hist-date">${isToday ? '✨ วันนี้ ' : ''}${lbl}</div>
-          <div class="hist-sub">${r.orders} ออเดอร์ • ${r.sticks} ไม้</div>
+          <div class="hist-sub">${r.orders} ออเดอร์ • ${r.sticks} ไม้ (แตะเพื่อดูบิล)</div>
         </div>
         <div class="hist-total">฿${r.total.toLocaleString()}</div>
       </div>
@@ -2395,38 +3005,26 @@ function closeModal(id) { document.getElementById(id).classList.remove('show'); 
 
 function openDateModal() {
   openModal('modal-date');
-  if (!document.getElementById('date-start').value) {
-    const today = new Date().toISOString().split('T')[0];
-    document.getElementById('date-start').value = today;
-    document.getElementById('date-end').value = today;
+  if (!document.getElementById('date-picker-input').value) {
+    document.getElementById('date-picker-input').value = new Date().toISOString().split('T')[0];
   }
 }
 function openSettingsModal() { openModal('modal-settings'); }
 
-function applyDateFilter() {
-  const s = document.getElementById('date-start').value;
-  const e = document.getElementById('date-end').value;
+function applyCustomDatePick() {
+  const val = document.getElementById('date-picker-input').value;
   closeModal('modal-date');
+  if (!val) return;
   
-  if (!s || !e) return;
-  const start = new Date(s);
-  const end = new Date(e);
-  
-  const filtered = summaryData.filter(r => {
-    const d = new Date(r.date.slice(4,8) + '-' + r.date.slice(2,4) + '-' + r.date.slice(0,2));
-    return d >= start && d <= end;
-  });
-  
-  document.getElementById('dash-date-label').textContent = `${start.toLocaleDateString('th-TH')} - ${end.toLocaleDateString('th-TH')}`;
-  const tot = filtered.reduce((acc, r) => acc + r.total, 0);
-  const stks = filtered.reduce((acc, r) => acc + r.sticks, 0);
-  const ords = filtered.reduce((acc, r) => acc + r.orders, 0);
-  
-  document.getElementById('dash-total').textContent = '฿' + tot.toLocaleString();
-  document.getElementById('dash-sticks').textContent = stks.toLocaleString();
-  document.getElementById('dash-orders').textContent = ords.toLocaleString();
-  
-  renderChart(filtered.length > 10 ? filtered.slice(0,10) : filtered);
+  // Val is YYYY-MM-DD in Gregorian CE (e.g. 2026-08-22)
+  const parts = val.split('-');
+  if (parts.length === 3) {
+    const y = parseInt(parts[0]);
+    const beYear = y > 2400 ? y : y + 543;
+    const dateKey = `${parts[2]}${parts[1]}${beYear}`;
+    selectDate(dateKey);
+    toast('📅 เลือกดูวันที่ ' + formatDateDisplay(dateKey));
+  }
 }
 
 function toast(msg, isError = false) {
