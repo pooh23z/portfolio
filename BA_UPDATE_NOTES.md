@@ -18,7 +18,7 @@
 
 ### 2. ข้อมูลส่วนตัว (Professional Summary)
 * **ข้อความใหม่:**
-  > นักศึกษาชั้นปีที่ 4 สาขาเทคโนโลยีสารสนเทศ มีความเชี่ยวชาญในการวิเคราะห์กระบวนการทางธุรกิจ (Business Process Analysis), การรวบรวม Requirement และการออกแบบ System Workflow & Wireframe ระดับองค์กรกว่า 113 หน้าจอ มีทักษะการสื่อสารเชื่อมโยงระหว่างผู้ใช้งานและทีมนักพัฒนาอย่างมีประสิทธิภาพ พร้อมประสบการณ์วางระบบและบริหารธุรกิจจริง
+  > นักศึกษาชั้นปีที่ 4 สาขาเทคโนโลยีสารสนเทศ สนใจด้านวิเคราะห์ธุรกิจและรวบรวม Requirement โดยเฉพาะการแปลงความต้องการของผู้ใช้งานให้กลายเป็น System Workflow และ Wireframe ที่ทีมพัฒนาเอาไปทำงานต่อได้จริง เคยรับผิดชอบโปรเจกต์ระดับองค์กรที่ออกแบบหน้าจอกว่า 113 หน้า และมีประสบการณ์ตรงจากการบริหารธุรกิจของตัวเองเลยทำให้เข้าใจทั้งมุมมองผู้ใช้งานและมุมมองธุรกิจไปพร้อมกัน
 
 ---
 
@@ -27,26 +27,26 @@
 #### 🏢 โปรเจกต์ที่ 1: ระบบบริหารจัดการคลังวัสดุและครุภัณฑ์ระดับองค์กร (Thaicom)
 * **บทบาท/ประเภท:** Senior Project · Thaicom Public Company Limited
 * **หัวข้อย่อย:**
-  * วิเคราะห์กระบวนการทางธุรกิจ (AS-IS / TO-BE) และรวบรวม Requirements การจัดการคลังวัสดุและครุภัณฑ์ระดับองค์กร
-  * ออกแบบ System Workflow, Wireframes และ Interactive Prototype กว่า **113 หน้าจอ** ครอบคลุมการเบิก-รับ-โอน-จำหน่ายทรัพย์สิน
-  * จัดทำ UI Design System และร่วมวิเคราะห์โครงสร้างฐานข้อมูล (Oracle DB) เพื่อประสานงานส่งมอบสเปกให้ทีมนักพัฒนา
-* **เครื่องมือและเทคโนโลยี:** Figma (Wireframing & Prototyping), UML/Flowcharts, Design System, Oracle DB, Laravel
+  * ลงพื้นที่วิเคราะห์กระบวนการทำงานจริง (AS-IS) เทียบกับกระบวนการที่ควรจะเป็น (TO-BE) แล้วสรุปออกมาเป็น Requirement สำหรับระบบจัดการคลังวัสดุ
+  * ออกแบบ Workflow และทำ Wireframe/Prototype ทั้งหมดกว่า **113 หน้าจอ** ครอบคลุมตั้งแต่การเบิก รับ โอน ไปจนถึงจำหน่ายทรัพย์สิน
+  * จัดทำ UI Design System และช่วยวางโครงสร้างฐานข้อมูล (Oracle DB) เพื่อให้ทีม Dev หยิบไปพัฒนาต่อได้ง่ายขึ้น
+* **เครื่องมือที่ใช้:** Figma, UML/Flowchart, Design System, Oracle DB, Laravel
 
-#### 🍜 โปรเจกต์ที่ 2: ระบบ POS และจัดการต้นทุน-กำไร (ร้านเสม & Friends)
+#### 🍜 โปรเจกต์ที่ 2: ระบบ POS และคำนวณต้นทุน-กำไร (ร้านเสม & Friends)
 * **บทบาท/ประเภท:** ร้านเสม & Friends (ใช้งานจริงในธุรกิจ)
 * **หัวข้อย่อย:**
-  * วิเคราะห์ Pain Point ธุรกิจร้านอาหาร ออกแบบและพัฒนาระบบ POS สำหรับบันทึกยอดขายและคำนวณต้นทุน-กำไรสุทธิแบบ Real-time
-  * ออกแบบ Data Architecture เชื่อมต่อ Google Sheets API และสร้าง Dashboard ติดตามยอดขายและเมนูขายดี
-  * นำไปใช้งานจริงในกระบวนการดำเนินงานทุกวัน ช่วยเพิ่มความแม่นยำในการสั่งซื้อวัตถุดิบและลดความผิดพลาดทางบัญชี
-* **เครื่องมือและเทคโนโลยี:** Business Process Mapping, Google Apps Script, Google Sheets API, HTML/CSS, JavaScript
+  * เริ่มจากปัญหาจริงของร้าน คือไม่รู้ต้นทุน-กำไรที่แท้จริงแบบเรียลไทม์ เลยออกแบบและพัฒนาระบบ POS ขึ้นมาเอง
+  * เชื่อมข้อมูลกับ Google Sheets API แล้วทำ Dashboard ให้เห็นยอดขายและเมนูขายดีได้ทันที
+  * ใช้งานจริงทุกวันในร้าน ช่วยให้สั่งวัตถุดิบแม่นขึ้นและลดความผิดพลาดทางบัญชีไปได้เยอะ
+* **เครื่องมือที่ใช้:** Business Process Mapping, Google Apps Script, Google Sheets API, HTML/CSS, JavaScript
 
 #### 📱 โปรเจกต์ที่ 3: Life & Business Hub
 * **บทบาท/ประเภท:** Personal Project · PWA
 * **หัวข้อย่อย:**
-  * วิเคราะห์และออกแบบ Functional Requirement สำหรับแอปพลิเคชันบริหารชีวิตและธุรกิจ (PWA)
-  * วาง Business Logic ระบบสรุปยอดขายส่งเข้า LINE OA อัตโนมัติทุก 9:00 น. พร้อมเชื่อมต่อ Gmail OAuth2 และ Firebase Real-Time Sync
-  * ประยุกต์ใช้ AI Assistant (Gemini 1.5 Pro) รองรับคำสั่งเสียงภาษาไทยและจดจำบริบทสนทนา
-* **เครื่องมือและเทคโนโลยี:** System Architecture, Firebase Realtime DB, Gemini 1.5 Pro API, LINE Notify API, Chart.js
+  * โปรเจกต์ส่วนตัวที่ออกแบบมาเพื่อช่วยบริหารทั้งชีวิตส่วนตัวและธุรกิจในแอปเดียว
+  * วางระบบให้สรุปยอดขายส่งเข้า LINE OA อัตโนมัติทุกเช้า 9 โมง พร้อมเชื่อม Gmail OAuth2 และ Firebase Real-Time Sync
+  * ใส่ AI Assistant (Gemini 1.5 Pro) เข้าไปให้สั่งงานด้วยเสียงภาษาไทยและจำบริบทการสนทนาได้
+* **เครื่องมือที่ใช้:** System Architecture, Firebase Realtime DB, Gemini 1.5 Pro API, LINE Notify API, Chart.js
 
 ---
 
@@ -68,7 +68,7 @@
 
 ### 2. Professional Summary
 * **Text:**
-  > Senior Information Technology student specializing in Business Process Analysis, Requirements Gathering, and Enterprise System Workflows & Wireframing (113+ screens). Experienced in bridging the gap between business stakeholders and software development teams, with a strong foundation in IT, databases, and real-world system implementations.
+  > 4th-year Information Technology student interested in business analysis and requirement gathering — focusing on translating user needs into system workflows and wireframes that development teams can readily implement. Experienced in leading an enterprise project designing 113+ screens, combined with hands-on small business ownership that gives me a clear understanding of both user and business perspectives.
 
 ---
 
@@ -77,26 +77,26 @@
 #### 🏢 Project 1: Enterprise Inventory & Asset Management System
 * **Sub-title:** Senior Project · Thaicom Public Company Limited
 * **Bullet Points:**
-  * Analyzed AS-IS / TO-BE business processes and gathered functional requirements for enterprise-level inventory management.
-  * Designed system workflows, wireframes, and interactive prototypes for **113+ screens** covering asset requisition, transfer, and disposal.
-  * Established a unified UI Design System and collaborated on Oracle DB schema to hand off clear specifications to developers.
-* **Tech Stack:** Figma (Wireframing & Prototyping), UML/Flowcharts, Design Systems, Oracle DB, Laravel
+  * Conducted on-site studies to analyze actual operational workflows (AS-IS) against ideal processes (TO-BE), synthesizing findings into clear system requirements.
+  * Designed complete workflows, wireframes, and interactive prototypes across **113+ screens** covering asset requisition, receiving, transfer, and disposal.
+  * Created a UI Design System and helped structure the Oracle DB schema to streamline development handoff for the engineering team.
+* **Tools & Technologies:** Figma, UML/Flowchart, Design System, Oracle DB, Laravel
 
 #### 🍜 Project 2: POS & Cost/Profit Management System
-* **Sub-title:** Sem & Friends (Live Production)
+* **Sub-title:** Sem & Friends (Live in Business)
 * **Bullet Points:**
-  * Analyzed retail restaurant pain points; designed and deployed a custom POS web app for real-time sales and cost/profit tracking.
-  * Engineered data architecture using Google Sheets API and created automated dashboards reflecting daily business metrics.
-  * Implemented in daily operations, improving ingredient purchasing accuracy and reducing accounting discrepancies.
-* **Tech Stack:** Business Process Mapping, Google Apps Script, Google Sheets API, HTML/CSS, JavaScript
+  * Addressed the restaurant's actual pain point of lacking real-time profit and cost visibility by designing and developing a custom POS system.
+  * Connected sales data with Google Sheets API and built an automated dashboard to track real-time revenue and top-selling items.
+  * Used daily in actual store operations, improving ingredient ordering precision and significantly reducing accounting mistakes.
+* **Tools & Technologies:** Business Process Mapping, Google Apps Script, Google Sheets API, HTML/CSS, JavaScript
 
 #### 📱 Project 3: Life & Business Hub
 * **Sub-title:** Personal Project · PWA
 * **Bullet Points:**
-  * Defined functional requirements and user flows for an all-in-one life and business management PWA.
-  * Configured business logic for automated 9 AM daily sales reporting to LINE OA, integrating Gmail OAuth2 and Firebase sync.
-  * Integrated AI Assistant (Gemini 1.5 Pro) supporting Thai voice input and multi-turn conversational context.
-* **Tech Stack:** System Architecture, Firebase Realtime DB, Gemini 1.5 Pro API, LINE Notify API, Chart.js
+  * Personal project designed to manage both personal life and daily business operations in a single app.
+  * Built automated logic to deliver daily sales summaries to LINE OA every morning at 9:00 AM, integrated with Gmail OAuth2 and Firebase Real-Time Sync.
+  * Integrated an AI Assistant (Gemini 1.5 Pro) to support Thai voice commands and conversational context memory.
+* **Tools & Technologies:** System Architecture, Firebase Realtime DB, Gemini 1.5 Pro API, LINE Notify API, Chart.js
 
 ---
 
