@@ -3,43 +3,64 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kosan Phongthanu - Resume</title>
+  <title>Resume | Kosan Phongthanu (Junior IT Business Analyst)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: 'IBM Plex Sans', 'IBM Plex Sans Thai', -apple-system, sans-serif;
-      background: #E8EAED;
-      color: #1e293b;
-      font-size: 9.4pt;
-      line-height: 1.43;
-      -webkit-font-smoothing: antialiased;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    /* ═══ TOP ACTION BAR ═══ */
-    .action-bar {
-      width: 210mm;
-      margin: 20px auto 0;
+    body {
+      font-family: 'Plus Jakarta Sans\, 'Prompt\, sans-serif;
+      background: #f1f5f9;
+      color: #1e293b;
+      line-height: 1.36;
+      -webkit-font-smoothing: antialiased;
+      padding: 24px 0;
+    }
+
+    /* ═══ ACTION BAR (WEB ONLY) ═══ */
+    .actions-bar {
+      max-width: 210mm;
+      margin: 0 auto 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding: 0 8px;
     }
-    .btn-action {
-      padding: 8px 16px;
-      background: #fff;
-      border: 1px solid #cbd5e1;
-      border-radius: 6px;
-      color: #1e293b;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 13px;
+    .btn-back {
       display: inline-flex;
       align-items: center;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-      transition: all 0.2s ease;
+      color: #475569;
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .btn-back:hover {
+      color: #2563eb;
+    }
+    .actions-right {
+      display: flex;
+      gap: 10px;
+    }
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: 1px solid #cbd5e1;
+      background: #fff;
+      color: #334155;
     }
     .btn-action:hover {
       background: #f8fafc;
@@ -57,9 +78,9 @@
     .page {
       width: 210mm;
       height: 297mm;
-      margin: 16px auto 32px;
+      margin: 0 auto;
       background: #fff;
-      padding: 8.5mm 15mm 8.5mm;
+      padding: 7.5mm 14mm 7.5mm;
       box-shadow: 0 8px 30px rgba(0,0,0,0.12);
       display: flex;
       flex-direction: column;
@@ -72,29 +93,29 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      padding-bottom: 5.5px;
+      padding-bottom: 5px;
       border-bottom: 1.5px solid #0f172a;
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
     .header-left h1 {
-      font-size: 20.5pt;
+      font-size: 20pt;
       font-weight: 700;
       color: #0f172a;
       letter-spacing: -0.3px;
       line-height: 1.1;
-      margin-bottom: 2px;
+      margin-bottom: 1.5px;
     }
     .header-left .role {
-      font-size: 10.2pt;
+      font-size: 10pt;
       font-weight: 600;
       color: #2563eb;
       letter-spacing: 0.1px;
     }
     .header-right {
       text-align: right;
-      font-size: 8.5pt;
+      font-size: 8.3pt;
       color: #475569;
-      line-height: 1.38;
+      line-height: 1.36;
     }
     .header-right a {
       color: #2563eb;
@@ -103,29 +124,29 @@
 
     /* ═══ SECTION STYLES ═══ */
     .section {
-      margin-bottom: 5px;
+      margin-bottom: 4.5px;
     }
     .sec-title {
-      font-size: 9.2pt;
+      font-size: 9pt;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.75px;
       color: #2563eb;
       border-bottom: 1px solid #cbd5e1;
-      padding-bottom: 2px;
-      margin-bottom: 4px;
+      padding-bottom: 1.5px;
+      margin-bottom: 3.5px;
     }
 
     .summary-text {
-      font-size: 8.7pt;
+      font-size: 8.5pt;
       color: #334155;
-      line-height: 1.36;
+      line-height: 1.34;
       text-align: justify;
     }
 
     /* ═══ ITEMS ═══ */
     .item {
-      margin-bottom: 4px;
+      margin-bottom: 3.5px;
     }
     .item:last-child {
       margin-bottom: 0;
@@ -136,18 +157,18 @@
       align-items: baseline;
     }
     .item-title {
-      font-size: 9.3pt;
+      font-size: 9pt;
       font-weight: 700;
       color: #0f172a;
     }
     .item-date {
-      font-size: 8.5pt;
+      font-size: 8.3pt;
       font-weight: 500;
       color: #64748b;
       white-space: nowrap;
     }
     .item-sub {
-      font-size: 8.5pt;
+      font-size: 8.3pt;
       color: #475569;
       font-weight: 500;
       margin-bottom: 1px;
@@ -159,16 +180,16 @@
       margin-top: 1px;
     }
     ul.bullets li {
-      font-size: 8.6pt;
+      font-size: 8.4pt;
       color: #334155;
       margin-bottom: 1px;
-      line-height: 1.34;
+      line-height: 1.32;
     }
 
     .tech-stack {
-      font-size: 8.2pt;
+      font-size: 8pt;
       color: #475569;
-      margin-top: 2px;
+      margin-top: 1px;
     }
     .tech-stack strong {
       color: #1e293b;
@@ -180,22 +201,22 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
-      margin-top: 3px;
+      gap: 14px;
+      margin-top: 2px;
     }
     .skills-grid {
       display: flex;
       flex-direction: column;
-      gap: 3px;
+      gap: 2px;
       flex: 1;
     }
     .skill-row {
       display: flex;
-      font-size: 8.7pt;
-      line-height: 1.36;
+      font-size: 8.4pt;
+      line-height: 1.32;
     }
     .skill-cat {
-      width: 145px;
+      width: 155px;
       font-weight: 700;
       color: #0f172a;
       flex-shrink: 0;
@@ -216,37 +237,38 @@
       padding: 0;
     }
     .qr-title {
-      font-size: 8.2pt;
+      font-size: 8pt;
       font-weight: 700;
       color: #0f172a;
-      margin-bottom: 3.5px;
-      letter-spacing: 0.2px;
-      text-align: center;
+      margin-bottom: 2.5px;
     }
     .qr-img {
-      width: 62px;
-      height: 62px;
+      width: 56px;
+      height: 56px;
       display: block;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      padding: 2px;
+      background: #fff;
     }
 
-    @page {
-      size: A4;
-      margin: 0;
-    }
     @media print {
-      body { background: #fff; }
-      .no-print { display: none !important; }
-      .page { margin: 0; box-shadow: none; width: 210mm; height: 297mm; }
+      body { background: transparent; padding: 0; }
+      .actions-bar { display: none; }
+      .page { margin: 0; box-shadow: none; width: 100%; height: 100%; }
     }
   </style>
 </head>
 <body>
 
-<!-- TOP ACTION BAR FOR BROWSER VIEW -->
-<div class="no-print action-bar">
-  <a href="./index.html" class="btn-action">← Back to Portfolio</a>
-  <div style="display: flex; gap: 10px; align-items: center;">
-    <a href="./resume-th.html" class="btn-action">TH Language</a>
+<div class="actions-bar">
+  <a href="../index.html" class="btn-back">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; vertical-align: text-bottom;"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Portfolio
+  </a>
+  <div class="actions-right">
+    <button onclick="window.print()" class="btn-action">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; vertical-align: text-bottom;"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>Print Resume
+    </button>
     <a href="./resume.pdf" download="Kosan_Phongthanu_Resume.pdf" class="btn-action btn-primary">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; vertical-align: text-bottom;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>Download PDF
     </a>
@@ -262,10 +284,9 @@
         <div class="role">Junior IT Business Analyst / System Analyst</div>
       </div>
       <div class="header-right">
-        <div>Lat Phrao, Bangkok, Thailand</div>
+        <div>DOB: 15/09/2003 | Lat Phrao, Bangkok, Thailand</div>
         <div>kosak.phon@bumail.net | 064-117-4443</div>
-        <div><a href="https://github.com/pooh23z" target="_blank">github.com/pooh23z</a></div>
-        <div><a href="https://www.linkedin.com/in/kosan-phongthanu" target="_blank">linkedin.com/in/kosan-phongthanu</a></div>
+        <div><a href="https://github.com/pooh23z" target="_blank">github.com/pooh23z</a> | <a href="https://www.linkedin.com/in/kosan-phongthanu" target="_blank">linkedin.com/in/kosan-phongthanu</a></div>
       </div>
     </header>
 
@@ -273,7 +294,7 @@
     <section class="section">
       <div class="sec-title">Professional Summary</div>
       <p class="summary-text">
-        4th-year Information Technology student interested in business analysis and requirement gathering — focusing on translating user needs into system workflows and wireframes that development teams can readily implement. Experienced in leading an enterprise project designing 113+ screens, combined with hands-on small business ownership that gives me a clear understanding of both user and business perspectives.
+        4th-year Information Technology student aspiring to work as a Junior IT Business Analyst, skilled in Business Process Analysis, Requirements Gathering, and translating user needs into system workflows, wireframes, and UAT acceptance criteria. Experienced in managing an enterprise-scale project across 113+ screens combined with hands-on business ownership, connecting stakeholder communication with effective technical delivery.
       </p>
     </section>
 
@@ -282,10 +303,11 @@
       <div class="sec-title">Education</div>
       <div class="item">
         <div class="item-head">
-          <div class="item-title">Bangkok University (School of Information Technology and Innovation)</div>
-          <div class="item-date">4th Year · Expected Graduation: May 2027</div>
+          <div class="item-title">Bangkok University (School of Information Technology &amp; Innovation)</div>
+          <div class="item-date">Jun 2023 – May 2027 (Expected Graduation)</div>
         </div>
-        <div class="item-sub">Bachelor of Science in Information Technology</div>
+        <div class="item-sub">Bachelor of Science in Information Technology | GPA: 3.50</div>
+        <div class="tech-stack"><strong>Relevant Coursework:</strong> Systems Analysis &amp; Design, Database Systems, Software Engineering, UI/UX Design &amp; Prototyping</div>
       </div>
     </section>
 
@@ -299,11 +321,11 @@
           <div class="item-date">Senior Project · Thaicom Public Company Limited</div>
         </div>
         <ul class="bullets">
-          <li>Conducted on-site studies to analyze actual operational workflows (AS-IS) against ideal processes (TO-BE), synthesizing findings into clear system requirements.</li>
-          <li>Designed complete workflows, wireframes, and interactive prototypes across <strong>113+ screens</strong> covering asset requisition, receiving, transfer, and disposal.</li>
-          <li>Created a UI Design System and helped structure the Oracle DB schema to streamline development handoff for the engineering team.</li>
+          <li>Conducted on-site studies to analyze operational workflows (AS-IS vs. TO-BE), gathering requirements for an enterprise inventory system.</li>
+          <li>Designed system workflows, wireframes, and interactive prototypes across <strong>113+ screens</strong> covering asset requisition, receiving, transfer, and disposal.</li>
+          <li>Created a UI Design System, collaborated on Oracle DB schema planning, and defined UAT criteria to streamline engineering handoff.</li>
         </ul>
-        <div class="tech-stack"><strong>Tools &amp; Technologies:</strong> Figma, UML/Flowchart, Design System, Oracle DB, Laravel</div>
+        <div class="tech-stack"><strong>Tools &amp; Technologies:</strong> Figma, UML/Flowchart, Design System, Oracle DB, Laravel, UAT Testing</div>
       </div>
 
       <div class="item">
@@ -312,9 +334,9 @@
           <div class="item-date">Sem &amp; Friends (Live in Business)</div>
         </div>
         <ul class="bullets">
-          <li>Addressed the restaurant's actual pain point of lacking real-time profit and cost visibility by designing and developing a custom POS system.</li>
+          <li>Identified key business pain points; designed and developed a custom POS web app for real-time sales and cost/profit visibility.</li>
           <li>Connected sales data with Google Sheets API and built an automated dashboard to track real-time revenue and top-selling items.</li>
-          <li>Used daily in actual store operations, improving ingredient ordering precision and significantly reducing accounting mistakes.</li>
+          <li>Deployed in daily store operations handling <strong>1,000+ orders</strong>, improving ingredient ordering precision and eliminating bookkeeping discrepancies.</li>
         </ul>
         <div class="tech-stack"><strong>Tools &amp; Technologies:</strong> Business Process Mapping, Google Apps Script, Google Sheets API, HTML/CSS, JavaScript</div>
       </div>
@@ -325,9 +347,9 @@
           <div class="item-date">Personal Project · PWA</div>
         </div>
         <ul class="bullets">
-          <li>Personal project designed to manage both personal life and daily business operations in a single app.</li>
-          <li>Built automated logic to deliver daily sales summaries to LINE OA every morning at 9:00 AM, integrated with Gmail OAuth2 and Firebase Real-Time Sync.</li>
-          <li>Integrated an AI Assistant (Gemini 1.5 Pro) to support Thai voice commands and conversational context memory.</li>
+          <li>Defined functional requirements and user flows for an all-in-one personal workflow and business management PWA.</li>
+          <li>Built automated business logic to deliver daily sales summaries to LINE OA at 9:00 AM, integrated with Gmail OAuth2 and Firebase sync.</li>
+          <li>Integrated an AI Assistant (Gemini 1.5 Pro) supporting Thai voice input and conversational context memory to streamline operations.</li>
         </ul>
         <div class="tech-stack"><strong>Tools &amp; Technologies:</strong> System Architecture, Firebase Realtime DB, Gemini 1.5 Pro API, LINE Notify API, Chart.js</div>
       </div>
@@ -339,35 +361,35 @@
       <div class="item">
         <div class="item-head">
           <div class="item-title">Owner &amp; Online Marketing Lead</div>
-          <div class="item-date">2026 – Present</div>
+          <div class="item-date">Mar 2026 – Present</div>
         </div>
         <div class="item-sub">Sem &amp; Friends (Fried Mala) — Self-Employed</div>
         <ul class="bullets">
-          <li>Developed the <strong>MALA POS</strong> system in-house to manage daily orders, ingredient costs, and store revenue summaries.</li>
-          <li>Managed <strong>LINE OA</strong> with over <strong>300 followers</strong>, handling promotional campaigns and receiving online orders.</li>
-          <li>Responsible for inventory stock, revenue/expense bookkeeping, and overall day-to-day operations.</li>
+          <li>Built <strong>MALA POS</strong> handling <strong>1,000+ orders</strong>, cutting accounting errors and improving cost calculation accuracy by <strong>100%</strong>.</li>
+          <li>Managed <strong>LINE OA</strong> with <strong>300+ followers</strong>, analyzing customer ordering trends and running promotional campaigns.</li>
+          <li>Systematically supervised raw material inventory and financial bookkeeping for streamlined daily shop operations.</li>
         </ul>
       </div>
 
       <div class="item">
         <div class="item-head">
           <div class="item-title">O2O Order Fulfillment Staff (Part-time)</div>
-          <div class="item-date">2025</div>
+          <div class="item-date">Jun 2025 – May 2026 (1 Year)</div>
         </div>
-        <div class="item-sub">Makro (CP Axtra)</div>
+        <div class="item-sub">Makro (CP Axtra / Makro PRO) — Rangsit, Pathum Thani</div>
         <ul class="bullets">
-          <li>Picked online orders and counted inventory stock for timely storefront handover, especially during peak high-order periods.</li>
+          <li>Fulfilled <strong>50+ online orders/shift</strong> with <strong>99% inventory accuracy</strong>, ensuring timely handoff during peak demand periods.</li>
         </ul>
       </div>
 
       <div class="item">
         <div class="item-head">
           <div class="item-title">Data Entry Staff (Part-time)</div>
-          <div class="item-date">2025</div>
+          <div class="item-date">Nov 2025 – Dec 2025 (2 Months)</div>
         </div>
-        <div class="item-sub">Thailand International Motor Expo</div>
+        <div class="item-sub">Thailand International Motor Expo — IMPACT Muang Thong Thani</div>
         <ul class="bullets">
-          <li>Entered vehicle and visitor customer data accurately and on time, even during peak rush hours and long queues.</li>
+          <li>Accurately recorded and verified <strong>200+ vehicle &amp; customer records/day</strong> with <strong>100% precision</strong> during fast-paced rush hours.</li>
         </ul>
       </div>
     </section>
@@ -375,11 +397,11 @@
     <!-- CERTIFICATIONS -->
     <section class="section">
       <div class="sec-title">Certifications &amp; Training</div>
-      <div style="display: flex; justify-content: space-between; font-size: 8.7pt; color: #334155; line-height: 1.4;">
+      <div style="display: flex; justify-content: space-between; font-size: 8.4pt; color: #334155; line-height: 1.34;">
         <div><strong>Cybersecurity Foundation Course (21 Hours)</strong> — National Cyber Security Agency (NCSA)</div>
         <div style="color: #64748b; font-weight: 500; white-space: nowrap; margin-left: 8px;">March 2026</div>
       </div>
-      <div style="display: flex; justify-content: space-between; font-size: 8.7pt; color: #334155; line-height: 1.4; margin-top: 2px;">
+      <div style="display: flex; justify-content: space-between; font-size: 8.4pt; color: #334155; line-height: 1.34; margin-top: 1.5px;">
         <div><strong>Claude 101 (Certificate of Completion)</strong> — Anthropic</div>
         <div style="color: #64748b; font-weight: 500; white-space: nowrap; margin-left: 8px;">2026</div>
       </div>
@@ -392,19 +414,19 @@
         <div class="skills-grid">
           <div class="skill-row">
             <div class="skill-cat">Business &amp; System Analysis:</div>
-            <div class="skill-val">Requirements Gathering, Business Process Modeling (AS-IS/TO-BE), User Stories, Flowcharts, UML/DFD, UAT Testing</div>
+            <div class="skill-val">Requirements Gathering, BRD/FRD, AS-IS / TO-BE, User Stories &amp; Acceptance Criteria, Gap Analysis, UAT Testing</div>
           </div>
           <div class="skill-row">
-            <div class="skill-cat">UI/UX &amp; Wireframing:</div>
-            <div class="skill-val">Figma, Wireframing, Interactive Prototyping, Design Systems, Information Architecture</div>
+            <div class="skill-cat">UI/UX &amp; Diagramming:</div>
+            <div class="skill-val">Figma (Wireframe &amp; Prototype), Draw.io, UML / Flowcharts, Design Systems, Information Architecture</div>
           </div>
           <div class="skill-row">
-            <div class="skill-cat">Database &amp; Data Tools:</div>
-            <div class="skill-val">MySQL, Oracle DB, Firebase, Google Sheets (Advanced Formulas / Pivot), Google Apps Script, REST APIs</div>
+            <div class="skill-cat">Data &amp; Technical Tools:</div>
+            <div class="skill-val">SQL, Oracle DB, MySQL, Firebase, Google Sheets (Advanced / Pivot), REST APIs</div>
           </div>
           <div class="skill-row">
-            <div class="skill-cat">Tools &amp; Additional Skills:</div>
-            <div class="skill-val">Digital Marketing, LINE OA Management, Web Development Basics, Jira/Trello Basics</div>
+            <div class="skill-cat">Soft Skills &amp; Management:</div>
+            <div class="skill-val">Stakeholder Communication, Analytical Thinking, Problem Solving, LINE OA, Jira/Trello Basics</div>
           </div>
         </div>
         <div class="qr-box">
