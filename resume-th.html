@@ -59,7 +59,7 @@
       height: 297mm;
       margin: 16px auto 32px;
       background: #fff;
-      padding: 11mm 15mm 11mm;
+      padding: 8.5mm 15mm 8.5mm;
       box-shadow: 0 8px 30px rgba(0,0,0,0.12);
       display: flex;
       flex-direction: column;
@@ -72,29 +72,29 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      padding-bottom: 7px;
+      padding-bottom: 5.5px;
       border-bottom: 1.5px solid #0f172a;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
     .header-left h1 {
-      font-size: 21pt;
+      font-size: 20.5pt;
       font-weight: 700;
       color: #0f172a;
       letter-spacing: -0.3px;
       line-height: 1.1;
-      margin-bottom: 2.5px;
+      margin-bottom: 2px;
     }
     .header-left .role {
-      font-size: 10.5pt;
+      font-size: 10.2pt;
       font-weight: 600;
       color: #2563eb;
       letter-spacing: 0.1px;
     }
     .header-right {
       text-align: right;
-      font-size: 8.6pt;
+      font-size: 8.5pt;
       color: #475569;
-      line-height: 1.42;
+      line-height: 1.38;
     }
     .header-right a {
       color: #2563eb;
@@ -103,29 +103,29 @@
 
     /* ═══ SECTION STYLES ═══ */
     .section {
-      margin-bottom: 8px;
+      margin-bottom: 5px;
     }
     .sec-title {
-      font-size: 9.3pt;
+      font-size: 9.2pt;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.75px;
       color: #2563eb;
       border-bottom: 1px solid #cbd5e1;
-      padding-bottom: 2.5px;
-      margin-bottom: 5px;
+      padding-bottom: 2px;
+      margin-bottom: 4px;
     }
 
     .summary-text {
-      font-size: 8.9pt;
+      font-size: 8.7pt;
       color: #334155;
-      line-height: 1.42;
+      line-height: 1.36;
       text-align: justify;
     }
 
     /* ═══ ITEMS ═══ */
     .item {
-      margin-bottom: 5px;
+      margin-bottom: 4px;
     }
     .item:last-child {
       margin-bottom: 0;
@@ -150,25 +150,25 @@
       font-size: 8.5pt;
       color: #475569;
       font-weight: 500;
-      margin-bottom: 1.5px;
+      margin-bottom: 1px;
     }
 
     ul.bullets {
       list-style-type: disc;
       padding-left: 14px;
-      margin-top: 1.5px;
+      margin-top: 1px;
     }
     ul.bullets li {
-      font-size: 8.7pt;
+      font-size: 8.6pt;
       color: #334155;
-      margin-bottom: 1.5px;
-      line-height: 1.38;
+      margin-bottom: 1px;
+      line-height: 1.34;
     }
 
     .tech-stack {
       font-size: 8.2pt;
       color: #475569;
-      margin-top: 2px;
+      margin-top: 1.5px;
     }
     .tech-stack strong {
       color: #1e293b;
@@ -186,16 +186,16 @@
     .skills-grid {
       display: flex;
       flex-direction: column;
-      gap: 3px;
+      gap: 2.5px;
       flex: 1;
     }
     .skill-row {
       display: flex;
-      font-size: 8.7pt;
-      line-height: 1.36;
+      font-size: 8.6pt;
+      line-height: 1.34;
     }
     .skill-cat {
-      width: 145px;
+      width: 155px;
       font-weight: 700;
       color: #0f172a;
       flex-shrink: 0;
@@ -219,34 +219,35 @@
       font-size: 8.2pt;
       font-weight: 700;
       color: #0f172a;
-      margin-bottom: 3.5px;
-      letter-spacing: 0.2px;
-      text-align: center;
+      margin-bottom: 3px;
     }
     .qr-img {
-      width: 62px;
-      height: 62px;
+      width: 58px;
+      height: 58px;
       display: block;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      padding: 2px;
+      background: #fff;
     }
 
-    @page {
-      size: A4;
-      margin: 0;
-    }
     @media print {
-      body { background: #fff; }
-      .no-print { display: none !important; }
-      .page { margin: 0; box-shadow: none; width: 210mm; height: 297mm; }
+      body { background: transparent; padding: 0; }
+      .actions-bar { display: none; }
+      .page { margin: 0; box-shadow: none; width: 100%; height: 100%; }
     }
   </style>
 </head>
 <body>
 
-<!-- TOP ACTION BAR FOR BROWSER VIEW -->
-<div class="no-print action-bar">
-  <a href="./index.html" class="btn-action">← กลับไปหน้าพอร์ตโฟลิโอ</a>
-  <div style="display: flex; gap: 10px; align-items: center;">
-    <a href="./resume.html" class="btn-action">EN Language</a>
+<div class="actions-bar">
+  <a href="../index.html" class="btn-back">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; vertical-align: text-bottom;"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>กลับสู่หน้าหลัก
+  </a>
+  <div class="actions-right">
+    <button onclick="window.print()" class="btn-action">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; vertical-align: text-bottom;"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>พิมพ์เรซูเม
+    </button>
     <a href="./resume-th.pdf" download="Kosan_Phongthanu_Resume_TH.pdf" class="btn-action btn-primary">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; vertical-align: text-bottom;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>ดาวน์โหลด PDF
     </a>
@@ -273,7 +274,7 @@
     <section class="section">
       <div class="sec-title">ข้อมูลส่วนตัว (PROFESSIONAL SUMMARY)</div>
       <p class="summary-text">
-        นักศึกษาชั้นปีที่ 4 สาขาเทคโนโลยีสารสนเทศ สนใจด้านวิเคราะห์ธุรกิจและรวบรวม Requirement โดยเฉพาะการแปลงความต้องการของผู้ใช้งานให้กลายเป็น System Workflow และ Wireframe ที่ทีมพัฒนาเอาไปทำงานต่อได้จริง เคยรับผิดชอบโปรเจกต์ระดับองค์กรที่ออกแบบหน้าจอกว่า 113 หน้า และมีประสบการณ์ตรงจากการบริหารธุรกิจของตัวเองเลยทำให้เข้าใจทั้งมุมมองผู้ใช้งานและมุมมองธุรกิจไปพร้อมกัน
+        นักศึกษาชั้นปีที่ 4 สาขาเทคโนโลยีสารสนเทศ มีความมุ่งมั่นในสายงาน Business Analyst เชี่ยวชาญการทำ Business Process Analysis, Requirements Gathering และแปลความต้องการของผู้ใช้งานเป็น System Workflow, Wireframes และเกณฑ์ตรวจรับ UAT ได้อย่างแม่นยำ มีประสบการณ์ตรงจากการบริหารธุรกิจของตัวเองและรับผิดชอบโปรเจกต์ระดับองค์กรกว่า 113 หน้าจอ จึงเข้าใจทั้งมุมมองผู้ใช้งาน การสื่อสารกับ Stakeholder และการส่งมอบงานให้ทีมพัฒนา
       </p>
     </section>
 
@@ -286,6 +287,7 @@
           <div class="item-date">ปี 4 · คาดสำเร็จการศึกษา พฤษภาคม 2570</div>
         </div>
         <div class="item-sub">วิทยาศาสตรบัณฑิต สาขาเทคโนโลยีสารสนเทศ</div>
+        <div class="tech-stack" style="margin-top: 1px;"><strong>วิชาที่เกี่ยวข้อง:</strong> System Analysis &amp; Design, Database Systems, Software Engineering, UI/UX Design &amp; Prototyping</div>
       </div>
     </section>
 
@@ -299,11 +301,11 @@
           <div class="item-date">Senior Project · Thaicom Public Company Limited</div>
         </div>
         <ul class="bullets">
-          <li>ลงพื้นที่วิเคราะห์กระบวนการทำงานจริง (AS-IS) เทียบกับกระบวนการที่ควรจะเป็น (TO-BE) แล้วสรุปออกมาเป็น Requirement สำหรับระบบจัดการคลังวัสดุ</li>
-          <li>ออกแบบ Workflow และทำ Wireframe/Prototype ทั้งหมดกว่า <strong>113 หน้าจอ</strong> ครอบคลุมตั้งแต่การเบิก รับ โอน ไปจนถึงจำหน่ายทรัพย์สิน</li>
-          <li>จัดทำ UI Design System และช่วยวางโครงสร้างฐานข้อมูล (Oracle DB) เพื่อให้ทีม Dev หยิบไปพัฒนาต่อได้ง่ายขึ้น</li>
+          <li>ลงพื้นที่ศึกษาและวิเคราะห์กระบวนการทำงานจริง (AS-IS / TO-BE) เพื่อรวบรวม Requirements และจัดทำเอกสารความต้องการของระบบจัดการคลังวัสดุ</li>
+          <li>ออกแบบ System Workflow, Wireframes และ Interactive Prototype ทั้งหมดกว่า <strong>113 หน้าจอ</strong> ครอบคลุมการเบิก รับ โอน และจำหน่ายทรัพย์สิน</li>
+          <li>จัดทำ UI Design System พร้อมร่วมออกแบบโครงสร้างฐานข้อมูล (Oracle DB) และเกณฑ์ UAT เพื่อประสานงานส่งมอบสเปกให้ทีม Dev ได้อย่างแม่นยำ</li>
         </ul>
-        <div class="tech-stack"><strong>เครื่องมือที่ใช้:</strong> Figma, UML/Flowchart, Design System, Oracle DB, Laravel</div>
+        <div class="tech-stack"><strong>เครื่องมือที่ใช้:</strong> Figma, UML/Flowchart, Design System, Oracle DB, Laravel, UAT Testing</div>
       </div>
 
       <div class="item">
@@ -312,9 +314,9 @@
           <div class="item-date">ร้านเสม &amp; Friends (ใช้งานจริงในธุรกิจ)</div>
         </div>
         <ul class="bullets">
-          <li>เริ่มจากปัญหาจริงของร้าน คือไม่รู้ต้นทุน-กำไรที่แท้จริงแบบเรียลไทม์ เลยออกแบบและพัฒนาระบบ POS ขึ้นมาเอง</li>
-          <li>เชื่อมข้อมูลกับ Google Sheets API แล้วทำ Dashboard ให้เห็นยอดขายและเมนูขายดีได้ทันที</li>
-          <li>ใช้งานจริงทุกวันในร้าน ช่วยให้สั่งวัตถุดิบแม่นขึ้นและลดความผิดพลาดทางบัญชีไปได้เยอะ</li>
+          <li>วิเคราะห์ Pain Point ธุรกิจร้านอาหาร ออกแบบและพัฒนาระบบ POS สำหรับบันทึกยอดขายและคำนวณต้นทุน-กำไรสุทธิแบบ Real-time</li>
+          <li>เชื่อมข้อมูลกับ Google Sheets API และสร้าง Dashboard ติดตามยอดขาย ช่วยให้เห็นต้นทุนและเมนูขายดีได้ทันที</li>
+          <li>ใช้งานจริงในร้านทุกวัน ช่วยเพิ่มความแม่นยำในการสั่งซื้อวัตถุดิบและลดความผิดพลาดทางบัญชี</li>
         </ul>
         <div class="tech-stack"><strong>เครื่องมือที่ใช้:</strong> Business Process Mapping, Google Apps Script, Google Sheets API, HTML/CSS, JavaScript</div>
       </div>
@@ -325,9 +327,9 @@
           <div class="item-date">Personal Project · PWA</div>
         </div>
         <ul class="bullets">
-          <li>โปรเจกต์ส่วนตัวที่ออกแบบมาเพื่อช่วยบริหารทั้งชีวิตส่วนตัวและธุรกิจในแอปเดียว</li>
-          <li>วางระบบให้สรุปยอดขายส่งเข้า LINE OA อัตโนมัติทุกเช้า 9 โมง พร้อมเชื่อม Gmail OAuth2 และ Firebase Real-Time Sync</li>
-          <li>ใส่ AI Assistant (Gemini 1.5 Pro) เข้าไปให้สั่งงานด้วยเสียงภาษาไทยและจำบริบทการสนทนาได้</li>
+          <li>รวบรวมความต้องการและออกแบบ Functional Requirements สำหรับแอปพลิเคชันบริหารชีวิตส่วนตัวและธุรกิจในระบบเดียว</li>
+          <li>วาง Business Logic ให้สรุปยอดขายส่งเข้า LINE OA อัตโนมัติทุกเช้า 9:00 น. พร้อมเชื่อม Gmail OAuth2 และ Firebase Real-Time Sync</li>
+          <li>ผสาน AI Assistant (Gemini 1.5 Pro) รองรับคำสั่งเสียงภาษาไทยและจดจำบริบทสนทนาเพื่อเพิ่มประสิทธิภาพการทำงาน</li>
         </ul>
         <div class="tech-stack"><strong>เครื่องมือที่ใช้:</strong> System Architecture, Firebase Realtime DB, Gemini 1.5 Pro API, LINE Notify API, Chart.js</div>
       </div>
@@ -339,13 +341,13 @@
       <div class="item">
         <div class="item-head">
           <div class="item-title">เจ้าของร้าน &amp; ผู้ดูแลการตลาดออนไลน์</div>
-          <div class="item-date">2569 – ปัจจุบัน</div>
+          <div class="item-date">มี.ค. 2569 – ปัจจุบัน</div>
         </div>
         <div class="item-sub">ร้านเสม &amp; Friends (หม่าล่าทอด) — ธุรกิจส่วนตัว</div>
         <ul class="bullets">
-          <li>พัฒนาระบบ <strong>MALA POS</strong> ขึ้นมาเองสำหรับจัดการออเดอร์ ต้นทุน และสรุปยอดขายของร้าน</li>
-          <li>ดูแล <strong>LINE OA</strong> ที่มีผู้ติดตามกว่า <strong>300 คน</strong> ทั้งจัดโปรโมชันและรับออเดอร์ออนไลน์</li>
-          <li>รับผิดชอบสต็อก บัญชีรายรับ-รายจ่าย และทุกหน้าที่ในร้าน</li>
+          <li>พัฒนาระบบ <strong>MALA POS</strong> สำหรับบันทึกออเดอร์ ต้นทุน และสรุปยอดขายของร้าน</li>
+          <li>บริหาร <strong>LINE OA</strong> ผู้ติดตามกว่า <strong>300 คน</strong> ทั้งวิเคราะห์พฤติกรรมลูกค้า จัดโปรโมชัน และรับออเดอร์ออนไลน์</li>
+          <li>บริหารสต็อกสินค้า บัญชีรายรับ-รายจ่าย และกระบวนการทำงานในร้าน</li>
         </ul>
       </div>
 
@@ -392,19 +394,19 @@
         <div class="skills-grid">
           <div class="skill-row">
             <div class="skill-cat">การวิเคราะห์ระบบและธุรกิจ:</div>
-            <div class="skill-val">Requirement Gathering, Business Process Modeling (AS-IS/TO-BE), User Stories, Flowcharts, UML/DFD, UAT Testing</div>
+            <div class="skill-val">Requirements Gathering, BRD/FRD, AS-IS / TO-BE, User Stories &amp; Acceptance Criteria, Gap Analysis, UAT Testing</div>
           </div>
           <div class="skill-row">
             <div class="skill-cat">การออกแบบและ Wireframe:</div>
-            <div class="skill-val">Figma, Wireframing, Interactive Prototyping, Design Systems, Information Architecture</div>
+            <div class="skill-val">Figma (Wireframe &amp; Prototype), Draw.io, UML / Flowcharts, Design Systems, Information Architecture</div>
           </div>
           <div class="skill-row">
-            <div class="skill-cat">ฐานข้อมูลและการจัดการข้อมูล:</div>
-            <div class="skill-val">MySQL, Oracle DB, Firebase, Google Sheets (Advanced Formulas / Pivot), Google Apps Script, REST APIs</div>
+            <div class="skill-cat">ข้อมูลและเครื่องมือเทคนิค:</div>
+            <div class="skill-val">SQL, Oracle DB, MySQL, Firebase, Google Sheets (Advanced / Pivot), REST APIs</div>
           </div>
           <div class="skill-row">
-            <div class="skill-cat">เครื่องมือและทักษะเสริม:</div>
-            <div class="skill-val">Digital Marketing, LINE OA Management, Web Development Basics, Jira/Trello Basics</div>
+            <div class="skill-cat">ทักษะการทำงานและเครื่องมือ:</div>
+            <div class="skill-val">Stakeholder Communication, Analytical Thinking, Problem Solving, LINE OA, Jira/Trello Basics</div>
           </div>
         </div>
         <div class="qr-box">
