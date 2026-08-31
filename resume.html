@@ -6,31 +6,50 @@
   <title>Resume | Kosan Phongthanu (Junior IT Business Analyst)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      font-family: "Plus Jakarta Sans", "Prompt", sans-serif;
+      font-family: "IBM Plex Sans", "IBM Plex Sans Thai", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background: #f1f5f9;
       color: #1e293b;
+      font-size: 9.35pt;
       line-height: 1.38;
       -webkit-font-smoothing: antialiased;
       padding: 24px 0;
     }
+
     .actions-bar {
-      max-width: 210mm; margin: 0 auto 14px;
-      display: flex; justify-content: space-between; align-items: center; padding: 0 8px;
+      max-width: 210mm;
+      margin: 0 auto 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 8px;
     }
     .btn-back {
-      display: inline-flex; align-items: center; color: #475569;
-      text-decoration: none; font-size: 13px; font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      color: #475569;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
     }
     .btn-back:hover { color: #2563eb; }
     .actions-right { display: flex; gap: 10px; }
     .btn-action {
-      display: inline-flex; align-items: center; padding: 6px 13px; border-radius: 6px;
-      font-size: 12.5px; font-weight: 600; cursor: pointer; text-decoration: none;
-      border: 1px solid #cbd5e1; background: #fff; color: #334155;
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 13px;
+      border-radius: 6px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      border: 1px solid #cbd5e1;
+      background: #fff;
+      color: #334155;
     }
     .btn-action:hover { background: #f8fafc; border-color: #94a3b8; }
     .btn-action.btn-primary { background: #2563eb; color: #fff; border-color: #2563eb; }
@@ -41,7 +60,7 @@
       height: 297mm;
       margin: 0 auto;
       background: #fff;
-      padding: 11mm 15mm 11mm;
+      padding: 8.5mm 14.5mm 8.5mm;
       box-shadow: 0 8px 30px rgba(0,0,0,0.12);
       display: flex;
       flex-direction: column;
@@ -53,51 +72,51 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      padding-bottom: 5px;
+      padding-bottom: 6px;
       border-bottom: 1.5px solid #0f172a;
-      margin-bottom: 5px;
+      margin-bottom: 6px;
     }
     .header-left h1 {
-      font-size: 20pt;
+      font-size: 21pt;
       font-weight: 700;
       color: #0f172a;
       letter-spacing: -0.3px;
       line-height: 1.1;
-      margin-bottom: 1.5px;
+      margin-bottom: 2px;
     }
     .header-left .role {
-      font-size: 10pt;
+      font-size: 10.4pt;
       font-weight: 600;
       color: #2563eb;
       letter-spacing: 0.1px;
     }
     .header-right {
       text-align: right;
-      font-size: 8.2pt;
+      font-size: 8.4pt;
       color: #475569;
-      line-height: 1.34;
+      line-height: 1.36;
     }
     .header-right a { color: #2563eb; text-decoration: none; }
 
-    .section { margin-bottom: 6.5px; }
+    .section { margin-bottom: 4.8px; }
     .sec-title {
-      font-size: 9pt;
+      font-size: 9.3pt;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.75px;
       color: #2563eb;
       border-bottom: 1px solid #cbd5e1;
-      padding-bottom: 1.5px;
-      margin-bottom: 3.5px;
+      padding-bottom: 2px;
+      margin-bottom: 4px;
     }
     .summary-text {
-      font-size: 8.7pt;
+      font-size: 8.65pt;
       color: #334155;
-      line-height: 1.40;
+      line-height: 1.38;
       text-align: justify;
     }
 
-    .item { margin-bottom: 4.5px; }
+    .item { margin-bottom: 3.8px; }
     .item:last-child { margin-bottom: 0; }
     .item-head {
       display: flex;
@@ -105,18 +124,18 @@
       align-items: baseline;
     }
     .item-title {
-      font-size: 9pt;
+      font-size: 9.2pt;
       font-weight: 700;
       color: #0f172a;
     }
     .item-date {
-      font-size: 8.2pt;
+      font-size: 8.4pt;
       font-weight: 500;
       color: #64748b;
       white-space: nowrap;
     }
     .item-sub {
-      font-size: 8.25pt;
+      font-size: 8.45pt;
       color: #475569;
       font-weight: 500;
       margin-bottom: 1px;
@@ -128,14 +147,14 @@
       margin-top: 1px;
     }
     ul.bullets li {
-      font-size: 8.5pt;
+      font-size: 8.55pt;
       color: #334155;
-      margin-bottom: 1.5px;
-      line-height: 1.36;
+      margin-bottom: 1.2px;
+      line-height: 1.34;
     }
 
     .tech-stack {
-      font-size: 8pt;
+      font-size: 8.2pt;
       color: #475569;
       margin-top: 1px;
     }
@@ -148,7 +167,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 14px;
+      gap: 16px;
       margin-top: 2px;
     }
     .skills-grid {
@@ -159,7 +178,7 @@
     }
     .skill-row {
       display: flex;
-      font-size: 8.3pt;
+      font-size: 8.4pt;
       line-height: 1.32;
     }
     .skill-cat {
@@ -184,19 +203,18 @@
       padding: 0;
     }
     .qr-title {
-      font-size: 7.8pt;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 8.2pt;
       font-weight: 700;
       color: #0f172a;
-      margin-bottom: 2px;
+      margin-bottom: 3px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
     }
     .qr-img {
-      width: 56px;
-      height: 56px;
+      width: 64px;
+      height: 64px;
       display: block;
-      border: 1px solid #cbd5e1;
-      border-radius: 4px;
-      padding: 2px;
-      background: #fff;
     }
 
     @media print {
@@ -240,7 +258,7 @@
 
     <!-- PROFESSIONAL SUMMARY -->
     <section class="section">
-      <div class="sec-title">Professional Summary</div>
+      <div class="sec-title">PROFESSIONAL SUMMARY</div>
       <p class="summary-text">
         4th-year Information Technology student aspiring to work as a Junior IT Business Analyst, skilled in analyzing business problems, gathering requirements, and defining Functional Requirements and User Stories. Experienced in Stakeholder Communication, designing system workflows across 113+ enterprise screens, and supporting UAT to deliver practical technical solutions.
       </p>
@@ -248,7 +266,7 @@
 
     <!-- EDUCATION -->
     <section class="section">
-      <div class="sec-title">Education</div>
+      <div class="sec-title">EDUCATION</div>
       <div class="item">
         <div class="item-head">
           <div class="item-title">Bangkok University (School of Information Technology &amp; Innovation)</div>
@@ -261,7 +279,7 @@
 
     <!-- SELECTED PROJECTS -->
     <section class="section">
-      <div class="sec-title">Selected Projects</div>
+      <div class="sec-title">SELECTED PROJECTS</div>
 
       <div class="item">
         <div class="item-head">
@@ -302,7 +320,7 @@
 
     <!-- WORK EXPERIENCE -->
     <section class="section">
-      <div class="sec-title">Work Experience</div>
+      <div class="sec-title">WORK EXPERIENCE</div>
       <div class="item">
         <div class="item-head">
           <div class="item-title">Owner &amp; Business Systems Lead</div>
@@ -338,14 +356,14 @@
       </div>
     </section>
 
-    <!-- CERTIFICATIONS -->
+    <!-- CERTIFICATIONS & TRAINING -->
     <section class="section">
-      <div class="sec-title">Certifications &amp; Training</div>
-      <div style="display: flex; justify-content: space-between; font-size: 8.4pt; color: #334155; line-height: 1.34;">
+      <div class="sec-title">CERTIFICATIONS &amp; TRAINING</div>
+      <div style="display: flex; justify-content: space-between; font-size: 8.55pt; color: #334155; line-height: 1.36;">
         <div><strong>Cybersecurity Foundation Course (21 Hours)</strong> — National Cyber Security Agency (NCSA)</div>
         <div style="color: #64748b; font-weight: 500; white-space: nowrap; margin-left: 8px;">Mar 2026</div>
       </div>
-      <div style="display: flex; justify-content: space-between; font-size: 8.4pt; color: #334155; line-height: 1.34; margin-top: 1.5px;">
+      <div style="display: flex; justify-content: space-between; font-size: 8.55pt; color: #334155; line-height: 1.36; margin-top: 2px;">
         <div><strong>Claude 101 (Certificate of Completion)</strong> — Anthropic</div>
         <div style="color: #64748b; font-weight: 500; white-space: nowrap; margin-left: 8px;">2026</div>
       </div>
@@ -353,7 +371,7 @@
 
     <!-- SKILLS -->
     <section class="section" style="margin-bottom:0;">
-      <div class="sec-title">Skills</div>
+      <div class="sec-title">SKILLS</div>
       <div class="skills-with-qr">
         <div class="skills-grid">
           <div class="skill-row">
