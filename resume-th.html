@@ -3,53 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>โกศัลย์ พงษ์ธนู - เรซูเม</title>
+  <title>เรซูเม | โกศัลย์ พงษ์ธนู (Junior IT Business Analyst)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
-      font-family: "IBM Plex Sans Thai", "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-family: "Sarabun", "Prompt", sans-serif;
       background: #f1f5f9;
       color: #1e293b;
-      font-size: 9.4pt;
-      line-height: 1.40;
+      line-height: 1.38;
       -webkit-font-smoothing: antialiased;
       padding: 24px 0;
     }
-
     .actions-bar {
-      max-width: 210mm;
-      margin: 0 auto 14px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 8px;
+      max-width: 210mm; margin: 0 auto 14px;
+      display: flex; justify-content: space-between; align-items: center; padding: 0 8px;
     }
     .btn-back {
-      display: inline-flex;
-      align-items: center;
-      color: #475569;
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: 500;
+      display: inline-flex; align-items: center; color: #475569;
+      text-decoration: none; font-size: 13px; font-weight: 500;
     }
     .btn-back:hover { color: #2563eb; }
     .actions-right { display: flex; gap: 10px; }
     .btn-action {
-      display: inline-flex;
-      align-items: center;
-      padding: 6px 13px;
-      border-radius: 6px;
-      font-size: 12.5px;
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: none;
-      border: 1px solid #cbd5e1;
-      background: #fff;
-      color: #334155;
+      display: inline-flex; align-items: center; padding: 6px 13px; border-radius: 6px;
+      font-size: 12.5px; font-weight: 600; cursor: pointer; text-decoration: none;
+      border: 1px solid #cbd5e1; background: #fff; color: #334155;
     }
     .btn-action:hover { background: #f8fafc; border-color: #94a3b8; }
     .btn-action.btn-primary { background: #2563eb; color: #fff; border-color: #2563eb; }
@@ -60,7 +41,7 @@
       height: 297mm;
       margin: 0 auto;
       background: #fff;
-      padding: 10.5mm 15mm 10.5mm;
+      padding: 11mm 15mm 11mm;
       box-shadow: 0 8px 30px rgba(0,0,0,0.12);
       display: flex;
       flex-direction: column;
@@ -74,7 +55,7 @@
       align-items: flex-start;
       padding-bottom: 5.5px;
       border-bottom: 1.5px solid #0f172a;
-      margin-bottom: 5.5px;
+      margin-bottom: 6px;
     }
     .header-left h1 {
       font-size: 20.5pt;
@@ -82,7 +63,7 @@
       color: #0f172a;
       letter-spacing: -0.3px;
       line-height: 1.1;
-      margin-bottom: 1.5px;
+      margin-bottom: 2px;
     }
     .header-left .role {
       font-size: 10.2pt;
@@ -98,7 +79,7 @@
     }
     .header-right a { color: #2563eb; text-decoration: none; }
 
-    .section { margin-bottom: 5.5px; }
+    .section { margin-bottom: 6.5px; }
     .sec-title {
       font-size: 9.2pt;
       font-weight: 700;
@@ -106,17 +87,17 @@
       letter-spacing: 0.75px;
       color: #2563eb;
       border-bottom: 1px solid #cbd5e1;
-      padding-bottom: 1.5px;
-      margin-bottom: 3.5px;
+      padding-bottom: 2px;
+      margin-bottom: 4px;
     }
     .summary-text {
-      font-size: 8.65pt;
+      font-size: 8.75pt;
       color: #334155;
-      line-height: 1.38;
+      line-height: 1.42;
       text-align: justify;
     }
 
-    .item { margin-bottom: 4px; }
+    .item { margin-bottom: 4.5px; }
     .item:last-child { margin-bottom: 0; }
     .item-head {
       display: flex;
@@ -147,10 +128,10 @@
       margin-top: 1px;
     }
     ul.bullets li {
-      font-size: 8.55pt;
+      font-size: 8.6pt;
       color: #334155;
-      margin-bottom: 1.2px;
-      line-height: 1.35;
+      margin-bottom: 1.5px;
+      line-height: 1.38;
     }
 
     .tech-stack {
@@ -167,22 +148,22 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 14px;
       margin-top: 2px;
     }
     .skills-grid {
       display: flex;
       flex-direction: column;
-      gap: 2.8px;
+      gap: 3.5px;
       flex: 1;
     }
     .skill-row {
       display: flex;
-      font-size: 8.4pt;
+      font-size: 8.45pt;
       line-height: 1.34;
     }
     .skill-cat {
-      width: 150px;
+      width: 155px;
       font-weight: 700;
       color: #0f172a;
       flex-shrink: 0;
@@ -203,18 +184,19 @@
       padding: 0;
     }
     .qr-title {
-      font-family: "IBM Plex Sans", sans-serif;
-      font-size: 8.2pt;
+      font-size: 8pt;
       font-weight: 700;
       color: #0f172a;
-      margin-bottom: 3px;
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
+      margin-bottom: 2.5px;
     }
     .qr-img {
-      width: 62px;
-      height: 62px;
+      width: 58px;
+      height: 58px;
       display: block;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      padding: 2px;
+      background: #fff;
     }
 
     @media print {
@@ -260,7 +242,7 @@
     <section class="section">
       <div class="sec-title">ข้อมูลส่วนตัว (PROFESSIONAL SUMMARY)</div>
       <p class="summary-text">
-        นักศึกษาชั้นปีที่ 4 สาขาเทคโนโลยีสารสนเทศ มุ่งมั่นสู่ตำแหน่ง Junior IT Business Analyst เชี่ยวชาญการวิเคราะห์ปัญหาธุรกิจ (Business Process Analysis), การทำ Requirements Gathering และแปลงความต้องการเป็น Functional Requirements, User Stories, System Workflow และเกณฑ์ทดสอบ UAT มีประสบการณ์สื่อสารกับ Stakeholder และทำงานร่วมกับทีมพัฒนาเพื่อส่งมอบโซลูชันที่ตอบโจทย์ธุรกิจจริง
+        นักศึกษาชั้นปีที่ 4 สาขาเทคโนโลยีสารสนเทศ มุ่งมั่นสู่ตำแหน่ง Junior IT Business Analyst เชี่ยวชาญการวิเคราะห์ปัญหาธุรกิจ (Business Process Analysis), การทำ Requirements Gathering และแปลงความต้องการของผู้ใช้เป็น Functional Requirements, System Workflow และเกณฑ์ทดสอบ UAT มีประสบการณ์สื่อสารกับ Stakeholder (Stakeholder Communication) และทำงานร่วมกับทีมพัฒนาเพื่อส่งมอบโซลูชันที่ตอบโจทย์ธุรกิจจริง
       </p>
     </section>
 
@@ -288,7 +270,7 @@
         </div>
         <ul class="bullets">
           <li>วิเคราะห์กระบวนการทำงานจริง (AS-IS vs. TO-BE) เพื่อรวบรวม Requirements และออกแบบ System Workflow และ Wireframes กว่า <strong>113 หน้าจอ</strong> ครอบคลุมการเบิก รับ โอน และจำหน่ายทรัพย์สิน</li>
-          <li>จัดทำ UI Design System ร่วมวางโครงสร้างฐานข้อมูล (Oracle DB) และกำหนดเกณฑ์ UAT เพื่อประสานงานส่งมอบสเปกให้ทีม Dev ได้อย่างแม่นยำ</li>
+          <li>จัดทำ UI Design System พร้อมร่วมวางโครงสร้างฐานข้อมูล (Oracle DB) และกำหนดเกณฑ์ UAT เพื่อประสานงานส่งมอบสเปกให้ทีม Dev ได้อย่างแม่นยำ</li>
         </ul>
         <div class="tech-stack"><strong>เครื่องมือที่ใช้:</strong> Figma, AS-IS / TO-BE Flow, Design System, Oracle DB, Laravel, UAT Testing</div>
       </div>
@@ -299,8 +281,8 @@
           <div class="item-date">ร้านเสม &amp; Friends (ธุรกิจจริง)</div>
         </div>
         <ul class="bullets">
-          <li>วิเคราะห์ Pain Points ด้านการบันทึกยอดขายและคำนวณต้นทุนวัตถุดิบ ออกแบบและพัฒนาระบบ POS สำหรับติดตามผลกำไรและสต็อกวัตถุดิบแบบ Real-time</li>
-          <li>เชื่อมโยงข้อมูลผ่าน Google Sheets API นำไปใช้งานจริงในร้านรองรับกว่า <strong>1,000+ ออเดอร์</strong> ช่วยลดความผิดพลาดทางบัญชีและจัดซื้อวัตถุดิบได้แม่นยำ</li>
+          <li>วิเคราะห์ Pain Points ด้านการบันทึกยอดขายและต้นทุน ออกแบบและพัฒนาระบบ POS สำหรับติดตามผลกำไรและสต็อกวัตถุดิบแบบ Real-time</li>
+          <li>เชื่อมข้อมูลผ่าน Google Sheets API นำไปใช้งานจริงในร้านรองรับกว่า <strong>1,000+ ออเดอร์</strong> ช่วยลดความผิดพลาดทางบัญชีและสั่งซื้อวัตถุดิบได้แม่นยำ</li>
         </ul>
         <div class="tech-stack"><strong>เครื่องมือที่ใช้:</strong> Process Mapping, Google Apps Script, Google Sheets API, HTML/CSS, JavaScript</div>
       </div>
@@ -326,7 +308,7 @@
           <div class="item-title">เจ้าของร้าน &amp; ผู้วางระบบธุรกิจ (Owner &amp; Business Systems Lead)</div>
           <div class="item-date">มี.ค. 2026 – ปัจจุบัน</div>
         </div>
-        <div class="item-sub">ร้านเสม &amp; Friends (หม่าล่าทอด) — ธุรกิจส่วนตัว (Self-Employed)</div>
+        <div class="item-sub">ร้านเสม &amp; Friends (หม่าล่าทอด) — ธุรกิจส่วนตัว</div>
         <ul class="bullets">
           <li>วิเคราะห์ Pain Points กระบวนการขาย สต็อกวัตถุดิบ และบัญชีหน้าร้าน รวบรวม Requirements และแปลงเป็น Process Flow เพื่อพัฒนาระบบ <strong>MALA POS</strong> รองรับการใช้งานจริงกว่า <strong>1,000+ ออเดอร์</strong></li>
           <li>บริหาร <strong>LINE OA</strong> ผู้ติดตามกว่า <strong>300+ คน</strong> วิเคราะห์พฤติกรรมการสั่งซื้อของลูกค้า จัดแคมเปญโปรโมชัน และประสานงานรับออเดอร์</li>
@@ -392,7 +374,7 @@
           </div>
         </div>
         <div class="qr-box">
-          <div class="qr-title">PORTFOLIO</div>
+          <div class="qr-title">สแกนดูพอร์ตโฟลิโอ</div>
           <img src="portfolio-qr.png" alt="Portfolio QR Code" class="qr-img">
         </div>
       </div>
