@@ -96,28 +96,16 @@
       overflow: hidden;
     }
 
-    .header-profile {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .profile-img {
-      width: 50px;
-      height: 62px;
-      object-fit: cover;
-      object-position: center top;
-      border-radius: 6px;
-      border: 1.5px solid #cbd5e1;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-      flex-shrink: 0;
-    }
-    .header {
+        .header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-bottom: 6px;
-      border-bottom: 1.5px solid #0f172a;
-      margin-bottom: 6px;
+      padding-bottom: 5px;
+      border-bottom: 1.5px solid #2563eb;
+      margin-bottom: 5px;
+    }
+    .header-left {
+      flex: 1;
     }
     .header-left h1 {
       font-size: 21pt;
@@ -128,18 +116,32 @@
       margin-bottom: 2px;
     }
     .header-left .role {
-      font-size: 10.4pt;
+      font-size: 10.2pt;
       font-weight: 600;
       color: #2563eb;
       letter-spacing: 0.1px;
+      margin-bottom: 3px;
     }
-    .header-right {
-      text-align: right;
-      font-size: 8.4pt;
+    .header-contact {
+      font-size: 8.25pt;
       color: #475569;
-      line-height: 1.36;
+      line-height: 1.34;
     }
-    .header-right a { color: #2563eb; text-decoration: none; }
+    .header-contact a { color: #2563eb; text-decoration: none; }
+    .header-right {
+      margin-left: 14px;
+      flex-shrink: 0;
+    }
+    .profile-img {
+      width: 58px;
+      height: 72px;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 6px;
+      border: 1.5px solid #cbd5e1;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      display: block;
+    }
 
     .section { margin-bottom: 4.8px; }
     .sec-title {
@@ -291,18 +293,16 @@
   <div>
     <!-- HEADER -->
     <header class="header">
-      <div class="header-profile">
-        <img src="3Z38He8.png" alt="Kosan Phongthanu" class="profile-img">
-        <div class="header-left">
-          <h1>Kosan Phongthanu</h1>
-          <div class="role">Junior IT Business Analyst / IT Business Analyst</div>
+      <div class="header-left">
+        <h1>Kosan Phongthanu</h1>
+        <div class="role">Junior IT Business Analyst / IT Business Analyst</div>
+        <div class="header-contact">
+          <div>DOB: 15/09/2003 | Lat Phrao, Bangkok, Thailand | kosak.phon@bumail.net | 064-117-4443</div>
+          <div>GitHub: <a href="https://github.com/pooh23z" target="_blank">github.com/pooh23z</a> | LinkedIn: <a href="https://www.linkedin.com/in/kosan-phongthanu" target="_blank">linkedin.com/in/kosan-phongthanu</a></div>
         </div>
       </div>
       <div class="header-right">
-        <div>DOB: 15/09/2003 | Lat Phrao, Bangkok, Thailand</div>
-        <div>kosak.phon@bumail.net | 064-117-4443</div>
-        <div>GitHub: <a href="https://github.com/pooh23z" target="_blank">https://github.com/pooh23z</a></div>
-        <div>LinkedIn: <a href="https://www.linkedin.com/in/kosan-phongthanu" target="_blank">https://www.linkedin.com/in/kosan-phongthanu</a></div>
+        <img src="3Z38He8.png" alt="Kosan Phongthanu" class="profile-img">
       </div>
     </header>
 
