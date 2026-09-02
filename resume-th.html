@@ -96,10 +96,25 @@
       overflow: hidden;
     }
 
+    .header-profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .profile-img {
+      width: 50px;
+      height: 62px;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 6px;
+      border: 1.5px solid #cbd5e1;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      flex-shrink: 0;
+    }
     .header {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
+      align-items: center;
       padding-bottom: 6px;
       border-bottom: 1.5px solid #0f172a;
       margin-bottom: 6px;
@@ -276,9 +291,12 @@
   <div>
     <!-- HEADER -->
     <header class="header">
-      <div class="header-left">
-        <h1>โกศัลย์ พงษ์ธนู</h1>
-        <div class="role">Junior IT Business Analyst / IT Business Analyst</div>
+      <div class="header-profile">
+        <img src="3Z38He8.png" alt="โกศัลย์ พงษ์ธนู" class="profile-img">
+        <div class="header-left">
+          <h1>โกศัลย์ พงษ์ธนู</h1>
+          <div class="role">Junior IT Business Analyst / IT Business Analyst</div>
+        </div>
       </div>
       <div class="header-right">
         <div>วันเกิด: 15/09/2003 | ลาดพร้าว, กรุงเทพฯ</div>
