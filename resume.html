@@ -88,7 +88,7 @@
       height: 297mm;
       margin: 0 auto;
       background: #fff;
-      padding: 6.8mm 14mm 6.8mm;
+      padding: 5.6mm 14mm 5.6mm;
       box-shadow: 0 8px 30px rgba(0,0,0,0.12);
       display: flex;
       flex-direction: column;
@@ -143,7 +143,7 @@
       display: block;
     }
 
-    .section { margin-bottom: 3.8px; }
+    .section { margin-bottom: 2.8px; }
     .sec-title {
       font-size: 9.3pt;
       font-weight: 700;
@@ -161,7 +161,7 @@
       text-align: justify;
     }
 
-    .item { margin-bottom: 3.0px; }
+    .item { margin-bottom: 2.6px; }
     .item:last-child { margin-bottom: 0; }
     .item-head {
       display: flex;
@@ -345,14 +345,14 @@
 
       <div class="item">
         <div class="item-head">
-          <div class="item-title">POS &amp; Cost/Profit Management System (Live in Business)</div>
+          <div class="item-title">Real-Time POS &amp; Slip Verification System</div>
           <div class="item-date">Sem &amp; Friends (Live Store Deployment)</div>
         </div>
         <ul class="bullets">
-          <li>Analyzed restaurant pain points in manual sales recording and food costing; designed and built a custom POS web app for real-time tracking.</li>
-          <li>Integrated sales data via Google Sheets API and deployed in daily store operations handling <strong>1,000+ orders</strong>, cutting bookkeeping errors.</li>
+          <li>Engineered an automated slip verification bot via LINE OA: decodes PromptPay EMVCo QR and prevents duplicate slip fraud (anti-double spend) via SQLite hash tracking.</li>
+          <li>Architected real-time WebSocket sync to iPad POS with Dynamic Island alerts and voice announcements ('รับ X บาท'); processed <strong>1,000+ orders</strong> with zero errors.</li>
         </ul>
-        <div class="tech-stack"><strong>Tools &amp; Technologies:</strong> Process Mapping, Google Apps Script, Google Sheets API, HTML/CSS, JavaScript</div>
+        <div class="tech-stack"><strong>Tools &amp; Technologies:</strong> Python (FastAPI), WebSocket, EMVCo QR, SQLite, LINE OA, Web Speech API, Google Sheets API</div>
       </div>
 
       <div class="item">
@@ -378,8 +378,8 @@
         </div>
         <div class="item-sub">Sem &amp; Friends (Fried Mala) — Self-Employed</div>
         <ul class="bullets">
-          <li>Analyzed operational pain points in manual order taking, fluctuating food cost, and daily bookkeeping; gathered requirements and mapped process flows to build <strong>MALA POS</strong>, supporting <strong>1,000+ live customer orders</strong>.</li>
-          <li>Managed <strong>LINE OA</strong> with <strong>400+ followers</strong>, analyzing customer ordering patterns and coordinating promotional campaigns.</li>
+          <li>Identified store bottlenecks in manual slip checking; architected <strong>MALA POS</strong> with an automated slip verification bot, WebSocket alerts, and voice prompts across <strong>1,000+ orders</strong>.</li>
+          <li>Managed <strong>LINE OA (400+ followers)</strong> with automated Flex Message receipts and real-time out-of-stock sync, eliminating slip fraud and cutting cashier verification time.</li>
         </ul>
       </div>
 

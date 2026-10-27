@@ -345,14 +345,14 @@
 
       <div class="item">
         <div class="item-head">
-          <div class="item-title">ระบบ POS และคำนวณต้นทุน-กำไร (ใช้งานจริงในธุรกิจ)</div>
+          <div class="item-title">ระบบ MALA POS &amp; ตรวจสลิปโอนเงินอัตโนมัติ (Live in Business)</div>
           <div class="item-date">ร้านเสม &amp; Friends (ธุรกิจจริง)</div>
         </div>
         <ul class="bullets">
-          <li>วิเคราะห์ Pain Points ด้านการบันทึกยอดขายและคำนวณต้นทุนวัตถุดิบ ออกแบบและพัฒนาระบบ POS สำหรับติดตามผลกำไรและสต็อกวัตถุดิบแบบ Real-time</li>
-          <li>เชื่อมโยงข้อมูลผ่าน Google Sheets API นำไปใช้งานจริงในร้านรองรับกว่า <strong>1,000+ ออเดอร์</strong> ช่วยลดความผิดพลาดทางบัญชีและจัดซื้อวัตถุดิบได้แม่นยำ</li>
+          <li>พัฒนาระบบตรวจสลิปโอนเงินอัตโนมัติเชื่อมต่อ LINE OA: ถอดรหัสโครงสร้าง PromptPay EMVCo QR พร้อมระบบป้องกันสลิปซ้ำ (Anti-Double Spend) ด้วย SQLite ป้องกันการทุจริตแบบเรียลไทม์</li>
+          <li>สถาปัตยกรรม WebSocket แจ้งเตือนเงินเข้า iPad POS ทันที พร้อมแบนเนอร์ Dynamic Island และระบบเสียงสังเคราะห์ (Web Speech API) ขานยอดอัตโนมัติ รองรับการขายจริงกว่า <strong>1,000+ ออเดอร์</strong></li>
         </ul>
-        <div class="tech-stack"><strong>เครื่องมือที่ใช้:</strong> Process Mapping, Google Apps Script, Google Sheets API, HTML/CSS, JavaScript</div>
+        <div class="tech-stack"><strong>เครื่องมือที่ใช้:</strong> Python (FastAPI), WebSocket, EMVCo QR Parsing, SQLite, LINE OA API, Web Speech API, Google Apps Script</div>
       </div>
 
       <div class="item">
@@ -378,8 +378,8 @@
         </div>
         <div class="item-sub">ร้านเสม &amp; Friends (หม่าล่าทอด) — ธุรกิจส่วนตัว (Self-Employed)</div>
         <ul class="bullets">
-          <li>วิเคราะห์ Pain Points กระบวนการขาย สต็อกวัตถุดิบ และบัญชีหน้าร้าน รวบรวม Requirements และแปลงเป็น Process Flow เพื่อพัฒนาระบบ <strong>MALA POS</strong> รองรับการใช้งานจริงกว่า <strong>1,000+ ออเดอร์</strong></li>
-          <li>บริหาร <strong>LINE OA</strong> ผู้ติดตามกว่า <strong>400+ ราย</strong> วิเคราะห์พฤติกรรมการสั่งซื้อของลูกค้า จัดแคมเปญโปรโมชัน และประสานงานรับออเดอร์</li>
+          <li>วิเคราะห์ปัญหาคอขวดในการตรวจสลิปโอนเงินและตัดสต็อกหน้าร้าน วางระบบ <strong>MALA POS</strong> ร่วมกับบอทตรวจสลิปอัตโนมัติ แจ้งเตือนผ่าน WebSocket และเสียงสังเคราะห์หน้าร้าน รองรับกว่า <strong>1,000+ ออเดอร์</strong> ยอดเงินถูกต้อง 100%</li>
+          <li>บริหาร <strong>LINE OA (ผู้ติดตาม 400+ ราย)</strong> เชื่อมระบบส่งใบเสร็จ Flex Message และระบบตัดสต็อกของหมด 1-Click ช่วยลดเวลาตรวจสอบสลิปหน้าร้านและป้องกันสลิปปลอมได้เด็ดขาด</li>
         </ul>
       </div>
 
