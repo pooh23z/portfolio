@@ -741,7 +741,7 @@
     }
 
     /* ==========================================================================
-       SPATIAL 3D DEPTH & TACTILE ARCHITECTURE (60/120FPS GPU-COMPOSITED, ZERO LAG)
+       SPATIAL 3D DEPTH & INTERACTIVE MOUSE-TRACKING 3D WORLD (60/120FPS ZERO LAG)
        ========================================================================== */
     .spatial-backdrop {
       position: fixed;
@@ -750,33 +750,85 @@
       z-index: 0;
       overflow: hidden;
       background:
-        radial-gradient(ellipse 75% 45% at 18% -5%, rgba(37, 99, 235, 0.075), transparent 65%),
-        radial-gradient(ellipse 65% 45% at 85% 8%, rgba(124, 58, 237, 0.06), transparent 65%);
+        radial-gradient(ellipse 75% 48% at 16% -4%, rgba(37, 99, 235, 0.08), transparent 66%),
+        radial-gradient(ellipse 68% 46% at 86% 10%, rgba(124, 58, 237, 0.065), transparent 66%),
+        radial-gradient(ellipse 65% 45% at 50% 104%, rgba(8, 145, 178, 0.055), transparent 66%);
     }
     [data-theme="dark"] .spatial-backdrop {
       background:
-        radial-gradient(ellipse 80% 50% at 18% -8%, rgba(37, 99, 235, 0.16), transparent 65%),
-        radial-gradient(ellipse 70% 45% at 85% 5%, rgba(124, 58, 237, 0.13), transparent 65%);
+        radial-gradient(ellipse 80% 50% at 16% -6%, rgba(37, 99, 235, 0.17), transparent 66%),
+        radial-gradient(ellipse 70% 48% at 86% 8%, rgba(124, 58, 237, 0.14), transparent 66%),
+        radial-gradient(ellipse 70% 45% at 50% 106%, rgba(6, 182, 212, 0.10), transparent 66%);
+    }
+    .spatial-cursor-aura {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 760px;
+      height: 760px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.11) 0%, rgba(124, 58, 237, 0.06) 36%, transparent 70%);
+      transform: translate3d(-9999px, -9999px, 0);
+      will-change: transform;
+      pointer-events: none;
+    }
+    [data-theme="dark"] .spatial-cursor-aura {
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.16) 0%, rgba(139, 92, 246, 0.10) 38%, transparent 70%);
+    }
+    .spatial-grid-rig {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
     }
     .spatial-grid-plane {
       position: absolute;
-      top: -12%;
-      left: -20%;
-      right: -20%;
-      height: 76vh;
+      top: -14%;
+      left: -24%;
+      right: -24%;
+      height: 74vh;
       background-image:
-        linear-gradient(to right, rgba(15, 23, 42, 0.045) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(15, 23, 42, 0.045) 1px, transparent 1px);
-      background-size: 48px 48px;
-      transform: perspective(680px) rotateX(58deg);
+        linear-gradient(to right, rgba(37, 99, 235, 0.075) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(37, 99, 235, 0.075) 1px, transparent 1px);
+      background-size: 52px 52px;
+      transform: perspective(720px) rotateX(58deg);
       transform-origin: center top;
-      -webkit-mask-image: radial-gradient(ellipse 68% 65% at 50% 18%, #000 10%, transparent 78%);
-      mask-image: radial-gradient(ellipse 68% 65% at 50% 18%, #000 10%, transparent 78%);
+      will-change: transform;
+      -webkit-mask-image: radial-gradient(ellipse 72% 68% at 50% 16%, #000 12%, transparent 78%);
+      mask-image: radial-gradient(ellipse 72% 68% at 50% 16%, #000 12%, transparent 78%);
+    }
+    .spatial-grid-floor {
+      position: absolute;
+      bottom: -18%;
+      left: -24%;
+      right: -24%;
+      height: 68vh;
+      background-image:
+        linear-gradient(to right, rgba(124, 58, 237, 0.065) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(37, 99, 235, 0.065) 1px, transparent 1px);
+      background-size: 52px 52px;
+      transform: perspective(720px) rotateX(-58deg);
+      transform-origin: center bottom;
+      will-change: transform;
+      -webkit-mask-image: radial-gradient(ellipse 72% 64% at 50% 86%, #000 10%, transparent 76%);
+      mask-image: radial-gradient(ellipse 72% 64% at 50% 86%, #000 10%, transparent 76%);
     }
     [data-theme="dark"] .spatial-grid-plane {
       background-image:
-        linear-gradient(to right, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+        linear-gradient(to right, rgba(56, 189, 248, 0.09) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(56, 189, 248, 0.09) 1px, transparent 1px);
+    }
+    [data-theme="dark"] .spatial-grid-floor {
+      background-image:
+        linear-gradient(to right, rgba(167, 139, 250, 0.08) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(56, 189, 248, 0.08) 1px, transparent 1px);
+    }
+    #spatial3dCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      pointer-events: none;
     }
 
     header.hero, section.section, footer.contact {
@@ -1001,7 +1053,12 @@
 <body>
 
   <div class="spatial-backdrop" aria-hidden="true">
-    <div class="spatial-grid-plane"></div>
+    <div class="spatial-cursor-aura" id="spatialAura"></div>
+    <div class="spatial-grid-rig" id="spatialGridRig">
+      <div class="spatial-grid-plane" id="spatialGridTop"></div>
+      <div class="spatial-grid-floor" id="spatialGridBottom"></div>
+    </div>
+    <canvas id="spatial3dCanvas"></canvas>
   </div>
 
   <div class="scroll-progress" id="scrollProgress"></div>
@@ -1652,7 +1709,7 @@
     </div>
   </section>
 
-  <section class="section" id="certifications" style="background: var(--surface);">
+  <section class="section" id="certifications">
     <div class="wrap">
       <div class="section-head fade-up">
         <p class="eyebrow">AWARDS & CERTS</p>
@@ -2198,6 +2255,509 @@
           }, { passive: true });
         });
       }
+
+      // =========================================================================
+      // Interactive Mouse-Tracking 3D Spatial Background Engine (Zero-Lag 60/120fps)
+      // =========================================================================
+      (function initSpatial3DWorld() {
+        var canvas = document.getElementById('spatial3dCanvas');
+        if (!canvas || !canvas.getContext) return;
+        var ctx = canvas.getContext('2d', { alpha: true });
+        var auraEl = document.getElementById('spatialAura');
+        var gridTop = document.getElementById('spatialGridTop');
+        var gridBottom = document.getElementById('spatialGridBottom');
+
+        var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+        var vw = window.innerWidth;
+        var vh = window.innerHeight;
+        var dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+        var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+
+        var themeObs = new MutationObserver(function() {
+          isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        });
+        themeObs.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+        function resizeCanvas() {
+          vw = window.innerWidth;
+          vh = window.innerHeight;
+          dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+          canvas.width = Math.round(vw * dpr);
+          canvas.height = Math.round(vh * dpr);
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas, { passive: true });
+
+        // Mouse & Scroll state
+        var mouseActive = false;
+        var targetMX = vw * 0.65;
+        var targetMY = vh * 0.36;
+        var smoothMX = targetMX;
+        var smoothMY = targetMY;
+        var prevMX = targetMX;
+        var prevMY = targetMY;
+        var velX = 0;
+        var velY = 0;
+
+        var camYaw = 0, camPitch = 0;
+        var scrollYVal = window.scrollY || 0;
+        var smoothScroll = scrollYVal;
+
+        window.addEventListener('mousemove', function(e) {
+          mouseActive = true;
+          targetMX = e.clientX;
+          targetMY = e.clientY;
+        }, { passive: true });
+
+        window.addEventListener('touchmove', function(e) {
+          if (e.touches && e.touches[0]) {
+            mouseActive = true;
+            targetMX = e.touches[0].clientX;
+            targetMY = e.touches[0].clientY;
+          }
+        }, { passive: true });
+
+        window.addEventListener('scroll', function() {
+          scrollYVal = window.scrollY || 0;
+        }, { passive: true });
+
+        // Build 3D Polyhedron Primitives (Unit vertices + edge index pairs)
+        function makeOctahedron() {
+          var v = [[1,0,0],[-1,0,0],[0,1,0],[0,-1,0],[0,0,1],[0,0,-1]];
+          var e = [[0,2],[0,3],[0,4],[0,5],[1,2],[1,3],[1,4],[1,5],[2,4],[4,3],[3,5],[5,2]];
+          return { v: v, e: e };
+        }
+        function makeCube() {
+          var s = 0.72;
+          var v = [[-s,-s,-s],[s,-s,-s],[s,s,-s],[-s,s,-s],[-s,-s,s],[s,-s,s],[s,s,s],[-s,s,s]];
+          var e = [[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]];
+          return { v: v, e: e };
+        }
+        function makeTetrahedron() {
+          var s = 0.85;
+          var v = [[s,s,s],[-s,-s,s],[-s,s,-s],[s,-s,-s]];
+          var e = [[0,1],[0,2],[0,3],[1,2],[2,3],[3,1]];
+          return { v: v, e: e };
+        }
+        function makeIcosahedron() {
+          var t = (1 + Math.sqrt(5)) / 2;
+          var raw = [
+            [-1,t,0],[1,t,0],[-1,-t,0],[1,-t,0],
+            [0,-1,t],[0,1,t],[0,-1,-t],[0,1,-t],
+            [t,0,-1],[t,0,1],[-t,0,-1],[-t,0,1]
+          ];
+          var len = Math.sqrt(1 + t * t);
+          var v = raw.map(function(p) { return [p[0]/len, p[1]/len, p[2]/len]; });
+          var e = [];
+          for (var i = 0; i < v.length; i++) {
+            for (var j = i + 1; j < v.length; j++) {
+              var dx = v[i][0] - v[j][0], dy = v[i][1] - v[j][1], dz = v[i][2] - v[j][2];
+              var d = Math.sqrt(dx*dx + dy*dy + dz*dz);
+              if (d < 1.15) e.push([i, j]);
+            }
+          }
+          return { v: v, e: e };
+        }
+
+        var geoIco = makeIcosahedron();
+        var geoOct = makeOctahedron();
+        var geoCube = makeCube();
+        var geoTet = makeTetrahedron();
+
+        // 7 Floating 3D Polyhedra distributed across depth layers
+        var shapes = [
+          { geo: geoIco,  xr:  0.34, yr: -0.22, z:  70,  r: 68, rx: 0.3, ry: 0.6, rz: 0.1, drx: 0.0032, dry: 0.0048, drz: 0.0018, ox: 0, oy: 0, vx: 0, vy: 0, hue: 0 },
+          { geo: geoOct,  xr: -0.38, yr: -0.26, z:  130, r: 46, rx: 0.8, ry: 0.2, rz: 0.4, drx: -0.004, dry: 0.0035, drz: 0.0022, ox: 0, oy: 0, vx: 0, vy: 0, hue: 1 },
+          { geo: geoCube, xr: -0.32, yr:  0.28, z:  40,  r: 44, rx: 0.5, ry: 0.9, rz: 0.2, drx: 0.0036, dry: -0.003, drz: 0.0025, ox: 0, oy: 0, vx: 0, vy: 0, hue: 2 },
+          { geo: geoOct,  xr:  0.40, yr:  0.30, z:  180, r: 52, rx: 0.1, ry: 0.4, rz: 0.7, drx: 0.0028, dry: 0.0042, drz: -0.002, ox: 0, oy: 0, vx: 0, vy: 0, hue: 1 },
+          { geo: geoTet,  xr:  0.06, yr: -0.34, z:  240, r: 42, rx: 0.4, ry: 0.7, rz: 0.3, drx: -0.0035, dry: 0.0038, drz: 0.003, ox: 0, oy: 0, vx: 0, vy: 0, hue: 0 },
+          { geo: geoCube, xr:  0.14, yr:  0.36, z:  310, r: 50, rx: 0.2, ry: 0.5, rz: 0.6, drx: 0.0026, dry: -0.0034, drz: 0.002, ox: 0, oy: 0, vx: 0, vy: 0, hue: 2 },
+          { geo: geoOct,  xr: -0.14, yr:  0.04, z:  380, r: 58, rx: 0.7, ry: 0.3, rz: 0.5, drx: 0.0022, dry: 0.0030, drz: -0.0018, ox: 0, oy: 0, vx: 0, vy: 0, hue: 0 }
+        ];
+
+        // 3D Spatial Depth Constellation Nodes
+        var NODE_COUNT = isFinePointer ? 54 : 26;
+        var nodes = [];
+        for (var n = 0; n < NODE_COUNT; n++) {
+          nodes.push({
+            xr: (Math.random() - 0.5) * 1.45,
+            yr: (Math.random() - 0.5) * 1.45,
+            z: -160 + Math.random() * 720,
+            vx: (Math.random() - 0.5) * 0.00035,
+            vy: (Math.random() - 0.5) * 0.00035,
+            vz: (Math.random() - 0.5) * 0.22,
+            ox: 0,
+            oy: 0,
+            size: 1.5 + Math.random() * 1.9,
+            hue: n % 3
+          });
+        }
+
+        // Pre-allocated projection buffers for nodes (zero GC)
+        var nSX = new Float32Array(NODE_COUNT);
+        var nSY = new Float32Array(NODE_COUNT);
+        var nSZ = new Float32Array(NODE_COUNT);
+        var nScale = new Float32Array(NODE_COUNT);
+        var nVis = new Uint8Array(NODE_COUNT);
+
+        // Pre-allocated vertex buffer for polyhedra (max 12 verts)
+        var vSX = new Float32Array(16);
+        var vSY = new Float32Array(16);
+        var vSZ = new Float32Array(16);
+
+        var fov = 640;
+        var gyroPhase = 0;
+        var animFrameId = 0;
+
+        function wrapSym(val, span) {
+          var half = span * 0.5;
+          var m = ((val + half) % span + span) % span;
+          return m - half;
+        }
+
+        function renderFrame() {
+          animFrameId = 0;
+          ctx.clearRect(0, 0, vw, vh);
+
+          var cx = vw * 0.5;
+          var cy = vh * 0.5;
+
+          // Smooth mouse & camera inertia
+          smoothMX += (targetMX - smoothMX) * 0.12;
+          smoothMY += (targetMY - smoothMY) * 0.12;
+          velX = velX * 0.84 + (smoothMX - prevMX) * 0.16;
+          velY = velY * 0.84 + (smoothMY - prevMY) * 0.16;
+          prevMX = smoothMX;
+          prevMY = smoothMY;
+
+          smoothScroll += (scrollYVal - smoothScroll) * 0.10;
+
+          var mxNorm = (smoothMX / Math.max(vw, 1) - 0.5) * 2; // -1..1
+          var myNorm = (smoothMY / Math.max(vh, 1) - 0.5) * 2; // -1..1
+
+          var targetYaw = mouseActive ? mxNorm * 0.48 : Math.sin(gyroPhase * 0.4) * 0.08;
+          var targetPitch = mouseActive ? -myNorm * 0.34 : Math.cos(gyroPhase * 0.3) * 0.05;
+          camYaw += (targetYaw - camYaw) * 0.085;
+          camPitch += (targetPitch - camPitch) * 0.085;
+
+          // Update GPU CSS 3D Aura & Perspective Ceiling/Floor Grids
+          if (auraEl && mouseActive) {
+            auraEl.style.transform = 'translate3d(' + (smoothMX - 380).toFixed(1) + 'px,' + (smoothMY - 380).toFixed(1) + 'px,0)';
+          }
+          if (gridTop) {
+            gridTop.style.transform = 'perspective(720px) rotateX(' + (58 + camPitch * 18).toFixed(2) + 'deg) rotateZ(' + (-camYaw * 11).toFixed(2) + 'deg) translate3d(' + (-camYaw * 64).toFixed(1) + 'px,' + (camPitch * 34).toFixed(1) + 'px,0)';
+          }
+          if (gridBottom) {
+            gridBottom.style.transform = 'perspective(720px) rotateX(' + (-58 + camPitch * 18).toFixed(2) + 'deg) rotateZ(' + (camYaw * 11).toFixed(2) + 'deg) translate3d(' + (-camYaw * 70).toFixed(1) + 'px,' + (camPitch * 38).toFixed(1) + 'px,0)';
+          }
+
+          var cosY = Math.cos(camYaw), sinY = Math.sin(camYaw);
+          var cosP = Math.cos(camPitch), sinP = Math.sin(camPitch);
+          var camPanX = -camYaw * 145;
+          var camPanY = camPitch * 105;
+
+          // Palette for Light vs Dark mode
+          var cPrimary   = isDark ? '56, 189, 248'  : '37, 99, 235';
+          var cSecondary = isDark ? '167, 139, 250' : '124, 58, 237';
+          var cTertiary  = isDark ? '45, 212, 191'  : '8, 145, 178';
+          var baseAlpha  = isDark ? 1.0 : 0.85;
+
+          gyroPhase += 0.016;
+
+          // -----------------------------------------------------------------
+          // 1. Project & Update 3D Spatial Constellation Nodes
+          // -----------------------------------------------------------------
+          var fieldW = Math.max(vw, 900) * 1.35;
+          var fieldH = Math.max(vh, 750) * 1.35;
+
+          for (var i = 0; i < NODE_COUNT; i++) {
+            var nd = nodes[i];
+            if (!reducedMotion) {
+              nd.xr += nd.vx;
+              nd.yr += nd.vy;
+              nd.z += nd.vz;
+              if (nd.xr > 0.72) nd.xr = -0.72;
+              else if (nd.xr < -0.72) nd.xr = 0.72;
+              if (nd.yr > 0.72) nd.yr = -0.72;
+              else if (nd.yr < -0.72) nd.yr = 0.72;
+              if (nd.z > 560) nd.z = -160;
+              else if (nd.z < -160) nd.z = 560;
+            }
+
+            var wx = nd.xr * fieldW + nd.ox;
+            var wy = wrapSym(nd.yr * fieldH - smoothScroll * 0.22, fieldH) + nd.oy;
+            var wz = nd.z;
+
+            // Camera 3D rotation (Yaw around Y, Pitch around X)
+            var x1 = wx * cosY + wz * sinY + camPanX;
+            var z1 = -wx * sinY + wz * cosY;
+            var y2 = wy * cosP - z1 * sinP + camPanY;
+            var z2 = wy * sinP + z1 * cosP;
+
+            if (z2 < -fov + 80) {
+              nVis[i] = 0;
+              nd.ox *= 0.92;
+              nd.oy *= 0.92;
+              continue;
+            }
+
+            var sc = fov / (fov + z2);
+            var sx = cx + x1 * sc;
+            var sy = cy + y2 * sc;
+
+            // Mouse 3D magnetic swirl / pull
+            if (mouseActive) {
+              var mdx = smoothMX - sx;
+              var mdy = smoothMY - sy;
+              var mDistSq = mdx * mdx + mdy * mdy;
+              if (mDistSq < 57600 && mDistSq > 4) { // within 240px
+                var mDist = Math.sqrt(mDistSq);
+                var pull = (1 - mDist / 240) * 1.45;
+                // Gentle attraction + slight orbital tangential swirl in 3D
+                nd.ox += (mdx / mDist * 0.65 - mdy / mDist * 0.45) * pull;
+                nd.oy += (mdy / mDist * 0.65 + mdx / mDist * 0.45) * pull;
+              }
+            }
+            nd.ox *= 0.93;
+            nd.oy *= 0.93;
+
+            nSX[i] = sx;
+            nSY[i] = sy;
+            nSZ[i] = z2;
+            nScale[i] = sc;
+            nVis[i] = (sx > -80 && sx < vw + 80 && sy > -80 && sy < vh + 80) ? 1 : 0;
+          }
+
+          // Draw 3D Node-to-Node Depth Mesh Connections
+          ctx.lineWidth = 1;
+          for (var a = 0; a < NODE_COUNT; a++) {
+            if (!nVis[a]) continue;
+            var ax = nSX[a], ay = nSY[a], az = nSZ[a];
+            for (var b = a + 1; b < NODE_COUNT; b++) {
+              if (!nVis[b]) continue;
+              var dz = az - nSZ[b];
+              if (dz > 220 || dz < -220) continue;
+              var dx = ax - nSX[b];
+              if (dx > 145 || dx < -145) continue;
+              var dy = ay - nSY[b];
+              if (dy > 145 || dy < -145) continue;
+              var dSq = dx * dx + dy * dy;
+              if (dSq < 21025) {
+                var distFactor = 1 - Math.sqrt(dSq) / 145;
+                var depthFactor = Math.min(1.15, (nScale[a] + nScale[b]) * 0.5);
+                var alpha = distFactor * depthFactor * 0.16 * baseAlpha;
+                ctx.strokeStyle = 'rgba(' + cPrimary + ',' + alpha.toFixed(3) + ')';
+                ctx.beginPath();
+                ctx.moveTo(ax, ay);
+                ctx.lineTo(nSX[b], nSY[b]);
+                ctx.stroke();
+              }
+            }
+          }
+
+          // Draw Interactive 3D Cursor Constellation Tethers + 3D Gyro Rings
+          if (mouseActive && isFinePointer) {
+            for (var c = 0; c < NODE_COUNT; c++) {
+              if (!nVis[c]) continue;
+              var cdx = smoothMX - nSX[c];
+              var cdy = smoothMY - nSY[c];
+              var cdSq = cdx * cdx + cdy * cdy;
+              if (cdSq < 52900) { // 230px radius
+                var tFactor = 1 - Math.sqrt(cdSq) / 230;
+                var tAlpha = tFactor * Math.min(1.2, nScale[c]) * (isDark ? 0.38 : 0.28);
+                ctx.strokeStyle = 'rgba(' + (c % 2 === 0 ? cPrimary : cSecondary) + ',' + tAlpha.toFixed(3) + ')';
+                ctx.lineWidth = 1.15;
+                ctx.beginPath();
+                ctx.moveTo(smoothMX, smoothMY);
+                ctx.lineTo(nSX[c], nSY[c]);
+                ctx.stroke();
+              }
+            }
+
+            // Subtle Wide 3D Orbital Halo (keeps text directly under cursor 100% clean)
+            var speed = Math.min(Math.sqrt(velX * velX + velY * velY), 28);
+            var haloRad = 96 + speed * 1.1;
+            var rxH = 1.02 + velY * 0.018;
+            var ryH = gyroPhase * 0.75 + velX * 0.025 + camYaw * 1.3;
+            var cRX = Math.cos(rxH), sRX = Math.sin(rxH);
+            var cRY = Math.cos(ryH), sRY = Math.sin(ryH);
+            var segs = 36;
+            ctx.beginPath();
+            for (var s = 0; s <= segs; s++) {
+              var ang = (s / segs) * Math.PI * 2;
+              var px = Math.cos(ang) * haloRad;
+              var py = Math.sin(ang) * haloRad;
+              var py1 = py * cRX;
+              var pz1 = py * sRX;
+              var px2 = px * cRY + pz1 * sRY;
+              var pz2 = -px * sRY + pz1 * cRY;
+              var pSc = 520 / (520 + pz2);
+              var rsx = smoothMX + px2 * pSc;
+              var rsy = smoothMY + py1 * pSc;
+              if (s % 3 === 0) ctx.moveTo(rsx, rsy);
+              else ctx.lineTo(rsx, rsy);
+            }
+            var rAlpha = isDark ? 0.17 : 0.13;
+            ctx.strokeStyle = 'rgba(' + cPrimary + ',' + rAlpha.toFixed(3) + ')';
+            ctx.lineWidth = 1.1;
+            ctx.stroke();
+          }
+
+          // Draw 3D Nodes (with fast two-circle depth glow on foreground nodes)
+          for (var k = 0; k < NODE_COUNT; k++) {
+            if (!nVis[k]) continue;
+            var nObj = nodes[k];
+            var scN = nScale[k];
+            var rN = Math.max(1.1, nObj.size * scN);
+            var colN = nObj.hue === 0 ? cPrimary : (nObj.hue === 1 ? cSecondary : cTertiary);
+            var aN = Math.min(0.72, scN * 0.48) * baseAlpha;
+
+            if (scN > 0.92) {
+              ctx.fillStyle = 'rgba(' + colN + ',' + (aN * 0.22).toFixed(3) + ')';
+              ctx.beginPath();
+              ctx.arc(nSX[k], nSY[k], rN * 2.6, 0, Math.PI * 2);
+              ctx.fill();
+            }
+            ctx.fillStyle = 'rgba(' + colN + ',' + aN.toFixed(3) + ')';
+            ctx.beginPath();
+            ctx.arc(nSX[k], nSY[k], rN, 0, Math.PI * 2);
+            ctx.fill();
+          }
+
+          // -----------------------------------------------------------------
+          // 2. Render 7 Sculpted 3D Wireframe Polyhedra (Mouse-Reactive)
+          // -----------------------------------------------------------------
+          var polySpanH = Math.max(vh, 760) * 1.28;
+          for (var p = 0; p < shapes.length; p++) {
+            var sh = shapes[p];
+            if (!reducedMotion) {
+              sh.rx += sh.drx;
+              sh.ry += sh.dry;
+              sh.rz += sh.drz;
+            }
+
+            var centerWX = sh.xr * Math.max(vw, 960) + sh.ox;
+            var centerWY = wrapSym(sh.yr * polySpanH - smoothScroll * 0.16, polySpanH) + sh.oy;
+            var centerWZ = sh.z;
+
+            // Project polyhedron center first to measure mouse interaction
+            var cx1 = centerWX * cosY + centerWZ * sinY + camPanX;
+            var cz1 = -centerWX * sinY + centerWZ * cosY;
+            var cy2 = centerWY * cosP - cz1 * sinP + camPanY;
+            var cz2 = centerWY * sinP + cz1 * cosP;
+            if (cz2 < -fov + 110) continue;
+
+            var cScale = fov / (fov + cz2);
+            var centerSX = cx + cx1 * cScale;
+            var centerSY = cy + cy2 * cScale;
+
+            var prox = 0;
+            if (mouseActive) {
+              var pdx = centerSX - smoothMX;
+              var pdy = centerSY - smoothMY;
+              var pDist = Math.sqrt(pdx * pdx + pdy * pdy);
+              if (pDist < 290 && pDist > 1) {
+                prox = 1 - pDist / 290;
+                // Gentle 3D push + spin boost when cursor nears polyhedron
+                sh.vx += (pdx / pDist) * prox * 0.55;
+                sh.vy += (pdy / pDist) * prox * 0.55;
+                sh.rx += velY * 0.0012 * prox;
+                sh.ry += velX * 0.0012 * prox;
+              }
+            }
+            // Spring physics back to anchor
+            sh.vx = (sh.vx - sh.ox * 0.045) * 0.88;
+            sh.vy = (sh.vy - sh.oy * 0.045) * 0.88;
+            sh.ox += sh.vx;
+            sh.oy += sh.vy;
+
+            // Local 3D rotation matrix combined with mouse tilt influence
+            var lrx = sh.rx + camPitch * 0.85;
+            var lry = sh.ry + camYaw * 0.85;
+            var lrz = sh.rz;
+            var cX = Math.cos(lrx), sX = Math.sin(lrx);
+            var cY = Math.cos(lry), sY = Math.sin(lry);
+            var cZ = Math.cos(lrz), sZ = Math.sin(lrz);
+
+            var verts = sh.geo.v;
+            var edges = sh.geo.e;
+            var radP = sh.r;
+
+            for (var vi = 0; vi < verts.length; vi++) {
+              var vx0 = verts[vi][0] * radP;
+              var vy0 = verts[vi][1] * radP;
+              var vz0 = verts[vi][2] * radP;
+
+              // Local X -> Y -> Z rotation
+              var vy1 = vy0 * cX - vz0 * sX;
+              var vz1 = vy0 * sX + vz0 * cX;
+              var vx2 = vx0 * cY + vz1 * sY;
+              var vz2 = -vx0 * sY + vz1 * cY;
+              var vx3 = vx2 * cZ - vy1 * sZ;
+              var vy3 = vx2 * sZ + vy1 * cZ;
+
+              // World + Camera rotation
+              var pwx = centerWX + vx3;
+              var pwy = centerWY + vy3;
+              var pwz = centerWZ + vz2;
+
+              var rx1 = pwx * cosY + pwz * sinY + camPanX;
+              var rz1 = -pwx * sinY + pwz * cosY;
+              var ry2 = pwy * cosP - rz1 * sinP + camPanY;
+              var rz2 = pwy * sinP + rz1 * cosP;
+
+              var vSc = fov / Math.max(90, fov + rz2);
+              vSX[vi] = cx + rx1 * vSc;
+              vSY[vi] = cy + ry2 * vSc;
+              vSZ[vi] = rz2;
+            }
+
+            var pCol = sh.hue === 0 ? cPrimary : (sh.hue === 1 ? cSecondary : cTertiary);
+            var edgeBaseAlpha = (isDark ? 0.25 : 0.20) * cScale + prox * 0.26;
+            ctx.lineWidth = 1.15 + prox * 0.55;
+
+            // Draw depth-shaded 3D wireframe edges
+            for (var ei = 0; ei < edges.length; ei++) {
+              var i0 = edges[ei][0];
+              var i1 = edges[ei][1];
+              var avgZ = (vSZ[i0] + vSZ[i1]) * 0.5;
+              var frontBoost = avgZ < cz2 ? 1.28 : 0.62; // front edges brighter than back edges!
+              var eAlpha = Math.min(0.68, edgeBaseAlpha * frontBoost);
+              ctx.strokeStyle = 'rgba(' + pCol + ',' + eAlpha.toFixed(3) + ')';
+              ctx.beginPath();
+              ctx.moveTo(vSX[i0], vSY[i0]);
+              ctx.lineTo(vSX[i1], vSY[i1]);
+              ctx.stroke();
+            }
+
+            // Crisp 3D vertex joints
+            var vDotAlpha = Math.min(0.78, edgeBaseAlpha * 1.45);
+            ctx.fillStyle = 'rgba(' + pCol + ',' + vDotAlpha.toFixed(3) + ')';
+            for (var vd = 0; vd < verts.length; vd++) {
+              if (vSZ[vd] <= cz2 + 12) {
+                ctx.beginPath();
+                ctx.arc(vSX[vd], vSY[vd], 1.7 + prox * 0.9, 0, Math.PI * 2);
+                ctx.fill();
+              }
+            }
+          }
+
+          if (!reducedMotion && !document.hidden) {
+            animFrameId = requestAnimationFrame(renderFrame);
+          }
+        }
+
+        document.addEventListener('visibilitychange', function() {
+          if (!document.hidden && !reducedMotion && !animFrameId) {
+            animFrameId = requestAnimationFrame(renderFrame);
+          }
+        });
+
+        renderFrame();
+      })();
 
     })();
   </script>
