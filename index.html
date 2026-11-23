@@ -1,8 +1,14 @@
 <!doctype html>
-<html lang="th">
+<html lang="th" data-theme="dark">
 
 <head>
   <meta charset="utf-8">
+  <script>
+    (function () {
+      var saved = localStorage.getItem('portfolio_theme_pref');
+      document.documentElement.setAttribute('data-theme', saved === 'light' ? 'light' : 'dark');
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
@@ -2956,7 +2962,7 @@
         <a href="#contact" data-i18n="nav-contact">ติดต่อ</a>
       </div>
       <div class="nav-actions">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><span id="themeIcon">🌙</span></button>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><span id="themeIcon">☀️</span></button>
         <div class="lang-switch" role="group" aria-label="Language / ภาษา">
           <button type="button" class="lang-btn active" data-lang="th">TH</button>
           <button type="button" class="lang-btn" data-lang="en">EN</button>
@@ -4108,22 +4114,24 @@
       }, { passive: true });
 
 
-      // Theme Toggle
+      // Theme Toggle (Defaults to Dark Mode; saves user preference only when toggled)
       var themeToggle = document.getElementById('themeToggle');
       var themeIcon = document.getElementById('themeIcon');
-      var currentTheme = localStorage.getItem('theme') || 'light';
+      var currentTheme = localStorage.getItem('portfolio_theme_pref') || 'dark';
 
-      function setTheme(theme) {
+      function setTheme(theme, persist) {
         document.documentElement.setAttribute('data-theme', theme);
         themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
-        localStorage.setItem('theme', theme);
+        if (persist) {
+          localStorage.setItem('portfolio_theme_pref', theme);
+        }
       }
 
-      setTheme(currentTheme);
+      setTheme(currentTheme, false);
 
       themeToggle.addEventListener('click', function () {
         var newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-        setTheme(newTheme);
+        setTheme(newTheme, true);
       });
 
       // i18n
